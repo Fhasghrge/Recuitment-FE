@@ -1,0 +1,57 @@
+image: registry.stuhome.com/devops/dockerepo/docker:1.0.1
+
+stages:
+    - build
+    - deploy
+build-staging-image:
+    stage: build
+    
+    only:
+    - staging
+    
+    script:
+    - star_ci_build staging wing
+    
+    allow_failure: false
+    when: manual
+
+deploy-staging:
+    stage: deploy
+
+    script:
+    - star_ci_deploy staging wing
+
+    only:
+    - staging
+
+    tags:
+    - staging
+
+    allow_failure: false
+    when: manual
+
+build-production-image:
+    stage: build
+
+    script:
+    - star_ci_build production wing
+    
+    allow_failure: false
+    only:
+    - master
+
+deploy-production:
+    stage: deploy
+
+    script:
+    - star_ci_deploy production wing
+
+    only:
+    - master
+    
+    tags:
+    - production
+
+    when: manual
+    allow_failure: false
+
