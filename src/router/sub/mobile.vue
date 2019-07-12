@@ -1,0 +1,20 @@
+<template>
+    <div id='text'>
+        <h1 class='welcome-header'>{{Header}}</h1>
+        <p class='introduce'>{{ introduce }}</p>
+        <a href="" class='begin' v-if='flag'>开始答题</a>
+    </div>
+</template>
+
+<script>
+import preVue from '../Pre-Introduce.vue'
+export default {
+    data(){
+        return {
+            flag:false,  // flag控制开始答题按钮，true为显示，false为隐藏
+            Header:'移动组',
+            introduce:'这里是移动组的介绍',
+        }
+    },
+}
+</script>
