@@ -131,10 +131,6 @@ export default {
 }
 
 @media (max-width: 750px) {
-  html,
-body {
-  height: 100vh;
-}
   .part2 {
     width: 80%;
     height: 45%;
