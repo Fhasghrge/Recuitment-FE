@@ -18,9 +18,7 @@ export default {
 </script>
 
 <style scoped>
-body {
-  margin: 0;
-}
+
 #app {
   width: 100%;
 }
