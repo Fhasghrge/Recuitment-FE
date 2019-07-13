@@ -1,23 +1,21 @@
 <template>
   <div id="app">
-    <div class="background">
-    </div>
     <router-view />
   </div>
 </template>
 
 <style>
-body {
-  /*background-image: url(../src/assets/back.png);*/
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+html {
+ 
   margin: 0;
+  min-height: 100vh;
 }
-  .background {
-    background-image: url(../src/assets/back.png);
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    z-index: -100;
-  }
+body {
+  background-image: url(../src/assets/back.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  min-height: 100vh;
+}
 </style>
