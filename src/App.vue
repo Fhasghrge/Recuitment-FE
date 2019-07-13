@@ -4,7 +4,7 @@
             <img src="./img/小箭头-左.png" class="arrow_left" @click="returnToMain" v-if='arrowFlag'>
             <img src="./img/LOGO.png" class='logo' @click="returnToMain">                
             <img src="./img/小箭头.png" class="arrow_right" :class="[{ arrowhead:1},{ rotate1:flag},{ rotate2:(!flag)}]" @click="flag=!flag">
-            <img src="./img/头像.png" class='portrait' @click="priFlag=true;flag=!flag;">
+            <img src="./img/头像.png" class='portrait' @click="priFlag=true">
         </div>
         <transition name="draw">
             <div class="box" v-show="flag">
