@@ -1,6 +1,6 @@
 <template>
     <div id='main'>
-        <div id='header'>
+        <div id='header' v-if="headFlag">
             <img src="./img/小箭头-左.png" class="arrow_left" @click="returnToMain" v-if='arrowFlag'>
             <img src="./img/LOGO.png" class='logo' @click="returnToMain">                
             <img src="./img/小箭头.png" class="arrow_right" :class="[{ arrowhead:1},{ rotate1:flag},{ rotate2:(!flag)}]" @click="flag=!flag">
@@ -12,9 +12,9 @@
             <button class="btn" v-show="flag">退出登陆</button>
             </div>
         </transition>
-        <transition name='text'>
-            <router-view></router-view>
-        </transition>
+
+        <router-view></router-view>
+
         <div id='private' v-if='priFlag' >
             <img src="./img/头像.png" id="priHead"><span id="priName">{{ privateName }}</span>
             <img src="./img/close.png" class="close" @click="priFlag=false">
@@ -39,7 +39,8 @@ export default {
     data(){
         return {
             privateName:'Olina',
-            flag: false,
+            headFlag:true,
+            flag: false,    // 控制个人信息小框框的显隐
             arrowFlag:false,
             priFlag:false,
             priName:'黄老板',
@@ -66,14 +67,24 @@ export default {
             else{
                 this.arrowFlag = false;
             }
+        },
+        showHead(){
+            if(this.$route.path == '/login' || this.$route.path =='/managerlogin'){
+                this.headFlag = false;
+            }
+            else{
+                this.headFlag = true;
+            }
         }
     },
     mounted(){
         this.arrowStyle();
+        this.showHead();
     },
     watch:{
         "$route.path":function(newVal){
             this.arrowStyle();
+            this.showHead();
         }
     }
 }

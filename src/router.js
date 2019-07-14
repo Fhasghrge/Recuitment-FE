@@ -10,6 +10,7 @@ import mobile from './router/sub/mobile.vue'
 import design from './router/sub/design.vue'
 import DevOps from './router/sub/DevOps.vue'
 import ending from './router/Ending.vue'
+import managerLogin from './router/managerLogin.vue'
 
 Vue.use(VueRouter);
 
@@ -28,7 +29,8 @@ const router = new VueRouter({
             {path:'DevOps',component:DevOps}
         ]
         },
-        {path:'/ending',component:ending}
+        {path:'/ending',component:ending},
+        {path:'/managerlogin',component:managerLogin},
     ]
 })
 
