@@ -6,7 +6,7 @@
             <h2>管理员登录</h2>
             <span>账号</span><input type="text"><hr>
             <span>密码</span><input type="password"><hr>
-            <input type="button" value="确认登录" class="confirmLogin">
+            <a class="confirmLogin" href='/'>确认登录</a>
         </div>
     </div>
 </template>
@@ -63,6 +63,7 @@ export default {
     }
     #managerLogin hr{
         margin-top: 3%;
+        margin-bottom: 10%;
         width: 80%;
     }
     #managerLogin span{
@@ -75,15 +76,18 @@ export default {
 	    color: #b3b3b3;
     }
     #managerLogin .confirmLogin{
-	    width: 80%;
-        height: 55px;
-        margin-top: 10%;
+        font-size:1.5rem;
+        text-decoration: none;
+	    width: 120%;
+        height: 100px;
+        margin-top: 30%;
         margin-right: 3%;
         color: white;
-	    border: solid 3px #ffffff;
-    }
-    #managerLogin .confirmLogin:hover{
-        cursor: pointer;
+        border: solid 3px #ffffff;
+        padding-left: 25%;
+        padding-right: 25%;
+        padding-top: 1%;
+        padding-bottom: 1%;
     }
 </style>
 

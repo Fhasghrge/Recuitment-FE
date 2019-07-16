@@ -11,12 +11,15 @@ import design from './router/sub/design.vue'
 import DevOps from './router/sub/DevOps.vue'
 import ending from './router/Ending.vue'
 import managerLogin from './router/managerLogin.vue'
+import manager from './router/manager.vue'
+import checking from './router/sub/checking.vue'
+import add from './router/sub/add.vue'
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
     routes:[
-        {path:'/',redirect:'/main'},
+        {path:'/',redirect:'/manager/add'},
         {path:'/main',
         component:introduce,
         children:[
@@ -31,6 +34,12 @@ const router = new VueRouter({
         },
         {path:'/ending',component:ending},
         {path:'/managerlogin',component:managerLogin},
+        {path:'/manager',
+        component:manager,
+        children:[
+            {path:'checking',component:checking},
+            {path:'add',component:add},
+        ]}
     ]
 })
 
