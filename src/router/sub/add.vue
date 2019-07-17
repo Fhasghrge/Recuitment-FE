@@ -3,32 +3,35 @@
         <div id='addHead'><h3>{{groupName}}</h3><span>/招新题目</span></div>
         <div id='motify'>
             <a href="./#/manager" id="return">返回</a>
-            <textarea name="" id="quesDescribe" cols="30" rows="5" ref="textarea"></textarea>
-            <span id='typeTips'>题目类型</span><select name="questionType" id="questionType">
+            <textarea name="" id="quesDescribe" cols="30" rows="5" v-model="quesDescribe"></textarea>
+            <span id='typeTips'>题目类型</span>
+            <select name="questionType" id="questionType" ref="options" @click="changeFlag">
                 <option value="单选">单选</option>
                 <option value="多选">多选</option>
                 <option value="填空">填空</option>
                 <option value="简答">简答</option>
                 <option value="上传文件">上传文件</option>
             </select>
-            <label><input type="checkbox" value=""/>必答</label>
-            <div id='optionHead'>
-                <p class="optionHead">选项文字</p>
-                <p class="permit optionHead">允许填空</p>
-                <p class="upDown optionHead">上移下移</p>
-            </div>
-            <ul id='optionText'>
-                <li v-for="(item,index) in optionList" :key="index" :class="item.name">
-                    <input type="text" :value="item.text">
-                    <img src="../../img/添加icon.png" class="addImg" @click="add(index)">
-                    <img src="../../img/减少icon.png" class="delImg" @click="del(index)">
-                    <input type="checkbox" id='checkPermit'>
-                    <img src="../../img/上移icon.png" class="upImg" @click="Up(index)">
-                    <img src="../../img/下移icon.png" class="downImg" @click="Down(index)">
-                </li>
-            </ul>
-            <button id="addBtn" @click="addOption">添加选项</button>
-            <span id='confirmMsg'>{{confirmMsg}}</span><button id="confirmBtn">保存修改</button>
+            <label><input type="checkbox" value="">必答</label>
+            <div v-if="flag">
+                <div id='optionHead'>
+                    <p class="optionHead">选项文字</p>
+                    <p class="trueAnswer optionHead">正确答案</p>
+                    <p class="upDown optionHead">上移下移</p>
+                </div>
+                <ul id='optionText'>
+                    <li v-for="(item,index) in optionList" :key="index" :class="item.name">
+                        <input type="text" :value="item.text" ref="optionText">
+                        <img src="../../img/添加icon.png" class="addImg" @click="add(index)">
+                        <img src="../../img/减少icon.png" class="delImg" @click="del(index)">
+                        <input type="checkbox" id='checkTrueAnswer' ref="check" v-model="item.answer">
+                        <img src="../../img/上移icon.png" class="upImg" @click="Up(index)">
+                        <img src="../../img/下移icon.png" class="downImg" @click="Down(index)">
+                    </li>
+                </ul>
+                <button id="addBtn" @click="addOption">添加选项</button>
+            </div>                
+            <span id='confirmMsg'>{{confirmMsg}}</span><button id="confirmBtn" @click="addQuestion">保存修改</button>
         </div>
     </div>
 </template>
@@ -40,9 +43,11 @@ export default {
         return {
             groupName:'设计组',
             optionList:[
-                {text:"选项1",id:1,name:"option1"},
+                {text:"选项1",id:1,name:"option1",answer:false},
             ],
-            confirmMsg:'保存失败 请检查网络'
+            confirmMsg:'保存失败 请检查网络',
+            flag:true,
+            quesDescribe:'请输入题目描述',
         }
     },
     methods:{
@@ -56,9 +61,18 @@ export default {
             let option = {
                 text:"选项"+id.toString(),
                 id:id,
-                name:"option"+id.toString()
+                name:"option"+id.toString(),
+                answer:false,
             }
             this.optionList.push(option);
+        },
+        changeFlag(){
+            let val = this.$refs.options.value;
+            if(val == '单选' || val == '多选'){
+                this.flag=true;
+            }else{
+                this.flag=false;
+            }
         },
         swapArray(arr, index1, index2) {
             arr[index1] = arr.splice(index2, 1, arr[index1])[0];
@@ -91,14 +105,48 @@ export default {
             let option = {
                 text:this.optionList[index].text,
                 id:id,
-                name:"option"+id.toString()
+                name:"option"+id.toString(),
+                answer:false,
             };
             this.optionList.push(option);
         },
+        addQuestion(){
+            let questionType = this.$refs.options.value;
+            if(questionType == '单选' || questionType == '多选'){
+                let type = 1;
+                let group = this.groupName;
+                let title = '';
+                let describe = this.quesDescribe;
+                let options = [];
+                for(let i = 0;i<this.optionList.length;i++){
+                    let option = {
+                        content:this.optionList[i].text,
+                        answer:this.optionList[i].answer
+                    };
+                    options.push(option);
+                };
+                let data = {type,group,title,describe,options};
+                console.log(data);
+                return data;
+            }else if(questionType == '填空'){
+                let type = 2;
+                let group = this.groupName;
+                let title = '';
+                let describe = this.quesDescribe;
+                let data = {type,group,title,describe};
+                console.log(data);
+                return data;
+            }else if(questionType == '简答'){
+                let type = 3;
+                let group = this.groupName;
+                let title = '';
+                let describe = this.quesDescribe;
+                let data = {type,group,title,describe};
+                console.log(data);
+                return data;
+            } 
+        },
     },
-    mounted(){
-        this.$refs.textarea.value = '请输入题目描述';
-    }
 }
 </script>
 
@@ -196,7 +244,7 @@ export default {
     #optionHead .optionHead{
         margin-top: 1%;
     }
-    #optionHead .permit{
+    #optionHead .trueAnswer{
         margin-left: 40%;
     }
     #optionHead .upDown{
@@ -226,11 +274,11 @@ export default {
     #optionText .delImg{
         margin-left: 110%;
     }
-    #optionText #checkPermit{
+    #optionText #checkTrueAnswer{
         position: absolute;
-        width: 20%;
+        max-width: 5%;
         margin-top: -9%;
-        margin-left: 140%;
+        margin-left: 150%;
     }
     #optionText .upImg,.downImg{
         position: absolute;
