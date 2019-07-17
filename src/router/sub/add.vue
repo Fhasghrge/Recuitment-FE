@@ -17,14 +17,14 @@
                 <p class="permit optionHead">允许填空</p>
                 <p class="upDown optionHead">上移下移</p>
             </div>
-            <ul v-for="(item,index) in optionList" :key="index" id='optionText'>
-                <li :class="item.name">
-                <input type="text" :value="item.text">
-                <img src="../../img/添加icon.png" class="addImg">
-                <img src="../../img/减少icon.png" class="delImg">
-                <input type="checkbox" id='checkPermit'>
-                <img src="../../img/上移icon.png" class="upImg">
-                <img src="../../img/下移icon.png" class="downImg">
+            <ul id='optionText'>
+                <li v-for="(item,index) in optionList" :key="index" :class="item.name">
+                    <input type="text" :value="item.text">
+                    <img src="../../img/添加icon.png" class="addImg" @click="add(index)">
+                    <img src="../../img/减少icon.png" class="delImg" @click="del(index)">
+                    <input type="checkbox" id='checkPermit'>
+                    <img src="../../img/上移icon.png" class="upImg" @click="Up(index)">
+                    <img src="../../img/下移icon.png" class="downImg" @click="Down(index)">
                 </li>
             </ul>
             <button id="addBtn" @click="addOption">添加选项</button>
@@ -52,14 +52,49 @@ export default {
                 alert('最多只能四个选项');
                 return;
             }
-            let id = len++;
+            let id = len+1;
             let option = {
                 text:"选项"+id.toString(),
                 id:id,
                 name:"option"+id.toString()
             }
             this.optionList.push(option);
-        }
+        },
+        swapArray(arr, index1, index2) {
+            arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+            return arr;
+        },
+        Down(index){
+            let len = this.optionList.length;
+            if(index+1 != len){
+                this.swapArray(this.optionList, index, index+1);
+            }else{
+                alert('已经处于置底，无法下移');
+            }
+        },
+        Up(index){
+            if(index!= 0){
+                this.swapArray(this.optionList, index, index-1);
+            }else{
+                alert('已经处于置顶，无法上移');
+            }
+        },
+        del(index){
+            this.optionList.splice(index,1);
+        },
+        add(index){
+            if(this.optionList.length>4){
+                alert('最多只能四个选项');
+                return;
+            }
+            let id = this.optionList.length+1;
+            let option = {
+                text:this.optionList[index].text,
+                id:id,
+                name:"option"+id.toString()
+            };
+            this.optionList.push(option);
+        },
     },
     mounted(){
         this.$refs.textarea.value = '请输入题目描述';
@@ -165,11 +200,11 @@ export default {
         margin-left: 40%;
     }
     #optionHead .upDown{
-        margin-left: 20%;
+        margin-left: 21%;
     }
     #optionText{
         margin-left: 10%;
-        margin-top: 39%;
+        margin-top: 37%;
         position: absolute;
     }
     #optionText input{
@@ -199,26 +234,14 @@ export default {
     }
     #optionText .upImg,.downImg{
         position: absolute;
-        margin-left: 210%;
+        margin-left: 220%;
         margin-top: -12%;
     }
     #optionText .downImg{
-        margin-left: 230%;
+        margin-left: 240%;
     }
-    #optionText .option2{
-        margin-top: 20%;
-    }
-    .option3{
-        margin-top: 40%;
-    }
-    .option4{
-        margin-top: 60%;
-    }
-    .option5{
-        margin-top: 80%;
-    }
-    .option6{
-        margin-top: 100%;
+    #optionText .option1,.option2,.option3,.option4{
+        margin-top: 5%;
     }
     #addBtn,#confirmBtn{
         position: absolute;
