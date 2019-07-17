@@ -1,25 +1,66 @@
 <template>
   <div>
     <banner></banner>
-    <question></question>
+    <div class="ques">
+      <div class="que">
+        <p style="color:#ffffff">离开前请一定记得点击“保存作答”</p>
+        <question></question>
+      </div>
+    </div>
+    <fixedbar></fixedbar>
   </div>
 </template>
 
 <script>
 import banner from '../../components/banner'
 import question from '../../components/question'
+import fixedbar from '../../components/fixedbar'
 export default {
   name: 'answer',
   components: {
     banner,
-    question
+    question,
+    fixedbar
   }
 }
 </script>
 
-<style scoped>
-
+<style>
 #app {
-  width: 100%;
+  margin: 0;
+}
+@media only screen and (min-width: 751px) {
+  .ques {
+    width: 70%;
+    background-color: rgba(25, 25, 25, 0.8);
+    margin: 0 auto;
+    color: #ffffff;
+    padding-bottom: 3rem;
+    margin-bottom: 7rem;
+  }
+
+  .que {
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 1.6rem;
+    color: #bfbfbf;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .ques {
+    width: 96%;
+    background-color: rgba(25, 25, 25, 0.8);
+    margin: 0 auto;
+    color: #ffffff;
+    padding-bottom: 3rem;
+  }
+  .que {
+    width: 90%;
+    height: inherit;
+    margin: 0 auto;
+    padding-top: 1.6rem;
+    color: #bfbfbf;
+    padding-bottom: 1rem;
+  }
 }
 </style>
