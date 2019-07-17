@@ -7,7 +7,7 @@
       <img src="../assets/route.png" />
     </div>
     <div class="middle">
-      <h2>前端组答题</h2>
+      <h2>阅卷/答题人：李二狗</h2>
     </div>
     <user></user>
     <img src="../assets/icon.svg"
@@ -51,13 +51,12 @@ export default {
 
   .middle {
     font-size: 1.5rem;
-    text-align: center;
     height: 5rem;
+    width: 60%;
   }
 
   .middle > h2 {
     margin: 0 auto;
-    margin-top: 2%;
   }
 }
 

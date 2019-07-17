@@ -1,72 +1,95 @@
 <template>
-  <div class="ques">
-    <div class="que">
-      <p style="color:#ffffff">离开前请一定记得点击“保存作答”</p>
-      <div class="radio">
-        <p class="headline">1.什么最好玩(单选)</p>
-        <div class="rad">
-          <input type="radio" name="radio" id="radio1" class="radio1" />
-          <label for="radio1" class="radio2">前端超好玩</label>
-          <input type="radio" name="radio" id="radio2" class="radio1" />
-          <label for="radio2" class="radio2">前端超好玩</label>
-          <input type="radio" name="radio" id="radio3" class="radio1" />
-          <label for="radio3" class="radio2">前端超好玩</label>
-          <input type="radio" name="radio" id="radio4" class="radio1" />
-          <label for="radio4" class="radio2">前端超好玩</label>
-        </div>
+  <div class="kind">
+    <div class="radio">
+      <p class="headline">1.什么最好玩(单选)</p>
+      <div class="rad">
+        <input type="radio"
+               name="radio"
+               id="radio1"
+               class="radio1" />
+        <label for="radio1"
+               class="radio2">前端超好玩</label>
+        <input type="radio"
+               name="radio"
+               id="radio2"
+               class="radio1" />
+        <label for="radio2"
+               class="radio2">前端超好玩</label>
+        <input type="radio"
+               name="radio"
+               id="radio3"
+               class="radio1" />
+        <label for="radio3"
+               class="radio2">前端超好玩</label>
+        <input type="radio"
+               name="radio"
+               id="radio4"
+               class="radio1" />
+        <label for="radio4"
+               class="radio2">前端超好玩</label>
       </div>
-      <div class="che">
-        <p class="headline">1.什么最好玩(多选)</p>
-        <div class="rad">
-          <input type="checkbox" name="radio" id="radio5" class="radio1" />
-          <label for="radio5" class="radio2">前端超好玩</label>
-          <input type="checkbox" name="radio" id="radio6" class="radio1" />
-          <label for="radio6" class="radio2">前端超好玩</label>
-          <input type="checkbox" name="radio" id="radio7" class="radio1" />
-          <label for="radio7" class="radio2">前端超好玩</label>
-          <input type="checkbox" name="radio" id="radio8" class="radio1" />
-          <label for="radio8" class="radio2">前端超好玩</label>
-        </div>
+    </div>
+    <div class="che">
+      <p class="headline">1.什么最好玩(多选)</p>
+      <div class="rad">
+        <input type="checkbox"
+               name="radio"
+               id="radio5"
+               class="radio1" />
+        <label for="radio5"
+               class="radio2">前端超好玩</label>
+        <input type="checkbox"
+               name="radio"
+               id="radio6"
+               class="radio1" />
+        <label for="radio6"
+               class="radio2">前端超好玩</label>
+        <input type="checkbox"
+               name="radio"
+               id="radio7"
+               class="radio1" />
+        <label for="radio7"
+               class="radio2">前端超好玩</label>
+        <input type="checkbox"
+               name="radio"
+               id="radio8"
+               class="radio1" />
+        <label for="radio8"
+               class="radio2">前端超好玩</label>
       </div>
-      <div class="inp">
-        <p class="headline">2.星辰的靓仔有哪些</p>
-        <input class="ipt" />
+    </div>
+    <div class="inp">
+      <p class="headline">2.星辰的靓仔有哪些</p>
+      <input class="ipt" />
+    </div>
+    <div class="text">
+      <p class="headline">3.说说你对前端的看法</p>
+      <textarea class="txt"></textarea>
+    </div>
+    <div class="upload">
+      <p class="headline">4.画出范老板的肖像画并上传附件</p>
+      <div class="line">
+        <img src="../assets/load.png"
+             class="load" />
+        <a class="upl"
+           href="#">上传文件</a>
+        <span class="eg">支持扩展名: .jpg,.rar,.zip</span>
       </div>
-      <div class="text">
-        <p class="headline">3.说说你对前端的看法</p>
-        <textarea class="txt"></textarea>
-      </div>
-      <div class="upload">
-        <p class="headline">4.画出范老板的肖像画并上传附件</p>
-        <div class="line">
-          <img src="../assets/load.png" class="load" />
-          <a class="upl" href="#">上传文件</a>
-          <span class="eg">支持扩展名: .jpg,.rar,.zip</span>
-        </div>
-        <div class="docu">
-          <div class="single">
-            <span class="docname">范老板牛逼.zip</span>
-            <div class="loading">
-              <div class="in" v-bind:style="{ width: length + '%' }"></div>
-            </div>
+      <div class="docu">
+        <div class="single">
+          <span class="docname">范老板牛逼.zip</span>
+          <div class="loading">
+            <div class="in"
+                 v-bind:style="{ width: length + '%' }"></div>
           </div>
-          <div class="single">
-            <span class="docname">范老板牛逼.zip</span>
+        </div>
+        <div class="single">
+          <span class="docname">范老板牛逼.zip</span>
 
-            <div class="done">
-              <img src="../assets/cha.png" />
-            </div>
+          <div class="done">
+            <img src="../assets/cha.png" />
           </div>
         </div>
-      </div>
-      <div class="sub">
-        <p class="ddl">
-          距离答题结束还有
-          <br />
-          <span class="lasttime">20d 01:12:13</span>
-        </p>
-        <button class="btn1">保存答卷</button>
-        <span class="autosave">已自动保存</span>
       </div>
     </div>
   </div>
@@ -105,22 +128,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 @media only screen and (min-width: 751px) {
-  .ques {
-    width: 70%;
-    background-color: rgba(25, 25, 25, 0.8);
-    margin: 0 auto;
-    color: #ffffff;
-    padding-bottom: 3rem;
-    margin-bottom: 7rem;
-  }
-  .que {
-    width: 90%;
-    margin: 0 auto;
-    padding-top: 1.6rem;
-    color: #bfbfbf;
-  }
   .headline {
     margin: 1rem auto 0.5rem auto;
   }
@@ -245,21 +254,6 @@ export default {
 }
 
 @media only screen and (max-width: 750px) {
-  .ques {
-    width: 96%;
-    background-color: rgba(25, 25, 25, 0.8);
-    margin: 0 auto;
-    color: #ffffff;
-    padding-bottom: 3rem;
-  }
-  .que {
-    width: 90%;
-    height: inherit;
-    margin: 0 auto;
-    padding-top: 1.6rem;
-    color: #bfbfbf;
-    padding-bottom: 1rem;
-  }
   .headline {
     margin: 1rem auto 0.5rem auto;
   }

@@ -6,7 +6,6 @@
 
 <style>
 html {
- 
   margin: 0;
   min-height: 100vh;
 }
@@ -17,5 +16,8 @@ body {
   background-size: cover;
   margin: 0;
   min-height: 100vh;
+}
+#app {
+  margin: 0;
 }
 </style>

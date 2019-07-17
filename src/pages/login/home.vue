@@ -1,7 +1,9 @@
 <template>
-  <div class="main">
-    <logo></logo>
-    <login></login>
+  <div class="mainall">
+    <div class="main">
+      <logo></logo>
+      <login></login>
+    </div>
   </div>
 </template>
 
@@ -18,7 +20,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 html,
 body {
   height: 100vh;
@@ -26,7 +28,7 @@ body {
 ul {
   list-style-type: none;
 }
-#app {
+.mainall {
   height: 100vh;
   width: 90%;
   margin: 0 auto;
