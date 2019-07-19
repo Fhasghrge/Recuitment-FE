@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import home from './pages/login/home.vue'
+import answer from './pages/answer/answer.vue'
+import adminindex from './pages/adminindex/adminindex.vue'
+import overview from './components/overview.vue'
+import concrate from './components/concrate.vue'
+import marking from './pages/marking/marking.vue'
 import introduce from './router/Pre-Introduce.vue'
 import text from './router/sub/introduce.vue'
 import product from './router/sub/product.vue'
@@ -11,7 +17,7 @@ import design from './router/sub/design.vue'
 import DevOps from './router/sub/DevOps.vue'
 import ending from './router/Ending.vue'
 import managerLogin from './router/managerLogin.vue'
-import manager from './router/manager.vue'
+// import manager from './router/manager.vue'
 import checking from './router/sub/checking.vue'
 import add from './router/sub/add.vue'
 
@@ -34,12 +40,44 @@ const router = new VueRouter({
         },
         {path:'/ending',component:ending},
         {path:'/managerlogin',component:managerLogin},
-        {path:'/manager',
-        component:manager,
-        children:[
+        // {path:'/manager',
+        // component:manager,
+        // children:[
+        //     {path:'checking',component:checking},
+        //     {path:'add',component:add},
+        // ]},
+          {
+            path: '/home',
+            name: 'home',
+            component: home
+          },
+          {
+            path: '/answer',
+            name: 'answer',
+            component: answer
+          },
+          {
+            path: '/adminindex',
+            component: adminindex,
+            children: [{
+              path: '/',
+              name: 'overview',
+              component: overview
+            },
+            {
+              path: 'concrate',
+              name: 'concrate',
+              component: concrate
+            },
             {path:'checking',component:checking},
             {path:'add',component:add},
-        ]}
+            ]
+          },
+          {
+            path: '/marking',
+            name: 'marking',
+            component: marking
+          }
     ]
 })
 

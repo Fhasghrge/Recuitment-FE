@@ -1,5 +1,17 @@
 <template>
-    <div id='container'>
+    <div id='main'>
+        <div id='header' v-if="headFlag">
+            <img src="../img/小箭头-左.png" class="arrow_left" @click="returnToMain" v-if='arrowFlag'>
+            <img src="../img/LOGO.png" class='logo' @click="returnToMain">                
+            <img src="../img/小箭头.png" class="arrow_right" :class="[{ arrowhead:1},{ rotate1:Boxflag},{ rotate2:(!Boxflag)}]" @click="Boxflag=!Boxflag">
+            <img src="../img/头像.png" class='portrait' @click="priFlag=true">
+        </div>
+        <transition name="draw">
+            <div class="mainbox" v-show="Boxflag">
+            <button class="btn" v-show="Boxflag" @click="priFlag=true;Boxflag=!Boxflag;">个人信息</button>
+            <button class="btn" v-show="Boxflag">退出登陆</button>
+            </div>
+        </transition>
         <router-view></router-view>
         <div id='text'>
             <p class='tips' v-if="flag">距离开始答题还有：</p>
@@ -22,6 +34,22 @@
             <p>这里是答题须知的内容哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或</p>
             <a href="" v-if='!flag'>开始答题</a>
         </div>
+
+        <div id='private' v-if='priFlag' >
+            <img src="../img/头像.png" id="priHead"><span id="priName">{{ privateName }}</span>
+            <img src="../img/close.png" class="close" @click="priFlag=false">
+            <div id='priText'>
+                <div class="priBox priLeft"><p class='priVal'>真实姓名</p><input class="priMsg" v-model="priName"><hr class="line"></div>
+                <div class="priBox priRight"><p class='priVal'>手机号</p><input class="priMsg" v-model='priPhone'><hr class="line"></div>                
+                <div class="priBox priLeft"><p class='priVal'>信息门户账号</p><input class="priMsg" v-model="priNumber"><hr class="line"></div>
+                <div class="priBox priRight"><p class='priVal'>旧密码</p><input class="priMsg" v-model="oldPassword" type="password"><hr class="line"></div>
+                <div class="priBox priLeft"><p class='priVal'>学院</p><input class="priMsg" v-model="priSchool"><hr class="line"></div>
+                <div class="priBox priRight"><p class='priVal'>新密码</p><input class="priMsg" v-model="newPassword" type="password"><hr class="line"></div>
+                <div class="priBox priLeft"><p class='priVal'>QQ号</p><input class="priMsg" v-model="priQQ"><hr class="line"></div>
+                <div class="priBox priRight"><p class='priVal'>重复密码</p><input class="priMsg" v-model="rePassword" type="password"><hr class="line"></div>
+            </div>
+            <a class='confirm' @click='priFlag=false'>确认</a>
+        </div>
     </div>
 </template>
 
@@ -35,6 +63,19 @@
                 flag:true,      // flag 控制 显示倒计时 还是 显示开始答题按钮,true为未开始，false为进行中
                 notesFlag:false,
                 Itemflag:true,
+                privateName:'Olina',
+                headFlag:true,
+                Boxflag: false,    // 控制个人信息小框框的显隐
+                arrowFlag:false,
+                priFlag:false,
+                priName:'黄老板',
+                priPhone:'110',
+                priNumber:'201601120000',
+                oldPassword:'',
+                newPassword:'',
+                priSchool:'霍格沃兹学院',
+                priQQ:'123456789',
+                rePassword:'',
             }
         },
         methods:{
@@ -59,16 +100,42 @@
                 else{
                     this.Itemflag = true;
                 }
-            }
+            },
+            returnToMain(){
+                var path = this.$route.path.match(/^\/[^\/]*/)[0]
+                this.$router.push(path);
+            },
+            arrowStyle(){
+                if(this.$route.path != '/main'){
+                    if(window.screen.height >= 520 && window.screen.width <= 1080){
+                        this.arrowFlag = true;
+                    }
+                }
+                else{
+                    this.arrowFlag = false;
+                }
+            },
+            showHead(){
+                if(this.$route.path == '/login' || this.$route.path =='/managerlogin'){
+                    this.headFlag = false;
+                }
+                else{
+                    this.headFlag = true;
+                }
+            },
         },
         mounted(){
             this.Djs_time();
             this.mobileStyle();
+            this.arrowStyle();
+            this.showHead();
             // console.log(this.$route.path)
         },
         watch:{
             "$route.path":function(newVal){
                 this.mobileStyle();
+                this.arrowStyle();
+                this.showHead();
             }
         }
     }

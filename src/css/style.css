@@ -56,17 +56,17 @@ textarea{
     width: 100%;
 }
 
-.logo {
+#header .logo {
 	max-width: 70%;
 	height: 50px;
     opacity: 0.8;  
     margin-top: 3%;
     margin-left: 5%;
 }
-.logo:hover{
+#header .logo:hover{
     cursor: pointer;
 }
-.arrow_right{
+#header .arrow_right{
     max-width: 100%;
     height: 30px;
     background-color:black;
@@ -74,7 +74,7 @@ textarea{
     margin-top: 3%;
     margin-right: 10%;
 }
-.portrait{
+#header .portrait{
     max-width: 23%;
     height: 50px;
     border-style: solid;
@@ -521,7 +521,7 @@ textarea{
       -o-transition: -o-transform 0.2s;
       -ms-transition: -ms-transform 0.2s;
     }
-    .box {
+    .mainbox {
       height: 60px;
       width: 98px;
       position: absolute;
