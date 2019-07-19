@@ -19,7 +19,7 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     routes:[
-        {path:'/',redirect:'/manager/add'},
+        {path:'/',redirect:'/main'},
         {path:'/main',
         component:introduce,
         children:[

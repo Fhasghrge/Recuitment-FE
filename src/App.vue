@@ -22,11 +22,11 @@
                 <div class="priBox priLeft"><p class='priVal'>真实姓名</p><input class="priMsg" value="priName" v-model="priName"><hr class="line"></div>
                 <div class="priBox priRight"><p class='priVal'>手机号</p><input class="priMsg" value="priPhone" v-model='priPhone'><hr class="line"></div>                
                 <div class="priBox priLeft"><p class='priVal'>信息门户账号</p><input class="priMsg" value="priNumber" v-model="priNumber"><hr class="line"></div>
-                <div class="priBox priRight"><p class='priVal'>旧密码</p><input class="priMsg" v-model="oldPassword"><hr class="line"></div>
+                <div class="priBox priRight"><p class='priVal'>旧密码</p><input class="priMsg" v-model="oldPassword" type="password"><hr class="line"></div>
                 <div class="priBox priLeft"><p class='priVal'>学院</p><input class="priMsg" value="priSchool" v-model="priSchool"><hr class="line"></div>
-                <div class="priBox priRight"><p class='priVal'>新密码</p><input class="priMsg" v-model="newPassword"><hr class="line"></div>
+                <div class="priBox priRight"><p class='priVal'>新密码</p><input class="priMsg" v-model="newPassword" type="password"><hr class="line"></div>
                 <div class="priBox priLeft"><p class='priVal'>QQ号</p><input class="priMsg" value="priQQ" v-model="priQQ"><hr class="line"></div>
-                <div class="priBox priRight"><p class='priVal'>重复密码</p><input class="priMsg" v-model="rePassword"><hr class="line"></div>
+                <div class="priBox priRight"><p class='priVal'>重复密码</p><input class="priMsg" v-model="rePassword" type="password"><hr class="line"></div>
             </div>
             <a class='confirm' @click='priFlag=false'>确认</a>
         </div>

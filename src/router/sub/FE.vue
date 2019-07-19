@@ -15,5 +15,10 @@ export default {
             introduce:'这里是前端组的介绍哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或',
         }
     },
+    mounted(){
+        this.axios.get('www.baidu.com').then((result) => {
+            console.log(result);
+        });
+    },
 }
 </script>

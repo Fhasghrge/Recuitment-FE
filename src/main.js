@@ -4,6 +4,11 @@ import Vue from 'vue'
 import app from './App.vue'
 // 导入路由组件
 import router from './router.js'
+import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios, axios)
 
 import './css/style.css'
 
