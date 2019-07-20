@@ -21,7 +21,7 @@ export default {
   .sub {
     position: fixed;
     right: 0;
-    top: 23vh;
+    top: 27vh;
     color: #ffffff;
     text-align: center;
     background-color: rgba(22, 22, 22, 0.91);
