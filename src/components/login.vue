@@ -1,22 +1,65 @@
 <template>
-  <div class="part2" id="part2">
+  <div class="part2"
+       id="part2">
     <div class="opion">
-      <button id="act1" @click="x1" v-bind:class="[{ button1: flag }, { button2: hide }]">登录</button>
-      <button id="act2" @click="x2" v-bind:class="[{ button2: flag }, { button1: hide }]">注册</button>
+      <button id="act1"
+              @click="x1"
+              v-bind:class="[{ button1: flag }, { button2: hide }]">登录</button>
+      <button id="act2"
+              @click="x2"
+              v-bind:class="[{ button2: flag }, { button1: hide }]">注册</button>
     </div>
-    <div class="act" v-bind:style="flag1">
-      <input class="input1" id="username" type="text" placeholder="账号|信息门户账号" />
-      <input class="input1" id="password" type="password" placeholder="密码" />
+    <div class="act"
+         v-bind:style="flag1">
+      <input class="input1"
+             id="username"
+             type="text"
+             v-model="peraccount"
+             placeholder="账号|信息门户账号" />
+      <input class="input1"
+             id="password"
+             type="password"
+             v-model="perpassword"
+             placeholder="密码" />
     </div>
-    <div class="hide" v-bind:style="flag2">
-      <input class="input1" id="name" type="text" placeholder="真实姓名" />
-      <input class="input1" id="schnum" type="text" placeholder="学号" />
-      <input class="input1" id="tel" type="text" placeholder="手机号（联系方式）" />
-      <input class="input1" id="pas" type="text" placeholder="密码" />
-      <input class="input1" id="pas1" type="text" placeholder="重复密码" />
+    <div class="hide"
+         v-bind:style="flag2">
+      <input class="input1"
+             id="name"
+             type="text"
+             v-model="pername"
+             placeholder="真实姓名" />
+      <input class="input1"
+             id="schnum"
+             type="text"
+             v-model="peraccount"
+             placeholder="学号" />
+      <input class="input1"
+             id="tel"
+             type="text"
+             v-model="tel"
+             placeholder="手机号（联系方式）" />
+      <input class="input1"
+             id="pas"
+             type="text"
+             v-model="perpassword"
+             placeholder="密码" />
+      <input class="input1"
+             id="pas1"
+             type="text"
+             v-model="verify"
+             placeholder="重复密码" />
     </div>
+    <div class="showerr"><span class="errmes"
+            v-text="err"></span></div>
     <div>
-      <button class="button" v-text="text">确认登录</button>
+      <button class="button"
+              v-if="flag"
+              @click="login">确认登录</button>
+      <button class="button"
+              v-if="hide"
+              @click="register">注册</button>
+
     </div>
   </div>
 </template>
@@ -28,25 +71,93 @@ export default {
     return {
       flag1: 'display:block',
       flag2: 'display:none',
-      text: '确认登录',
       flag: true,
-      hide: false
+      hide: false,
+      peraccount: '',
+      perpassword: '',
+      pername: '',
+      tel: '',
+      verify: '',
+      err: ''
     }
   },
   methods: {
     x1: function () {
       this.flag1 = 'display:block'
       this.flag2 = 'display:none'
-      this.text = '确认登录'
       this.flag = true
       this.hide = false
     },
     x2: function () {
       this.flag1 = 'display:none'
       this.flag2 = 'display:block'
-      this.text = '注册'
       this.flag = false
       this.hide = true
+    },
+    login: function () {
+      if (this.peraccount !== '' && this.perpassword !== '') {
+        this.err = ''
+        this.$axios({
+          method: 'post',
+          url: '/user/lgoin',
+          baseURL: 'http://121.48.165.58:17838',
+          data: {
+            username: this.peraccount,
+            password: this.perpassword
+          }
+        }).then((response) => {
+          if (response.data.code === 0) {
+            this.$router.push({ name: 'answer' })
+          } else if (response.data.code === -5) {
+            this.err = '密码错误'
+          } else if (response.data.code === -10) {
+            this.err = '用户不存在'
+          } else {
+            this.err = '错误'
+          }
+        })
+          .catch((error) => {
+            if (error.response) {
+              this.err = '连接服务器失败'
+            } else {
+              this.err = '连接服务器失败'
+            }
+          })
+      } else if (this.peraccount === '') {
+        this.err = '请输入账号'
+      } else if (this.perpassword === '') {
+        this.err = '请输入密码'
+      }
+    },
+    register: function () {
+      if (this.peraccount !== '' && this.perpassword !== '' && this.pername !== '' && this.tel !== '' && this.verify !== '') {
+        this.err = ''
+        if (this.perpassword === this.verify) {
+          this.$axios({
+            method: 'post',
+            url: '/user/register',
+            baseURL: 'http://121.48.165.58:17838',
+            data: {
+              username: this.peraccount,
+              password: this.perpassword,
+              name: this.pername,
+              phonenum: this.tel,
+              stunum: this.schnum
+            }.then((response) => {
+              if (response.data.code === 0) {
+                this.$router.push({ name: 'answer' })
+              } else {
+                this.err = '错误'
+              }
+            })
+          }
+          )
+        } else {
+          this.err = '两次输入的密码不同'
+        }
+      } else {
+        this.err = '请将信息填写完整'
+      }
     }
   }
 }
@@ -62,7 +173,15 @@ export default {
     margin-left: -15%;
     min-width: 325px;
   }
-
+  .showerr {
+    height: 1rem;
+    width: 80%;
+    margin: 0 auto;
+  }
+  .errmes {
+    color: red;
+    font-size: 0.9rem;
+  }
   .opion {
     height: 10%;
     width: 100%;
@@ -103,8 +222,7 @@ export default {
   .input1 {
     height: 1rem;
     width: 80%;
-    margin: 1rem auto;
-    margin-bottom: 0;
+    margin: 0 auto;
     border: 1px;
     border-bottom: 1px solid rgb(171, 171, 171);
     background-color: inherit;
@@ -113,6 +231,7 @@ export default {
     padding-bottom: 0.7rem;
     color: #ffffff;
     padding-left: 0.5rem;
+    padding: 0.9rem 0 0.9rem 0.5rem;
   }
 
   .button {
@@ -125,7 +244,7 @@ export default {
     letter-spacing: 0px;
     color: #ffffff;
     background-color: inherit;
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-size: 1rem;
   }
 }
@@ -133,7 +252,7 @@ export default {
 @media (max-width: 750px) {
   .part2 {
     width: 80%;
-    height: 45%;
+    height: 46%;
     background-color: black;
     text-align: center;
     margin: 0 auto;
@@ -177,8 +296,8 @@ export default {
 
   .act {
     height: 50%;
-    padding-top: 2.5rem;
-    margin-bottom: 0.5rem;
+    padding-top: 3.5rem;
+    margin-bottom: -1rem;
   }
 
   .hide {
@@ -186,24 +305,29 @@ export default {
     padding-bottom: 1.5rem;
     padding-top: 1rem;
     display: none;
-    margin-bottom: 0.5rem;
   }
 
   .input1 {
-    height: 0.7rem;
+    height: 2rem;
     width: 75%;
-    margin: 0.6rem auto;
-    margin-bottom: 0;
+    margin: 0 auto;
     border: 1px;
     border-bottom: 1px solid rgb(171, 171, 171);
     background-color: inherit;
     font-size: 0.8rem;
     font-family: PingFangSC-Light;
-    padding-bottom: 0.6rem;
     color: #ffffff;
-    padding-left: 0.2rem;
   }
-
+  .showerr {
+    height: 1rem;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+  .errmes {
+    color: red;
+    font-size: 0.9rem;
+  }
   .button {
     border: solid 2px rgba(255, 255, 255, 0.8);
     width: 75%;
