@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import markbar from '../../components/markbar.vue'
-import question from '../../components/question.vue'
-import scorebar from '../../components/scorebar.vue'
+import markbar from '../../components/markbar'
+import question from '../../components/question'
+import scorebar from '../../components/scorebar'
 export default {
   name: 'answer',
   components: {
@@ -26,6 +26,19 @@ export default {
 </script>
 
 <style>
+html {
+  margin: 0;
+  min-height: 100vh;
+}
+body {
+  background-image: url("../../assets/back.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  min-height: 100vh;
+}
+
 #app {
   margin: 0;
 }

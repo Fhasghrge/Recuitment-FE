@@ -1,15 +1,18 @@
 <template>
   <div class="right">
-    <img src="../assets/icon.svg" v-on:click="x3" class="icon" />
-    <img
-      src="../assets/route.png"
-      v-on:click="x3"
-      v-bind:class="[{ arrowhead: 1 }, { rotate1: flag }, { rotate2: !flag }]"
-    />
+    <img src="../assets/icon.svg"
+         v-on:click="x3"
+         class="icon" />
+    <img src="../assets/route.png"
+         v-on:click="x3"
+         v-bind:class="[{ arrowhead: 1 }, { rotate1: flag }, { rotate2: !flag }]" />
     <transition name="draw">
-      <div class="box" v-show="flag">
-        <button class="btn" v-show="flag">个人信息</button>
-        <button class="btn" v-show="flag">退出登陆</button>
+      <div class="box"
+           v-show="flag">
+        <button class="btn"
+                v-show="flag">个人信息</button>
+        <button class="btn"
+                v-show="flag">退出登陆</button>
       </div>
     </transition>
   </div>
@@ -26,6 +29,11 @@ export default {
   methods: {
     x3: function () {
       this.flag = !this.flag
+    },
+    quit: function () {
+      let storage = window.localStorage
+      storage.clear()
+      this.$router.push({ name: 'home' })
     }
   }
 }

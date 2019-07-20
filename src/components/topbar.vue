@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import user from './user.vue'
+import user from './user'
 export default {
   components: {
     user

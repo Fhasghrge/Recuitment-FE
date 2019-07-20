@@ -41,12 +41,12 @@
              placeholder="手机号（联系方式）" />
       <input class="input1"
              id="pas"
-             type="text"
+             type="password"
              v-model="perpassword"
              placeholder="密码" />
       <input class="input1"
              id="pas1"
-             type="text"
+             type="password"
              v-model="verify"
              placeholder="重复密码" />
     </div>
@@ -100,7 +100,6 @@ export default {
         this.$axios({
           method: 'post',
           url: '/user/lgoin',
-          baseURL: 'http://121.48.165.58:17838',
           data: {
             username: this.peraccount,
             password: this.perpassword
@@ -136,22 +135,20 @@ export default {
           this.$axios({
             method: 'post',
             url: '/user/register',
-            baseURL: 'http://121.48.165.58:17838',
             data: {
               username: this.peraccount,
               password: this.perpassword,
               name: this.pername,
               phonenum: this.tel,
               stunum: this.schnum
-            }.then((response) => {
-              if (response.data.code === 0) {
-                this.$router.push({ name: 'answer' })
-              } else {
-                this.err = '错误'
-              }
-            })
-          }
-          )
+            }
+          }).then((response) => {
+            if (response.data.code === 0) {
+              this.$router.push({ name: 'answer' })
+            } else {
+              this.err = '错误'
+            }
+          })
         } else {
           this.err = '两次输入的密码不同'
         }

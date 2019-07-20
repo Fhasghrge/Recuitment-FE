@@ -1,19 +1,43 @@
 <template>
   <div class="inp">
-    <p class="headline">2.星辰的靓仔有哪些</p>
-    <input class="ipt" />
+    <p class="headline">{{title}}</p>
+    <input class="ipt"
+           v-model="singleinp"
+           @blur="sendinp" />
   </div>
 </template>
 
 <script>
 export default {
-
+  data () {
+    return {
+      singleinp: ''
+    }
+  },
+  props: {
+    ID: {
+      type: Number,
+      default: 0
+    },
+    title: {
+      type: String,
+      default: '有多帅'
+    }
+  },
+  methods: {
+    sendinp: function () {
+      this.$axios({
+        method: 'post',
+        url: '/user/exam/answer',
+        data: {
+          ID: this.ID,
+          answer: this.singleinp
+        }
+      })
+    }
+  }
 }
 </script>
 
 <style>
-@media only screen and (min-width: 751px) {
-}
-@media only screen and (max-width: 750px) {
-}
 </style>

@@ -5,7 +5,11 @@
       <img src="../assets/load.png"
            class="load" />
       <a class="upl"
-         href="#">上传文件</a>
+         href="#"
+         @click="upload">上传文件</a>
+      <input type="file"
+             class="file"
+             id="file">
       <span class="eg">支持扩展名: .jpg,.rar,.zip</span>
     </div>
     <div class="docu">
@@ -30,15 +34,31 @@
 export default {
   data () {
     return {
-      length: 50
+      length: 50,
+      filename: ''
+    }
+  },
+  props: {
+    ID: {
+      type: Number,
+      default: 0
+    },
+    title: {
+      type: String,
+      default: '有多帅'
+    }
+  },
+  methods: {
+    upload: function () {
+      let file = document.getElementById('file')
+      file.click()
     }
   }
 }
 </script>
 
 <style>
-@media only screen and (min-width: 751px) {
-}
-@media only screen and (max-width: 750px) {
+.file {
+  display: none;
 }
 </style>

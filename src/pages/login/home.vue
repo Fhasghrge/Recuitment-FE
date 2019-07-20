@@ -9,8 +9,8 @@
 
 <script>
 // @ is an alias to /src
-import logo from '../../components/logo.vue'
-import login from '../../components/login.vue'
+import logo from '../../components/logo'
+import login from '../../components/login'
 export default {
   name: 'home',
   components: {
@@ -23,7 +23,17 @@ export default {
 <style>
 html,
 body {
+  margin: 0;
   height: 100vh;
+}
+body {
+  background-image: url("../../assets/back.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+#app {
+  margin: 0;
 }
 ul {
   list-style-type: none;

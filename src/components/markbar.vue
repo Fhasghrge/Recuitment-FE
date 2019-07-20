@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import user from './user.vue'
+import user from './user'
 export default {
   name: 'banner',
   components: {

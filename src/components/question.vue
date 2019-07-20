@@ -11,16 +11,16 @@
 </template>
 
 <script>
-import radio from './radio.vue'
-import che from './checkbox.vue'
-import inp from './sigleinp.vue'
-import short from './shortanswer.vue'
-import uploadque from './upload.vue'
+import radio from './radio'
+import che from './checkbox'
+import inp from './sigleinp'
+import short from './shortanswer'
+import uploadque from './upload'
 export default {
   name: 'ques',
   data () {
     return {
-      formdata: []
+      questions: []
     }
   },
   components: {
@@ -57,7 +57,7 @@ export default {
         baseURL: 'http://121.48.165.58:17838'
       }).then((response) => {
         if (response.code === 0) {
-
+          this.questions = response.data
         }
       })
     }
@@ -72,18 +72,22 @@ export default {
 .rad {
   display: flex;
   justify-content: space-around;
+  align-items: stretch;
 }
 
 .radio1 {
   display: none;
 }
+
 .radio2 {
   position: relative;
   background-color: rgba(25, 25, 25, 0.8);
   display: inline-block;
   font-size: 1rem;
-  height: 2rem;
+  min-height: 2rem;
   padding: 0.5rem 1rem 0 1rem;
+  width: 100%;
+  flex-wrap: wrap;
 }
 input:checked + label {
   background-color: #3e3e3e;
@@ -156,7 +160,10 @@ a {
   .eg {
     margin-left: 20px;
   }
-
+  .optall {
+    width: 15%;
+    text-align: center;
+  }
   .docu {
     width: 50%;
     border: solid 2px #4a4a4a;
@@ -200,9 +207,15 @@ a {
   .rad {
     flex-wrap: wrap;
   }
-
+  .optall {
+    width: 40%;
+    text-align: center;
+  }
   .radio2 {
-    margin-bottom: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    padding-top: 4px;
+    margin-left: 0;
   }
   .ipt {
     width: 100%;

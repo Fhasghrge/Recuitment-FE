@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import banner from '../../components/banner.vue'
-import question from '../../components/question.vue'
-import fixedbar from '../../components/fixedbar.vue'
+import banner from '../../components/banner'
+import question from '../../components/question'
+import fixedbar from '../../components/fixedbar'
 export default {
   name: 'answer',
   components: {
@@ -26,6 +26,19 @@ export default {
 </script>
 
 <style>
+html {
+  margin: 0;
+  min-height: 100vh;
+}
+body {
+  background-image: url("../../assets/back.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  min-height: 100vh;
+}
+
 #app {
   margin: 0;
 }
