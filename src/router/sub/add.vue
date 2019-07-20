@@ -4,7 +4,7 @@
       <h3>{{groupName}}</h3><span>/招新题目</span>
     </div>
     <div id='motify'>
-      <a href="./#/manager"
+      <a href="./#/adminindex"
          id="return">返回</a>
       <textarea name=""
                 id="quesDescribe"
@@ -139,11 +139,12 @@ export default {
       this.optionList.push(option)
     },
     addQuestion () {
+      let data = {}
       let questionType = this.$refs.options.value
       if (questionType === '单选' || questionType === '多选') {
         let type = 1
         let group = this.groupName
-        let title = ''
+        let title = this.quesDescribe
         let describe = this.quesDescribe
         let options = []
         for (let i = 0; i < this.optionList.length; i++) {
@@ -153,26 +154,33 @@ export default {
           }
           options.push(option)
         };
-        let data = { type, group, title, describe, options }
-        console.log(data)
-        return data
+        data = { type, group, title, describe, options }
+        // console.log(data)
       } else if (questionType === '填空') {
         let type = 2
         let group = this.groupName
-        let title = ''
+        let title = this.quesDescribe
         let describe = this.quesDescribe
-        let data = { type, group, title, describe }
-        console.log(data)
-        return data
+        data = { type, group, title, describe }
+        // console.log(data)
       } else if (questionType === '简答') {
         let type = 3
         let group = this.groupName
-        let title = ''
+        let title = this.quesDescribe
         let describe = this.quesDescribe
-        let data = { type, group, title, describe }
-        console.log(data)
-        return data
+        data = { type, group, title, describe }
+        // console.log(data)
       }
+      // console.log(data)
+      this.$axios({
+        method: 'post',
+        url: '/control/question/add',
+        data
+      }).then((res) => {
+        console.log(res)
+      }).catch((err) => {
+        console.log(err)
+      })
     }
   }
 }

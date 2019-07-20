@@ -66,7 +66,8 @@
       <h2>答题须知</h2>
       <p>这里是答题须知的内容哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或</p>
       <a href=""
-         v-if='!flag'>开始答题</a>
+         v-if='!flag'
+         @click.prevent="notesFlag=false">开始答题</a>
     </div>
 
     <div id='private'
@@ -122,7 +123,7 @@
         </div>
       </div>
       <a class='confirm'
-         @click='priFlag=false'>确认</a>
+         @click='changePrivateMsg'>确认</a>
     </div>
   </div>
 </template>
@@ -176,8 +177,7 @@ export default {
       }
     },
     returnToMain () {
-      var path = this.$route.path.match(/^\/[^\/]*/)[0]
-      this.$router.push(path)
+      this.$router.push('/main')
     },
     arrowStyle () {
       if (this.$route.path !== '/main') {
@@ -194,6 +194,58 @@ export default {
       } else {
         this.headFlag = true
       }
+    },
+    getPrivateMsg () {
+      this.$axios({
+        method: 'get',
+        url: '/user/userinfo/get'
+      }).then((result) => {
+        if (result.code === 0) {
+          console.log(result.msg)
+          result = result.data
+          this.priName = this.priNumber = result.stunum
+          this.priPhone = result.phonenum
+          this.priQQ = result.qqnum
+          this.priSchool = result.college
+        } else {
+          console.log('获取用户信息失败')
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    changePrivateMsg () {
+      this.priFlag = false
+      this.$axios({
+        method: 'post',
+        url: '/user/userinfo/change',
+        data: {
+          name: this.priName,
+          phonenum: this.priPhone,
+          stunum: this.priNumber,
+          qqnum: this.priQQ
+        }
+      }).then((res) => {
+        console.log(res)
+      }).catch((err) => {
+        console.log(err)
+      })
+      if (this.newPassword !== '' && this.rePassword !== '') {
+        if (this.newPassword === this.rePassword) {
+          this.$axios({
+            method: 'post',
+            url: '/user/userinfo/password',
+            data: {
+              oldPassword: this.oldPassword,
+              newPassword: this.newPassword
+            }
+          }).then((res) => {
+            console.log(res)
+          }).catch((err) => {
+            console.log(err)
+          })
+        }
+      }
     }
   },
   mounted () {
@@ -202,6 +254,7 @@ export default {
     this.arrowStyle()
     this.showHead()
     // console.log(this.$route.path)
+    this.getPrivateMsg() // 获取用户信息
   },
   watch: {
     '$route.path': function (newVal) {
