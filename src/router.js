@@ -21,66 +21,100 @@ import managerLogin from './router/managerLogin.vue'
 import checking from './router/sub/checking.vue'
 import add from './router/sub/add.vue'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const router = new VueRouter({
-    routes:[
-        {path:'/',redirect:'/main'},
-        {path:'/main',
-        component:introduce,
-        children:[
-            {path:'/',component:text},
-            {path:'product',component:product},
-            {path:'FE',component:FE},
-            {path:'BE',component:BE},
-            {path:'mobile',component:mobile},
-            {path:'design',component:design},
-            {path:'DevOps',component:DevOps}
-        ]
-        },
-        {path:'/ending',component:ending},
-        {path:'/managerlogin',component:managerLogin},
-        // {path:'/manager',
-        // component:manager,
-        // children:[
-        //     {path:'checking',component:checking},
-        //     {path:'add',component:add},
-        // ]},
-          {
-            path: '/home',
-            name: 'home',
-            component: home
-          },
-          {
-            path: '/answer',
-            name: 'answer',
-            component: answer
-          },
-          {
-            path: '/adminindex',
-            name: 'adminindex',
-            component: adminindex,
-            children: [{
-              path: '/',
-              name: 'overview',
-              component: overview
-            },
-            {
-              path: 'concrate',
-              name: 'concrate',
-              component: concrate
-            },
-            {path:'checking',component:checking},
-            {path:'add',component:add},
-            ]
-          },
-          {
-            path: '/marking',
-            name: 'marking',
-            component: marking
-          }
+  routes: [{
+    path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/main',
+    component: introduce,
+    children: [{
+      path: '/',
+      component: text
+    },
+    {
+      path: 'product',
+      component: product
+    },
+    {
+      path: 'FE',
+      component: FE
+    },
+    {
+      path: 'BE',
+      component: BE
+    },
+    {
+      path: 'mobile',
+      component: mobile
+    },
+    {
+      path: 'design',
+      component: design
+    },
+    {
+      path: 'DevOps',
+      component: DevOps
+    }
     ]
+  },
+  {
+    path: '/ending',
+    component: ending
+  },
+  {
+    path: '/managerlogin',
+    component: managerLogin
+  },
+  // {path:'/manager',
+  // component:manager,
+  // children:[
+  //     {path:'checking',component:checking},
+  //     {path:'add',component:add},
+  // ]},
+  {
+    path: '/home',
+    name: 'home',
+    component: home
+  },
+  {
+    path: '/answer',
+    name: 'answer',
+    component: answer
+  },
+  {
+    path: '/adminindex',
+    component: adminindex,
+    children: [{
+      path: '/',
+      name: 'overview',
+      component: overview
+    },
+    {
+      path: 'concrate',
+      name: 'concrate',
+      component: concrate
+    },
+    {
+      path: 'checking',
+      component: checking
+    },
+    {
+      path: 'add',
+      component: add
+    }
+    ]
+  },
+  {
+    path: '/marking',
+    name: 'marking',
+    component: marking
+  }
+  ]
 })
 
 // 将路由对象暴露出去
-export default router;
+export default router

@@ -8,7 +8,10 @@
         <input type="radio"
                name="radio"
                class="radio1"
-               :id="radio(indexr)" />
+               :id="radio(indexr)"
+               :value="options[indexr]"
+               v-model="radiodata"
+               @change="sendradio" />
         <label :for="radio(indexr)"
                class="radio2">{{options[indexr]}}</label>
       </div>
@@ -20,7 +23,7 @@
 export default {
   data () {
     return {
-
+      radiodata: ''
     }
   },
   props: {
@@ -35,11 +38,30 @@ export default {
     title: {
       type: String,
       default: '有多帅'
+    },
+    answer: {
+      type: String,
+      default: '就是这么帅'
     }
   },
   methods: {
     radio: function (index) {
       return 'radio' + index
+    },
+    sendradio: function (value) {
+      this.$axios({
+        method: 'post',
+        url: '/user/exam/answer',
+        data: {
+          ID: this.ID,
+          answer: this.radiodata
+        }
+      })
+    }
+  },
+  mounted () {
+    if (this.answer !== '') {
+      this.radiodata = this.answer
     }
   }
 }
@@ -48,9 +70,5 @@ export default {
 <style>
 .radio {
   margin: 0 auto;
-}
-@media only screen and (min-width: 751px) {
-}
-@media only screen and (max-width: 750px) {
 }
 </style>
