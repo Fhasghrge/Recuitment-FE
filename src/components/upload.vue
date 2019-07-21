@@ -5,28 +5,6 @@
       <img src="../assets/load.png"
            class="load" />
       <a class="upl"
-<<<<<<< HEAD
-         href="#"
-         @click="upload">上传文件</a>
-      <input type="file"
-             class="file"
-             id="file">
-      <span class="eg">支持扩展名: .jpg,.rar,.zip</span>
-    </div>
-    <div class="docu">
-      <div class="single">
-        <span class="docname">范老板牛逼.zip</span>
-        <div class="loading">
-          <div class="in"
-               v-bind:style="{ width: length + '%' }"></div>
-        </div>
-      </div>
-      <div class="single">
-        <span class="docname">范老板牛逼.zip</span>
-        <div class="done">
-          <img src="../assets/cha.png" />
-        </div>
-=======
          href="javascript:void(0)"
          @click="uploadFile">上传文件</a>
       <input type="file"
@@ -48,7 +26,6 @@
                :style="{ width: length + '%' }"></div>
         </div><span v-else
               class="eg">上传成功</span>
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
       </div>
     </div>
   </div>
@@ -58,14 +35,9 @@
 export default {
   data () {
     return {
-<<<<<<< HEAD
-      length: 50,
-      filename: ''
-=======
       length: 0,
       filename: [],
       flag: true
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
     }
   },
   props: {
@@ -76,14 +48,6 @@ export default {
     title: {
       type: String,
       default: '有多帅'
-<<<<<<< HEAD
-    }
-  },
-  methods: {
-    upload: function () {
-      let file = document.getElementById('file')
-      file.click()
-=======
     },
     answer: {
       type: String,
@@ -130,7 +94,6 @@ export default {
   mounted () {
     if (this.answer !== '') {
       this.filename.splice(0, 1, this.answer)
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
     }
   }
 }

@@ -7,14 +7,6 @@
          v-on:click="x3"
          v-bind:class="[{ arrowhead: 1 }, { rotate1: flag }, { rotate2: !flag }]" />
     <transition name="draw">
-<<<<<<< HEAD
-      <div class="box"
-           v-show="flag">
-        <button class="btn"
-                v-show="flag">个人信息</button>
-        <button class="btn"
-                v-show="flag">退出登陆</button>
-=======
       <div class="userbox"
            v-show="flag">
         <button class="btn"
@@ -23,24 +15,17 @@
         <button class="btn"
                 v-show="flag"
                 @click="quit">退出登陆</button>
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
       </div>
     </transition>
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
 import bus from '../components/bus.js'
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
 export default {
   name: 'banner',
   data () {
     return {
-<<<<<<< HEAD
-      flag: false
-=======
       flag: false,
       userflag: false
     }
@@ -49,7 +34,6 @@ export default {
     show: {
       type: Boolean,
       default: false
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
     }
   },
   methods: {
@@ -60,9 +44,6 @@ export default {
       let storage = window.localStorage
       storage.clear()
       this.$router.push({ name: 'home' })
-<<<<<<< HEAD
-    }
-=======
     },
     revisebar: function () {
       this.userflag = !this.userflag
@@ -74,17 +55,12 @@ export default {
     bus.$on('listen', (show) => {
       this.userflag = show
     })
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
   }
 }
 </script>
 
 <style>
-<<<<<<< HEAD
-@media (min-width: 751px) {
-=======
 @media (min-width: 400px) {
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
   .right {
     position: relative;
     background-color: rgba(0, 0, 0, 0.3);
@@ -139,11 +115,7 @@ export default {
     -o-transition: -o-transform 0.2s;
     -ms-transition: -ms-transform 0.2s;
   }
-<<<<<<< HEAD
-  .box {
-=======
   .userbox {
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
     height: 60px;
     width: 98px;
     position: absolute;
@@ -170,11 +142,7 @@ export default {
   }
 }
 
-<<<<<<< HEAD
-@media (max-width: 751px) {
-=======
 @media (max-width: 700px) {
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
   .right {
     display: none;
   }

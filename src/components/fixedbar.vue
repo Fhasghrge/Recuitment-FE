@@ -5,23 +5,15 @@
       <br />
       <span class="lasttime">20d 01:12:13</span>
     </p>
-<<<<<<< HEAD
-    <button class="btn1">保存答卷</button>
-    <span class="autosave">已自动保存</span>
-=======
     <button class="btn1"
             @click="save">保存答卷</button>
     <span class="autosave"
           v-if="saveflag">已保存</span>
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
   </div>
 </template>
 
 <script>
 export default {
-<<<<<<< HEAD
-
-=======
   data () {
     return {
       saveflag: false
@@ -32,7 +24,6 @@ export default {
       this.saveflag = true
     }
   }
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
 }
 </script>
 
@@ -47,10 +38,7 @@ export default {
     background-color: rgba(22, 22, 22, 0.91);
     height: 37%;
     width: 13%;
-<<<<<<< HEAD
-=======
     z-index: 1;
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
   }
   .ddl {
     margin: 2rem auto 3rem auto;

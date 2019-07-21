@@ -1,11 +1,6 @@
 <template>
-<<<<<<< HEAD
-  <div>
-    <banner></banner>
-=======
   <div class="mainans">
     <banner @mainshow="transmit"></banner>
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
     <div class="ques">
       <div class="que">
         <p style="color:#ffffff">离开前请一定记得点击“保存作答”</p>
@@ -13,11 +8,8 @@
       </div>
     </div>
     <fixedbar></fixedbar>
-<<<<<<< HEAD
-=======
     <pribar :show='show'
             @showpribar="transmit"></pribar>
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
   </div>
 </template>
 
@@ -25,14 +17,6 @@
 import banner from '../../components/banner'
 import question from '../../components/question'
 import fixedbar from '../../components/fixedbar'
-<<<<<<< HEAD
-export default {
-  name: 'answer',
-  components: {
-    banner,
-    question,
-    fixedbar
-=======
 import pribar from '../../components/private'
 export default {
   name: 'answer',
@@ -51,7 +35,6 @@ export default {
     transmit (bannershow) {
       this.show = bannershow
     }
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
   }
 }
 </script>
@@ -69,13 +52,9 @@ body {
   margin: 0;
   min-height: 100vh;
 }
-<<<<<<< HEAD
-
-=======
 .mainans {
   position: relative;
 }
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
 #app {
   margin: 0;
 }

@@ -9,11 +9,7 @@
     <div class="middle">
       <h2>前端组答题</h2>
     </div>
-<<<<<<< HEAD
-    <user></user>
-=======
     <user @usershow='usertans'></user>
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
     <img src="../assets/icon.svg"
          class="icon1" />
   </div>
@@ -23,10 +19,6 @@
 import user from './user'
 export default {
   name: 'banner',
-<<<<<<< HEAD
-  components: {
-    user
-=======
   data () {
     return {
       bannerflag: false
@@ -40,7 +32,6 @@ export default {
       this.bannerflag = userflag
       this.$emit('mainshow', this.bannerflag)
     }
->>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
   }
 }
 </script>
