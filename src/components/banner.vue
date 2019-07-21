@@ -9,7 +9,7 @@
     <div class="middle">
       <h2>前端组答题</h2>
     </div>
-    <user></user>
+    <user @usershow='usertans'></user>
     <img src="../assets/icon.svg"
          class="icon1" />
   </div>
@@ -19,8 +19,19 @@
 import user from './user'
 export default {
   name: 'banner',
+  data () {
+    return {
+      bannerflag: false
+    }
+  },
   components: {
     user
+  },
+  methods: {
+    usertans (userflag) {
+      this.bannerflag = userflag
+      this.$emit('mainshow', this.bannerflag)
+    }
   }
 }
 </script>

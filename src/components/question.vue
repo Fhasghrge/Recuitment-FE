@@ -1,11 +1,24 @@
 <template>
   <div class="kind">
-    <div>
-      <radio></radio>
-      <che></che>
-      <inp></inp>
-      <short></short>
-      <uploadque></uploadque>
+    <div v-for="(item,index) in questions"
+         :key="index">
+      <radio v-if="item.type === 1"
+             :options="item.options"
+             :ID="item.ID"
+             :title="item.title"></radio>
+      <che v-if="item.type === 2"
+           :options="item.options"
+           :ID="item.ID"
+           :title="item.title"></che>
+      <inp v-if="item.type === 3"
+           :ID="item.ID"
+           :title="item.title"></inp>
+      <short v-if="item.type === 4"
+             :ID="item.ID"
+             :title="item.title"></short>
+      <uploadque v-if="item.type === 5"
+                 :ID="item.ID"
+                 :title="item.title"></uploadque>
     </div>
   </div>
 </template>
@@ -19,7 +32,10 @@ import uploadque from './upload'
 export default {
   name: 'ques',
   data () {
+    var thisgroup = this.$router.query.groups
     return {
+      thisgroup,
+      all: [],
       questions: []
     }
   },
@@ -30,26 +46,6 @@ export default {
     this.getques()
   },
   methods: {
-    uploadFile: function (file) {
-      var item = {
-        name: file.name,
-        uploadPercentage: 0
-      }
-      this.files.push(item)
-      var fd = new FormData()
-
-      fd.append('myFile', file)
-      var xhr = new XMLHttpRequest()
-      xhr.open('POST', 'upload.php', true)
-      xhr.upload.addEventListener(
-        'progress',
-        function (e) {
-          item.uploadPercentage = Math.round((e.loaded * 100) / e.total)
-        },
-        false
-      )
-      xhr.send(fd)
-    },
     getques: function () {
       this.$axios({
         methods: 'post',
@@ -57,7 +53,12 @@ export default {
         baseURL: 'http://121.48.165.58:17838'
       }).then((response) => {
         if (response.code === 0) {
-          this.questions = response.data
+          this.all = response.data.data
+          for (let a = 0; a < this.all.length; a++) {
+            if (this.all.groups === this.thisgroup || this.all.groups === 0) {
+              this.questions.push(this.all[a])
+            }
+          }
         }
       })
     }

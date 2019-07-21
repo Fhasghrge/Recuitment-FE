@@ -26,7 +26,7 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [{
     path: '/',
-    redirect: '/main'
+    redirect: '/home'
   },
   {
     path: '/main',
@@ -87,7 +87,6 @@ const router = new VueRouter({
   },
   {
     path: '/adminindex',
-    name: 'adminindex',
     component: adminindex,
     children: [{
       path: '/',
