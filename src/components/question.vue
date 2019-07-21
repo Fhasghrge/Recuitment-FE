@@ -1,11 +1,33 @@
 <template>
   <div class="kind">
+<<<<<<< HEAD
     <div>
       <radio></radio>
       <che></che>
       <inp></inp>
       <short></short>
       <uploadque></uploadque>
+=======
+    <div v-for="(item,index) in questions"
+         :key="index">
+      <radio v-if="item.type === 1"
+             :options="item.options"
+             :ID="item.ID"
+             :title="item.title"></radio>
+      <che v-if="item.type === 2"
+           :options="item.options"
+           :ID="item.ID"
+           :title="item.title"></che>
+      <inp v-if="item.type === 3"
+           :ID="item.ID"
+           :title="item.title"></inp>
+      <short v-if="item.type === 4"
+             :ID="item.ID"
+             :title="item.title"></short>
+      <uploadque v-if="item.type === 5"
+                 :ID="item.ID"
+                 :title="item.title"></uploadque>
+>>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
     </div>
   </div>
 </template>
@@ -19,7 +41,14 @@ import uploadque from './upload'
 export default {
   name: 'ques',
   data () {
+<<<<<<< HEAD
     return {
+=======
+    var thisgroup = this.$router.query.groups
+    return {
+      thisgroup,
+      all: [],
+>>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
       questions: []
     }
   },
@@ -30,6 +59,7 @@ export default {
     this.getques()
   },
   methods: {
+<<<<<<< HEAD
     uploadFile: function (file) {
       var item = {
         name: file.name,
@@ -50,6 +80,8 @@ export default {
       )
       xhr.send(fd)
     },
+=======
+>>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
     getques: function () {
       this.$axios({
         methods: 'post',
@@ -57,7 +89,16 @@ export default {
         baseURL: 'http://121.48.165.58:17838'
       }).then((response) => {
         if (response.code === 0) {
+<<<<<<< HEAD
           this.questions = response.data
+=======
+          this.all = response.data.data
+          for (let a = 0; a < this.all.length; a++) {
+            if (this.all.groups === this.thisgroup || this.all.groups === 0) {
+              this.questions.push(this.all[a])
+            }
+          }
+>>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
         }
       })
     }

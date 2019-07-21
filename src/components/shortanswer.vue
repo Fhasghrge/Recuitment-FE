@@ -22,6 +22,13 @@ export default {
     title: {
       type: String,
       default: '有多帅'
+<<<<<<< HEAD
+=======
+    },
+    answer: {
+      type: String,
+      default: '就是这么帅'
+>>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
     }
   },
   methods: {
@@ -35,9 +42,19 @@ export default {
         }
       })
     }
+<<<<<<< HEAD
   }
 }
 
+=======
+  },
+  mounted () {
+    if (this.answer !== '') {
+      this.shortanswer = this.answer
+    }
+  }
+}
+>>>>>>> 5ffd646662298258aa5f8f1f77996d52071e2a26
 </script>
 
 <style>
