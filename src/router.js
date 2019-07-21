@@ -12,11 +12,13 @@ import text from './router/sub/introduce.vue'
 import product from './router/sub/product.vue'
 import FE from './router/sub/FE.vue'
 import BE from './router/sub/BE.vue'
-import mobile from './router/sub/mobile.vue'
+import android from './router/sub/android.vue'
+import IOS from './router/sub/IOS.vue'
 import design from './router/sub/design.vue'
 import DevOps from './router/sub/DevOps.vue'
 import ending from './router/Ending.vue'
 import managerLogin from './router/managerLogin.vue'
+import ctrlques from './components/ctrlques.vue'
 // import manager from './router/manager.vue'
 // import checking from './router/sub/checking.vue'
 import add from './router/sub/add.vue'
@@ -50,8 +52,12 @@ const router = new VueRouter({
           component: BE
         },
         {
-          path: 'mobile',
-          component: mobile
+          path: 'android',
+          component: android
+        },
+        {
+          path: 'IOS',
+          component: IOS
         },
         {
           path: 'design',
@@ -108,6 +114,10 @@ const router = new VueRouter({
         {
           path: 'add',
           component: add
+        },
+        {
+          path: 'ctrlques',
+          component: ctrlques
         }
       ]
     },

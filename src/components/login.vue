@@ -144,7 +144,7 @@ export default {
             }
           }).then((response) => {
             if (response.data.code === 0) {
-              this.$router.push({ name: 'answer' })
+              this.$router.push({ path: 'main' })
             } else {
               this.err = '错误'
             }

@@ -141,7 +141,7 @@ export default {
     addQuestion () {
       let data = {}
       let questionType = this.$refs.options.value
-      if (questionType === '单选' || questionType === '多选') {
+      if (questionType === '单选') {
         let type = 1
         let group = this.groupName
         let title = this.quesDescribe
@@ -156,22 +156,44 @@ export default {
         };
         data = { type, group, title, describe, options }
         // console.log(data)
-      } else if (questionType === '填空') {
+      } else if (questionType === '多选') {
         let type = 2
         let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
-        data = { type, group, title, describe }
+        let options = []
+        for (let i = 0; i < this.optionList.length; i++) {
+          let option = {
+            content: this.optionList[i].text,
+            answer: this.optionList[i].answer
+          }
+          options.push(option)
+        };
+        data = { type, group, title, describe, options }
         // console.log(data)
-      } else if (questionType === '简答') {
+      } else if (questionType === '填空') {
         let type = 3
         let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
         data = { type, group, title, describe }
         // console.log(data)
+      } else if (questionType === '简答') {
+        let type = 4
+        let group = this.groupName
+        let title = this.quesDescribe
+        let describe = this.quesDescribe
+        data = { type, group, title, describe }
+        // console.log(data)
+      } else if (questionType === '上传文件') {
+        let type = 5
+        let group = this.groupName
+        let title = this.quesDescribe
+        let describe = this.quesDescribe
+        data = { type, group, title, describe }
+        // console.log(data)
       }
-      // console.log(data)
+      console.log(data)
       this.$axios({
         method: 'post',
         url: '/control/question/add',

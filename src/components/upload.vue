@@ -5,27 +5,43 @@
       <img src="../assets/load.png"
            class="load" />
       <a class="upl"
-         href="#"
-         @click="upload">上传文件</a>
+         href="javascript:void(0)"
+         @click="uploadFile">上传文件</a>
       <input type="file"
              class="file"
-             id="file">
-      <span class="eg">支持扩展名: .jpg,.rar,.zip</span>
+             id="file"
+             multiple="multiple"
+             value=""
+             @change="upload">
+      <span class="eg">tips:多文件请将所有文件打包成一个zip文件上传</span>
     </div>
     <div class="docu">
-      <div class="single">
-        <span class="docname">范老板牛逼.zip</span>
-        <div class="loading">
+      <div class="single"
+           v-for="(item,index) in filename"
+           :key="index">
+        <span class="docname">{{filename[index]}}</span>
+        <div class="loading"
+             v-if="flag">
           <div class="in"
-               v-bind:style="{ width: length + '%' }"></div>
-        </div>
+               :style="{ width: length + '%' }"></div>
+        </div><span v-else
+              class="eg">上传成功</span>
       </div>
-      <div class="single">
-        <span class="docname">范老板牛逼.zip</span>
-        <div class="done">
-          <img src="../assets/cha.png" />
-        </div>
-      </div>
+    </div>
+    <div class="ctrlBox"
+         v-if="$route.path == '/adminindex/ctrlques'">
+      <p>出题人：RIO</p>
+      <input type="button"
+             value="添加">
+      <select name="frontOrBack"
+              id="frontOrBack">
+        <option value="于此题后">于此题后</option>
+        <option value="于此题前">于此题前</option>
+      </select>
+      <input type="button"
+             value="删除">
+      <input type="button"
+             value="修改">
     </div>
   </div>
 </template>
@@ -34,8 +50,9 @@
 export default {
   data () {
     return {
-      length: 50,
-      filename: ''
+      length: 0,
+      filename: [],
+      flag: true
     }
   },
   props: {
@@ -49,16 +66,81 @@ export default {
     }
   },
   methods: {
-    upload: function () {
+    uploadFile: function () {
       let file = document.getElementById('file')
       file.click()
+    },
+    upload: function (f) {
+      var form = new FormData()
+      form.append('name', 'txl')
+      for (let i = 0; i < f.target.files.length; i++) {
+        var file = f.target.files[i]
+        form.append('file', file)
+        this.filename.splice(i, 1, file.name)
+      }
+      if (this.$route.path === '/answer') {
+        this.$axios({
+          methods: 'post',
+          headers: { 'Content-Type': 'multipart/form-data' },
+          url: '/user/file/upload',
+          data: {
+            ID: this.ID,
+            file: form
+          },
+          onUploadProgress: function (f) {
+            console.log('进度：')
+            console.log(f)
+            // 属性lengthComputable主要表明总共需要完成的工作量和已经完成的工作是否可以被测量
+            // 如果lengthComputable为false，就获取不到e.total和e.loaded
+            if (f.lengthComputable) {
+              var rate = f.loaded / f.total // 已上传的比例
+              if (rate < 1) {
+                this.length = (rate * 100).toFixed(2)
+              } else {
+                this.flag = false
+              }
+            }
+          }
+        })
+      }
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .file {
   display: none;
+}
+select {
+  -webkit-appearance: none; /* google */
+  -moz-appearance: none; /* firefox */
+  appearance: none; /* IE */
+  width: 80px;
+  height: 30px;
+  font-size: 0.9rem;
+  color: white;
+  text-align: center;
+  background-color: black;
+  margin-top: 2.3%;
+}
+.ctrlBox {
+  position: relative;
+  color: white;
+  width: 60%;
+  height: 30px;
+  margin-left: 40%;
+  display: flex;
+  text-align: center;
+  font-size: 1.2rem;
+}
+input {
+  background-color: black;
+  color: white;
+  border: solid white 1px;
+  height: 30px;
+  margin-top: 2.3%;
+  margin-left: 5%;
+  width: 10%;
 }
 </style>
