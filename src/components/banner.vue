@@ -19,7 +19,7 @@
 
 <script>
 import user from './user'
-import mobbar from './private'
+import mobbar from './pribar'
 import bus from './bus.js'
 export default {
   name: 'banner',
