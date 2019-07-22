@@ -21,19 +21,13 @@
 </template>
 
 <script>
-
+import bus from '../components/bus.js'
 export default {
   name: 'banner',
   data () {
     return {
       flag: false,
       userflag: false
-    }
-  },
-  props: {
-    show: {
-      type: Boolean,
-      default: false
     }
   },
   methods: {
@@ -48,8 +42,12 @@ export default {
     revisebar: function () {
       this.userflag = !this.userflag
       this.$emit('usershow', this.userflag)
-      console.log(this.userflag)
     }
+  },
+  mounted () {
+    bus.$on('listen', (show) => {
+      this.userflag = show
+    })
   }
 }
 </script>

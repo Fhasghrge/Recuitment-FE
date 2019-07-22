@@ -4,7 +4,7 @@
     <div class="pribara">
       <div class="clowrapa">
         <img src="../assets/route.png"
-             id="close"
+             id="closea"
              @click="closebar"></div>
       <img class="midlogoa"
            src="../img/LOGO.png">
