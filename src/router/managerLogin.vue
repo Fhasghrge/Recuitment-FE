@@ -5,19 +5,48 @@
     <h3 id="BEintroduce">2019年秋季招新答题系统后台界面</h3>
     <div id='managerLogin'>
       <h2>管理员登录</h2>
-      <span>账号</span><input type="text">
+      <span>账号</span><input type="text"
+             v-model="username">
       <hr>
-      <span>密码</span><input type="password">
+      <span>密码</span><input type="password"
+             v-model="password">
       <hr>
       <a class="confirmLogin"
-         href='/'>确认登录</a>
+         href=''
+         @click.prevent='confirmLogin'>确认登录</a>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  data () {
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    confirmLogin () {
+      this.$axios({
+        method: 'post',
+        url: '/control/login',
+        data: {
+          username: this.username,
+          password: this.password
+        }
+      }).then((result) => {
+        console.log(result)
+        if (result.code === 0) {
+          this.$router.push({
+            path: '/adminindex'
+          })
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+  }
 }
 </script>
 

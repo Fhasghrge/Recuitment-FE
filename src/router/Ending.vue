@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import '../css/style.css'
 export default {
   data () {
     return {

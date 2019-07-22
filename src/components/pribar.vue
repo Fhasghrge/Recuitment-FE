@@ -1,68 +1,68 @@
 <template>
-  <div id='private'
+  <div id='privatea'
        v-show="show">
-    <div class="pribar">
-      <div class="clowrap">
+    <div class="pribara">
+      <div class="clowrapa">
         <img src="../assets/route.png"
              id="close"
              @click="closebar"></div>
-      <img class="midlogo"
+      <img class="midlogoa"
            src="../img/LOGO.png">
       <img src="../img/头像.png"
-           id="priHead"><span id="priName">{{ privateName }}</span>
+           id="priHeada"><span id="priNamea">{{ privateName }}</span>
       <img src="../img/close.png"
-           class="close"
+           class="closea"
            @click="closebar">
     </div>
-    <div id='priText'>
-      <div class="priBox priLeft">
-        <span class='priVal'>真实姓名</span><input class="priMsg"
+    <div id='priTexta'>
+      <div class="priBoxa priLeft">
+        <span class='privala'>真实姓名</span><input class="priMsga"
                value="priName"
                v-model="priName">
 
       </div>
-      <div class="priBox priRight">
-        <span class='priVal'>手机号</span><input class="priMsg"
+      <div class="priBoxa priRight">
+        <span class='privala'>手机号</span><input class="priMsga"
                value="priPhone"
                v-model='priPhone'>
 
       </div>
-      <div class="priBox priLeft">
-        <span class='priVal'>信息门户账号</span><input class="priMsg"
+      <div class="priBoxa priLeft">
+        <span class='privala'>信息门户账号</span><input class="priMsga"
                value="priNumber"
                v-model="priNumber">
 
       </div>
-      <div class="priBox priRight">
-        <span class='priVal'>旧密码</span><input class="priMsg"
+      <div class="priBoxa priRight">
+        <span class='privala'>旧密码</span><input class="priMsga"
                v-model="oldPassword">
 
       </div>
-      <div class="priBox priLeft">
-        <span class='priVal'>学院</span><input class="priMsg"
+      <div class="priBoxa priLeft">
+        <span class='privala'>学院</span><input class="priMsga"
                value="priSchool"
                v-model="priSchool">
 
       </div>
-      <div class="priBox priRight">
-        <span class='priVal'>新密码</span><input class="priMsg"
+      <div class="priBoxa priRight">
+        <span class='privala'>新密码</span><input class="priMsga"
                v-model="newPassword">
 
       </div>
-      <div class="priBox priLeft">
-        <span class='priVal'>QQ号</span><input class="priMsg"
+      <div class="priBoxa priLeft">
+        <span class='privala'>QQ号</span><input class="priMsga"
                value="priQQ"
                v-model="priQQ">
 
       </div>
-      <div class="priBox priRight">
-        <span class='priVal'>重复密码</span><input class="priMsg"
+      <div class="priBoxa priRight">
+        <span class='privala'>重复密码</span><input class="priMsga"
                v-model="rePassword">
 
       </div>
     </div>
-    <div class="btnsub">
-      <button class='confirm'
+    <div class="btnsuba">
+      <button class='confirma'
               @click='changePrivateMsg'>确认</button></div>
   </div>
 </template>
@@ -156,41 +156,41 @@ export default {
 
 <style>
 @media screen and (min-width: 700px) {
-  #close {
+  #closea {
     display: none;
   }
-  .clowrap {
+  .clowrapa {
     display: none;
   }
-  .midlogo {
+  .midlogoa {
     display: none;
   }
-  #private {
+  #privatea {
     position: absolute;
     top: 45px;
     width: 76%;
     left: 12%;
     background-color: #0e0e16;
   }
-  .pribar {
+  .pribara {
     display: flex;
     justify-content: space-between;
     width: 90%;
     margin: 20px auto;
   }
 
-  #priName {
+  #priNamea {
     font-size: 1.4rem;
   }
 
-  #priText {
+  #priTexta {
     display: flex;
     width: 80%;
     margin: 0 auto;
     flex-wrap: wrap;
   }
 
-  #priText input {
+  #priTexta input {
     width: 100%;
     height: 45%;
     background: none;
@@ -201,14 +201,14 @@ export default {
     padding: 5px auto;
   }
 
-  .priBox {
+  .priBoxa {
     margin: 5px 5%;
     width: 40%;
   }
-  .line {
+  .linea {
     width: 80%;
   }
-  .priVal {
+  .privala {
     width: 50%;
     height: 5%;
     font-family: PingFangSC-Light;
@@ -219,7 +219,7 @@ export default {
     letter-spacing: 0px;
     color: #b3b3b3;
   }
-  .priMsg {
+  .priMsga {
     width: 100%;
     height: 12%;
     font-family: PingFangSC-Regular;
@@ -230,12 +230,12 @@ export default {
     color: #ffffff;
     text-align: center;
   }
-  .btnsub {
+  .btnsuba {
     margin: 20px auto;
     width: 40%;
     text-align: center;
   }
-  .confirm {
+  .confirma {
     opacity: 1;
     font-size: 1.2rem;
     background-color: inherit;
@@ -244,12 +244,12 @@ export default {
     height: 40px;
   }
 
-  .confirm:hover {
+  .confirma:hover {
     cursor: pointer;
   }
 }
 @media screen and (max-width: 700px) {
-  #private {
+  #privatea {
     background-image: url("../assets/back.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -261,19 +261,19 @@ export default {
     top: 0;
     color: #ffffff;
   }
-  .midlogo {
+  .midlogoa {
     margin-top: 5px;
     height: 35px;
   }
-  .close {
+  .closea {
     display: none;
   }
-  .clowrap {
+  .clowrapa {
     width: 40px;
     height: 40px;
     position: relative;
   }
-  #close {
+  #closea {
     width: 13px;
     position: absolute;
     left: 0;
@@ -290,11 +290,11 @@ export default {
     -o-transition: -o-transform 0.2s;
     -ms-transition: -ms-transform 0.2s;
   }
-  #priHead {
+  #priHeada {
     width: 40px;
     height: 40px;
   }
-  .pribar {
+  .pribara {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -304,14 +304,14 @@ export default {
     padding-top: 2%;
     align-items: center;
   }
-  #priName {
+  #priNamea {
     display: none;
   }
-  #priText {
+  #priTexta {
     width: 84%;
     margin: 25px auto;
   }
-  #priText input {
+  #priTexta input {
     background: none;
     outline: none;
     border: 0px;
@@ -321,7 +321,7 @@ export default {
     text-align: right;
   }
 
-  .priBox {
+  .priBoxa {
     border-bottom: solid 1px #979797;
     margin: 0 auto;
     box-sizing: border-box;
@@ -330,22 +330,22 @@ export default {
     justify-content: space-around;
     align-items: center;
   }
-  .priVal {
+  .privala {
     font-size: 1rem;
     width: 50%;
     color: #b3b3b3;
   }
-  .priMsg {
+  .priMsga {
     width: 100%;
     font-size: 1.2rem;
   }
-  .btnsub {
+  .btnsuba {
     margin: 0 auto;
     width: 50%;
     text-align: center;
     margin-top: 30px;
   }
-  .confirm {
+  .confirma {
     width: 60%;
     height: 2.5rem;
     color: #ffffff;

@@ -4,7 +4,7 @@
       <h3>{{groupName}}</h3><span>/招新题目</span>
     </div>
     <div id='motify'>
-      <a href="./#/manager"
+      <a @click="ret"
          id="return">返回</a>
       <textarea name=""
                 id="quesDescribe"
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { stringify } from 'querystring'
+// import { stringify } from 'querystring'
 export default {
   data () {
     return {
@@ -75,7 +75,8 @@ export default {
       ],
       confirmMsg: '保存失败 请检查网络',
       flag: true,
-      quesDescribe: '请输入题目描述'
+      quesDescribe: '请输入题目描述',
+      groups: this.$route.query.groups
     }
   },
   methods: {
@@ -83,7 +84,7 @@ export default {
       let len = this.optionList.length
       if (len > 4) {
         alert('最多只能四个选项')
-        return;
+        return
       }
       let id = len + 1
       let option = {
@@ -96,11 +97,19 @@ export default {
     },
     changeFlag () {
       let val = this.$refs.options.value
-      if (val == '单选' || val == '多选') {
+      if (val === '单选' || val === '多选') {
         this.flag = true
       } else {
         this.flag = false
       }
+    },
+    ret () {
+      this.$router.push({
+        path: '/adminindex/ctrlques',
+        query: {
+          groups: this.groups
+        }
+      })
     },
     swapArray (arr, index1, index2) {
       arr[index1] = arr.splice(index2, 1, arr[index1])[0]
@@ -108,14 +117,14 @@ export default {
     },
     Down (index) {
       let len = this.optionList.length
-      if (index + 1 != len) {
+      if (index + 1 !== len) {
         this.swapArray(this.optionList, index, index + 1)
       } else {
         alert('已经处于置底，无法下移')
       }
     },
     Up (index) {
-      if (index != 0) {
+      if (index !== 0) {
         this.swapArray(this.optionList, index, index - 1)
       } else {
         alert('已经处于置顶，无法上移')
@@ -127,7 +136,7 @@ export default {
     add (index) {
       if (this.optionList.length > 4) {
         alert('最多只能四个选项')
-        return;
+        return
       }
       let id = this.optionList.length + 1
       let option = {
@@ -139,11 +148,12 @@ export default {
       this.optionList.push(option)
     },
     addQuestion () {
+      let data = {}
       let questionType = this.$refs.options.value
-      if (questionType == '单选' || questionType == '多选') {
+      if (questionType === '单选') {
         let type = 1
         let group = this.groupName
-        let title = ''
+        let title = this.quesDescribe
         let describe = this.quesDescribe
         let options = []
         for (let i = 0; i < this.optionList.length; i++) {
@@ -153,26 +163,55 @@ export default {
           }
           options.push(option)
         };
-        let data = { type, group, title, describe, options }
-        console.log(data)
-        return data
-      } else if (questionType == '填空') {
+        data = { type, group, title, describe, options }
+        // console.log(data)
+      } else if (questionType === '多选') {
         let type = 2
         let group = this.groupName
-        let title = ''
+        let title = this.quesDescribe
         let describe = this.quesDescribe
-        let data = { type, group, title, describe }
-        console.log(data)
-        return data
-      } else if (questionType == '简答') {
+        let options = []
+        for (let i = 0; i < this.optionList.length; i++) {
+          let option = {
+            content: this.optionList[i].text,
+            answer: this.optionList[i].answer
+          }
+          options.push(option)
+        };
+        data = { type, group, title, describe, options }
+        // console.log(data)
+      } else if (questionType === '填空') {
         let type = 3
         let group = this.groupName
-        let title = ''
+        let title = this.quesDescribe
         let describe = this.quesDescribe
-        let data = { type, group, title, describe }
-        console.log(data)
-        return data
+        data = { type, group, title, describe }
+        // console.log(data)
+      } else if (questionType === '简答') {
+        let type = 4
+        let group = this.groupName
+        let title = this.quesDescribe
+        let describe = this.quesDescribe
+        data = { type, group, title, describe }
+        // console.log(data)
+      } else if (questionType === '上传文件') {
+        let type = 5
+        let group = this.groupName
+        let title = this.quesDescribe
+        let describe = this.quesDescribe
+        data = { type, group, title, describe }
+        // console.log(data)
       }
+      console.log(data)
+      this.$axios({
+        method: 'post',
+        url: '/control/question/add',
+        data
+      }).then((res) => {
+        console.log(res)
+      }).catch((err) => {
+        console.log(err)
+      })
     }
   }
 }

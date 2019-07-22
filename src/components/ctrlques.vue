@@ -23,6 +23,11 @@
     <che></che>
     <inp></inp>
     <short></short>
+    <short></short>
+    <short></short>
+    <short></short>
+    <short></short>
+    <short></short>
     <uploadque></uploadque>
   </div>
   <!-- </div> -->
@@ -71,7 +76,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.kind {
+  position: relative;
+  background-color: black;
+  color: white;
+  width: 78%;
+  margin-left: 20%;
+  padding: 2%;
+}
 .headline {
   margin: 1rem auto 0.5rem auto;
 }
@@ -252,6 +265,23 @@ a {
     font-size: 1rem;
     width: 36%;
     height: 35px;
+  }
+  select {
+    -webkit-appearance: none; /* google */
+    -moz-appearance: none; /* firefox */
+    appearance: none; /* IE */
+    width: 80px;
+    font-size: 0.9rem;
+    color: white;
+    text-align: center;
+    background-color: black;
+  }
+  .ctrlBox {
+    position: relative;
+    color: blue;
+    width: 30%;
+    margin-left: 50%;
+    display: flex;
   }
 }
 </style>

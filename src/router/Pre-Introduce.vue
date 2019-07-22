@@ -2,18 +2,18 @@
   <div id='main'>
     <div id='header'
          v-if="headFlag">
-      <img src="../img/小箭头-左.png"
+      <img src="../assets/小箭头-左.png"
            class="arrow_left"
            @click="returnToMain"
            v-if='arrowFlag'>
-      <img src="../img/LOGO.png"
+      <img src="../assets/logo.png"
            class='logo'
            @click="returnToMain">
-      <img src="../img/小箭头.png"
+      <img src="../assets/小箭头.png"
            class="arrow_right"
            :class="[{ arrowhead:1},{ rotate1:Boxflag},{ rotate2:(!Boxflag)}]"
            @click="Boxflag=!Boxflag">
-      <img src="../img/头像.png"
+      <img src="../assets/头像.png"
            class='portrait'
            @click="priFlag=true">
     </div>
@@ -40,17 +40,19 @@
     </div>
     <div id='group'
          v-if='Itemflag'>
-      <img src="../img/icons/产品.svg">
+      <img src="../assets/icons/产品.svg">
       <router-link to="/main/product">产品</router-link>
-      <img src="../img/icons-new/前端开发@3x.svg">
+      <img src="../assets/icons-new/前端开发@3x.svg">
       <router-link to="/main/FE">前端</router-link>
-      <img src="../img/icons/后台@1x.svg">
+      <img src="../assets/icons/后台@1x.svg">
       <router-link to="/main/BE">后台</router-link>
-      <img src="../img/icons/移动.svg">
-      <router-link to="/main/mobile">移动</router-link>
-      <img src="../img/icons/设计.svg">
+      <img src="../assets/安卓@3x.svg">
+      <router-link to="/main/android">安卓</router-link>
+      <img src="../assets/IOS@3x.svg">
+      <router-link to="/main/IOS">IOS</router-link>
+      <img src="../assets/icons/设计.svg">
       <router-link to="/main/design">设计</router-link>
-      <img src="../img/icons-new/DevOps@3x.svg">
+      <img src="../assets/icons-new/DevOps@3x.svg">
       <router-link to="/main/DevOps">DevOps</router-link>
     </div>
     <a href=""
@@ -60,20 +62,21 @@
     <div id='noteText'
          v-if="notesFlag"
          ref="noteText">
-      <img src="../img/close.png"
+      <img src="../assets/close.png"
            class="close"
            @click="notesFlag=false">
       <h2>答题须知</h2>
       <p>这里是答题须知的内容哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或</p>
       <a href=""
-         v-if='!flag'>开始答题</a>
+         v-if='!flag'
+         @click.prevent="notesFlag=false">开始答题</a>
     </div>
 
     <div id='private'
          v-if='priFlag'>
-      <img src="../img/头像.png"
+      <img src="../assets/头像.png"
            id="priHead"><span id="priName">{{ privateName }}</span>
-      <img src="../img/close.png"
+      <img src="../assets/close.png"
            class="close"
            @click="priFlag=false">
       <div id='priText'>
@@ -122,12 +125,13 @@
         </div>
       </div>
       <a class='confirm'
-         @click='priFlag=false'>确认</a>
+         @click='changePrivateMsg'>确认</a>
     </div>
   </div>
 </template>
 
 <script>
+import '../css/style.css'
 import { setInterval } from 'timers'
 export default {
   data () {
@@ -166,7 +170,7 @@ export default {
       }, 1000)
     },
     mobileStyle () {
-      if (this.$route.path != '/main') {
+      if (this.$route.path !== '/main') {
         if (window.screen.height >= 520 && window.screen.width <= 1080) {
           this.Itemflag = false
         }
@@ -175,11 +179,10 @@ export default {
       }
     },
     returnToMain () {
-      var path = this.$route.path.match(/^\/[^\/]*/)[0]
-      this.$router.push(path)
+      this.$router.push('/main')
     },
     arrowStyle () {
-      if (this.$route.path != '/main') {
+      if (this.$route.path !== '/main') {
         if (window.screen.height >= 520 && window.screen.width <= 1080) {
           this.arrowFlag = true
         }
@@ -188,10 +191,62 @@ export default {
       }
     },
     showHead () {
-      if (this.$route.path == '/login' || this.$route.path == '/managerlogin') {
+      if (this.$route.path === '/login' || this.$route.path === '/managerlogin') {
         this.headFlag = false
       } else {
         this.headFlag = true
+      }
+    },
+    getPrivateMsg () {
+      this.$axios({
+        method: 'get',
+        url: '/user/userinfo/get'
+      }).then((result) => {
+        if (result.code === 0) {
+          console.log(result.msg)
+          result = result.data
+          this.priName = this.priNumber = result.stunum
+          this.priPhone = result.phonenum
+          this.priQQ = result.qqnum
+          this.priSchool = result.college
+        } else {
+          console.log('获取用户信息失败')
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    changePrivateMsg () {
+      this.priFlag = false
+      this.$axios({
+        method: 'post',
+        url: '/user/userinfo/change',
+        data: {
+          name: this.priName,
+          phonenum: this.priPhone,
+          stunum: this.priNumber,
+          qqnum: this.priQQ
+        }
+      }).then((res) => {
+        console.log(res)
+      }).catch((err) => {
+        console.log(err)
+      })
+      if (this.newPassword !== '' && this.rePassword !== '') {
+        if (this.newPassword === this.rePassword) {
+          this.$axios({
+            method: 'post',
+            url: '/user/userinfo/password',
+            data: {
+              oldPassword: this.oldPassword,
+              newPassword: this.newPassword
+            }
+          }).then((res) => {
+            console.log(res)
+          }).catch((err) => {
+            console.log(err)
+          })
+        }
       }
     }
   },
@@ -201,6 +256,7 @@ export default {
     this.arrowStyle()
     this.showHead()
     // console.log(this.$route.path)
+    this.getPrivateMsg() // 获取用户信息
   },
   watch: {
     '$route.path': function (newVal) {

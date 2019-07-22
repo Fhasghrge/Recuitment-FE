@@ -34,6 +34,7 @@ export default {
   methods: {
     transmit (bannershow) {
       this.show = bannershow
+      console.log(this.show)
     }
   }
 }
