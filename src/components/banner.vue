@@ -11,27 +11,44 @@
     </div>
     <user @usershow='usertans'></user>
     <img src="../assets/icon.svg"
-         class="icon1" />
+         class="icon1"
+         @click="mobtans" />
+    <mobbar></mobbar>
   </div>
 </template>
 
 <script>
 import user from './user'
+import mobbar from './private'
+import bus from './bus.js'
 export default {
   name: 'banner',
   data () {
     return {
-      bannerflag: false
+      bannerflag: false,
+      mobflag: false
     }
   },
   components: {
-    user
+    user, mobbar
   },
   methods: {
+    mobtans: function () {
+      this.mobflag = !this.mobflag
+      console.log(this.mobflag)
+      this.$emit('mainshow', this.mobflag)
+      console.log(this.mobflag)
+    },
     usertans (userflag) {
       this.bannerflag = userflag
       this.$emit('mainshow', this.bannerflag)
+      console.log(this.bannerflag)
     }
+  },
+  mounted () {
+    bus.$on('listen', (show) => {
+      this.mobflag = show
+    })
   }
 }
 </script>

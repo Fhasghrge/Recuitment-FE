@@ -30,12 +30,6 @@ export default {
       userflag: false
     }
   },
-  props: {
-    show: {
-      type: Boolean,
-      default: false
-    }
-  },
   methods: {
     x3: function () {
       this.flag = !this.flag
@@ -48,7 +42,6 @@ export default {
     revisebar: function () {
       this.userflag = !this.userflag
       this.$emit('usershow', this.userflag)
-      console.log(this.userflag)
     }
   },
   mounted () {

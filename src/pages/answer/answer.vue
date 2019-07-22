@@ -17,7 +17,7 @@
 import banner from '../../components/banner'
 import question from '../../components/question'
 import fixedbar from '../../components/fixedbar'
-import pribar from '../../components/private'
+import pribar from '../../components/pribar'
 export default {
   name: 'answer',
   data () {

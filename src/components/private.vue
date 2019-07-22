@@ -2,6 +2,12 @@
   <div id='private'
        v-show="show">
     <div class="pribar">
+      <div class="clowrap">
+        <img src="../assets/route.png"
+             id="close"
+             @click="closebar"></div>
+      <img class="midlogo"
+           src="../img/LOGO.png">
       <img src="../img/头像.png"
            id="priHead"><span id="priName">{{ privateName }}</span>
       <img src="../img/close.png"
@@ -10,47 +16,47 @@
     </div>
     <div id='priText'>
       <div class="priBox priLeft">
-        <p class='priVal'>真实姓名</p><input class="priMsg"
+        <span class='priVal'>真实姓名</span><input class="priMsg"
                value="priName"
                v-model="priName">
 
       </div>
       <div class="priBox priRight">
-        <p class='priVal'>手机号</p><input class="priMsg"
+        <span class='priVal'>手机号</span><input class="priMsg"
                value="priPhone"
                v-model='priPhone'>
 
       </div>
       <div class="priBox priLeft">
-        <p class='priVal'>信息门户账号</p><input class="priMsg"
+        <span class='priVal'>信息门户账号</span><input class="priMsg"
                value="priNumber"
                v-model="priNumber">
 
       </div>
       <div class="priBox priRight">
-        <p class='priVal'>旧密码</p><input class="priMsg"
+        <span class='priVal'>旧密码</span><input class="priMsg"
                v-model="oldPassword">
 
       </div>
       <div class="priBox priLeft">
-        <p class='priVal'>学院</p><input class="priMsg"
+        <span class='priVal'>学院</span><input class="priMsg"
                value="priSchool"
                v-model="priSchool">
 
       </div>
       <div class="priBox priRight">
-        <p class='priVal'>新密码</p><input class="priMsg"
+        <span class='priVal'>新密码</span><input class="priMsg"
                v-model="newPassword">
 
       </div>
       <div class="priBox priLeft">
-        <p class='priVal'>QQ号</p><input class="priMsg"
+        <span class='priVal'>QQ号</span><input class="priMsg"
                value="priQQ"
                v-model="priQQ">
 
       </div>
       <div class="priBox priRight">
-        <p class='priVal'>重复密码</p><input class="priMsg"
+        <span class='priVal'>重复密码</span><input class="priMsg"
                v-model="rePassword">
 
       </div>
@@ -149,120 +155,204 @@ export default {
 </script>
 
 <style>
-#private {
-  position: absolute;
-  top: 45px;
-  width: 76%;
-  left: 12%;
-  background-color: #0e0e16;
-}
-.pribar {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  margin: 20px auto;
-}
-#priHead {
-}
-
-#priName {
-  font-size: 1.4rem;
-}
-
-#priText {
-  display: flex;
-  width: 80%;
-  margin: 0 auto;
-  flex-wrap: wrap;
-}
-
-#priText input {
-  width: 100%;
-  height: 45%;
-  background: none;
-  outline: none;
-  border: 0px;
-  border-bottom: solid 1px #979797;
-  margin: 10px auto;
-  padding: 5px auto;
-}
-
-.priBox {
-  margin: 5px 5%;
-  width: 40%;
-}
-.line {
-  width: 80%;
-}
-.priVal {
-  width: 50%;
-  height: 5%;
-  font-family: PingFangSC-Light;
-  font-size: 1.2rem;
-  font-weight: normal;
-  font-stretch: normal;
-  margin-top: -3%;
-  letter-spacing: 0px;
-  color: #b3b3b3;
-}
-.priMsg {
-  width: 100%;
-  height: 12%;
-  font-family: PingFangSC-Regular;
-  font-size: 24px;
-  font-weight: normal;
-  font-stretch: normal;
-  letter-spacing: 0px;
-  color: #ffffff;
-  text-align: center;
-}
-.btnsub {
-  margin: 20px auto;
-  width: 40%;
-  text-align: center;
-}
-.confirm {
-  opacity: 1;
-  font-size: 1.2rem;
-  background-color: inherit;
-  color: #ffffff;
-  width: 130px;
-  height: 40px;
-}
-
-.confirm:hover {
-  cursor: pointer;
-}
-@media screen and (max-width: 700px) {
-  .box {
+@media screen and (min-width: 700px) {
+  #close {
+    display: none;
+  }
+  .clowrap {
+    display: none;
+  }
+  .midlogo {
     display: none;
   }
   #private {
-    width: 100%;
-    margin: 0;
+    position: absolute;
+    top: 45px;
+    width: 76%;
+    left: 12%;
+    background-color: #0e0e16;
   }
+  .pribar {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 20px auto;
+  }
+
   #priName {
-    margin-top: 8%;
-    width: 35%;
+    font-size: 1.4rem;
   }
-  #private .close {
-    margin-left: 35%;
-  }
+
   #priText {
-    margin-top: 30%;
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  #priText input {
+    width: 100%;
+    height: 45%;
+    background: none;
+    outline: none;
+    border: 0px;
+    border-bottom: solid 1px #979797;
+    margin: 10px auto;
+    padding: 5px auto;
+  }
+
+  .priBox {
+    margin: 5px 5%;
+    width: 40%;
+  }
+  .line {
+    width: 80%;
   }
   .priVal {
-    width: 80%;
+    width: 50%;
+    height: 5%;
+    font-family: PingFangSC-Light;
+    font-size: 1.2rem;
+    font-weight: normal;
+    font-stretch: normal;
+    margin-top: -3%;
+    letter-spacing: 0px;
+    color: #b3b3b3;
+  }
+  .priMsg {
+    width: 100%;
+    height: 12%;
+    font-family: PingFangSC-Regular;
+    font-size: 24px;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0px;
+    color: #ffffff;
+    text-align: center;
+  }
+  .btnsub {
+    margin: 20px auto;
+    width: 40%;
+    text-align: center;
+  }
+  .confirm {
+    opacity: 1;
+    font-size: 1.2rem;
+    background-color: inherit;
+    color: #ffffff;
+    width: 130px;
+    height: 40px;
+  }
+
+  .confirm:hover {
+    cursor: pointer;
+  }
+}
+@media screen and (max-width: 700px) {
+  #private {
+    background-image: url("../assets/back.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+    min-height: 100vh;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    color: #ffffff;
+  }
+  .midlogo {
+    margin-top: 5px;
+    height: 35px;
+  }
+  .close {
+    display: none;
+  }
+  .clowrap {
+    width: 40px;
+    height: 40px;
+    position: relative;
+  }
+  #close {
+    width: 13px;
+    position: absolute;
+    left: 0;
+    bottom: 9px;
+    transform-origin: center center;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transition: transform 0.2s;
+    -moz-transition: -moz-transform 0.2s;
+    -moz-transition: -moz-transform 0.2s;
+    -o-transition: -o-transform 0.2s;
+    -ms-transition: -ms-transform 0.2s;
+  }
+  #priHead {
+    width: 40px;
+    height: 40px;
+  }
+  .pribar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 2%;
+    padding-top: 2%;
+    align-items: center;
+  }
+  #priName {
+    display: none;
+  }
+  #priText {
+    width: 84%;
+    margin: 25px auto;
+  }
+  #priText input {
+    background: none;
+    outline: none;
+    border: 0px;
+    margin: 5px auto;
+    padding: 5px auto;
+    color: #ffffff;
+    text-align: right;
+  }
+
+  .priBox {
+    border-bottom: solid 1px #979797;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 7px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .priVal {
     font-size: 1rem;
+    width: 50%;
+    color: #b3b3b3;
   }
   .priMsg {
     width: 100%;
     font-size: 1.2rem;
   }
+  .btnsub {
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+    margin-top: 30px;
+  }
   .confirm {
-    margin-left: -10%;
-    width: 20%;
-    margin-top: 120%;
+    width: 60%;
+    height: 2.5rem;
+    color: #ffffff;
+    font-size: 1rem;
+    border: solid 1px #ffffff;
+    background-color: inherit;
+    margin: 0 auto;
   }
 }
 </style>
