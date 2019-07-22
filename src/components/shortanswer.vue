@@ -15,9 +15,20 @@
         <option value="于此题前">于此题前</option>
       </select>
       <input type="button"
-             value="删除">
+             value="删除"
+             @click="delBoxFlag=true">
       <input type="button"
              value="修改">
+      <div class="delBox"
+           v-if="delBoxFlag">
+        <p>是否删除</p>
+        <img src="../assets/删除@3x.svg">
+        <input type="button"
+               value="确认">
+        <input type="button"
+               value="取消"
+               @click="delBoxFlag=false">
+      </div>
     </div>
   </div>
 </template>
@@ -26,7 +37,8 @@
 export default {
   data () {
     return {
-      shortanswer: ''
+      shortanswer: '',
+      delBoxFlag: false
     }
   },
   props: {
@@ -91,5 +103,25 @@ input {
   margin-top: 2.3%;
   margin-left: 5%;
   width: 10%;
+}
+.delBox {
+  position: absolute;
+  background-color: black;
+  z-index: 999999;
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+  margin: 0 auto;
+}
+.delBox p {
+  margin: 0 auto;
+}
+.delBox img {
+  margin-left: 30%;
+}
+.delBox input {
+  margin-top: 6%;
+  font-size: 1.1rem;
+  width: 45%;
 }
 </style>

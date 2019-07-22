@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import home from './pages/login/home.vue'
 import answer from './pages/answer/answer.vue'
 import adminindex from './pages/adminindex/adminindex.vue'
+import announce from './components/announce.vue'
 import overview from './components/overview.vue'
 import concrate from './components/concrate.vue'
 import marking from './pages/marking/marking.vue'
@@ -99,6 +100,11 @@ const router = new VueRouter({
       children: [
         {
           path: '/',
+          name: 'announce',
+          component: announce
+        },
+        {
+          path: 'overview',
           name: 'overview',
           component: overview
         },
