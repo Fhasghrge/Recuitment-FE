@@ -32,7 +32,8 @@
          v-if="$route.path == '/adminindex/ctrlques'">
       <p>出题人：RIO</p>
       <input type="button"
-             value="添加">
+             value="添加"
+             @click="toAdd">
       <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
@@ -81,6 +82,14 @@ export default {
     uploadFile: function () {
       let file = document.getElementById('file')
       file.click()
+    },
+    toAdd () {
+      this.$router.push({
+        path: '/adminindex/add',
+        query: {
+          groups: parseInt(this.groups)
+        }
+      })
     },
     upload: function (f) {
       var form = new FormData()

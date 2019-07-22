@@ -4,7 +4,7 @@
       <h3>{{groupName}}</h3><span>/招新题目</span>
     </div>
     <div id='motify'>
-      <a href="./#/adminindex"
+      <a @click="ret"
          id="return">返回</a>
       <textarea name=""
                 id="quesDescribe"
@@ -75,7 +75,8 @@ export default {
       ],
       confirmMsg: '保存失败 请检查网络',
       flag: true,
-      quesDescribe: '请输入题目描述'
+      quesDescribe: '请输入题目描述',
+      groups: this.$route.query.groups
     }
   },
   methods: {
@@ -101,6 +102,14 @@ export default {
       } else {
         this.flag = false
       }
+    },
+    ret () {
+      this.$router.push({
+        path: '/adminindex/ctrlques',
+        query: {
+          groups: this.groups
+        }
+      })
     },
     swapArray (arr, index1, index2) {
       arr[index1] = arr.splice(index2, 1, arr[index1])[0]

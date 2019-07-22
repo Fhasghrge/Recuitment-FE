@@ -8,7 +8,8 @@
          v-if="$route.path == '/adminindex/ctrlques'">
       <p>出题人：RIO</p>
       <input type="button"
-             value="添加">
+             value="添加"
+             @click="toAdd">
       <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
@@ -63,13 +64,21 @@ export default {
           }
         })
       }
+    },
+    toAdd () {
+      this.$router.push({
+        path: '/adminindex/add',
+        query: {
+          groups: parseInt(this.groups)
+        }
+      })
     }
   }
 }
 </script>
 
 <style scoped>
-select {
+.ctrlBox select {
   -webkit-appearance: none; /* google */
   -moz-appearance: none; /* firefox */
   appearance: none; /* IE */
@@ -91,7 +100,7 @@ select {
   text-align: center;
   font-size: 1.2rem;
 }
-input {
+.ctrlBox input {
   background-color: black;
   color: white;
   border: solid white 1px;
@@ -100,7 +109,7 @@ input {
   margin-left: 5%;
   width: 10%;
 }
-.delBox {
+.ctrlBox .delBox {
   position: absolute;
   background-color: black;
   z-index: 999999;
