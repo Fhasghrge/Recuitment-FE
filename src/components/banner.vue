@@ -31,6 +31,7 @@ export default {
     usertans (userflag) {
       this.bannerflag = userflag
       this.$emit('mainshow', this.bannerflag)
+      console.log(this.bannerflag)
     }
   }
 }

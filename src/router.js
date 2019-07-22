@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import home from './pages/login/home.vue'
 import answer from './pages/answer/answer.vue'
 import adminindex from './pages/adminindex/adminindex.vue'
+import announce from './components/announce.vue'
 import overview from './components/overview.vue'
 import concrate from './components/concrate.vue'
 import marking from './pages/marking/marking.vue'
@@ -12,13 +13,15 @@ import text from './router/sub/introduce.vue'
 import product from './router/sub/product.vue'
 import FE from './router/sub/FE.vue'
 import BE from './router/sub/BE.vue'
-import mobile from './router/sub/mobile.vue'
+import android from './router/sub/android.vue'
+import IOS from './router/sub/IOS.vue'
 import design from './router/sub/design.vue'
 import DevOps from './router/sub/DevOps.vue'
 import ending from './router/Ending.vue'
 import managerLogin from './router/managerLogin.vue'
+import ctrlques from './components/ctrlques.vue'
 // import manager from './router/manager.vue'
-import checking from './router/sub/checking.vue'
+// import checking from './router/sub/checking.vue'
 import add from './router/sub/add.vue'
 
 Vue.use(VueRouter)
@@ -50,8 +53,12 @@ const router = new VueRouter({
           component: BE
         },
         {
-          path: 'mobile',
-          component: mobile
+          path: 'android',
+          component: android
+        },
+        {
+          path: 'IOS',
+          component: IOS
         },
         {
           path: 'design',
@@ -93,6 +100,11 @@ const router = new VueRouter({
       children: [
         {
           path: '/',
+          name: 'announce',
+          component: announce
+        },
+        {
+          path: 'overview',
           name: 'overview',
           component: overview
         },
@@ -101,13 +113,17 @@ const router = new VueRouter({
           name: 'concrate',
           component: concrate
         },
-        {
-          path: 'checking',
-          component: checking
-        },
+        // {
+        //   path: 'checking',
+        //   component: checking
+        // },
         {
           path: 'add',
           component: add
+        },
+        {
+          path: 'ctrlques',
+          component: ctrlques
         }
       ]
     },

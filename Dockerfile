@@ -1,2 +1,1 @@
-FROM    nginx:stable-alpine
-COPY    ./dist  /usr/share/nginx/html
+FROM registry.stuhome.com/devops/dockerepo/alpine:3.7

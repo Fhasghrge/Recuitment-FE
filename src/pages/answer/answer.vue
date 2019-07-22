@@ -8,8 +8,7 @@
       </div>
     </div>
     <fixedbar></fixedbar>
-    <pribar :show='show'
-            @showpribar="transmit"></pribar>
+    <pribar></pribar>
   </div>
 </template>
 
@@ -34,6 +33,7 @@ export default {
   methods: {
     transmit (bannershow) {
       this.show = bannershow
+      console.log(this.show)
     }
   }
 }

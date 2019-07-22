@@ -14,8 +14,8 @@ export default {
   data () {
     return {
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
-      Header: '后台组',
-      introduce: '这里是后台组的介绍'
+      Header: 'IOS组',
+      introduce: '这里是IOS组的介绍'
     }
   },
   methods: {
@@ -23,7 +23,7 @@ export default {
       this.$router.push({
         path: '/answer',
         query: {
-          groups: 6
+          groups: 4
         }
       })
     }

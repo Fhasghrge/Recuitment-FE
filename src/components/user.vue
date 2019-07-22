@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import bus from '../components/bus.js'
+
 export default {
   name: 'banner',
   data () {
@@ -50,11 +50,6 @@ export default {
       this.$emit('usershow', this.userflag)
       console.log(this.userflag)
     }
-  },
-  mounted () {
-    bus.$on('listen', (show) => {
-      this.userflag = show
-    })
   }
 }
 </script>

@@ -1,58 +1,55 @@
 <template>
-  <div id='private'
-       v-show="show">
-    <div class="pribar">
-      <img src="../img/头像.png"
-           id="priHead"><span id="priName">{{ privateName }}</span>
-      <img src="../img/close.png"
-           class="close"
-           @click="closebar">
-    </div>
+  <div id='private'>
+    <img src="../img/头像.png"
+         id="priHead"><span id="priName">{{ privateName }}</span>
+    <img src="../img/close.png"
+         class="close"
+         @click="priFlag=false">
     <div id='priText'>
       <div class="priBox priLeft">
         <p class='priVal'>真实姓名</p><input class="priMsg"
                value="priName"
                v-model="priName">
-
+        <hr class="line">
       </div>
       <div class="priBox priRight">
         <p class='priVal'>手机号</p><input class="priMsg"
                value="priPhone"
                v-model='priPhone'>
-
+        <hr class="line">
       </div>
       <div class="priBox priLeft">
         <p class='priVal'>信息门户账号</p><input class="priMsg"
                value="priNumber"
                v-model="priNumber">
-
+        <hr class="line">
       </div>
       <div class="priBox priRight">
         <p class='priVal'>旧密码</p><input class="priMsg"
                v-model="oldPassword">
-
+        <hr class="line">
       </div>
       <div class="priBox priLeft">
         <p class='priVal'>学院</p><input class="priMsg"
                value="priSchool"
                v-model="priSchool">
-
+        <hr class="line">
       </div>
       <div class="priBox priRight">
         <p class='priVal'>新密码</p><input class="priMsg"
                v-model="newPassword">
-
+        <hr class="line">
       </div>
       <div class="priBox priLeft">
         <p class='priVal'>QQ号</p><input class="priMsg"
                value="priQQ"
                v-model="priQQ">
-
+        <hr class="line">
       </div>
       <div class="priBox priRight">
         <p class='priVal'>重复密码</p><input class="priMsg"
                v-model="rePassword">
-
+        <hr class="line">
       </div>
     </div>
     <div class="btnsub">
@@ -62,11 +59,11 @@
 </template>
 
 <script>
-import bus from '../components/bus.js'
 export default {
   name: 'pribar',
   data () {
     return {
+      priFlag: false,
       priName: '黄老板',
       priPhone: '110',
       priNumber: '201601120000',
@@ -80,15 +77,10 @@ export default {
   props: {
     show: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   methods: {
-    closebar: function () {
-      this.show = false
-      this.$emit('showpribar', this.show)
-      bus.$emit('listen', this.show)
-    },
     getPrivateMsg: function () {
       this.$axios({
         method: 'get',
@@ -148,19 +140,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #private {
   position: absolute;
-  top: 45px;
+  top: 30px;
   width: 76%;
   left: 12%;
   background-color: #0e0e16;
-}
-.pribar {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  margin: 20px auto;
 }
 #priHead {
 }
@@ -172,7 +158,8 @@ export default {
 #priText {
   display: flex;
   width: 80%;
-  margin: 0 auto;
+  margin-left: 10%;
+  margin-top: 11.5%;
   flex-wrap: wrap;
 }
 
@@ -182,20 +169,17 @@ export default {
   background: none;
   outline: none;
   border: 0px;
-  border-bottom: solid 1px #979797;
-  margin: 10px auto;
-  padding: 5px auto;
 }
 
 .priBox {
-  margin: 5px 5%;
+  margin-left: 10%;
   width: 40%;
 }
 .line {
   width: 80%;
 }
 .priVal {
-  width: 50%;
+  width: 40%;
   height: 5%;
   font-family: PingFangSC-Light;
   font-size: 1.2rem;
@@ -217,7 +201,7 @@ export default {
   text-align: center;
 }
 .btnsub {
-  margin: 20px auto;
+  margin: 0 auto;
   width: 40%;
   text-align: center;
 }
@@ -226,8 +210,6 @@ export default {
   font-size: 1.2rem;
   background-color: inherit;
   color: #ffffff;
-  width: 130px;
-  height: 40px;
 }
 
 .confirm:hover {

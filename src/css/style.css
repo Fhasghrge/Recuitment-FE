@@ -180,7 +180,7 @@ textarea {
 #group img {
   max-width: 50%;
   height: 20px;
-  margin-left: 9%;
+  margin-left: 7%;
 }
 #group a {
   width: 20%;
@@ -424,7 +424,7 @@ textarea {
   #notes,
   #private {
     margin-top: 157%;
-    margin-left: 41%;
+    margin-left: 30%;
     font-size: 1rem;
   }
   .begin {
