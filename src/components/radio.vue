@@ -9,7 +9,9 @@
                name="radio"
                class="radio1"
                :id="radio(indexr)"
-               :value="options[indexr]" />
+               :value="options[indexr]"
+               v-model="radiodata"
+               @change="sendradio" />
         <label :for="radio(indexr)"
                class="radio2">{{options[indexr]}}</label>
       </div>
@@ -65,6 +67,10 @@ export default {
     title: {
       type: String,
       default: '有多帅'
+    },
+    answer: {
+      type: String,
+      default: '就是这么帅'
     }
   },
   methods: {
@@ -90,6 +96,11 @@ export default {
           groups: parseInt(this.groups)
         }
       })
+    }
+  },
+  mounted () {
+    if (this.answer !== '') {
+      this.radiodata = this.answer
     }
   }
 }

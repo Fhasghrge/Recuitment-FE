@@ -39,7 +39,8 @@ export default {
   data () {
     return {
       shortanswer: '',
-      delBoxFlag: false
+      delBoxFlag: false,
+      list1: []
     }
   },
   props: {
@@ -49,10 +50,24 @@ export default {
     },
     title: {
       type: String,
-      default: '有多帅'
+      default: ''
+    },
+    answer: {
+      type: String,
+      default: '就是这么帅'
     }
   },
   methods: {
+    getlist: function () {
+      this.$axios({
+        methods: 'post',
+        url: '/control/question/list'
+      }).then((res2) => {
+        if (res2.code === 0) {
+          this.list1 = res2.data.data
+        }
+      })
+    },
     sendshoans: function () {
       if (this.$route.path === '/answer') {
         this.$axios({
@@ -72,6 +87,20 @@ export default {
           groups: parseInt(this.groups)
         }
       })
+    }
+  },
+  mounted () {
+    if (this.answer !== '') {
+      this.shortanswer = this.answer
+    }
+    if (this.$route.path === '/marking') {
+      this.getlist()
+      for (let i = 0; i < this.list1.length; i++) {
+        if (this.ID === this.list1[i].ID) {
+          this.title = this.list1[i].title
+          return
+        }
+      }
     }
   }
 }

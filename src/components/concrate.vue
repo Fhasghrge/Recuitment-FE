@@ -2,7 +2,8 @@
   <div class="wrapper2">
     <div class="mainshow2">
       <div class="btnbar"><button class="return2"
-                @click="goback">返回</button><button class="download2">下载附件</button></div>
+                @click="goback">返回</button><button class="download2"
+                @click="download">下载附件</button></div>
       <div class="table2">
         <table>
           <tr>
@@ -20,7 +21,7 @@
             <td>{{item.time}}</td>
             <td>{{item.score}}</td>
             <td>{{item.judger}}</td>
-            <td><button>阅卷</button></td>
+            <td><button @click="gomark(item.username,item.judger)">阅卷</button></td>
           </tr>
 
         </table>
@@ -35,6 +36,13 @@ export default {
     return {
       userconcrate: [{
         'username': 'hzy',
+        'stunum': '2018XXXXXXXXX',
+        'time': '07/27 16:44:15',
+        'score': 97,
+        'judger': 'Huang ZY'
+      },
+      {
+        'username': 'whf',
         'stunum': '2018XXXXXXXXX',
         'time': '07/27 16:44:15',
         'score': 97,
@@ -57,6 +65,19 @@ export default {
       }).then((res) => {
         if (res.code === 0) {
           this.userconcrate = res.data.data
+        }
+      })
+    },
+    gomark (uname, marker) {
+      console.log(uname)
+      this.$router.push({ name: 'marking', params: { username: uname, judger: marker } })
+    },
+    download () {
+      this.$axios({
+        methods: 'get',
+        url: '/control/file/download',
+        data: {
+          groups: this.congroup
         }
       })
     }
