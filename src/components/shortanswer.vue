@@ -19,13 +19,15 @@
              value="删除"
              @click="delBoxFlag=true">
       <input type="button"
-             value="修改">
+             value="修改"
+             @click="toChange">
       <div class="delBox"
            v-if="delBoxFlag">
         <p>是否删除</p>
         <img src="../assets/删除@3x.svg">
         <input type="button"
-               value="确认">
+               value="确认"
+               @click="delConfirm">
         <input type="button"
                value="取消"
                @click="delBoxFlag=false">
@@ -39,7 +41,8 @@ export default {
   data () {
     return {
       shortanswer: '',
-      delBoxFlag: false
+      delBoxFlag: false,
+      groups: this.$route.query.groups
     }
   },
   props: {
@@ -71,6 +74,29 @@ export default {
         query: {
           groups: parseInt(this.groups)
         }
+      })
+    },
+    toChange () {
+      this.$router.push({
+        path: '/adminindex/add',
+        query: {
+          ID: this.ID,
+          groups: parseInt(this.groups)
+        }
+      })
+    },
+    delConfirm () {
+      this.delBoxFlag = false
+      this.$axios({
+        method: 'post',
+        url: '/control/question/del',
+        data: {
+          id: this.ID
+        }
+      }).then((result) => {
+        console.log(result)
+      }).catch((err) => {
+        console.log(err)
       })
     }
   }
