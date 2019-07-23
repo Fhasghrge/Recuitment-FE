@@ -40,6 +40,11 @@
              v-model="tel"
              placeholder="手机号（联系方式）" />
       <input class="input1"
+             id="qq"
+             type="text"
+             v-model="qq"
+             placeholder="QQ号" />
+      <input class="input1"
              id="pas"
              type="password"
              v-model="perpassword"
@@ -77,6 +82,7 @@ export default {
       perpassword: '',
       pername: '',
       tel: '',
+      qq: '',
       verify: '',
       err: ''
     }
@@ -136,11 +142,11 @@ export default {
             method: 'post',
             url: '/user/register',
             data: {
-              username: this.peraccount,
+              stunum: this.peraccount,
               password: this.perpassword,
               name: this.pername,
               phonenum: this.tel,
-              stunum: this.schnum
+              qqnum: this.qq
             }
           }).then((response) => {
             if (response.data.code === 0) {
@@ -225,10 +231,8 @@ export default {
     background-color: inherit;
     font-size: 1rem;
     font-family: PingFangSC-Light;
-    padding-bottom: 0.7rem;
     color: #ffffff;
-    padding-left: 0.5rem;
-    padding: 0.9rem 0 0.9rem 0.5rem;
+    padding: 0.7rem 0 0.7rem 0.5rem;
   }
 
   .button {
@@ -294,13 +298,13 @@ export default {
   .act {
     height: 50%;
     padding-top: 3.5rem;
-    margin-bottom: -1rem;
+    margin-bottom: -1.5rem;
   }
 
   .hide {
     height: 50%;
     padding-bottom: 1.5rem;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     display: none;
   }
 

@@ -2,7 +2,8 @@
   <div>
     <markbar></markbar>
     <div class="markques">
-      <button class="markreturn">返回</button><span class="notice">离开前请一定记得点击：“保存阅卷”</span>
+      <button class="markreturn"
+              @click="gobackto">返回</button><span class="notice">离开前请一定记得点击：“保存阅卷”</span>
       <div class="markque">
         <question></question>
       </div>
@@ -21,6 +22,17 @@ export default {
     markbar,
     question,
     scorebar
+  },
+  methods: {
+    gobackto: function () {
+      this.$router.go(-1)
+    },
+    getexam: function () {
+      this.$axios({
+        methods: 'post',
+        url: ''
+      })
+    }
   }
 }
 </script>

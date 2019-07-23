@@ -8,46 +8,18 @@
           <tr>
             <th class="name">姓名</th>
             <th class="schnum">学号</th>
-            <th class="sch">学院</th>
             <th class="timeup">最近提交时间</th>
             <th class="score">分数</th>
             <th class="peo">阅卷人</th>
             <th class="opera">操作</th>
           </tr>
-          <tr>
-            <td>王可可</td>
-            <td>2018091608000</td>
-            <td>通信工程</td>
-            <td>06/23 21:28</td>
-            <td>88</td>
-            <td>范老板</td>
-            <td><button>阅卷</button></td>
-          </tr>
-          <tr>
-            <td>李二狗</td>
-            <td>2018091608000</td>
-            <td>可达鸭研究所</td>
-            <td>06/23 21:28</td>
-            <td>97</td>
-            <td>范老板</td>
-            <td><button>阅卷</button></td>
-          </tr>
-          <tr>
-            <td>李二狗</td>
-            <td>2018091608000</td>
-            <td>可达鸭研究所</td>
-            <td>06/23 21:28</td>
-            <td>97</td>
-            <td>范老板</td>
-            <td><button>阅卷</button></td>
-          </tr>
-          <tr>
-            <td>李二狗</td>
-            <td>2018091608000</td>
-            <td>可达鸭研究所</td>
-            <td>06/23 21:28</td>
-            <td>97</td>
-            <td>范老板</td>
+          <tr v-for="(item,index) in userconcrate"
+              :key="index">
+            <td>{{item.username}}</td>
+            <td>{{item.stunum}}</td>
+            <td>{{item.time}}</td>
+            <td>{{item.score}}</td>
+            <td>{{item.judger}}</td>
             <td><button>阅卷</button></td>
           </tr>
 
@@ -58,10 +30,39 @@
 </template>
 <script>
 export default {
+  data () {
+    var congroup = this.$route.query.groups
+    return {
+      userconcrate: [{
+        'username': 'hzy',
+        'stunum': '2018XXXXXXXXX',
+        'time': '07/27 16:44:15',
+        'score': 97,
+        'judger': 'Huang ZY'
+      }],
+      congroup
+    }
+  },
   methods: {
     goback () {
       this.$router.go(-1)
+    },
+    getsta () {
+      this.$axios({
+        methods: 'post',
+        url: '/control/exam/list',
+        data: {
+          groups: this.congroup
+        }
+      }).then((res) => {
+        if (res.code === 0) {
+          this.userconcrate = res.data.data
+        }
+      })
     }
+  },
+  mounted () {
+    this.getsta()
   }
 }
 </script>
