@@ -4,7 +4,7 @@
       <h3>{{groupName}}</h3><span>/招新题目</span>
     </div>
     <div id='motify'>
-      <a href="./#/adminindex"
+      <a @click="ret"
          id="return">返回</a>
       <textarea name=""
                 id="quesDescribe"
@@ -75,10 +75,53 @@ export default {
       ],
       confirmMsg: '保存失败 请检查网络',
       flag: true,
-      quesDescribe: '请输入题目描述'
+      quesDescribe: '请输入题目描述',
+      groups: this.$route.query.groups,
+      id: -1
     }
   },
   methods: {
+    showGroupName () {
+      let group = this.$route.query.groups
+      switch (group) {
+        case 1: this.groupName = '产品'; break
+        case 2: this.groupName = '设计'; break
+        case 3: this.groupName = '安卓'; break
+        case 4: this.groupName = 'IOS'; break
+        case 5: this.groupName = '前端'; break
+        case 6: this.groupName = '后台'; break
+        case 7: this.groupName = 'DevOps'; break
+      }
+    },
+    getQuestion (ID) {
+      if (ID !== -1) {
+        this.$axios({
+          method: 'post',
+          url: '/control/question/info',
+          data: {
+            ID
+          }
+        }).then((result) => {
+          if (result.code === 0) {
+            console.log(result.msg)
+            result = result.data
+            this.quesDescribe = result.describe
+            this.$refs.options[result.type - 1].selected = true
+            this.changeFlag()
+            if (result.options) {
+              this.optionList.splice(0, 1) // 把默认选项删除
+              for (let i = 0; i < result.options.length; i++) {
+                this.optionList.push(result.options[i])
+              }
+            }
+          } else {
+            alert('获取题目信息失败')
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
+    },
     addOption () {
       let len = this.optionList.length
       if (len > 4) {
@@ -101,6 +144,14 @@ export default {
       } else {
         this.flag = false
       }
+    },
+    ret () {
+      this.$router.push({
+        path: '/adminindex/ctrlques',
+        query: {
+          groups: this.groups
+        }
+      })
     },
     swapArray (arr, index1, index2) {
       arr[index1] = arr.splice(index2, 1, arr[index1])[0]
@@ -194,16 +245,34 @@ export default {
         // console.log(data)
       }
       console.log(data)
-      this.$axios({
-        method: 'post',
-        url: '/control/question/add',
-        data
-      }).then((res) => {
-        console.log(res)
-      }).catch((err) => {
-        console.log(err)
-      })
+      if (this.id === -1) {
+        this.$axios({
+          method: 'post',
+          url: '/control/question/add',
+          data
+        }).then((res) => {
+          console.log(res)
+        }).catch((err) => {
+          console.log(err)
+        })
+      } else {
+        data.ID = this.id
+        this.$axios({
+          method: 'post',
+          url: '/control/question/change',
+          data
+        }).then((res) => {
+          console.log(res)
+        }).catch((err) => {
+          console.log(err)
+        })
+      }
     }
+  },
+  created () {
+    this.showGroupName()
+    this.id = this.$route.query.ID
+    this.getQuestion(this.id)
   }
 }
 </script>

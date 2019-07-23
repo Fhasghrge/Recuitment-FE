@@ -2,7 +2,7 @@
   <div class="be">
     <sidebar></sidebar>
     <topbar></topbar>
-    <router-view></router-view>
+    <router-view :key="key"></router-view>
   </div>
 </template>
 
@@ -15,6 +15,11 @@ export default {
   components: {
     topbar,
     sidebar
+  },
+  computed: {
+    key () {
+      return this.$route.path + Math.random()
+    }
   }
 }
 </script>

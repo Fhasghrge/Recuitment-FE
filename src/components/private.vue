@@ -1,5 +1,6 @@
 <template>
-  <div id='private'>
+  <div id='pribar'
+       v-if="false">
     <img src="../img/头像.png"
          id="priHead"><span id="priName">{{ privateName }}</span>
     <img src="../img/close.png"
@@ -141,21 +142,22 @@ export default {
 </script>
 
 <style scoped>
-#private {
+#pribar {
   position: absolute;
+  z-index: 9999999;
   top: 30px;
   width: 76%;
   left: 12%;
   background-color: #0e0e16;
 }
-#priHead {
+#pribar #priHead {
 }
 
-#priName {
+#pribar #priName {
   font-size: 1.4rem;
 }
 
-#priText {
+#pribar #priText {
   display: flex;
   width: 80%;
   margin-left: 10%;
@@ -163,7 +165,7 @@ export default {
   flex-wrap: wrap;
 }
 
-#priText input {
+#pribar #priText input {
   width: 100%;
   height: 45%;
   background: none;
@@ -171,14 +173,14 @@ export default {
   border: 0px;
 }
 
-.priBox {
+#pribar .priBox {
   margin-left: 10%;
   width: 40%;
 }
-.line {
+#pribar .line {
   width: 80%;
 }
-.priVal {
+#pribar .priVal {
   width: 40%;
   height: 5%;
   font-family: PingFangSC-Light;
@@ -189,7 +191,7 @@ export default {
   letter-spacing: 0px;
   color: #b3b3b3;
 }
-.priMsg {
+#pribar .priMsg {
   width: 100%;
   height: 12%;
   font-family: PingFangSC-Regular;
@@ -200,48 +202,48 @@ export default {
   color: #ffffff;
   text-align: center;
 }
-.btnsub {
+#pribar .btnsub {
   margin: 0 auto;
   width: 40%;
   text-align: center;
 }
-.confirm {
+#pribar .confirm {
   opacity: 1;
   font-size: 1.2rem;
   background-color: inherit;
   color: #ffffff;
 }
 
-.confirm:hover {
+#pribar .confirm:hover {
   cursor: pointer;
 }
 @media screen and (max-width: 700px) {
-  .box {
+  #pribar .box {
     display: none;
   }
-  #private {
+  #pribar {
     width: 100%;
     margin: 0;
   }
-  #priName {
+  #pribar #priName {
     margin-top: 8%;
     width: 35%;
   }
-  #private .close {
+  #pribar .close {
     margin-left: 35%;
   }
-  #priText {
+  #pribar #priText {
     margin-top: 30%;
   }
-  .priVal {
+  #pribar .priVal {
     width: 80%;
     font-size: 1rem;
   }
-  .priMsg {
+  #pribar .priMsg {
     width: 100%;
     font-size: 1.2rem;
   }
-  .confirm {
+  #pribar .confirm {
     margin-left: -10%;
     width: 20%;
     margin-top: 120%;

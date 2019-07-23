@@ -281,20 +281,20 @@ textarea {
   border-radius: 3px;
 }
 
-#priHead {
+#private #priHead {
   position: absolute;
   margin-left: -42%;
   margin-top: 5%;
 }
 
-#priName {
+#private #priName {
   position: absolute;
   margin-left: -34.5%;
   margin-top: 6.1%;
   font-size: 1.4rem;
 }
 
-#priText {
+#private #priText {
   position: absolute;
   display: flex;
   width: 80%;
@@ -303,7 +303,7 @@ textarea {
   flex-wrap: wrap;
 }
 
-#priText input {
+#private #priText input {
   width: 100%;
   height: 45%;
   background: none;
@@ -311,14 +311,14 @@ textarea {
   border: 0px;
 }
 
-.priBox {
+#private .priBox {
   margin-left: 10%;
   width: 40%;
 }
 .line {
   width: 80%;
 }
-.priVal {
+#private .priVal {
   width: 40%;
   height: 5%;
   font-family: PingFangSC-Light;
@@ -329,7 +329,7 @@ textarea {
   letter-spacing: 0px;
   color: #b3b3b3;
 }
-.priMsg {
+#private .priMsg {
   width: 100%;
   height: 12%;
   font-family: PingFangSC-Regular;
@@ -341,7 +341,7 @@ textarea {
   text-align: center;
 }
 
-.confirm {
+#private .confirm {
   opacity: 1;
   width: 7%;
   position: absolute;
@@ -349,7 +349,7 @@ textarea {
   margin-left: -3.5%;
   font-size: 1.2rem;
 }
-.confirm:hover {
+#private .confirm:hover {
   cursor: pointer;
 }
 
@@ -567,25 +567,25 @@ textarea {
     width: 100%;
     margin: 0;
   }
-  #priName {
+  #private #priName {
     margin-top: 8%;
     width: 35%;
   }
   #private .close {
     margin-left: 35%;
   }
-  #priText {
+  #private #priText {
     margin-top: 30%;
   }
-  .priVal {
+  #private .priVal {
     width: 80%;
     font-size: 1rem;
   }
-  .priMsg {
+  #private .priMsg {
     width: 100%;
     font-size: 1.2rem;
   }
-  .confirm {
+  #private .confirm {
     margin-left: -10%;
     width: 20%;
     margin-top: 120%;
