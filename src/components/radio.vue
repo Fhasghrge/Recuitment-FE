@@ -31,7 +31,8 @@
              value="删除"
              @click="delBoxFlag=true">
       <input type="button"
-             value="修改">
+             value="修改"
+             @click="toChange">
       <div class="delBox"
            v-if="delBoxFlag">
         <p>是否删除</p>
@@ -52,7 +53,8 @@ export default {
     return {
       radiodata: '',
       delBoxFlag: false,
-      groups: this.$route.query.groups
+      groups: this.$route.query.groups,
+      list1: []
     }
   },
   props: {
@@ -74,6 +76,16 @@ export default {
     }
   },
   methods: {
+    getlist: function () {
+      this.$axios({
+        methods: 'post',
+        url: '/control/question/list'
+      }).then((res2) => {
+        if (res2.code === 0) {
+          this.list2 = res2.data.data
+        }
+      })
+    },
     radio: function (index) {
       return 'radio' + index
     },
@@ -96,11 +108,43 @@ export default {
           groups: parseInt(this.groups)
         }
       })
+    },
+    toChange () {
+      this.$router.push({
+        path: '/adminindex/add',
+        query: {
+          ID: this.ID,
+          groups: parseInt(this.groups)
+        }
+      })
+    },
+    delConfirm () {
+      this.delBoxFlag = false
+      this.$axios({
+        method: 'post',
+        url: '/control/question/del',
+        data: {
+          id: this.ID
+        }
+      }).then((result) => {
+        console.log(result)
+      }).catch((err) => {
+        console.log(err)
+      })
     }
   },
   mounted () {
     if (this.answer !== '') {
       this.radiodata = this.answer
+    }
+    if (this.$route.path === '/marking') {
+      this.getlist()
+      for (let i = 0; i < this.list1.length; i++) {
+        if (this.ID === this.list1[i].ID) {
+          this.title = this.list1[i].title
+          return
+        }
+      }
     }
   }
 }
