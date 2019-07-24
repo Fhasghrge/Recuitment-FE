@@ -82,7 +82,7 @@ body {
     background-color: rgba(25, 25, 25, 0.8);
     margin: 0 auto;
     color: #ffffff;
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
   }
   .que {
     width: 90%;

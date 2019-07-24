@@ -7,7 +7,7 @@
       <img src="../assets/route.png" />
     </div>
     <div class="middle">
-      <h2>阅卷/答题人：李二狗</h2>
+      <h2>{{'答题人: '+username}}</h2>
     </div>
     <user></user>
     <img src="../assets/icon.svg"
@@ -21,6 +21,12 @@ export default {
   name: 'banner',
   components: {
     user
+  },
+  props: {
+    username: {
+      type: String,
+      default: ''
+    }
   }
 }
 </script>

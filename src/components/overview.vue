@@ -3,7 +3,8 @@
     <div class="mainshow">
       <h2 class="headline1">公告</h2>
       <p class="content">"AntV 是蚂蚁金服全新一代数据可视化解决方案，致力于提供一套简单方便、专业可靠、无限可能的数据可视化最佳实践。"</p>
-      <div class="btn2"><button class="show1">查看答题情况</button><button class="show1"
+      <div class="btn2"><button class="show1"
+                @click="toconcrate">查看答题情况</button><button class="show1"
                 @click="toCtrlQues">管理该方向题库</button></div>
     </div>
   </div>
@@ -20,6 +21,14 @@ export default {
       console.log(this.groups)
       this.$router.push({
         path: '/adminindex/ctrlques',
+        query: {
+          groups: parseInt(this.groups)
+        }
+      })
+    },
+    toconcrate () {
+      this.$router.push({
+        path: '/adminindex/concrate',
         query: {
           groups: parseInt(this.groups)
         }

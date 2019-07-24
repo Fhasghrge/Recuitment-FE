@@ -1,26 +1,60 @@
 <template>
   <div>
-    <markbar></markbar>
+    <markbar :username='username'></markbar>
     <div class="markques">
-      <button class="markreturn">返回</button><span class="notice">离开前请一定记得点击：“保存阅卷”</span>
+      <button class="markreturn"
+              @click="gobackto">返回</button><span class="notice">离开前请一定记得点击：“保存阅卷”</span>
       <div class="markque">
-        <question></question>
+        <markcontent :username='username'
+                     :que='que'></markcontent>
       </div>
     </div>
-    <scorebar></scorebar>
+    <scorebar :judger='judger'
+              :que='que'
+              :username='username'></scorebar>
   </div>
 </template>
 
 <script>
 import markbar from '../../components/markbar'
-import question from '../../components/question'
+import markcontent from '../../components/markcontent'
 import scorebar from '../../components/scorebar'
 export default {
   name: 'answer',
   components: {
     markbar,
-    question,
+    markcontent,
     scorebar
+  },
+  data () {
+    var username = this.$route.params.username
+    var judger = this.$route.params.judger
+    return {
+      username,
+      judger,
+      que: []
+    }
+  },
+  methods: {
+    gobackto: function () {
+      this.$router.go(-1)
+    },
+    getques: function () {
+      this.$axios({
+        methods: 'post',
+        url: '/control/exam/get',
+        data: {
+          username: this.username
+        }
+      }).then((res) => {
+        if (res.code === 0) {
+          this.que = res.data.data
+        }
+      })
+    }
+  },
+  mounted () {
+    this.getques()
   }
 }
 </script>

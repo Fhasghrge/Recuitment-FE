@@ -1,7 +1,8 @@
 <template>
   <div class="bar">
     <div class="left">
-      <img src="../assets/LOGO1.png" />
+      <img src="../assets/LOGO1.png"
+           @click="goindex" />
     </div>
     <div class="exit">
       <img src="../assets/route.png" />
@@ -11,28 +12,47 @@
     </div>
     <user @usershow='usertans'></user>
     <img src="../assets/icon.svg"
-         class="icon1" />
+         class="icon1"
+         @click="mobtans" />
+    <mobbar></mobbar>
   </div>
 </template>
 
 <script>
 import user from './user'
+import mobbar from './pribar'
+import bus from './bus.js'
 export default {
   name: 'banner',
   data () {
     return {
-      bannerflag: false
+      bannerflag: false,
+      mobflag: false
     }
   },
   components: {
-    user
+    user, mobbar
   },
   methods: {
+    mobtans: function () {
+      this.mobflag = !this.mobflag
+      console.log(this.mobflag)
+      this.$emit('mainshow', this.mobflag)
+      console.log(this.mobflag)
+    },
     usertans (userflag) {
       this.bannerflag = userflag
       this.$emit('mainshow', this.bannerflag)
       console.log(this.bannerflag)
+    },
+    goindex: function () {
+      this.$router.push({ path: 'main' })
     }
+  },
+  mounted () {
+    bus.$on('listen', (show) => {
+      this.mobflag = show
+    })
   }
 }
 </script>
@@ -60,7 +80,9 @@ export default {
   .left > img {
     width: 160px;
   }
-
+  .left > img:hover {
+    cursor: pointer;
+  }
   .middle {
     font-size: 1.5rem;
     text-align: center;

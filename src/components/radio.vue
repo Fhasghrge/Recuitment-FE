@@ -9,7 +9,9 @@
                name="radio"
                class="radio1"
                :id="radio(indexr)"
-               :value="options[indexr]" />
+               :value="options[indexr]"
+               v-model="radiodata"
+               @change="sendradio" />
         <label :for="radio(indexr)"
                class="radio2">{{options[indexr]}}</label>
       </div>
@@ -29,15 +31,13 @@
              value="删除"
              @click="delBoxFlag=true">
       <input type="button"
-             value="修改"
-             @click="toChange">
+             value="修改">
       <div class="delBox"
            v-if="delBoxFlag">
         <p>是否删除</p>
         <img src="../assets/删除@3x.svg">
         <input type="button"
-               value="确认"
-               @click="delConfirm">
+               value="确认">
         <input type="button"
                value="取消"
                @click="delBoxFlag=false">
@@ -67,6 +67,10 @@ export default {
     title: {
       type: String,
       default: '有多帅'
+    },
+    answer: {
+      type: String,
+      default: '就是这么帅'
     }
   },
   methods: {
@@ -92,29 +96,11 @@ export default {
           groups: parseInt(this.groups)
         }
       })
-    },
-    toChange () {
-      this.$router.push({
-        path: '/adminindex/add',
-        query: {
-          ID: this.ID,
-          groups: parseInt(this.groups)
-        }
-      })
-    },
-    delConfirm () {
-      this.delBoxFlag = false
-      this.$axios({
-        method: 'post',
-        url: '/control/question/del',
-        data: {
-          id: this.ID
-        }
-      }).then((result) => {
-        console.log(result)
-      }).catch((err) => {
-        console.log(err)
-      })
+    }
+  },
+  mounted () {
+    if (this.answer !== '') {
+      this.radiodata = this.answer
     }
   }
 }

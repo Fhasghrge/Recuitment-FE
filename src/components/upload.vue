@@ -68,7 +68,8 @@ export default {
       filename: [],
       flag: true,
       delBoxFlag: false,
-      groups: this.$route.query.groups
+      groups: this.$route.query.groups,
+      list3: []
     }
   },
   props: {
@@ -79,9 +80,23 @@ export default {
     title: {
       type: String,
       default: '有多帅'
+    },
+    answer: {
+      type: String,
+      default: '就是这么帅'
     }
   },
   methods: {
+    getlist: function () {
+      this.$axios({
+        methods: 'post',
+        url: '/control/question/list'
+      }).then((res2) => {
+        if (res2.code === 0) {
+          this.list3 = res2.data.data
+        }
+      })
+    },
     uploadFile: function () {
       let file = document.getElementById('file')
       file.click()
@@ -149,6 +164,21 @@ export default {
             }
           }
         })
+      }
+    }
+  },
+  mounted () {
+    if (this.answer !== '') {
+      this.filename.splice(0, 1, this.answer)
+    }
+    if (this.$route.path === '/marking') {
+      this.flag = false
+      this.getlist()
+      for (let i = 0; i < this.list3.length; i++) {
+        if (this.ID === this.list3[i].ID) {
+          this.title = this.list3[i].title
+          return
+        }
       }
     }
   }
