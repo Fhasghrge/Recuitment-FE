@@ -38,7 +38,8 @@
         <p>是否删除</p>
         <img src="../assets/删除@3x.svg">
         <input type="button"
-               value="确认">
+               value="确认"
+               @click="delConfirm">
         <input type="button"
                value="取消"
                @click="delBoxFlag=false">
