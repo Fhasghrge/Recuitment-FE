@@ -3,55 +3,71 @@ image: registry.stuhome.com/devops/dockerepo/docker:1.0.1
 stages:
     - build
     - deploy
+
 build-staging-image:
     stage: build
-    
-    only:
-    - staging
-    
+    services:
+        - docker:dind
+
+    variables:
+        DOCKER_HOST: tcp://docker:2375/
+        DOCKER_DRIVER: overlay2
+
     script:
-    - star_ci_build staging wing
-    
+        - star_ci_build staging 2019Recruitment-fe
+
+    only:
+        - staging
+
     allow_failure: false
 
 deploy-staging:
     stage: deploy
 
     script:
-    - star_ci_deploy staging wing
+        - star_ci_deploy staging 2019Recruitment-fe
 
     only:
-    - staging
+        - staging
 
+    environment:
+        name: staging
     tags:
-    - staging
+        - staging
 
     allow_failure: false
-    when: manual
+    when: on_success
+
 
 build-production-image:
     stage: build
+    services:
+        - docker:dind
+
+    variables:
+        DOCKER_HOST: tcp://docker:2375/
+        DOCKER_DRIVER: overlay2
 
     script:
-    - star_ci_build production wing
-    
+        - star_ci_build production 2019Recruitment-fe
+
     allow_failure: false
     only:
-    - master
+        - master
 
 deploy-production:
     stage: deploy
 
     script:
-    - star_ci_deploy production wing
+        - star_ci_deploy production 2019Recruitment-fe
 
     only:
-    - master
-    
+        - master
+
+    environment:
+        name: production
     tags:
-    - production
+        - production
 
-    when: manual
     allow_failure: false
-
-
+    when: manual
