@@ -105,7 +105,7 @@ export default {
         this.err = ''
         this.$axios({
           method: 'post',
-          url: '/user/lgoin',
+          url: '/user/login',
           data: {
             username: this.peraccount,
             password: this.perpassword
