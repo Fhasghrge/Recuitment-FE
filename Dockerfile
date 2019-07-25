@@ -1,1 +1,2 @@
-FROM registry.stuhome.com/devops/dockerepo/alpine:3.7
+FROM    registry.stuhome.com/devops/dockerepo/nginx
+COPY    ./dist  /usr/share/nginx/html
