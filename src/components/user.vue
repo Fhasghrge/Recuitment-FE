@@ -1,38 +1,54 @@
 <template>
   <div class="right">
-    <img src="../assets/icon.svg" v-on:click="x3" class="icon" />
-    <img
-      src="../assets/route.png"
-      v-on:click="x3"
-      v-bind:class="[{ arrowhead: 1 }, { rotate1: flag }, { rotate2: !flag }]"
-    />
+    <img src="../assets/icon.svg"
+         v-on:click="x3"
+         class="icon" />
+    <img src="../assets/route.png"
+         v-on:click="x3"
+         v-bind:class="[{ arrowhead: 1 }, { rotate1: flag }, { rotate2: !flag }]" />
     <transition name="draw">
-      <div class="box" v-show="flag">
-        <button class="btn" v-show="flag">个人信息</button>
-        <button class="btn" v-show="flag">退出登陆</button>
+      <div class="userbox"
+           v-show="flag">
+        <button class="btn"
+                v-show="flag"
+                @click="revisebar">个人信息</button>
+        <button class="btn"
+                v-show="flag"
+                @click="quit">退出登陆</button>
       </div>
     </transition>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'banner',
   data () {
     return {
-      flag: false
+      flag: false,
+      userflag: false
     }
   },
   methods: {
     x3: function () {
       this.flag = !this.flag
+    },
+    quit: function () {
+      let storage = window.localStorage
+      storage.clear()
+      this.$router.push({ name: 'home' })
+    },
+    revisebar: function () {
+      this.userflag = !this.userflag
+      this.$emit('usershow', this.userflag)
     }
   }
 }
 </script>
 
 <style>
-@media (min-width: 751px) {
+@media (min-width: 400px) {
   .right {
     position: relative;
     background-color: rgba(0, 0, 0, 0.3);
@@ -87,7 +103,7 @@ export default {
     -o-transition: -o-transform 0.2s;
     -ms-transition: -ms-transform 0.2s;
   }
-  .box {
+  .userbox {
     height: 60px;
     width: 98px;
     position: absolute;
@@ -114,7 +130,7 @@ export default {
   }
 }
 
-@media (max-width: 751px) {
+@media (max-width: 700px) {
   .right {
     display: none;
   }

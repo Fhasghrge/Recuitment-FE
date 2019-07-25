@@ -3,16 +3,44 @@
     <p class="ddl">
       距离答题结束还有
       <br />
-      <span class="lasttime">20d 01:12:13</span>
+      <span class="lasttime">{{date}}</span>
     </p>
-    <button class="btn1">保存答卷</button>
-    <span class="autosave">已自动保存</span>
+    <div class="btnwrap"><button class="btn1"
+              @click="save">保存答卷</button></div>
+    <span class="autosave"
+          v-if="saveflag">已保存</span>
   </div>
 </template>
 
 <script>
 export default {
-
+  data () {
+    return {
+      saveflag: false,
+      date: '',
+      ddlStr: '2019/09/01'
+    }
+  },
+  methods: {
+    save: function () {
+      this.saveflag = true
+    },
+    Djs_time () { // 拼接出日期
+      setInterval(() => {
+        var ddl = new Date(this.ddlStr)
+        var presentTime = new Date()
+        var rightTime = ddl - presentTime
+        var dd = Math.floor(rightTime / 1000 / 60 / 60 / 24)
+        var hh = Math.floor((rightTime / 1000 / 60 / 60) % 24)
+        var mm = Math.floor((rightTime / 1000 / 60) % 60)
+        var ss = Math.floor((rightTime / 1000) % 60)
+        this.date = dd + 'd ' + hh + ':' + mm + ':' + ss
+      }, 1000)
+    }
+  },
+  mounted () {
+    this.Djs_time()
+  }
 }
 </script>
 
@@ -21,12 +49,13 @@ export default {
   .sub {
     position: fixed;
     right: 0;
-    top: 23vh;
+    top: 27vh;
     color: #ffffff;
     text-align: center;
     background-color: rgba(22, 22, 22, 0.91);
     height: 37%;
     width: 13%;
+    z-index: 1;
   }
   .ddl {
     margin: 2rem auto 3rem auto;
@@ -61,6 +90,10 @@ export default {
   }
   .autosave {
     display: none;
+  }
+  .btnwrap {
+    background-color: rgba(22, 22, 22, 0.91);
+    padding-bottom: 3rem;
   }
   .btn1 {
     color: #ffffff;

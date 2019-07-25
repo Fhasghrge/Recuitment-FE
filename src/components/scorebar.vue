@@ -10,31 +10,18 @@
           <span>阅卷人:</span>
           <span>范老板</span>
         </li>
-        <li class="eachopo">
+        <li v-for="(item,index) in que "
+            :key="index">
           <span>分数:</span>
-          <input>
+          <input v-model="score"
+                 @blur="sub(item.ID)">
           <span>5分</span>
           <span>阅卷人:</span>
-          <span>范老板</span>
-        </li>
-        <li class="eachopo">
-          <span>分数:</span>
-          <input>
-          <span>5分</span>
-          <span>阅卷人:</span>
-          <span>范老板</span>
-        </li>
-        <li class="eachopo">
-          <span>分数:</span>
-          <input>
-          <span>5分</span>
-          <span>阅卷人:</span>
-          <span>范老板</span>
-        </li>
+          <span>{{judger}}</span></li>
       </ol>
     </div>
     <div class="marksub">
-      <span class="errormes">保存失败，请检查网络!</span>
+      <span class="errormes">{{mes}}</span>
       <button class="savemark">保存阅卷</button>
     </div>
   </div>
@@ -42,7 +29,39 @@
 
 <script>
 export default {
-
+  data () {
+    return {
+      score: 0,
+      mes: ''
+    }
+  },
+  props: {
+    judger: {
+      type: String,
+      default: '二狗'
+    },
+    que: {
+      type: Array,
+      default: () => []
+    },
+    username: {
+      type: String,
+      default: ''
+    }
+  },
+  methods: {
+    sub: function (ID) {
+      this.$axios({
+        methods: 'post',
+        url: '/control/exam/mark',
+        data: {
+          username: this.username,
+          questionID: ID,
+          score: this.score
+        }
+      })
+    }
+  }
 }
 </script>
 

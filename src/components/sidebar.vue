@@ -5,32 +5,58 @@
     </div>
     <div class="opin">
       <div class="wrapp"><img src="../assets/icons/产品.svg"
-             class="imga"><span class="dire">产品</span></div>
+             class="imga">
+        <router-link to="/adminindex/overview?groups=1"
+                     class="dire">产品</router-link>
+      </div>
     </div>
     <div class="opin">
       <div class="wrapp"><img src="../assets/icons/前端.svg"
-             class="imga"><span class="dire">前端</span></div>
+             class="imga">
+        <router-link to="/adminindex/overview?groups=5"
+                     class="dire">前端</router-link>
+      </div>
     </div>
     <div class="opin">
       <div class="wrapp"><img src="../assets/icons/后台@1x.svg"
-             class="imga"><span class="dire">后台</span></div>
+             class="imga">
+        <router-link to="/adminindex/overview?groups=6"
+                     class="dire">后台</router-link>
+      </div>
     </div>
     <div class="opin">
       <div class="wrapp"><img src="../assets/icons/设计.svg"
-             class="imga"><span class="dire">设计</span></div>
+             class="imga">
+        <router-link to="/adminindex/overview?groups=2"
+                     class="dire">设计</router-link>
+      </div>
     </div>
     <div class="opin">
       <div class="wrapp"><img src="../assets/icons/DevOps.svg"
-             class="imga"><span class="dire">运维</span></div>
+             class="imga">
+        <router-link to="/adminindex/overview?groups=7"
+                     class="dire">DevOps</router-link>
+      </div>
     </div>
     <div class="opin">
-      <div class="wrapp"><img src="../assets/icons/移动.svg"
-             class="imga"><span class="dire">移动</span></div>
+      <div class="wrapp"><img src="../assets/安卓@3x.svg"
+             class="imga">
+        <router-link to="/adminindex/overview?groups=3"
+                     class="dire">安卓</router-link>
+      </div>
     </div>
     <div class="opin">
+      <div class="wrapp"><img src="../assets/IOS@3x.svg"
+             class="imga">
+        <router-link to="/adminindex/overview?groups=4"
+                     class="dire">IOS</router-link>
+      </div>
+    </div>
+    <!-- <div class="opin">
       <div class="wrapp"><img src="../assets/icons/运营.svg"
-             class="imga"><span class="dire">运营</span></div>
-    </div>
+             class="imga"><span class="dire"
+              @click="toProduct">运营</span></div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -78,6 +104,9 @@ export default {
     line-height: 28px;
     font-size: 25px;
     font-family: PingFangSC-Regular;
+  }
+  .opin .dire:hover {
+    cursor: pointer;
   }
 }
 </style>

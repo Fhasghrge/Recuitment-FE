@@ -23,7 +23,17 @@ export default {
 <style>
 html,
 body {
+  margin: 0;
   height: 100vh;
+}
+body {
+  background-image: url("../../assets/back.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+#app {
+  margin: 0;
 }
 ul {
   list-style-type: none;

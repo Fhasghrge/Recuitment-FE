@@ -1,7 +1,9 @@
 <template>
   <div class="part1">
-    <img src="../assets/LOGO1.png" class="logo" />
-    <img src="../assets/font.png" class="p1" />
+    <img src="../assets/LOGO1.png"
+         class="logo" />
+    <img src="../assets/font.png"
+         class="p1" />
     <h2 class="p2">2019年秋季招新答题系统</h2>
   </div>
 </template>
@@ -21,7 +23,7 @@ export default {
     margin-left: -9%;
   }
 
-  .logo {
+  .part1 .logo {
     width: 70%;
     opacity: 0.9;
     display: inline-block;

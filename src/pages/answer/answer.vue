@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <banner></banner>
+  <div class="mainans">
+    <banner @mainshow="transmit"></banner>
     <div class="ques">
       <div class="que">
         <p style="color:#ffffff">离开前请一定记得点击“保存作答”</p>
@@ -8,6 +8,8 @@
       </div>
     </div>
     <fixedbar></fixedbar>
+    <pribar :show='show'
+            @showpribar="transmit"></pribar>
   </div>
 </template>
 
@@ -15,17 +17,45 @@
 import banner from '../../components/banner'
 import question from '../../components/question'
 import fixedbar from '../../components/fixedbar'
+import pribar from '../../components/pribar'
 export default {
   name: 'answer',
+  data () {
+    return {
+      show: false
+    }
+  },
   components: {
     banner,
     question,
-    fixedbar
+    fixedbar,
+    pribar
+  },
+  methods: {
+    transmit (bannershow) {
+      this.show = bannershow
+      console.log(this.show)
+    }
   }
 }
 </script>
 
 <style>
+html {
+  margin: 0;
+  min-height: 100vh;
+}
+body {
+  background-image: url("../../assets/back.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  min-height: 100vh;
+}
+.mainans {
+  position: relative;
+}
 #app {
   margin: 0;
 }
@@ -52,7 +82,7 @@ export default {
     background-color: rgba(25, 25, 25, 0.8);
     margin: 0 auto;
     color: #ffffff;
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
   }
   .que {
     width: 90%;
