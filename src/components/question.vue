@@ -42,11 +42,15 @@ import uploadque from './upload'
 export default {
   name: 'ques',
   data () {
-    var thisgroup = this.$router.query.groups
     return {
-      thisgroup,
       all: [],
       questions: []
+    }
+  },
+  props: {
+    group: {
+      type: Number,
+      default: 0
     }
   },
   components: {
@@ -64,7 +68,7 @@ export default {
         if (response.code === 0) {
           this.all = response.data.data
           for (let a = 0; a < this.all.length; a++) {
-            if (a.groups === this.thisgroup) {
+            if (this.all[a].groups === this.group || this.all[a].groups === 0) {
               this.questions.push(this.all[a])
             }
           }

@@ -1,10 +1,11 @@
 <template>
   <div class="mainans">
-    <banner @mainshow="transmit"></banner>
+    <banner @mainshow="transmit"
+            :group='thegroup'></banner>
     <div class="ques">
       <div class="que">
         <p style="color:#ffffff">离开前请一定记得点击“保存作答”</p>
-        <question></question>
+        <question :group='thegroup'></question>
       </div>
     </div>
     <fixedbar></fixedbar>
@@ -21,7 +22,9 @@ import pribar from '../../components/pribar'
 export default {
   name: 'answer',
   data () {
+    var thegroup = this.$route.query.groups
     return {
+      thegroup,
       show: false
     }
   },
