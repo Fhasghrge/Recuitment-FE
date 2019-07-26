@@ -1,6 +1,6 @@
 <template>
   <div class="kind">
-    <!-- <div v-for="(item,index) in questions"
+    <div v-for="(item,index) in questions"
          :key="index">
       <radio v-if="item.type === 1"
              :options="item.options"
@@ -18,8 +18,9 @@
              :title="item.title"></short>
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
-                 :title="item.title"></uploadque> -->
-    <radio></radio>
+                 :title="item.title"></uploadque>
+    </div>
+    <!-- <radio></radio>
     <che></che>
     <inp></inp>
     <short></short>
@@ -28,7 +29,7 @@
     <short></short>
     <short></short>
     <short></short>
-    <uploadque></uploadque>
+    <uploadque></uploadque> -->
   </div>
   <!-- </div> -->
 </template>
@@ -42,7 +43,7 @@ import uploadque from './upload'
 export default {
   name: 'ques',
   data () {
-    var thisgroup = this.$router.query.groups
+    var thisgroup = this.$route.query.groups
     return {
       thisgroup,
       all: [],
