@@ -31,7 +31,6 @@
     <short></short>
     <short></short>
     <uploadque></uploadque> -->
-
   <!-- </div> -->
 </template>
 
@@ -61,8 +60,7 @@ export default {
     getques: function () {
       this.$axios({
         methods: 'post',
-        url: '/user/exam/get',
-        baseURL: 'http://121.48.165.58:17838'
+        url: '/user/exam/get'
       }).then((response) => {
         if (response.code === 0) {
           this.all = response.data.data

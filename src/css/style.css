@@ -364,10 +364,10 @@ textarea {
     margin-left: 5%;
   }
 
-  .logo {
-    max-width: 100%;
+  #header .logo {
+    max-width: 50%;
+    margin-left: 25%;
     height: 40px;
-    margin-left: 32%;
   }
   .portrait {
     max-width: 100%;
@@ -423,8 +423,9 @@ textarea {
   }
   #notes,
   #private {
+    width: 20%;
     margin-top: 157%;
-    margin-left: 30%;
+    margin-left: 42%;
     font-size: 1rem;
   }
   .begin {
