@@ -253,7 +253,7 @@ export default {
 @media (max-width: 750px) {
   .part2 {
     width: 80%;
-    height: 46%;
+    height: 52%;
     background-color: black;
     text-align: center;
     margin: 0 auto;
@@ -322,8 +322,8 @@ export default {
   .showerr {
     height: 1rem;
     width: 80%;
-    margin: 0 auto;
-    margin-bottom: 1rem;
+    margin: 1rem auto;
+    margin-bottom: 1.5rem;
   }
   .errmes {
     color: red;
