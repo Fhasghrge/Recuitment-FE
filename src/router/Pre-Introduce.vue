@@ -55,10 +55,12 @@
       <img src="../assets/icons-new/DevOps@3x.svg">
       <router-link to="/main/DevOps">DevOps</router-link>
     </div>
+
     <a href=""
        id='notes'
        ref="notes"
        @click.prevent="notesFlag=true">答题须知</a>
+
     <div id='noteText'
          v-if="notesFlag"
          ref="noteText">
