@@ -102,6 +102,8 @@ export default {
             ID
           }
         }).then((result) => {
+          console.log(result)
+          result = result.data
           if (result.code === 0) {
             console.log(result.msg)
             result = result.data

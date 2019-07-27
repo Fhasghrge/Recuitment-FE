@@ -62,6 +62,8 @@ export default {
         methods: 'post',
         url: '/user/exam/get'
       }).then((response) => {
+        console.log(response)
+        response = response.data
         if (response.code === 0) {
           this.all = response.data.data
           for (let a = 0; a < this.all.length; a++) {
