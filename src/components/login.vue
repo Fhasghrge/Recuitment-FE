@@ -107,7 +107,7 @@ export default {
           method: 'post',
           url: '/user/login',
           data: {
-            username: this.peraccount,
+            stunum: this.peraccount,
             password: this.perpassword
           }
         }).then((response) => {
@@ -253,7 +253,7 @@ export default {
 @media (max-width: 750px) {
   .part2 {
     width: 80%;
-    height: 46%;
+    height: 52%;
     background-color: black;
     text-align: center;
     margin: 0 auto;
@@ -322,7 +322,7 @@ export default {
   .showerr {
     height: 1rem;
     width: 80%;
-    margin: 0 auto;
+    margin: 1.5rem auto;
     margin-bottom: 1rem;
   }
   .errmes {

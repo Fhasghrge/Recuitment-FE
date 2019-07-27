@@ -8,7 +8,7 @@
       <img src="../assets/route.png" />
     </div>
     <div class="middle">
-      <h2>前端组答题</h2>
+      <h2>{{group + '组答题'}}</h2>
     </div>
     <user @usershow='usertans'></user>
     <img src="../assets/icon.svg"
@@ -33,17 +33,20 @@ export default {
   components: {
     user, mobbar
   },
+  props: {
+    group: {
+      type: String,
+      default: '前端'
+    }
+  },
   methods: {
     mobtans: function () {
       this.mobflag = !this.mobflag
-      console.log(this.mobflag)
       this.$emit('mainshow', this.mobflag)
-      console.log(this.mobflag)
     },
     usertans (userflag) {
       this.bannerflag = userflag
       this.$emit('mainshow', this.bannerflag)
-      console.log(this.bannerflag)
     },
     goindex: function () {
       this.$router.push({ path: 'main' })
