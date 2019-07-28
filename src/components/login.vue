@@ -252,7 +252,7 @@ export default {
 
 @media (max-width: 750px) {
   .part2 {
-    width: 80%;
+    width: 100%;
     height: 52%;
     background-color: black;
     text-align: center;
