@@ -135,5 +135,19 @@ const router = new VueRouter({
   ]
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.path === '/managerlogin') {
+    next()
+  } else {
+    let token = localStorage.getItem('Authorization')
+
+    if (token === 'null' || token === '') {
+      next('/managerlogin')
+    } else {
+      next()
+    }
+  }
+})
+
 // 将路由对象暴露出去
 export default router

@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -27,25 +28,31 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['changeLogin']),
     confirmLogin () {
-      this.$axios({
-        method: 'post',
-        url: '/control/login',
-        data: {
-          username: this.username,
-          password: this.password
-        }
-      }).then((result) => {
-        console.log(result)
-        result = result.data
-        if (result.code === 0) {
-          this.$router.push({
-            path: '/adminindex'
-          })
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
+      let _this = this
+      if (this.username === '' || this.password === '') {
+        alert('账号或密码不能为空')
+      } else {
+        this.$axios({
+          method: 'post',
+          url: '/control/login',
+          data: {
+            username: this.username,
+            password: this.password
+          }
+        }).then((result) => {
+          console.log(result)
+          result = result.data
+          _this.userToken = 'Bearer ' + result.data.data.body.token
+          // 将用户token保存到vuex中
+          _this.changeLogin({ Authorization: _this.userToken })
+          _this.$router.push('/adminindex')
+        }).catch((err) => {
+          alert('账号或密码错误')
+          console.log(err)
+        })
+      }
     }
   }
 }
