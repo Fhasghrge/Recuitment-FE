@@ -9,7 +9,7 @@
       <img class="midlogoa"
            src="../img/LOGO.png">
       <img src="../img/头像.png"
-           id="priHeada"><span id="priNamea">{{ privateName }}</span>
+           id="priHeada">
       <img src="../img/close.png"
            class="closea"
            @click="closebar">
