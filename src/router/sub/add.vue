@@ -272,7 +272,9 @@ export default {
   created () {
     this.showGroupName()
     this.id = this.$route.query.ID
-    this.getQuestion(this.id)
+    if (this.id || this.id === 0) {
+      this.getQuestion(this.id)
+    }
   }
 }
 </script>

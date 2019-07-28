@@ -37,6 +37,7 @@ export default {
         }
       }).then((result) => {
         console.log(result)
+        result = result.data
         if (result.code === 0) {
           this.$router.push({
             path: '/adminindex'

@@ -6,8 +6,12 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 axios.defaults.baseURL = 'http://join.stuhome.com/api'
+// axios.defaults.baseURL = 'http://localhost:8081/api'
+// axios.defaults.headers = {
+//   'Content-Type': 'application/x-www-form-urlencoded'
+// }
 axios.defaults.headers = {
-  'Content-Type': 'application/x-www-form-urlencoded'
+  'Content-Type': 'application/json'
 }
 Vue.prototype.$axios = axios
 
