@@ -20,6 +20,16 @@
                  :ID="item.ID"
                  :title="item.title"></uploadque>
     </div>
+    <radio></radio>
+    <che></che>
+    <inp></inp>
+    <short></short>
+    <short></short>
+    <short></short>
+    <short></short>
+    <short></short>
+    <short></short>
+    <uploadque></uploadque>
   </div>
   <!-- <radio></radio>
     <che></che>

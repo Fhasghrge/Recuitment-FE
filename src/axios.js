@@ -7,6 +7,8 @@ axios.defaults.baseURL = 'http://localhost:8081/api'
 // axios.defaults.headers = {
 //   'Content-Type': 'application/x-www-form-urlencoded'
 // }
+
+axios.defaults.withCredentials = true
 axios.defaults.headers = {
   'Content-Type': 'application/json'
 }
