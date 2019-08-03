@@ -112,7 +112,7 @@ export default {
           }
         }).then((response) => {
           if (response.data.code === 0) {
-            this.$router.push({ name: 'answer' })
+            this.$router.push({ path: 'main' })
           } else if (response.data.code === -5) {
             this.err = '密码错误'
           } else if (response.data.code === -10) {
@@ -150,7 +150,7 @@ export default {
             }
           }).then((response) => {
             if (response.data.code === 0) {
-              this.$router.push({ path: 'main' })
+              this.$router.push({ path: 'home' })
             } else {
               this.err = '错误'
             }
