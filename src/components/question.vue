@@ -1,6 +1,6 @@
 <template>
   <div class="kind">
-    <!-- <div v-for="(item,index) in questions"
+    <div v-for="(item,index) in questions"
          :key="index">
       <radio v-if="item.type === 1"
              :options="item.options"
@@ -23,14 +23,9 @@
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
                  :title="item.title"
-                 :answer="item.answer"></uploadque> -->
-    <radio></radio>
-    <che></che>
-    <inp></inp>
-    <short></short>
-    <uploadque></uploadque>
+                 :answer="item.answer"></uploadque>
+    </div>
   </div>
-  <!-- </div> -->
 </template>
 
 <script>
