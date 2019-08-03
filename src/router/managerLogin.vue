@@ -43,13 +43,15 @@ export default {
           }
         }).then((result) => {
           console.log(result)
-          result = result.data
-          _this.userToken = 'Bearer ' + result.data.data.body.token
-          // 将用户token保存到vuex中
-          _this.changeLogin({ Authorization: _this.userToken })
-          _this.$router.push('/adminindex')
+          // // result = result.data
+          // _this.userToken = 'Bearer ' + result.data.data.body.token
+          // // 将用户token保存到vuex中
+          // _this.changeLogin({ Authorization: _this.userToken })
+          if (result.data.code === 0) {
+            _this.$router.push('/adminindex')
+          }
         }).catch((err) => {
-          alert('账号或密码错误')
+          alert('发生错误')
           console.log(err)
         })
       }
