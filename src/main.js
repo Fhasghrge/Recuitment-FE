@@ -10,6 +10,8 @@ axios.defaults.baseURL = 'http://join.stuhome.com/api'
 // axios.defaults.headers = {
 //   'Content-Type': 'application/x-www-form-urlencoded'
 // }
+
+axios.defaults.withCredentials = true
 axios.defaults.headers = {
   'Content-Type': 'application/json'
 }
