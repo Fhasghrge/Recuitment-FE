@@ -1,9 +1,9 @@
 <template>
-  <div id='private'
-       v-if='priFlag'>
-    <img src="./img/头像.png"
+  <div id='pribar'
+       v-if="false">
+    <img src="../img/头像.png"
          id="priHead"><span id="priName">{{ privateName }}</span>
-    <img src="./img/close.png"
+    <img src="../img/close.png"
          class="close"
          @click="priFlag=false">
     <div id='priText'>
@@ -53,13 +53,15 @@
         <hr class="line">
       </div>
     </div>
-    <a class='confirm'
-       @click='changePrivateMsg'>确认</a>
+    <div class="btnsub">
+      <button class='confirm'
+              @click='changePrivateMsg'>确认</button></div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'pribar',
   data () {
     return {
       priFlag: false,
@@ -73,14 +75,19 @@ export default {
       rePassword: ''
     }
   },
+  props: {
+    show: {
+      type: Boolean,
+      default: true
+    }
+  },
   methods: {
-    getPrivateMsg () {
+    getPrivateMsg: function () {
       this.$axios({
         method: 'get',
         url: '/user/userinfo/get'
       }).then((result) => {
         console.log(result)
-        result = result.data
         if (result.code === 0) {
           console.log(result.msg)
           result = result.data
@@ -95,7 +102,7 @@ export default {
         console.log(err)
       })
     },
-    changePrivateMsg () {
+    changePrivateMsg: function () {
       this.priFlag = false
       this.$axios({
         method: 'post',
@@ -135,22 +142,23 @@ export default {
 }
 </script>
 
-<style>
-#priHead {
+<style scoped>
+#pribar {
   position: absolute;
-  margin-left: -42%;
-  margin-top: 5%;
+  z-index: 9999999;
+  top: 30px;
+  width: 76%;
+  left: 12%;
+  background-color: #0e0e16;
+}
+#pribar #priHead {
 }
 
-#priName {
-  position: absolute;
-  margin-left: -34.5%;
-  margin-top: 6.1%;
+#pribar #priName {
   font-size: 1.4rem;
 }
 
-#priText {
-  position: absolute;
+#pribar #priText {
   display: flex;
   width: 80%;
   margin-left: 10%;
@@ -158,7 +166,7 @@ export default {
   flex-wrap: wrap;
 }
 
-#priText input {
+#pribar #priText input {
   width: 100%;
   height: 45%;
   background: none;
@@ -166,14 +174,14 @@ export default {
   border: 0px;
 }
 
-.priBox {
+#pribar .priBox {
   margin-left: 10%;
   width: 40%;
 }
-.line {
+#pribar .line {
   width: 80%;
 }
-.priVal {
+#pribar .priVal {
   width: 40%;
   height: 5%;
   font-family: PingFangSC-Light;
@@ -184,7 +192,7 @@ export default {
   letter-spacing: 0px;
   color: #b3b3b3;
 }
-.priMsg {
+#pribar .priMsg {
   width: 100%;
   height: 12%;
   font-family: PingFangSC-Regular;
@@ -195,45 +203,48 @@ export default {
   color: #ffffff;
   text-align: center;
 }
-
-.confirm {
-  opacity: 1;
-  width: 7%;
-  position: absolute;
-  margin-top: 56%;
-  margin-left: -3.5%;
-  font-size: 1.2rem;
+#pribar .btnsub {
+  margin: 0 auto;
+  width: 40%;
+  text-align: center;
 }
-.confirm:hover {
+#pribar .confirm {
+  opacity: 1;
+  font-size: 1.2rem;
+  background-color: inherit;
+  color: #ffffff;
+}
+
+#pribar .confirm:hover {
   cursor: pointer;
 }
-@media screen and (min-height: 520px) and (max-width: 1080px) {
-  .box {
+@media screen and (max-width: 700px) {
+  #pribar .box {
     display: none;
   }
-  #private {
+  #pribar {
     width: 100%;
     margin: 0;
   }
-  #priName {
+  #pribar #priName {
     margin-top: 8%;
     width: 35%;
   }
-  #private .close {
+  #pribar .close {
     margin-left: 35%;
   }
-  #priText {
+  #pribar #priText {
     margin-top: 30%;
   }
-  .priVal {
+  #pribar .priVal {
     width: 80%;
     font-size: 1rem;
   }
-  .priMsg {
+  #pribar .priMsg {
     width: 100%;
     font-size: 1.2rem;
   }
-  .confirm {
+  #pribar .confirm {
     margin-left: -10%;
     width: 20%;
     margin-top: 120%;

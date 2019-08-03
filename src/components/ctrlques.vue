@@ -20,8 +20,7 @@
                  :ID="item.ID"
                  :title="item.title"></uploadque>
     </div>
-  </div>
-  <!-- <radio></radio>
+    <radio></radio>
     <che></che>
     <inp></inp>
     <short></short>
@@ -30,8 +29,8 @@
     <short></short>
     <short></short>
     <short></short>
-    <uploadque></uploadque> -->
-  <!-- </div> -->
+    <uploadque></uploadque>
+  </div>
 </template>
 
 <script>

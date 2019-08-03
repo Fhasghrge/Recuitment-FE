@@ -63,6 +63,7 @@ export default {
           groups: this.congroup
         }
       }).then((res) => {
+        console.log(res)
         if (res.code === 0) {
           this.userconcrate = res.data.data
         }
