@@ -61,7 +61,7 @@ export default {
   props: {
     options: {
       type: Array,
-      default: () => ['帅', '我就是帅帅帅帅', '好帅', '帅爆了']
+      default: () => []
     },
     ID: {
       type: Number,
@@ -69,11 +69,11 @@ export default {
     },
     title: {
       type: String,
-      default: '有多帅'
+      default: ''
     },
     answer: {
       type: String,
-      default: '就是这么帅'
+      default: ''
     }
   },
   methods: {
@@ -82,7 +82,7 @@ export default {
         methods: 'post',
         url: '/control/question/list'
       }).then((res2) => {
-        if (res2.code === 0) {
+        if (res2.data.code === 0) {
           this.list2 = res2.data.data
         }
       })

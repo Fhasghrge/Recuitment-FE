@@ -11,7 +11,7 @@
                :id="che(indexc)"
                :value="options[indexc]"
                v-model="chedata"
-               @change="sendche" />
+               @change="sendche(options[indexc])" />
         <label :for="che(indexc)"
                class="radio2">{{options[indexc]}}</label>
       </div>
@@ -61,7 +61,7 @@ export default {
   props: {
     options: {
       type: Array,
-      default: () => ['帅', '我就是栓', '好帅', '帅爆了']
+      default: () => []
     },
     ID: {
       type: Number,
@@ -69,7 +69,7 @@ export default {
     },
     title: {
       type: String,
-      default: '有多帅'
+      default: ''
     },
     answer: {
       type: Array,
@@ -82,7 +82,7 @@ export default {
         methods: 'post',
         url: '/control/question/list'
       }).then((res2) => {
-        if (res2.code === 0) {
+        if (res2.data.code === 0) {
           this.list2 = res2.data.data
         }
       })
@@ -91,15 +91,35 @@ export default {
       return 'che' + index
     },
     sendche: function (value) {
+      console.log(value)
+      console.log(this.chedata)
       if (this.$route.path === '/answer') {
-        this.$axios({
-          method: 'post',
-          url: '/user/exam/answer',
-          data: {
-            ID: this.ID,
-            answer: this.chedata
+        let cheflag = 0
+        for (let b = 0; b < this.chedata.length; b++) {
+          if (value === this.chedata[b]) {
+            cheflag = 1
+            break
           }
-        })
+        }
+        if (cheflag === 1) {
+          this.$axios({
+            method: 'post',
+            url: '/user/exam/answer',
+            data: {
+              ID: this.ID,
+              answer: value
+            }
+          })
+        } else if (cheflag === 0) {
+          this.$axios({
+            method: 'post',
+            url: '/user/exam/delete',
+            data: {
+              ID: this.ID,
+              answer: value
+            }
+          })
+        }
       }
     },
     toAdd () {
