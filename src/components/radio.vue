@@ -92,6 +92,7 @@ export default {
       })
     },
     radio: function (index2) {
+      console.log('radio' + this.index + index2)
       return 'radio' + this.index + index2
     },
     sendradio: function (value) {

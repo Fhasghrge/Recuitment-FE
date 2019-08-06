@@ -7,13 +7,13 @@
              :ID="item.ID"
              :title="item.title"
              :answer="item.answer"
-             :index='index+index'></radio>
+             :index='index+"20"'></radio>
       <che v-if="item.type === 2"
            :options="item.options"
            :ID="item.ID"
            :title="item.title"
            :answer="item.answer"
-           :index="index+index"></che>
+           :index="index+'20'"></che>
       <inp v-if="item.type === 3"
            :ID="item.ID"
            :title="item.title"
