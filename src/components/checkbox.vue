@@ -74,6 +74,10 @@ export default {
     answer: {
       type: Array,
       default: () => []
+    },
+    index: {
+      type: String,
+      default: ''
     }
   },
   methods: {
@@ -87,8 +91,8 @@ export default {
         }
       })
     },
-    che: function (index) {
-      return 'che' + index
+    che: function (index1) {
+      return 'che' + this.index + index1
     },
     sendche: function (value) {
       console.log(value)
