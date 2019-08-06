@@ -95,16 +95,18 @@ export default {
       this.$emit('showpribar', this.show)
       bus.$emit('listen', this.show)
     },
-    getPrivateMsg: function () {
+    getPrivateMsg () {
       this.$axios({
         method: 'get',
         url: '/user/userinfo/get'
       }).then((result) => {
         console.log(result)
+        result = result.data
         if (result.code === 0) {
           console.log(result.msg)
           result = result.data
-          this.priName = this.priNumber = result.stunum
+          this.privateName = this.priNumber = result.stunum
+          this.priName = result.name
           this.priPhone = result.phonenum
           this.priQQ = result.qqnum
           this.priSchool = result.college
