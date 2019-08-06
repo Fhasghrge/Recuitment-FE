@@ -45,7 +45,7 @@ export default {
   methods: {
     sub: function (ID) {
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/control/exam/mark',
         data: {
           username: this.username,

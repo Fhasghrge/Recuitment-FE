@@ -44,7 +44,7 @@ export default {
     },
     getsta () {
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/control/exam/status',
         data: {
           groups: this.congroup
@@ -60,7 +60,7 @@ export default {
     },
     download () {
       this.$axios({
-        methods: 'get',
+        method: 'get',
         url: '/control/file/download',
         data: {
           groups: this.congroup

@@ -37,6 +37,9 @@ export default {
       que: []
     }
   },
+  mounted () {
+    this.getques()
+  },
   methods: {
     gobackto: function () {
       this.$router.go(-1)
@@ -44,20 +47,18 @@ export default {
     getques: function () {
       console.log(this.stunum)
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/control/exam/get',
         data: {
           stunum: this.stunum
         }
       }).then((res) => {
+        console.log(res)
         if (res.data.code === 0) {
           this.que = res.data.data
         }
       })
     }
-  },
-  mounted () {
-    this.getques()
   }
 }
 </script>
