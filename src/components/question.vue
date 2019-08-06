@@ -61,13 +61,14 @@ export default {
         url: '/user/exam/get'
       }).then((response) => {
         console.log(response)
-        if (response.code === 0) {
+        if (response.data.code === 0) {
           this.all = response.data.data
           for (let a = 0; a < this.all.length; a++) {
             if (this.all[a].groups === this.group || this.all[a].groups === 0) {
               this.questions.push(this.all[a])
             }
           }
+          console.log(this.questions)
         }
       })
     }
