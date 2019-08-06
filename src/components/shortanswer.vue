@@ -64,10 +64,13 @@ export default {
     getlist: function () {
       this.$axios({
         methods: 'post',
-        url: '/control/question/list'
+        url: '/control/question/info',
+        data: {
+          ID: this.ID
+        }
       }).then((res2) => {
         if (res2.data.code === 0) {
-          this.list1 = res2.data.data
+          this.title = res2.data.data.title
         }
       })
     },
@@ -121,12 +124,6 @@ export default {
     }
     if (this.$route.path === '/marking') {
       this.getlist()
-      for (let i = 0; i < this.list1.length; i++) {
-        if (this.ID === this.list1[i].ID) {
-          this.title = this.list1[i].title
-          return
-        }
-      }
     }
   }
 }

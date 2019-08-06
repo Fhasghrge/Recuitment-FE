@@ -3,13 +3,6 @@
     <h2 class="scohead">打分板</h2>
     <div class="eachsocre">
       <ol class="allopo">
-        <li class="eachopo">
-          <span>分数:</span>
-          <input>
-          <span>5分</span>
-          <span>阅卷人:</span>
-          <span>范老板</span>
-        </li>
         <li v-for="(item,index) in que "
             :key="index">
           <span>分数:</span>
@@ -38,7 +31,7 @@ export default {
   props: {
     judger: {
       type: String,
-      default: '二狗'
+      default: ''
     },
     que: {
       type: Array,

@@ -16,12 +16,12 @@
           </tr>
           <tr v-for="(item,index) in userconcrate"
               :key="index">
-            <td>{{item.username}}</td>
+            <td>{{item.name}}</td>
             <td>{{item.stunum}}</td>
             <td>{{item.time}}</td>
             <td>{{item.score}}</td>
             <td>{{item.judger}}</td>
-            <td><button @click="gomark(item.username,item.judger)">阅卷</button></td>
+            <td><button @click="gomark(item.stunum,item.name,item.judger)">阅卷</button></td>
           </tr>
 
         </table>
@@ -34,20 +34,7 @@ export default {
   data () {
     var congroup = this.$route.query.groups
     return {
-      userconcrate: [{
-        'username': 'hzy',
-        'stunum': '2018XXXXXXXXX',
-        'time': '07/27 16:44:15',
-        'score': 97,
-        'judger': 'Huang ZY'
-      },
-      {
-        'username': 'whf',
-        'stunum': '2018XXXXXXXXX',
-        'time': '07/27 16:44:15',
-        'score': 97,
-        'judger': 'Huang ZY'
-      }],
+      userconcrate: [],
       congroup
     }
   },
@@ -58,20 +45,18 @@ export default {
     getsta () {
       this.$axios({
         methods: 'post',
-        url: '/control/exam/list',
+        url: '/control/exam/status',
         data: {
           groups: this.congroup
         }
       }).then((res) => {
-        console.log(res)
-        if (res.code === 0) {
+        if (res.data.code === 0) {
           this.userconcrate = res.data.data
         }
       })
     },
-    gomark (uname, marker) {
-      console.log(uname)
-      this.$router.push({ name: 'marking', params: { username: uname, judger: marker } })
+    gomark (unum, uname, marker) {
+      this.$router.push({ name: 'marking', params: { stunum: unum, username: uname, judger: marker } })
     },
     download () {
       this.$axios({

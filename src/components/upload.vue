@@ -90,10 +90,13 @@ export default {
     getlist: function () {
       this.$axios({
         methods: 'post',
-        url: '/control/question/list'
+        url: '/control/question/list',
+        data: {
+          ID: this.ID
+        }
       }).then((res2) => {
         if (res2.data.code === 0) {
-          this.list3 = res2.data.data
+          this.title = res2.data.data.title
         }
       })
     },
@@ -174,12 +177,6 @@ export default {
     if (this.$route.path === '/marking') {
       this.flag = false
       this.getlist()
-      for (let i = 0; i < this.list3.length; i++) {
-        if (this.ID === this.list3[i].ID) {
-          this.title = this.list3[i].title
-          return
-        }
-      }
     }
   }
 }

@@ -1,12 +1,12 @@
 <template>
   <div class="radio">
     <p class="headline">{{title}}</p>
-    <div class="rad">
+    <div class="rad"
+         ref="radioref">
       <div v-for="(opt,indexr) in options"
            :key="indexr"
            class="optall">
         <input type="radio"
-               name="radio"
                class="radio1"
                :id="radio(indexr)"
                :value="options[indexr]"
@@ -52,10 +52,10 @@
 export default {
   data () {
     return {
-      radiodata: '',
       delBoxFlag: false,
       groups: this.$route.query.groups,
-      list1: []
+      list1: [],
+      radiodata: ''
     }
   },
   props: {
@@ -81,16 +81,6 @@ export default {
     }
   },
   methods: {
-    getlist: function () {
-      this.$axios({
-        methods: 'post',
-        url: '/control/question/list'
-      }).then((res2) => {
-        if (res2.data.code === 0) {
-          this.list2 = res2.data.data
-        }
-      })
-    },
     radio: function (index2) {
       console.log('radio' + this.index + index2)
       return 'radio' + this.index + index2
@@ -142,15 +132,6 @@ export default {
   mounted () {
     if (this.answer !== '') {
       this.radiodata = this.answer
-    }
-    if (this.$route.path === '/marking') {
-      this.getlist()
-      for (let i = 0; i < this.list1.length; i++) {
-        if (this.ID === this.list1[i].ID) {
-          this.title = this.list1[i].title
-          return
-        }
-      }
     }
   }
 }

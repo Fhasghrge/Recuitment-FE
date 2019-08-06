@@ -6,7 +6,6 @@
            :key="indexc"
            class="optall">
         <input type="checkbox"
-               name="radio"
                class="radio1"
                :id="che(indexc)"
                :value="options[indexc]"
@@ -95,8 +94,6 @@ export default {
       return 'che' + this.index + index1
     },
     sendche: function (value) {
-      console.log(value)
-      console.log(this.chedata)
       if (this.$route.path === '/answer') {
         let cheflag = 0
         for (let b = 0; b < this.chedata.length; b++) {

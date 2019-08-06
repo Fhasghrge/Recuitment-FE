@@ -27,11 +27,13 @@ export default {
     scorebar
   },
   data () {
+    var stunum = this.$route.params.stunum
     var username = this.$route.params.username
     var judger = this.$route.params.judger
     return {
-      username,
+      stunum,
       judger,
+      username,
       que: []
     }
   },
@@ -40,14 +42,15 @@ export default {
       this.$router.go(-1)
     },
     getques: function () {
+      console.log(this.stunum)
       this.$axios({
         methods: 'post',
         url: '/control/exam/get',
         data: {
-          username: this.username
+          stunum: this.stunum
         }
       }).then((res) => {
-        if (res.code === 0) {
+        if (res.data.code === 0) {
           this.que = res.data.data
         }
       })
