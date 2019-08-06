@@ -35,7 +35,7 @@
               :key="index"
               :class="item.name">
             <input type="text"
-                   :value="item.text"
+                   v-model="item.text"
                    ref="optionText">
             <img src="../../img/添加icon.png"
                  class="addImg"
@@ -271,6 +271,8 @@ export default {
           console.log(err)
         })
       }
+      alert('修改（添加）成功')
+      this.ret()
     }
   },
   created () {

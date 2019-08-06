@@ -5,20 +5,25 @@
       <radio v-if="item.type === 1"
              :options="item.options"
              :ID="item.ID"
-             :title="item.title"></radio>
+             :title="item.title"
+             :answer="item.answer"></radio>
       <che v-if="item.type === 2"
            :options="item.options"
            :ID="item.ID"
-           :title="item.title"></che>
+           :title="item.title"
+           :answer="item.answer"></che>
       <inp v-if="item.type === 3"
            :ID="item.ID"
-           :title="item.title"></inp>
+           :title="item.title"
+           :answer="item.answer"></inp>
       <short v-if="item.type === 4"
              :ID="item.ID"
-             :title="item.title"></short>
+             :title="item.title"
+             :answer="item.answer"></short>
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
-                 :title="item.title"></uploadque>
+                 :title="item.title"
+                 :answer="item.answer"></uploadque>
     </div>
     <!-- <radio></radio>
     <che></che>
@@ -44,7 +49,7 @@ export default {
   data () {
     var thisgroup = this.$route.query.groups
     return {
-      thisgroup,
+      group: thisgroup,
       all: [],
       questions: []
     }
@@ -69,6 +74,7 @@ export default {
               this.questions.push(this.all[a])
             }
           }
+          console.log(this.questions)
         }
       })
     }
