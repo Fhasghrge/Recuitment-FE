@@ -13,6 +13,7 @@
 export default {
   data () {
     return {
+      ddlStr: '2019/08/01',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '运维组',
       introduce: '这里是运维组的介绍'
@@ -26,7 +27,17 @@ export default {
           groups: 7
         }
       })
+    },
+    changeFlag () {
+      if (new Date() - new Date(this.ddlStr) > 0) {
+        this.flag = true
+      } else {
+        this.flag = false
+      }
     }
+  },
+  mounted () {
+    this.changeFlag()
   }
 }
 </script>

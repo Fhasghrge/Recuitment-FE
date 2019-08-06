@@ -117,7 +117,7 @@ export default {
         console.log(err)
       })
     },
-    changePrivateMsg: function () {
+    changePrivateMsg () {
       this.priFlag = false
       this.$axios({
         method: 'post',
@@ -139,11 +139,18 @@ export default {
             method: 'post',
             url: '/user/userinfo/password',
             data: {
-              oldPassword: this.oldPassword,
-              newPassword: this.newPassword
+              oldpassword: this.oldPassword,
+              newpassword: this.newPassword
             }
           }).then((res) => {
             console.log(res)
+            if (res.data.code === 0) {
+              alert('成功修改密码')
+            } else if (res.data.code === -5) {
+              alert(res.data.msg)
+            } else {
+              alert('修改密码失败')
+            }
           }).catch((err) => {
             console.log(err)
           })
