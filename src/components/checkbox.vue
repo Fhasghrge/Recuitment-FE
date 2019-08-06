@@ -11,7 +11,7 @@
                :id="che(indexc)"
                :value="options[indexc]"
                v-model="chedata"
-               @change="sendche" />
+               @change="sendche(options[indexc])" />
         <label :for="che(indexc)"
                class="radio2">{{options[indexc]}}</label>
       </div>
@@ -91,15 +91,35 @@ export default {
       return 'che' + index
     },
     sendche: function (value) {
+      console.log(value)
+      console.log(this.chedata)
       if (this.$route.path === '/answer') {
-        this.$axios({
-          method: 'post',
-          url: '/user/exam/answer',
-          data: {
-            ID: this.ID,
-            answer: this.chedata
+        let cheflag = 0
+        for (let b = 0; b < this.chedata.length; b++) {
+          if (value === this.chedata[b]) {
+            cheflag = 1
+            break
           }
-        })
+        }
+        if (cheflag === 1) {
+          this.$axios({
+            method: 'post',
+            url: '/user/exam/answer',
+            data: {
+              ID: this.ID,
+              answer: value
+            }
+          })
+        } else if (cheflag === 0) {
+          this.$axios({
+            method: 'post',
+            url: '/user/exam/delete',
+            data: {
+              ID: this.ID,
+              answer: value
+            }
+          })
+        }
       }
     },
     toAdd () {
