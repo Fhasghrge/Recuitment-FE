@@ -35,8 +35,8 @@ export default {
   },
   props: {
     group: {
-      type: String,
-      default: '前端'
+      type: Number,
+      default: 0
     }
   },
   methods: {
