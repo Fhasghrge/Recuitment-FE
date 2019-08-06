@@ -61,7 +61,7 @@ export default {
   props: {
     options: {
       type: Array,
-      default: () => ['帅', '我就是栓', '好帅', '帅爆了']
+      default: () => []
     },
     ID: {
       type: Number,
@@ -69,7 +69,7 @@ export default {
     },
     title: {
       type: String,
-      default: '有多帅'
+      default: ''
     },
     answer: {
       type: Array,
