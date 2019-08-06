@@ -125,7 +125,7 @@ export default {
         method: 'post',
         url: '/control/question/del',
         data: {
-          id: this.ID
+          ID: this.ID
         }
       }).then((result) => {
         console.log(result)

@@ -73,7 +73,7 @@ export default {
       optionList: [
         { text: '选项1', id: 1, name: 'option1', answer: false }
       ],
-      confirmMsg: '保存失败 请检查网络',
+      confirmMsg: '',
       flag: true,
       quesDescribe: '请输入题目描述',
       groups: this.$route.query.groups,
@@ -107,13 +107,19 @@ export default {
           if (result.code === 0) {
             console.log(result.msg)
             result = result.data
-            this.quesDescribe = result.describe
+            this.quesDescribe = result.title
             this.$refs.options[result.type - 1].selected = true
             this.changeFlag()
             if (result.options) {
               this.optionList.splice(0, 1) // 把默认选项删除
               for (let i = 0; i < result.options.length; i++) {
-                this.optionList.push(result.options[i])
+                let option = {
+                  text: result.options[i].content,
+                  answer: result.options[i].answer,
+                  id: i + 1,
+                  name: 'option' + (i + 1).toString()
+                }
+                this.optionList.push(option)
               }
             }
           } else {
@@ -193,10 +199,10 @@ export default {
     },
     addQuestion () {
       let data = {}
+      let groups = this.$route.query.groups
       let questionType = this.$refs.options.value
       if (questionType === '单选') {
         let type = 1
-        let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
         let options = []
@@ -207,11 +213,10 @@ export default {
           }
           options.push(option)
         };
-        data = { type, group, title, describe, options }
+        data = { type, groups, title, describe, options }
         // console.log(data)
       } else if (questionType === '多选') {
         let type = 2
-        let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
         let options = []
@@ -222,28 +227,25 @@ export default {
           }
           options.push(option)
         };
-        data = { type, group, title, describe, options }
+        data = { type, groups, title, describe, options }
         // console.log(data)
       } else if (questionType === '填空') {
         let type = 3
-        let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
-        data = { type, group, title, describe }
+        data = { type, groups, title, describe }
         // console.log(data)
       } else if (questionType === '简答') {
         let type = 4
-        let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
-        data = { type, group, title, describe }
+        data = { type, groups, title, describe }
         // console.log(data)
       } else if (questionType === '上传文件') {
         let type = 5
-        let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
-        data = { type, group, title, describe }
+        data = { type, groups, title, describe }
         // console.log(data)
       }
       console.log(data)
@@ -273,10 +275,10 @@ export default {
   },
   created () {
     this.showGroupName()
-    this.id = this.$route.query.ID
-    if (this.id || this.id === 0) {
-      this.getQuestion(this.id)
+    if (this.$route.query.ID || this.$route.query.ID === 0) {
+      this.id = this.$route.query.ID
     }
+    this.getQuestion(this.id)
   }
 }
 </script>
