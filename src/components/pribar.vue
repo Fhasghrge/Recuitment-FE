@@ -101,7 +101,7 @@ export default {
         url: '/user/userinfo/get'
       }).then((result) => {
         console.log(result)
-        if (result.code === 0) {
+        if (result.data.code === 0) {
           console.log(result.msg)
           result = result.data
           this.priName = this.priNumber = result.stunum

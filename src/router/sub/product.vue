@@ -13,7 +13,7 @@
 export default {
   data () {
     return {
-      flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
+      flag: true, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '产品组',
       introduce: '这里是产品组的介绍'
     }

@@ -51,7 +51,7 @@ export default {
   components: {
     radio, che, inp, short, uploadque
   },
-  created () {
+  mounted () {
     this.getques()
   },
   methods: {
