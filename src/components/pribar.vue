@@ -145,7 +145,10 @@ export default {
           }).then((res) => {
             console.log(res)
             if (res.data.code === 0) {
-              alert('成功修改密码')
+              alert('成功修改密码，请重新登陆')
+              this.$router.push({
+                path: '/home'
+              })
             } else if (res.data.code === -5) {
               alert(res.data.msg)
             } else {
