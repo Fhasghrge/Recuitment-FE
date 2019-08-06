@@ -64,7 +64,12 @@
       <button class="button"
               v-if="hide"
               @click="register">注册</button>
-
+    </div>
+    <div class="confirm confirmRegister"
+         v-if="confirmFlag">
+      <h2>注册成功</h2>
+      <button class="button"
+              @click="confirmRegister">确认</button>
     </div>
   </div>
 </template>
@@ -74,6 +79,7 @@ export default {
   name: 'login',
   data () {
     return {
+      confirmFlag: false,
       flag1: 'display:block',
       flag2: 'display:none',
       flag: true,
@@ -150,7 +156,7 @@ export default {
             }
           }).then((response) => {
             if (response.data.code === 0) {
-              this.$router.push({ path: 'home' })
+              this.confirmFlag = true
             } else {
               this.err = '错误'
             }
@@ -161,6 +167,9 @@ export default {
       } else {
         this.err = '请将信息填写完整'
       }
+    },
+    confirmRegister () {
+      this.login()
     }
   }
 }

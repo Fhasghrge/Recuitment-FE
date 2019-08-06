@@ -592,3 +592,20 @@ textarea {
     margin-top: 120%;
   }
 }
+.confirmRegister {
+  background-color: rgba(0, 0, 0, 1);
+  height: 70%;
+  margin: -80% auto;
+}
+.confirmRegister h2 {
+  margin-top: 20%;
+}
+.confirmRegister button {
+  margin-top: 20%;
+}
+@media (max-width: 750px) {
+  .confirmRegister {
+    margin: -110% auto;
+    height: 80%;
+  }
+}

@@ -47,7 +47,7 @@ import uploadque from './upload'
 export default {
   name: 'ques',
   data () {
-    var thisgroup = this.$route.query.groups
+    var thisgroup = Number(this.$route.query.groups)
     return {
       group: thisgroup,
       all: [],
