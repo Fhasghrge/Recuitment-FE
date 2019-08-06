@@ -84,7 +84,8 @@ export default {
         if (result.code === 0) {
           console.log(result.msg)
           result = result.data
-          this.priName = this.priNumber = result.stunum
+          this.privateName = this.priNumber = result.stunum
+          this.priName = result.name
           this.priPhone = result.phonenum
           this.priQQ = result.qqnum
           this.priSchool = result.college
