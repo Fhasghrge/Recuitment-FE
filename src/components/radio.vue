@@ -74,6 +74,10 @@ export default {
     answer: {
       type: String,
       default: ''
+    },
+    index: {
+      type: String,
+      default: ''
     }
   },
   methods: {
@@ -87,8 +91,8 @@ export default {
         }
       })
     },
-    radio: function (index) {
-      return 'radio' + index
+    radio: function (index2) {
+      return 'radio' + this.index + index2
     },
     sendradio: function (value) {
       if (this.$route.path === '/answer') {
