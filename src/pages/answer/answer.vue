@@ -22,7 +22,7 @@ import pribar from '../../components/pribar'
 export default {
   name: 'answer',
   data () {
-    var thegroup = this.$route.query.groups
+    var thegroup = Number(this.$route.query.groups)
     return {
       thegroup,
       show: false
