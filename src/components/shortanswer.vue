@@ -1,6 +1,6 @@
 <template>
   <div class="text">
-    <p class="headline">{{title}}</p>
+    <p class="headline">{{childtitle}}</p>
     <textarea class="txt"
               v-model="shortanswer"
               @blur="sendshoans"></textarea>
@@ -43,7 +43,8 @@ export default {
       shortanswer: '',
       delBoxFlag: false,
       groups: this.$route.query.groups,
-      list1: []
+      list1: [],
+      childtitle: this.title
     }
   },
   props: {
@@ -63,14 +64,14 @@ export default {
   methods: {
     getlist: function () {
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/control/question/info',
         data: {
           ID: this.ID
         }
       }).then((res2) => {
         if (res2.data.code === 0) {
-          this.title = res2.data.data.title
+          this.childtitle = res2.data.data.title
         }
       })
     },

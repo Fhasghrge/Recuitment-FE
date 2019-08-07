@@ -32,7 +32,7 @@
 <script>
 export default {
   data () {
-    var congroup = this.$route.query.groups
+    var congroup = Number(this.$route.query.groups)
     return {
       userconcrate: [],
       congroup
@@ -56,13 +56,17 @@ export default {
       })
     },
     gomark (unum, uname, marker) {
-      this.$router.push({ name: 'marking', params: { stunum: unum, username: uname, judger: marker } })
+      this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker } })
     },
     download () {
+      console.log(this.congroup)
       this.$axios({
         method: 'get',
         url: '/control/file/download',
-        data: {
+        headers: {
+          'Content-Type': 'application/octet-stream'
+        },
+        params: {
           groups: this.congroup
         }
       })
