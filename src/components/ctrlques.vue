@@ -64,7 +64,7 @@ export default {
     getques: function () {
       this.$axios({
         methods: 'post',
-        url: '/user/exam/get'
+        url: '/control/question/list'
       }).then((response) => {
         console.log(response)
         if (response.data.code === 0) {
