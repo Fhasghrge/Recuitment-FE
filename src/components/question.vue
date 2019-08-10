@@ -63,14 +63,16 @@ export default {
         url: '/user/exam/get'
       }).then((response) => {
         console.log(response)
-        if (response.data.code === 0) {
+        if (response.data.code === 0 || response.data.code === -95) {
           this.all = response.data.data
           for (let a = 0; a < this.all.length; a++) {
             if (this.all[a].groups === this.group || this.all[a].groups === 0) {
               this.questions.push(this.all[a])
             }
           }
-          console.log(this.questions)
+        } else if (response.data.code === -90) {
+          alert('答卷已提交')
+          this.$router.push({ path: 'main' })
         }
       })
     }

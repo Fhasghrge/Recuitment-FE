@@ -6,9 +6,9 @@
       <span class="lasttime">{{date}}</span>
     </p>
     <div class="btnwrap"><button class="btn1"
-              @click="save">保存答卷</button></div>
+              @click="save">提交答卷</button></div>
     <span class="autosave"
-          v-if="saveflag">已保存</span>
+          v-if="saveflag">答卷已提交</span>
   </div>
 </template>
 
@@ -23,7 +23,11 @@ export default {
   },
   methods: {
     save: function () {
-      this.saveflag = true
+      let confirmbtn = confirm('确认提交吗？提交后无法再次修改')
+      if (confirmbtn === true) {
+        this.saveflag = true
+        alert('答卷已提交')
+      }
     },
     Djs_time () { // 拼接出日期
       setInterval(() => {

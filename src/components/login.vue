@@ -121,8 +121,6 @@ export default {
             this.$router.push({ path: 'main' })
           } else if (response.data.code === -5) {
             this.err = '密码错误'
-          } else if (response.data.code === -10) {
-            this.err = '用户不存在'
           } else {
             this.err = '错误'
           }
@@ -157,6 +155,10 @@ export default {
           }).then((response) => {
             if (response.data.code === 0) {
               this.confirmFlag = true
+            } else if (response.data.code === -80) {
+              this.err = '用户已存在'
+            } else if (response.data.code === -60) {
+              this.err = '不存在这个学号'
             } else {
               this.err = '错误'
             }
