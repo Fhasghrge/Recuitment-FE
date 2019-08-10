@@ -5,7 +5,8 @@
            @click="goindex" />
     </div>
     <div class="exit">
-      <img src="../assets/route.png" />
+      <img @click="$router.push('/main')"
+           src="../assets/route.png" />
     </div>
     <div class="middle">
       <h2>{{thisgroup + '组答题'}}</h2>

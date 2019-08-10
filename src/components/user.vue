@@ -37,7 +37,11 @@ export default {
     quit: function () {
       let storage = window.localStorage
       storage.clear()
-      this.$router.push({ name: 'home' })
+      if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
+        this.$router.push({ path: 'managerlogin' })
+      } else {
+        this.$router.push({ name: 'home' })
+      }
     },
     revisebar: function () {
       this.userflag = !this.userflag

@@ -10,11 +10,14 @@
                 id="quesDescribe"
                 cols="30"
                 rows="5"
-                v-model="quesDescribe"></textarea>
-      <span id='typeTips'>题目类型</span>
+                v-model="quesDescribe"
+                @click="showDes"></textarea>
+      <span id='typeTips'
+            v-if="!$route.query.ID">题目类型</span>
       <select name="questionType"
               id="questionType"
               ref="options"
+              v-show="!$route.query.ID"
               @click="changeFlag">
         <option value="单选">单选</option>
         <option value="多选">多选</option>
@@ -22,7 +25,7 @@
         <option value="简答">简答</option>
         <option value="上传文件">上传文件</option>
       </select>
-      <label><input type="checkbox"
+      <label v-show="!$route.query.ID"><input type="checkbox"
                value="">必答</label>
       <div v-if="flag">
         <div id='optionHead'>
@@ -196,6 +199,11 @@ export default {
         answer: false
       }
       this.optionList.push(option)
+    },
+    showDes () {
+      if (!this.$route.query.ID && this.quesDescribe === '请输入题目描述') {
+        this.quesDescribe = ''
+      }
     },
     addQuestion () {
       let data = {}

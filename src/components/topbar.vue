@@ -1,6 +1,10 @@
 <template>
   <div class="topbar">
-    <span class="leftpart">{{title}}</span>
+    <span class="leftpart">{{title}}<input v-if="$route.path === '/adminindex/ctrlques'"
+             type="button"
+             value="添加新题目"
+             @click="toAdd"></span>
+
     <user></user>
   </div>
 </template>
@@ -26,7 +30,17 @@ export default {
         case '5': this.title = '前端'; break
         case '6': this.title = '后台'; break
         case '7': this.title = 'DevOps'; break
+        default: this.title = '首页'; break
       }
+    },
+    toAdd () {
+      console.log('toAdd')
+      this.$router.push({
+        path: '/adminindex/add',
+        query: {
+          groups: parseInt(this.$route.query.groups)
+        }
+      })
     }
   },
   watch: {
@@ -51,6 +65,16 @@ export default {
     justify-content: space-between;
     align-items: center;
     font-size: 30px;
+  }
+  .topbar input {
+    font-size: 1rem;
+    background-color: black;
+    color: white;
+    border: solid white 1px;
+    height: 40px;
+    /* margin-top: 2.3%; */
+    margin-left: 25px;
+    width: 100px;
   }
 }
 </style>

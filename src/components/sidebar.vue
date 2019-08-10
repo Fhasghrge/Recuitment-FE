@@ -1,7 +1,8 @@
 <template>
   <div class="leftbar">
     <div class="starlogo">
-      <img src="../assets/LOGO1.png" />
+      <img @click="$router.push({path: '/adminindex'})"
+           src="../assets/LOGO1.png" />
     </div>
     <div class="opin">
       <div class="wrapp"><img src="../assets/icons/产品.svg"
@@ -80,6 +81,9 @@ export default {
     margin: 0 auto;
     width: 160px;
     margin-bottom: 34px;
+  }
+  .starlogo:hover {
+    cursor: pointer;
   }
   .starlogo > img {
     width: 160px;

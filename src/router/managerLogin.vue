@@ -83,7 +83,7 @@ export default {
   width: 30%;
   height: 350px;
   background-color: rgba(1, 1, 1, 0.3);
-  margin-left: 35%;
+  margin: 0 auto;
   text-align: center;
 }
 #managerLogin h2 {
@@ -124,7 +124,7 @@ export default {
   width: 120%;
   height: 100px;
   margin-top: 30%;
-  margin-right: 3%;
+  /* margin-right: 3%; */
   color: white;
   border: solid 3px #ffffff;
   padding-left: 25%;
