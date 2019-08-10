@@ -11,7 +11,7 @@
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
                  :answer="item.answer"></uploadque>
-  </div>
+    </div>
   </div>
 </template>
 

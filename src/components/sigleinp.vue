@@ -62,6 +62,7 @@ export default {
   },
   methods: {
     getlist: function () {
+      console.log(this.ID)
       this.$axios({
         methods: 'post',
         url: '/control/question/info',
