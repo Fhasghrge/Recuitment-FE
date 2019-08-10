@@ -168,6 +168,16 @@ export default {
         }
       }
     }
+    if (this.$route.path === '/adminindex/ctrlques') {
+      let answers = []
+      for (let i = 0; i < this.options.length; i++) {
+        answers.push(this.options[i].content)
+      }
+      for (let i = 0; i < this.options.length; i++) {
+        this.options.splice(i, 1, answers[i])
+      }
+      // console.log(this.options)
+    }
   }
 }
 </script>

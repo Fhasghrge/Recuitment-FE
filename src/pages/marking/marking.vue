@@ -44,7 +44,7 @@ export default {
     getques: function () {
       console.log(this.stunum)
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/control/exam/get',
         data: {
           stunum: this.stunum
