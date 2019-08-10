@@ -48,7 +48,7 @@ export default {
           // // 将用户token保存到vuex中
           // _this.changeLogin({ Authorization: _this.userToken })
           if (result.data.code === 0) {
-            _this.$router.push('/adminindex')
+            _this.$router.push({ path: '/adminindex/overview?groups=0' })
           }
         }).catch((err) => {
           alert('发生错误')

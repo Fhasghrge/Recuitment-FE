@@ -1,7 +1,7 @@
 <template>
   <div class="leftbar">
     <div class="starlogo">
-      <img @click="$router.push({path: '/adminindex'})"
+      <img @click="$router.push({ path: '/adminindex/overview?groups=0' })"
            src="../assets/LOGO1.png" />
     </div>
     <div class="opin">
