@@ -1,6 +1,6 @@
 <template>
   <div class="upload">
-    <p class="headline">4.画出范老板的肖像画并上传附件</p>
+    <p class="headline">{{title}}</p>
     <div class="line">
       <img src="../assets/load.png"
            class="load" />
@@ -34,11 +34,11 @@
       <input type="button"
              value="添加"
              @click="toAdd">
-      <select name="frontOrBack"
+      <!-- <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
         <option value="于此题前">于此题前</option>
-      </select>
+      </select> -->
       <input type="button"
              value="删除"
              @click="delBoxFlag=true">
@@ -131,6 +131,7 @@ export default {
         }
       }).then((result) => {
         console.log(result)
+        this.$router.go(0)
       }).catch((err) => {
         console.log(err)
       })

@@ -50,9 +50,12 @@ export default {
           stunum: this.stunum
         }
       }).then((res) => {
+        console.log(res)
         if (res.data.code === 0) {
           this.que = res.data.data
         }
+      }).catch((err) => {
+        console.log(err)
       })
     }
   },
