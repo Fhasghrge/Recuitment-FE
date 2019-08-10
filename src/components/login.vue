@@ -173,6 +173,20 @@ export default {
     confirmRegister () {
       this.login()
     }
+  },
+  created () {
+    let that = this
+    document.onkeydown = function (e) {
+      e = window.event || e
+      if (that.$route.path === '/home' && (e.code === 'Enter' || e.code === 'enter')) {
+        if (that.flag) {
+          that.login()
+        }
+        if (that.hide) {
+          that.register()
+        }
+      }
+    }
   }
 }
 </script>
