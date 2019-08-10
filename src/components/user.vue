@@ -38,7 +38,7 @@ export default {
       let storage = window.localStorage
       storage.clear()
       if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
-        this.$router.push({ path: 'managerlogin' })
+        this.$router.push({ path: '/managerlogin' })
       } else {
         this.$router.push({ name: 'home' })
       }
@@ -131,6 +131,9 @@ export default {
     color: #ffffff;
     border: 0;
     font-size: 1rem;
+  }
+  .btn:hover {
+    cursor: pointer;
   }
 }
 

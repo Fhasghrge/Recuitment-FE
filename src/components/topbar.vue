@@ -21,15 +21,15 @@ export default {
   },
   methods: {
     showTitle () {
-      let group = this.$route.query.groups
+      let group = Number(this.$route.query.groups)
       switch (group) {
-        case '1': this.title = '产品'; break
-        case '2': this.title = '设计'; break
-        case '3': this.title = '安卓'; break
-        case '4': this.title = 'IOS'; break
-        case '5': this.title = '前端'; break
-        case '6': this.title = '后台'; break
-        case '7': this.title = 'DevOps'; break
+        case 1: this.title = '产品'; break
+        case 2: this.title = '设计'; break
+        case 3: this.title = '安卓'; break
+        case 4: this.title = 'IOS'; break
+        case 5: this.title = '前端'; break
+        case 6: this.title = '后台'; break
+        case 7: this.title = 'DevOps'; break
         default: this.title = '首页'; break
       }
     },
@@ -42,6 +42,9 @@ export default {
         }
       })
     }
+  },
+  created () {
+    this.showTitle()
   },
   watch: {
     '$route.fullPath': function (newVal) {

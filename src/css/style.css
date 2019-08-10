@@ -60,7 +60,7 @@ textarea {
 #header .logo {
   max-width: 70%;
   height: 50px;
-  opacity: 0.8;
+  /* opacity: 1; */
   margin-top: 3%;
   margin-left: 5%;
 }
@@ -526,13 +526,14 @@ textarea {
     -ms-transition: -ms-transform 0.2s;
   }
   .mainbox {
+    z-index: 999999;
     height: 60px;
     width: 98px;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);
     margin-top: 6%;
     margin-left: 84%;
-    padding-top: 10px;
+    /* padding-top: 10px; */
   }
   .draw-enter-active,
   .draw-leave-active {

@@ -6,7 +6,7 @@
            class="arrow_left"
            @click="returnToMain"
            v-if='arrowFlag'>
-      <img src="../assets/logo.png"
+      <img src="../assets/LOGO1.png"
            class='logo'
            @click="returnToMain">
       <img src="../assets/小箭头.png"
@@ -24,7 +24,8 @@
                 v-show="Boxflag"
                 @click="priFlag=true;Boxflag=!Boxflag;">个人信息</button>
         <button class="btn"
-                v-show="Boxflag">退出登陆</button>
+                v-show="Boxflag"
+                @click="quit">退出登陆</button>
       </div>
     </transition>
     <router-view></router-view>
@@ -262,6 +263,15 @@ export default {
             console.log(err)
           })
         }
+      }
+    },
+    quit () {
+      let storage = window.localStorage
+      storage.clear()
+      if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
+        this.$router.push({ path: 'managerlogin' })
+      } else {
+        this.$router.push({ name: 'home' })
       }
     }
   },
