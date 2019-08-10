@@ -83,6 +83,12 @@ export default {
 </script>
 
 <style scoped>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
 .kind {
   position: relative;
   background-color: black;
