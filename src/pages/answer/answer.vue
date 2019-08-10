@@ -4,7 +4,7 @@
             :group='thegroup'></banner>
     <div class="ques">
       <div class="que">
-        <p style="color:#ffffff">离开前请一定记得点击“保存作答”</p>
+        <p style="color:#ffffff">修改答案后会自动提交，“提交答卷”后答案锁定无法修改，请再三确认后提交</p>
         <question :group='thegroup'></question>
       </div>
     </div>
