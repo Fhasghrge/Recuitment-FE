@@ -70,7 +70,7 @@ export default {
               this.questions.push(this.all[a])
             }
           }
-        } else if (response.data.code === -90) {
+        } else {
           alert('答卷已提交')
           this.$router.push({ path: 'main' })
         }
@@ -82,7 +82,9 @@ export default {
 
 <style>
 .headline {
-  margin: 1rem auto 0.5rem auto;
+  margin: 0.5rem auto 1rem auto;
+  font-size: 1rem;
+  display: inline-block;
 }
 .rad {
   display: flex;

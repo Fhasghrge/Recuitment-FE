@@ -142,27 +142,31 @@ export default {
       if (this.peraccount !== '' && this.perpassword !== '' && this.pername !== '' && this.tel !== '' && this.verify !== '') {
         this.err = ''
         if (this.perpassword === this.verify) {
-          this.$axios({
-            method: 'post',
-            url: '/user/register',
-            data: {
-              stunum: this.peraccount,
-              password: this.perpassword,
-              name: this.pername,
-              phonenum: this.tel,
-              qqnum: this.qq
-            }
-          }).then((response) => {
-            if (response.data.code === 0) {
-              this.confirmFlag = true
-            } else if (response.data.code === -80) {
-              this.err = '用户已存在'
-            } else if (response.data.code === -60) {
-              this.err = '不存在这个学号'
-            } else {
-              this.err = '错误'
-            }
-          })
+          if (this.perpassword.length >= 6) {
+            this.$axios({
+              method: 'post',
+              url: '/user/register',
+              data: {
+                stunum: this.peraccount,
+                password: this.perpassword,
+                name: this.pername,
+                phonenum: this.tel,
+                qqnum: this.qq
+              }
+            }).then((response) => {
+              if (response.data.code === 0) {
+                this.confirmFlag = true
+              } else if (response.data.code === -80) {
+                this.err = '用户已存在'
+              } else if (response.data.code === -60) {
+                this.err = '不存在这个学号'
+              } else {
+                this.err = '错误'
+              }
+            })
+          } else {
+            this.err = '密码长度过短'
+          }
         } else {
           this.err = '两次输入的密码不同'
         }

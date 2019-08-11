@@ -1,6 +1,7 @@
 <template>
   <div class="text">
-    <p class="headline">{{childtitle}}</p>
+    <span class="headline"
+          v-html="trimstr(title)"></span>
     <textarea class="txt"
               v-model="shortanswer"
               @blur="sendshoans"></textarea>
@@ -74,6 +75,10 @@ export default {
           this.childtitle = res2.data.data.title
         }
       })
+    },
+    trimstr: function (str) {
+      let strtrim = str.replace(/\n|\r\n/g, '<br/>')
+      return strtrim
     },
     sendshoans: function () {
       if (this.$route.path === '/answer') {

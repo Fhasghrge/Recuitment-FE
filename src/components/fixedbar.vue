@@ -25,8 +25,19 @@ export default {
     save: function () {
       let confirmbtn = confirm('确认提交吗？提交后无法再次修改')
       if (confirmbtn === true) {
-        this.saveflag = true
-        alert('答卷已提交')
+        this.$axios({
+          methods: 'post',
+          url: '/user/exam/lock'
+        }).then((response) => {
+          console.log(response)
+          if (response.data.code === 0 || response.data.code === -90) {
+            this.saveflag = true
+            alert('答卷已提交')
+            this.$router.push({ path: 'main' })
+          } else {
+            alert('提交失败')
+          }
+        })
       }
     },
     Djs_time () { // 拼接出日期

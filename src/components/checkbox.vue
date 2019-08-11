@@ -1,6 +1,7 @@
 <template>
   <div class="che">
-    <p class="headline">{{title}}</p>
+    <span class="headline"
+          v-html="trimstr(title)"></span>
     <div class="rad">
       <div v-for="(opt,indexc) in options"
            :key="indexc"
@@ -89,6 +90,10 @@ export default {
           this.list2 = res2.data.data
         }
       })
+    },
+    trimstr: function (str) {
+      let strtrim = str.replace(/\n|\r\n/g, '<br/>')
+      return strtrim
     },
     che: function (index1) {
       return 'che' + this.index + index1
