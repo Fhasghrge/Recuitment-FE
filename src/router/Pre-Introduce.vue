@@ -31,13 +31,13 @@
     <router-view></router-view>
     <div id='text'>
       <p class='tips'
-         v-if="flag">距离开始答题还有：</p>
-      <p class='date'
-         v-if="flag">{{ date }}</p>
-      <p class='tips'
-         v-if="!flag">距离答题结束还有：</p>
+         v-if="!flag">距离开始答题还有：</p>
       <p class='date'
          v-if="!flag">{{ date }}</p>
+      <p class='tips'
+         v-if="flag">距离答题结束还有：</p>
+      <p class='date'
+         v-if="flag">{{ date }}</p>
     </div>
     <div id='group'
          v-if='Itemflag'>
@@ -70,9 +70,9 @@
            @click="notesFlag=false">
       <h2>答题须知</h2>
       <p>这里是答题须知的内容哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或</p>
-      <a href=""
+      <!-- <a href=""
          v-if='!flag'
-         @click.prevent="notesFlag=false">开始答题</a>
+         @click.prevent="notesFlag=false">开始答题</a> -->
     </div>
 
     <div id='private'
@@ -141,6 +141,7 @@ export default {
     return {
       date: '',
       ddlStr: '2019/09/01',
+      ddlStr2: '2019/10/01',
       flag: true, // flag 控制 显示倒计时 还是 显示开始答题按钮,true为未开始，false为进行中
       notesFlag: false,
       Itemflag: true,
@@ -162,7 +163,12 @@ export default {
   methods: {
     Djs_time () { // 拼接出日期
       setInterval(() => {
-        var ddl = new Date(this.ddlStr)
+        var ddl = new Date()
+        if (new Date() - new Date(this.ddlStr) < 0) {
+          ddl = new Date(this.ddlStr)
+        } else if ((new Date() - new Date(this.ddlStr2) < 0)) {
+          ddl = new Date(this.ddlStr2)
+        }
         var presentTime = new Date()
         var rightTime = ddl - presentTime
         var dd = Math.floor(rightTime / 1000 / 60 / 60 / 24)
@@ -273,6 +279,13 @@ export default {
       } else {
         this.$router.push({ name: 'home' })
       }
+    },
+    changeFlag () {
+      if (new Date() - new Date(this.ddlStr) < 0) {
+        this.flag = false
+      } else if (new Date() - new Date(this.ddlStr2) < 0) {
+        this.flag = true
+      }
     }
   },
   mounted () {
@@ -280,6 +293,7 @@ export default {
     this.mobileStyle()
     this.arrowStyle()
     this.showHead()
+    this.changeFlag()
     // console.log(this.$route.path)
     this.getPrivateMsg() // 获取用户信息
   },
