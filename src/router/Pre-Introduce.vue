@@ -141,6 +141,7 @@ export default {
     return {
       date: '',
       ddlStr: '2019/09/01',
+      ddlStr2: '2019/10/01',
       flag: true, // flag 控制 显示倒计时 还是 显示开始答题按钮,true为未开始，false为进行中
       notesFlag: false,
       Itemflag: true,
@@ -162,7 +163,12 @@ export default {
   methods: {
     Djs_time () { // 拼接出日期
       setInterval(() => {
-        var ddl = new Date(this.ddlStr)
+        var ddl = new Date()
+        if (new Date() - new Date(this.ddlStr) < 0) {
+          ddl = new Date(this.ddlStr)
+        } else if ((new Date() - new Date(this.ddlStr2) < 0)) {
+          ddl = new Date(this.ddlStr2)
+        }
         var presentTime = new Date()
         var rightTime = ddl - presentTime
         var dd = Math.floor(rightTime / 1000 / 60 / 60 / 24)
@@ -275,10 +281,10 @@ export default {
       }
     },
     changeFlag () {
-      if (new Date() - new Date(this.ddlStr) > 0) {
-        this.flag = true
-      } else {
+      if (new Date() - new Date(this.ddlStr) < 0) {
         this.flag = false
+      } else if (new Date() - new Date(this.ddlStr2) < 0) {
+        this.flag = true
       }
     }
   },
