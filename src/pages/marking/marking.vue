@@ -11,7 +11,7 @@
     </div>
     <scorebar :judger='judger'
               :que='que'
-              :username='username'></scorebar>
+              :userID='stunum'></scorebar>
   </div>
 </template>
 
@@ -27,15 +27,18 @@ export default {
     scorebar
   },
   data () {
-    var stunum = this.$route.params.stunum
-    var username = this.$route.params.username
-    var judger = this.$route.params.judger
+    var stunum = String(this.$route.query.stunum)
+    var username = String(this.$route.query.username)
+    var judger = String(this.$route.query.judger)
     return {
       stunum,
       judger,
       username,
       que: []
     }
+  },
+  mounted () {
+    this.getques()
   },
   methods: {
     gobackto: function () {
@@ -58,9 +61,6 @@ export default {
         console.log(err)
       })
     }
-  },
-  mounted () {
-    this.getques()
   }
 }
 </script>

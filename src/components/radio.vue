@@ -1,6 +1,7 @@
 <template>
   <div class="radio">
-    <p class="headline">{{title}}</p>
+    <span class="headline"
+          v-html="trimstr(title)"></span>
     <div class="rad"
          ref="radioref">
       <div v-for="(opt,indexr) in options"
@@ -82,8 +83,10 @@ export default {
   },
   methods: {
     radio: function (index2) {
-      console.log('radio' + this.index + index2)
       return 'radio' + this.index + index2
+    },
+    trimstr: function (str) {
+      return str.replace(/\n|\r\n/g, '<br/>')
     },
     sendradio: function (value) {
       if (this.$route.path === '/answer') {

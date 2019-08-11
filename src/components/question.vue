@@ -70,7 +70,9 @@ export default {
               this.questions.push(this.all[a])
             }
           }
-          console.log(this.questions)
+        } else {
+          alert('答卷已提交')
+          this.$router.push({ path: 'main' })
         }
       })
     }
@@ -80,7 +82,9 @@ export default {
 
 <style>
 .headline {
-  margin: 1rem auto 0.5rem auto;
+  margin: 0.5rem auto 1rem auto;
+  font-size: 1rem;
+  display: inline-block;
 }
 .rad {
   display: flex;
@@ -134,6 +138,7 @@ a {
 }
 .eg {
   margin-left: 20px;
+  min-width: 4.5rem;
 }
 .loading {
   height: 7px;
@@ -148,6 +153,7 @@ a {
   align-items: center;
   width: 90%;
   margin: 0.5rem auto;
+  overflow: scroll;
 }
 .in {
   background-color: #d9d9d9;
@@ -178,7 +184,7 @@ a {
     text-align: center;
   }
   .docu {
-    width: 50%;
+    width: 80%;
     border: solid 2px #4a4a4a;
     margin: 1rem auto 1rem 1rem;
   }

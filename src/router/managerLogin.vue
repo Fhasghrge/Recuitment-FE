@@ -56,6 +56,15 @@ export default {
         })
       }
     }
+  },
+  created () {
+    let that = this
+    document.onkeydown = function (e) {
+      e = window.event || e
+      if (that.$route.path === '/managerlogin' && (e.code === 'Enter' || e.code === 'enter')) {
+        that.confirmLogin()
+      }
+    }
   }
 }
 </script>

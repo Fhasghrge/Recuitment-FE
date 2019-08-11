@@ -20,8 +20,13 @@
             <td>{{item.stunum}}</td>
             <td>{{item.time}}</td>
             <td>{{item.score}}</td>
-            <td>{{item.judger}}</td>
-            <td><button @click="gomark(item.stunum,item.name,item.judger)">阅卷</button></td>
+            <td>
+              <span v-for="(peo) in item.judger"
+                    :key="peo"
+                    class="judger">{{peo}}</span>
+            </td>
+            <td><button v-if="item.lock"
+                      @click="gomark(item.stunum,item.name,item.judger)">阅卷</button></td>
           </tr>
 
         </table>
@@ -32,7 +37,7 @@
 <script>
 export default {
   data () {
-    var congroup = this.$route.query.groups
+    var congroup = Number(this.$route.query.groups)
     return {
       userconcrate: [],
       congroup
@@ -44,7 +49,7 @@ export default {
     },
     getsta () {
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/control/exam/status',
         data: {
           groups: this.congroup
@@ -56,13 +61,13 @@ export default {
       })
     },
     gomark (unum, uname, marker) {
-      this.$router.push({ name: 'marking', params: { stunum: unum, username: uname, judger: marker } })
+      this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker } })
     },
     download () {
       this.$axios({
-        methods: 'get',
+        method: 'get',
         url: '/control/file/download',
-        data: {
+        params: {
           groups: this.congroup
         }
       })
@@ -110,6 +115,9 @@ export default {
     background-color: inherit;
     color: #ffffff;
     font-size: 1rem;
+  }
+  .judger {
+    margin: 0.5rem 0;
   }
   .table2 {
     margin: 0 auto;

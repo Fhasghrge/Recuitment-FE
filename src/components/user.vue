@@ -66,7 +66,7 @@ export default {
     margin-right: 8px;
   }
 
-  .icon:hover {
+  .icon:hover .btn:hover {
     cursor: pointer;
   }
   .arrowhead {
