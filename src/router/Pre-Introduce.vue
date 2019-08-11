@@ -31,13 +31,13 @@
     <router-view></router-view>
     <div id='text'>
       <p class='tips'
-         v-if="flag">距离开始答题还有：</p>
-      <p class='date'
-         v-if="flag">{{ date }}</p>
-      <p class='tips'
-         v-if="!flag">距离答题结束还有：</p>
+         v-if="!flag">距离开始答题还有：</p>
       <p class='date'
          v-if="!flag">{{ date }}</p>
+      <p class='tips'
+         v-if="flag">距离答题结束还有：</p>
+      <p class='date'
+         v-if="flag">{{ date }}</p>
     </div>
     <div id='group'
          v-if='Itemflag'>
@@ -273,6 +273,13 @@ export default {
       } else {
         this.$router.push({ name: 'home' })
       }
+    },
+    changeFlag () {
+      if (new Date() - new Date(this.ddlStr) > 0) {
+        this.flag = true
+      } else {
+        this.flag = false
+      }
     }
   },
   mounted () {
@@ -280,6 +287,7 @@ export default {
     this.mobileStyle()
     this.arrowStyle()
     this.showHead()
+    this.changeFlag()
     // console.log(this.$route.path)
     this.getPrivateMsg() // 获取用户信息
   },
