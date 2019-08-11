@@ -70,9 +70,9 @@
            @click="notesFlag=false">
       <h2>答题须知</h2>
       <p>这里是答题须知的内容哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或</p>
-      <a href=""
+      <!-- <a href=""
          v-if='!flag'
-         @click.prevent="notesFlag=false">开始答题</a>
+         @click.prevent="notesFlag=false">开始答题</a> -->
     </div>
 
     <div id='private'
