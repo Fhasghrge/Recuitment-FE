@@ -8,7 +8,6 @@
         <question :group='thegroup'></question>
       </div>
     </div>
-    <fixedbar></fixedbar>
     <pribar :show='show'
             @showpribar="transmit"></pribar>
   </div>
@@ -17,7 +16,6 @@
 <script>
 import banner from '../../components/banner'
 import question from '../../components/question'
-import fixedbar from '../../components/fixedbar'
 import pribar from '../../components/pribar'
 export default {
   name: 'answer',
@@ -31,13 +29,11 @@ export default {
   components: {
     banner,
     question,
-    fixedbar,
     pribar
   },
   methods: {
     transmit (bannershow) {
       this.show = bannershow
-      console.log(this.show)
     }
   }
 }

@@ -63,7 +63,7 @@ export default {
         url: '/user/exam/get'
       }).then((response) => {
         console.log(response)
-        if (response.data.code === 0 || response.data.code === -95) {
+        if (response.data.code === 0) {
           this.all = response.data.data
           for (let a = 0; a < this.all.length; a++) {
             if (this.all[a].groups === this.group || this.all[a].groups === 0) {
@@ -138,6 +138,7 @@ a {
 }
 .eg {
   margin-left: 20px;
+  min-width: 4.5rem;
 }
 .loading {
   height: 7px;

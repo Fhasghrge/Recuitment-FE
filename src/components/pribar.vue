@@ -100,18 +100,21 @@ export default {
         method: 'get',
         url: '/user/userinfo/get'
       }).then((result) => {
-        console.log(result)
-        result = result.data
-        if (result.code === 0) {
-          console.log(result.msg)
+        if (this.$router.path === '/answer') {
           result = result.data
-          this.privateName = this.priNumber = result.stunum
-          this.priName = result.name
-          this.priPhone = result.phonenum
-          this.priQQ = result.qqnum
-          this.priSchool = result.college
-        } else {
-          console.log('获取用户信息失败')
+          if (result.code === 0) {
+            result = result.data
+            this.privateName = this.priNumber = result.stunum
+            this.priName = result.name
+            this.priPhone = result.phonenum
+            this.priQQ = result.qqnum
+            this.priSchool = result.college
+          } else if (result.lock === 1) {
+            alert('您已经提交过试卷')
+            this.$router.push({ path: '/main' })
+          } else {
+            console.log('获取用户信息失败')
+          }
         }
       }).catch((err) => {
         console.log(err)

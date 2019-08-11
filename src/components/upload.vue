@@ -145,10 +145,9 @@ export default {
       form.append('ID', this.ID)
       for (let i = 0; i < f.target.files.length; i++) {
         var file = f.target.files[i]
-        this.filename.splice(i, 1, file.name)
+        this.filename.append(file.name)
         form.append('file', file)
       }
-      console.log(form.get('file'))
       if (this.$route.path === '/answer') {
         let that = this
         this.$axios({
@@ -175,7 +174,7 @@ export default {
   },
   mounted () {
     if (this.answer !== '') {
-      this.filename.splice(0, 1, this.answer)
+      this.filename = this.filename.concat(this.answer)
       this.flag = false
     }
     if (this.$route.path === '/marking') {
