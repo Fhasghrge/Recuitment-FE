@@ -1,6 +1,7 @@
 <template>
   <div class="upload">
-    <p class="headline">{{title}}</p>
+    <span class="headline"
+          v-html="trimstr(title)"></span>
     <div class="line">
       <img src="../assets/load.png"
            class="load" />
@@ -135,6 +136,10 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
+    },
+    trimstr: function (str) {
+      let strtrim = str.replace(/\n|\r\n/g, '<br/>')
+      return strtrim
     },
     upload: function (f) {
       var form = new FormData()

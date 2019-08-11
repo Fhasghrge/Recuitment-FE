@@ -1,6 +1,7 @@
 <template>
   <div class="inp">
-    <p class="headline">{{title}}</p>
+    <span class="headline"
+          v-html="trimstr(title)"></span>
     <input class="ipt"
            v-model="singleinp"
            @blur="sendinp" />
@@ -62,6 +63,7 @@ export default {
   },
   methods: {
     getlist: function () {
+      console.log(this.ID)
       this.$axios({
         methods: 'post',
         url: '/control/question/info',
@@ -85,6 +87,10 @@ export default {
           }
         })
       }
+    },
+    trimstr: function (str) {
+      let strtrim = str.replace(/\n|\r\n/g, '<br/>')
+      return strtrim
     },
     toAdd () {
       this.$router.push({
