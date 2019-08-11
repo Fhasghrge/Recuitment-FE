@@ -6,10 +6,9 @@
         <li v-for="(item,index) in que "
             :key="index">
           <span>分数:</span>
-          <input v-model="score"
-                 @blur="sub(item.ID)"
-                 class="scoreinp">
-          <span>5分</span>
+          <input @blur="sub(item.ID,index)"
+                 class="scoreinp"
+                 v-model="scores[index]">
           <span>阅卷人:</span>
           <span>{{judger}}</span></li>
       </ol>
@@ -25,7 +24,7 @@
 export default {
   data () {
     return {
-      score: 0,
+      scores: [],
       mes: ''
     }
   },
@@ -44,16 +43,19 @@ export default {
     }
   },
   methods: {
-    sub: function (ID) {
-      this.$axios({
-        method: 'post',
-        url: '/control/exam/mark',
-        data: {
-          stunum: this.userID,
-          questionID: ID,
-          score: this.score
-        }
-      })
+    sub: function (ID, index) {
+      console.log(event)
+      if (event.data !== '') {
+        this.$axios({
+          method: 'post',
+          url: '/control/exam/mark',
+          data: {
+            stunum: this.userID,
+            questionID: ID,
+            score: parseInt(this.scores[index])
+          }
+        })
+      }
     }
   }
 }

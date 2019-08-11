@@ -152,6 +152,7 @@ a {
   align-items: center;
   width: 90%;
   margin: 0.5rem auto;
+  overflow: scroll;
 }
 .in {
   background-color: #d9d9d9;
@@ -182,7 +183,7 @@ a {
     text-align: center;
   }
   .docu {
-    width: 50%;
+    width: 80%;
     border: solid 2px #4a4a4a;
     margin: 1rem auto 1rem 1rem;
   }

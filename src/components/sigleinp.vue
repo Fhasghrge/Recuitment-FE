@@ -65,7 +65,7 @@ export default {
     getlist: function () {
       console.log(this.ID)
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/control/question/info',
         data: {
           ID: this.ID

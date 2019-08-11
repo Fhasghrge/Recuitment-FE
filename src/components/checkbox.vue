@@ -83,7 +83,7 @@ export default {
   methods: {
     getlist: function () {
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/control/question/list'
       }).then((res2) => {
         if (res2.data.code === 0) {

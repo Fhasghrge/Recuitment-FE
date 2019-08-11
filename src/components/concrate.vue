@@ -20,8 +20,13 @@
             <td>{{item.stunum}}</td>
             <td>{{item.time}}</td>
             <td>{{item.score}}</td>
-            <td>{{item.judger}}</td>
-            <td><button @click="gomark(item.stunum,item.name,item.judger)">阅卷</button></td>
+            <td>
+              <span v-for="(peo) in item.judger"
+                    :key="peo"
+                    class="judger">{{peo}}</span>
+            </td>
+            <td><button v-if="item.lock"
+                      @click="gomark(item.stunum,item.name,item.judger)">阅卷</button></td>
           </tr>
 
         </table>
@@ -59,13 +64,9 @@ export default {
       this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker } })
     },
     download () {
-      console.log(this.congroup)
       this.$axios({
         method: 'get',
         url: '/control/file/download',
-        headers: {
-          'Content-Type': 'application/octet-stream'
-        },
         params: {
           groups: this.congroup
         }
@@ -114,6 +115,9 @@ export default {
     background-color: inherit;
     color: #ffffff;
     font-size: 1rem;
+  }
+  .judger {
+    margin: 0.5rem 0;
   }
   .table2 {
     margin: 0 auto;
