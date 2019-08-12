@@ -2,6 +2,10 @@
   <div id='text'>
     <h1 class='welcome-header'>{{Header}}</h1>
     <p class='introduce'>{{ introduce }}</p>
+    <a href=""
+       class='begin store'
+       v-if='flag'
+       @click.prevent="save">保存答卷</a>
     <p class='choiceTips'
        v-if="flag">选择一个方向开始答题吧</p>
   </div>
@@ -11,10 +15,52 @@
 export default {
   data () {
     return {
+      ddlStr: '2019/08/01', // 开始答题的日期，待更改
       flag: false, // flag 控制tips，true为显示，false为隐藏
       Header: 'Welcome to Star Studio!',
       introduce: '星辰工作室是……（工作室的介绍段落）有什么事问豆豆就对了哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或'
     }
+  },
+  methods: {
+    changeFlag () {
+      if (new Date() - new Date(this.ddlStr) > 0) {
+        this.flag = true
+      } else {
+        this.flag = false
+      }
+    },
+    save () {
+      let confirmbtn = confirm('确认提交吗？提交后无法再次修改')
+      if (confirmbtn === true) {
+        this.$axios({
+          methods: 'post',
+          url: '/user/exam/lock'
+        }).then((response) => {
+          console.log(response)
+          if (response.data.code === 0 || response.data.code === -90) {
+            this.saveflag = true
+            alert('答卷已提交')
+            this.$router.push({ path: 'main' })
+          } else {
+            alert('提交失败')
+          }
+        })
+      }
+    }
+  },
+  mounted () {
+    this.changeFlag()
   }
 }
 </script>
+
+<style scoped>
+.store {
+  margin-top: 25%;
+}
+@media screen and (min-height: 520px) and (max-width: 1080px) {
+  .store {
+    margin-top: 70%;
+  }
+}
+</style>
