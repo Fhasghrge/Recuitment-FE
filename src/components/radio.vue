@@ -86,7 +86,9 @@ export default {
       return 'radio' + this.index + index2
     },
     trimstr: function (str) {
-      return str.replace(/\n|\r\n/g, '<br/>')
+      let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
+      let strtrim2 = strtrim1.replace(/\t/g, '&nbsp&nbsp&nbsp&nbsp')
+      return strtrim2
     },
     sendradio: function (value) {
       if (this.$route.path === '/answer') {
@@ -171,7 +173,6 @@ select {
   position: relative;
   color: white;
   width: 60%;
-  height: 30px;
   margin-left: 40%;
   display: flex;
   text-align: center;

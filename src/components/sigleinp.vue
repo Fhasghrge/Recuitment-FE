@@ -89,8 +89,9 @@ export default {
       }
     },
     trimstr: function (str) {
-      let strtrim = str.replace(/\n|\r\n/g, '<br/>')
-      return strtrim
+      let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
+      let strtrim2 = strtrim1.replace(/\t/g, '&nbsp&nbsp&nbsp&nbsp')
+      return strtrim2
     },
     toAdd () {
       this.$router.push({
@@ -152,7 +153,6 @@ export default {
   position: relative;
   color: white;
   width: 60%;
-  height: 30px;
   margin-left: 40%;
   display: flex;
   text-align: center;

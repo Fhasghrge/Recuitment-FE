@@ -82,9 +82,9 @@ export default {
 
 <style>
 .headline {
-  margin: 0.5rem auto 1rem auto;
+  margin: 0.5rem auto 1rem 1rem;
   font-size: 1rem;
-  display: inline-block;
+  display: block;
 }
 .rad {
   display: flex;
