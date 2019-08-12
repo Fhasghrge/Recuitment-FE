@@ -77,8 +77,11 @@ export default {
       })
     },
     trimstr: function (str) {
+      console.log(str)
       let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
-      let strtrim2 = strtrim1.replace(/\t/g, '&nbsp&nbsp&nbsp&nbsp')
+      console.log(strtrim1)
+      let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
+      console.log(strtrim2)
       return strtrim2
     },
     sendshoans: function () {

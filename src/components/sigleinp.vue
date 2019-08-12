@@ -90,7 +90,7 @@ export default {
     },
     trimstr: function (str) {
       let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
-      let strtrim2 = strtrim1.replace(/\t/g, '&nbsp&nbsp&nbsp&nbsp')
+      let strtrim2 = strtrim1.replace(/^\s+/g, '&nbsp')
       return strtrim2
     },
     toAdd () {
