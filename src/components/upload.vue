@@ -84,6 +84,10 @@ export default {
     answer: {
       type: String,
       default: ''
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
@@ -137,8 +141,13 @@ export default {
       })
     },
     trimstr: function (str) {
-      let strtrim = str.replace(/\n|\r\n/g, '<br/>')
-      return strtrim
+      let strindex = String(this.index + 1)
+      let strtrim = '(附件题) '
+      let head = strindex + '.' + strtrim
+      let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
+      let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
+      let strtrim3 = head.concat(strtrim2)
+      return strtrim3
     },
     upload: function (f) {
       var form = new window.FormData()
@@ -205,7 +214,6 @@ select {
   position: relative;
   color: white;
   width: 60%;
-  height: 30px;
   margin-left: 40%;
   display: flex;
   text-align: center;

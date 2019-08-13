@@ -7,25 +7,28 @@
              :ID="item.ID"
              :title="item.title"
              :answer="item.answer"
-             :index='index+"20"'></radio>
+             :index='index'></radio>
       <che v-if="item.type === 2"
            :options="item.options"
            :ID="item.ID"
            :title="item.title"
            :answer="item.answer"
-           :index="index+'20'"></che>
+           :index="index"></che>
       <inp v-if="item.type === 3"
            :ID="item.ID"
            :title="item.title"
-           :answer="item.answer"></inp>
+           :answer="item.answer"
+           :index="index"></inp>
       <short v-if="item.type === 4"
              :ID="item.ID"
              :title="item.title"
-             :answer="item.answer"></short>
+             :answer="item.answer"
+             :index="index"></short>
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
                  :title="item.title"
-                 :answer="item.answer"></uploadque>
+                 :answer="item.answer"
+                 :index="index"></uploadque>
     </div>
   </div>
 </template>
@@ -66,7 +69,11 @@ export default {
         if (response.data.code === 0) {
           this.all = response.data.data
           for (let a = 0; a < this.all.length; a++) {
-            if (this.all[a].groups === this.group || this.all[a].groups === 0) {
+            if (this.all[a].groups === 0) {
+              this.questions.push(this.all[a])
+            }
+          } for (let a = 0; a < this.all.length; a++) {
+            if (this.all[a].groups === this.group) {
               this.questions.push(this.all[a])
             }
           }
@@ -82,14 +89,15 @@ export default {
 
 <style>
 .headline {
-  margin: 0.5rem auto 1rem auto;
+  margin: 0.5rem auto 1rem 1rem;
   font-size: 1rem;
-  display: inline-block;
+  display: block;
 }
 .rad {
   display: flex;
   justify-content: space-around;
   align-items: stretch;
+  flex-wrap: wrap;
 }
 
 .radio1 {
@@ -103,7 +111,7 @@ export default {
   font-size: 1rem;
   min-height: 2rem;
   padding: 0.5rem 1rem 0 1rem;
-  width: 100%;
+  width: 50%;
   flex-wrap: wrap;
 }
 input:checked + label {
@@ -180,7 +188,8 @@ a {
     margin-left: 20px;
   }
   .optall {
-    width: 15%;
+    min-width: 25%;
+    max-width: 25%;
     text-align: center;
   }
   .docu {

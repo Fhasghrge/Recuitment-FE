@@ -80,7 +80,8 @@ export default {
       newPassword: '',
       priSchool: '霍格沃兹学院',
       priQQ: '123456789',
-      rePassword: ''
+      rePassword: '',
+      show1: false
     }
   },
   props: {
@@ -91,27 +92,30 @@ export default {
   },
   methods: {
     closebar: function () {
-      this.show = false
-      this.$emit('showpribar', this.show)
-      bus.$emit('listen', this.show)
+      this.show1 = false
+      this.$emit('showpribar', this.show1)
+      bus.$emit('listen', this.show1)
     },
     getPrivateMsg () {
       this.$axios({
         method: 'get',
         url: '/user/userinfo/get'
       }).then((result) => {
-        if (this.$router.path === '/answer') {
+        if (this.$route.path === '/answer') {
           result = result.data
           if (result.code === 0) {
-            result = result.data
-            this.privateName = this.priNumber = result.stunum
-            this.priName = result.name
-            this.priPhone = result.phonenum
-            this.priQQ = result.qqnum
-            this.priSchool = result.college
-          } else if (result.lock === 1) {
-            alert('您已经提交过试卷')
-            this.$router.push({ path: '/main' })
+            console.log(result)
+            if (result.data.lock === 1) {
+              alert('您已经提交过试卷')
+              this.$router.push({ path: '/main' })
+            } else {
+              result = result.data
+              this.privateName = this.priNumber = result.stunum
+              this.priName = result.name
+              this.priPhone = result.phonenum
+              this.priQQ = result.qqnum
+              this.priSchool = result.college
+            }
           } else {
             console.log('获取用户信息失败')
           }
@@ -165,7 +169,8 @@ export default {
     }
   },
   mounted () {
-    this.getPrivateMsg() // 获取用户信息
+    this.getPrivateMsg()// 获取用户信息
+    this.show1 = this.show
   }
 }
 </script>
