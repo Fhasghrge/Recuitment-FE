@@ -6,7 +6,7 @@
       <div class="btn2"><button class="show1"
                 @click="toconcrate"
                 v-if="showFlag">查看答题情况</button><button class="show1"
-                @click="toCtrlQues">管理该方向题库</button></div>
+                @click="toCtrlQues">管理{{ groupName }}题库</button></div>
     </div>
   </div>
 </template>
@@ -14,6 +14,7 @@
 export default {
   data () {
     return {
+      groupName: '',
       groups: Number(this.$route.query.groups),
       showFlag: false
     }
@@ -40,6 +41,18 @@ export default {
   created () {
     if (this.groups) {
       this.showFlag = true
+    }
+  },
+  mounted () {
+    switch (this.groups) {
+      case 1: this.groupName = '产品'; break
+      case 2: this.groupName = '设计'; break
+      case 3: this.groupName = '安卓'; break
+      case 4: this.groupName = 'IOS'; break
+      case 5: this.groupName = '前端'; break
+      case 6: this.groupName = '后台'; break
+      case 7: this.groupName = 'DevOps'; break
+      default: this.groupName = '公共'; break
     }
   }
 }

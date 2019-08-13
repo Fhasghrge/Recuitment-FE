@@ -60,7 +60,7 @@ export default {
 }
 @media screen and (min-height: 520px) and (max-width: 1080px) {
   .store {
-    margin-top: 70%;
+    margin-top: 145%;
   }
 }
 </style>

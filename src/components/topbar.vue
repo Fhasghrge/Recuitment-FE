@@ -30,7 +30,7 @@ export default {
         case 5: this.title = '前端'; break
         case 6: this.title = '后台'; break
         case 7: this.title = 'DevOps'; break
-        default: this.title = '首页'; break
+        default: this.title = 'Public'; break
       }
     },
     toAdd () {
