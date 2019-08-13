@@ -2,6 +2,8 @@
   <div class="kind">
     <div v-for="(item,index) in questions"
          :key="index">
+      <span v-if="index === 0">一、综合题</span>
+      <span v-if="index === secindex"><br>二、方向题</span>
       <radio v-if="item.type === 1"
              :options="item.options"
              :ID="item.ID"
@@ -44,7 +46,8 @@ export default {
   data () {
     return {
       all: [],
-      questions: []
+      questions: [],
+      secindex: 0
     }
   },
   props: {
@@ -72,7 +75,9 @@ export default {
             if (this.all[a].groups === 0) {
               this.questions.push(this.all[a])
             }
-          } for (let a = 0; a < this.all.length; a++) {
+          }
+          this.secindex = this.questions.length
+          for (let a = 0; a < this.all.length; a++) {
             if (this.all[a].groups === this.group) {
               this.questions.push(this.all[a])
             }
