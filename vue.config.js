@@ -1,5 +1,8 @@
 // vue.config.js
 module.exports = {
   // 选项...
-    publicPath: "./"
+  publicPath: './',
+  devServer: {
+    proxy: 'http://join.stuhome.com'
+  }
 }

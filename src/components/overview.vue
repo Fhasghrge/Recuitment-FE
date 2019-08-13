@@ -3,9 +3,13 @@
     <div class="mainshow">
       <h2 class="headline1">公告</h2>
       <p class="content">"AntV 是蚂蚁金服全新一代数据可视化解决方案，致力于提供一套简单方便、专业可靠、无限可能的数据可视化最佳实践。"</p>
-      <div class="btn2"><button class="show1"
-                @click="toconcrate">查看答题情况</button><button class="show1"
-                @click="toCtrlQues">管理该方向题库</button></div>
+      <div class="btn2">
+        <button class="show1"
+                @click="toconcrate"
+                v-if="showFlag">查看答题情况</button>
+        <button class="show1"
+                @click="toCtrlQues">{{btntitle}}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -13,7 +17,10 @@
 export default {
   data () {
     return {
-      groups: this.$route.query.groups
+      groupName: '',
+      groups: Number(this.$route.query.groups),
+      showFlag: false,
+      btntitle: '管理通用题库'
     }
   },
   methods: {
@@ -33,6 +40,24 @@ export default {
           groups: parseInt(this.groups)
         }
       })
+    }
+  },
+  created () {
+    if (this.groups) {
+      this.showFlag = true
+      this.btntitle = '管理该方向题库'
+    }
+  },
+  mounted () {
+    switch (this.groups) {
+      case 1: this.groupName = '产品'; break
+      case 2: this.groupName = '设计'; break
+      case 3: this.groupName = '安卓'; break
+      case 4: this.groupName = 'IOS'; break
+      case 5: this.groupName = '前端'; break
+      case 6: this.groupName = '后台'; break
+      case 7: this.groupName = 'DevOps'; break
+      default: this.groupName = '公共'; break
     }
   }
 }

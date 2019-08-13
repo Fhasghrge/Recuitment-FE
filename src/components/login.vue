@@ -64,7 +64,12 @@
       <button class="button"
               v-if="hide"
               @click="register">注册</button>
-
+    </div>
+    <div class="confirm confirmRegister"
+         v-if="confirmFlag">
+      <h2>注册成功</h2>
+      <button class="button"
+              @click="confirmRegister">确认</button>
     </div>
   </div>
 </template>
@@ -74,6 +79,7 @@ export default {
   name: 'login',
   data () {
     return {
+      confirmFlag: false,
       flag1: 'display:block',
       flag2: 'display:none',
       flag: true,
@@ -105,18 +111,16 @@ export default {
         this.err = ''
         this.$axios({
           method: 'post',
-          url: '/user/lgoin',
+          url: '/user/login',
           data: {
-            username: this.peraccount,
+            stunum: this.peraccount,
             password: this.perpassword
           }
         }).then((response) => {
           if (response.data.code === 0) {
-            this.$router.push({ name: 'answer' })
+            this.$router.push({ path: 'main' })
           } else if (response.data.code === -5) {
             this.err = '密码错误'
-          } else if (response.data.code === -10) {
-            this.err = '用户不存在'
           } else {
             this.err = '错误'
           }
@@ -138,28 +142,53 @@ export default {
       if (this.peraccount !== '' && this.perpassword !== '' && this.pername !== '' && this.tel !== '' && this.verify !== '') {
         this.err = ''
         if (this.perpassword === this.verify) {
-          this.$axios({
-            method: 'post',
-            url: '/user/register',
-            data: {
-              stunum: this.peraccount,
-              password: this.perpassword,
-              name: this.pername,
-              phonenum: this.tel,
-              qqnum: this.qq
-            }
-          }).then((response) => {
-            if (response.data.code === 0) {
-              this.$router.push({ path: 'main' })
-            } else {
-              this.err = '错误'
-            }
-          })
+          if (this.perpassword.length >= 6) {
+            this.$axios({
+              method: 'post',
+              url: '/user/register',
+              data: {
+                stunum: this.peraccount,
+                password: this.perpassword,
+                name: this.pername,
+                phonenum: this.tel,
+                qqnum: this.qq
+              }
+            }).then((response) => {
+              if (response.data.code === 0) {
+                this.confirmFlag = true
+              } else if (response.data.code === -80) {
+                this.err = '用户已存在'
+              } else if (response.data.code === -60) {
+                this.err = '不存在这个学号'
+              } else {
+                this.err = '错误'
+              }
+            })
+          } else {
+            this.err = '密码长度过短'
+          }
         } else {
           this.err = '两次输入的密码不同'
         }
       } else {
         this.err = '请将信息填写完整'
+      }
+    },
+    confirmRegister () {
+      this.login()
+    }
+  },
+  created () {
+    let that = this
+    document.onkeydown = function (e) {
+      e = window.event || e
+      if (that.$route.path === '/home' && (e.code === 'Enter' || e.code === 'enter')) {
+        if (that.flag) {
+          that.login()
+        }
+        if (that.hide) {
+          that.register()
+        }
       }
     }
   }
@@ -252,8 +281,8 @@ export default {
 
 @media (max-width: 750px) {
   .part2 {
-    width: 80%;
-    height: 46%;
+    width: 100%;
+    height: 52%;
     background-color: black;
     text-align: center;
     margin: 0 auto;
@@ -322,7 +351,7 @@ export default {
   .showerr {
     height: 1rem;
     width: 80%;
-    margin: 0 auto;
+    margin: 1.5rem auto;
     margin-bottom: 1rem;
   }
   .errmes {

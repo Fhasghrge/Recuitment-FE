@@ -11,7 +11,7 @@
     </div>
     <scorebar :judger='judger'
               :que='que'
-              :username='username'></scorebar>
+              :userID='stunum'></scorebar>
   </div>
 </template>
 
@@ -27,34 +27,40 @@ export default {
     scorebar
   },
   data () {
-    var username = this.$route.params.username
-    var judger = this.$route.params.judger
+    var stunum = String(this.$route.query.stunum)
+    var username = String(this.$route.query.username)
+    var judger = String(this.$route.query.judger)
     return {
-      username,
+      stunum,
       judger,
+      username,
       que: []
     }
+  },
+  mounted () {
+    this.getques()
   },
   methods: {
     gobackto: function () {
       this.$router.go(-1)
     },
     getques: function () {
+      console.log(this.stunum)
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/control/exam/get',
         data: {
-          username: this.username
+          stunum: this.stunum
         }
       }).then((res) => {
-        if (res.code === 0) {
+        console.log(res)
+        if (res.data.code === 0) {
           this.que = res.data.data
         }
+      }).catch((err) => {
+        console.log(err)
       })
     }
-  },
-  mounted () {
-    this.getques()
   }
 }
 </script>

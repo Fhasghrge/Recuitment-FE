@@ -21,7 +21,7 @@
 </template>
 
 <script>
-
+import bus from '../components/bus.js'
 export default {
   name: 'banner',
   data () {
@@ -37,12 +37,21 @@ export default {
     quit: function () {
       let storage = window.localStorage
       storage.clear()
-      this.$router.push({ name: 'home' })
+      if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
+        this.$router.push({ path: '/managerlogin' })
+      } else {
+        this.$router.push({ name: 'home' })
+      }
     },
     revisebar: function () {
       this.userflag = !this.userflag
       this.$emit('usershow', this.userflag)
     }
+  },
+  mounted () {
+    bus.$on('listen', (show) => {
+      this.userflag = show
+    })
   }
 }
 </script>
@@ -62,7 +71,7 @@ export default {
     margin-right: 8px;
   }
 
-  .icon:hover {
+  .icon:hover .btn:hover {
     cursor: pointer;
   }
   .arrowhead {
@@ -127,6 +136,9 @@ export default {
     color: #ffffff;
     border: 0;
     font-size: 1rem;
+  }
+  .btn:hover {
+    cursor: pointer;
   }
 }
 

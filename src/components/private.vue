@@ -87,6 +87,7 @@ export default {
         method: 'get',
         url: '/user/userinfo/get'
       }).then((result) => {
+        console.log(result)
         if (result.code === 0) {
           console.log(result.msg)
           result = result.data

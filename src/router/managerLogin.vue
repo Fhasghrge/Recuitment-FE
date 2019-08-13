@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -27,24 +28,42 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['changeLogin']),
     confirmLogin () {
-      this.$axios({
-        method: 'post',
-        url: '/control/login',
-        data: {
-          username: this.username,
-          password: this.password
-        }
-      }).then((result) => {
-        console.log(result)
-        if (result.code === 0) {
-          this.$router.push({
-            path: '/adminindex'
-          })
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
+      let _this = this
+      if (this.username === '' || this.password === '') {
+        alert('账号或密码不能为空')
+      } else {
+        this.$axios({
+          method: 'post',
+          url: '/control/login',
+          data: {
+            username: this.username,
+            password: this.password
+          }
+        }).then((result) => {
+          console.log(result)
+          // // result = result.data
+          // _this.userToken = 'Bearer ' + result.data.data.body.token
+          // // 将用户token保存到vuex中
+          // _this.changeLogin({ Authorization: _this.userToken })
+          if (result.data.code === 0) {
+            _this.$router.push({ path: '/adminindex/overview?groups=0' })
+          }
+        }).catch((err) => {
+          alert('发生错误')
+          console.log(err)
+        })
+      }
+    }
+  },
+  created () {
+    let that = this
+    document.onkeydown = function (e) {
+      e = window.event || e
+      if (that.$route.path === '/managerlogin' && (e.code === 'Enter' || e.code === 'enter')) {
+        that.confirmLogin()
+      }
     }
   }
 }
@@ -73,7 +92,7 @@ export default {
   width: 30%;
   height: 350px;
   background-color: rgba(1, 1, 1, 0.3);
-  margin-left: 35%;
+  margin: 0 auto;
   text-align: center;
 }
 #managerLogin h2 {
@@ -114,7 +133,7 @@ export default {
   width: 120%;
   height: 100px;
   margin-top: 30%;
-  margin-right: 3%;
+  /* margin-right: 3%; */
   color: white;
   border: solid 3px #ffffff;
   padding-left: 25%;

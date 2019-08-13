@@ -1,25 +1,31 @@
 <template>
   <div class="kind">
-    <!-- <div v-for="(item,index) in questions"
+    <div v-for="(item,index) in questions"
          :key="index">
       <radio v-if="item.type === 1"
              :options="item.options"
              :ID="item.ID"
-             :title="item.title"></radio>
+             :title="item.title"
+             :answer="item.answer"></radio>
       <che v-if="item.type === 2"
            :options="item.options"
            :ID="item.ID"
-           :title="item.title"></che>
+           :title="item.title"
+           :answer="item.answer"></che>
       <inp v-if="item.type === 3"
            :ID="item.ID"
-           :title="item.title"></inp>
+           :title="item.title"
+           :answer="item.answer"></inp>
       <short v-if="item.type === 4"
              :ID="item.ID"
-             :title="item.title"></short>
+             :title="item.title"
+             :answer="item.answer"></short>
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
-                 :title="item.title"></uploadque> -->
-    <radio></radio>
+                 :title="item.title"
+                 :answer="item.answer"></uploadque>
+    </div>
+    <!-- <radio></radio>
     <che></che>
     <inp></inp>
     <short></short>
@@ -28,9 +34,8 @@
     <short></short>
     <short></short>
     <short></short>
-    <uploadque></uploadque>
+    <uploadque></uploadque> -->
   </div>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -42,9 +47,9 @@ import uploadque from './upload'
 export default {
   name: 'ques',
   data () {
-    var thisgroup = this.$router.query.groups
+    var thisgroup = Number(this.$route.query.groups)
     return {
-      thisgroup,
+      group: thisgroup,
       all: [],
       questions: []
     }
@@ -59,16 +64,17 @@ export default {
     getques: function () {
       this.$axios({
         methods: 'post',
-        url: '/user/exam/get',
-        baseURL: 'http://121.48.165.58:17838'
+        url: '/control/question/list'
       }).then((response) => {
-        if (response.code === 0) {
+        console.log(response)
+        if (response.data.code === 0) {
           this.all = response.data.data
           for (let a = 0; a < this.all.length; a++) {
-            if (a.groups === this.thisgroup) {
+            if (this.all[a].groups === this.group || this.all[a].groups === 0) {
               this.questions.push(this.all[a])
             }
           }
+          console.log(this.questions)
         }
       })
     }
@@ -77,6 +83,12 @@ export default {
 </script>
 
 <style scoped>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
 .kind {
   position: relative;
   background-color: black;

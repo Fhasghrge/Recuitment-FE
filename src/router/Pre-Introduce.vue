@@ -6,7 +6,7 @@
            class="arrow_left"
            @click="returnToMain"
            v-if='arrowFlag'>
-      <img src="../assets/logo.png"
+      <img src="../assets/LOGO1.png"
            class='logo'
            @click="returnToMain">
       <img src="../assets/小箭头.png"
@@ -24,19 +24,20 @@
                 v-show="Boxflag"
                 @click="priFlag=true;Boxflag=!Boxflag;">个人信息</button>
         <button class="btn"
-                v-show="Boxflag">退出登陆</button>
+                v-show="Boxflag"
+                @click="quit">退出登陆</button>
       </div>
     </transition>
     <router-view></router-view>
     <div id='text'>
       <p class='tips'
-         v-if="flag">距离开始答题还有：</p>
-      <p class='date'
-         v-if="flag">{{ date }}</p>
-      <p class='tips'
-         v-if="!flag">距离答题结束还有：</p>
+         v-if="!flag">距离开始答题还有：</p>
       <p class='date'
          v-if="!flag">{{ date }}</p>
+      <p class='tips'
+         v-if="flag">距离答题结束还有：</p>
+      <p class='date'
+         v-if="flag">{{ date }}</p>
     </div>
     <div id='group'
          v-if='Itemflag'>
@@ -49,16 +50,18 @@
       <img src="../assets/安卓@3x.svg">
       <router-link to="/main/android">安卓</router-link>
       <img src="../assets/IOS@3x.svg">
-      <router-link to="/main/IOS">IOS</router-link>
+      <router-link to="/main/iOS">iOS</router-link>
       <img src="../assets/icons/设计.svg">
       <router-link to="/main/design">设计</router-link>
       <img src="../assets/icons-new/DevOps@3x.svg">
       <router-link to="/main/DevOps">DevOps</router-link>
     </div>
+
     <a href=""
        id='notes'
        ref="notes"
        @click.prevent="notesFlag=true">答题须知</a>
+
     <div id='noteText'
          v-if="notesFlag"
          ref="noteText">
@@ -67,9 +70,9 @@
            @click="notesFlag=false">
       <h2>答题须知</h2>
       <p>这里是答题须知的内容哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或</p>
-      <a href=""
+      <!-- <a href=""
          v-if='!flag'
-         @click.prevent="notesFlag=false">开始答题</a>
+         @click.prevent="notesFlag=false">开始答题</a> -->
     </div>
 
     <div id='private'
@@ -138,6 +141,7 @@ export default {
     return {
       date: '',
       ddlStr: '2019/09/01',
+      ddlStr2: '2019/10/01',
       flag: true, // flag 控制 显示倒计时 还是 显示开始答题按钮,true为未开始，false为进行中
       notesFlag: false,
       Itemflag: true,
@@ -159,13 +163,18 @@ export default {
   methods: {
     Djs_time () { // 拼接出日期
       setInterval(() => {
-        var ddl = new Date(this.ddlStr)
+        var ddl = new Date()
+        if (new Date() - new Date(this.ddlStr) < 0) {
+          ddl = new Date(this.ddlStr)
+        } else if ((new Date() - new Date(this.ddlStr2) < 0)) {
+          ddl = new Date(this.ddlStr2)
+        }
         var presentTime = new Date()
         var rightTime = ddl - presentTime
-        var dd = Math.floor(rightTime / 1000 / 60 / 60 / 24)
-        var hh = Math.floor((rightTime / 1000 / 60 / 60) % 24)
-        var mm = Math.floor((rightTime / 1000 / 60) % 60)
-        var ss = Math.floor((rightTime / 1000) % 60)
+        var dd = this.PrefixZero(Math.floor(rightTime / 1000 / 60 / 60 / 24), 2)
+        var hh = this.PrefixZero(Math.floor((rightTime / 1000 / 60 / 60) % 24), 2)
+        var mm = this.PrefixZero(Math.floor((rightTime / 1000 / 60) % 60), 2)
+        var ss = this.PrefixZero(Math.floor((rightTime / 1000) % 60), 2)
         this.date = dd + 'd ' + hh + ':' + mm + ':' + ss
       }, 1000)
     },
@@ -202,10 +211,13 @@ export default {
         method: 'get',
         url: '/user/userinfo/get'
       }).then((result) => {
+        console.log(result)
+        result = result.data
         if (result.code === 0) {
           console.log(result.msg)
           result = result.data
-          this.priName = this.priNumber = result.stunum
+          this.privateName = this.priNumber = result.stunum
+          this.priName = result.name
           this.priPhone = result.phonenum
           this.priQQ = result.qqnum
           this.priSchool = result.college
@@ -238,16 +250,45 @@ export default {
             method: 'post',
             url: '/user/userinfo/password',
             data: {
-              oldPassword: this.oldPassword,
-              newPassword: this.newPassword
+              oldpassword: this.oldPassword,
+              newpassword: this.newPassword
             }
           }).then((res) => {
             console.log(res)
+            if (res.data.code === 0) {
+              alert('成功修改密码，请重新登陆')
+              this.$router.push({
+                path: '/home'
+              })
+            } else if (res.data.code === -5) {
+              alert(res.data.msg)
+            } else {
+              alert('修改密码失败')
+            }
           }).catch((err) => {
             console.log(err)
           })
         }
       }
+    },
+    quit () {
+      let storage = window.localStorage
+      storage.clear()
+      if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
+        this.$router.push({ path: 'managerlogin' })
+      } else {
+        this.$router.push({ name: 'home' })
+      }
+    },
+    changeFlag () {
+      if (new Date() - new Date(this.ddlStr) < 0) {
+        this.flag = false
+      } else if (new Date() - new Date(this.ddlStr2) < 0) {
+        this.flag = true
+      }
+    },
+    PrefixZero (num, n) {
+      return (Array(n).join(0) + num).slice(-n)
     }
   },
   mounted () {
@@ -255,8 +296,10 @@ export default {
     this.mobileStyle()
     this.arrowStyle()
     this.showHead()
+    this.changeFlag()
     // console.log(this.$route.path)
     this.getPrivateMsg() // 获取用户信息
+    // console.log(this.PrefixZero(9, 2))
   },
   watch: {
     '$route.path': function (newVal) {

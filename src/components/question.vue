@@ -1,36 +1,38 @@
 <template>
   <div class="kind">
-    <!-- <div v-for="(item,index) in questions"
+    <div v-for="(item,index) in questions"
          :key="index">
+      <span v-if="index === 0">一、综合题</span>
+      <span v-if="index === secindex"><br>二、方向题</span>
       <radio v-if="item.type === 1"
              :options="item.options"
              :ID="item.ID"
              :title="item.title"
-             :answer="item.answer"></radio>
+             :answer="item.answer"
+             :index='index'></radio>
       <che v-if="item.type === 2"
            :options="item.options"
            :ID="item.ID"
            :title="item.title"
-           :answer="item.answer"></che>
+           :answer="item.answer"
+           :index="index"></che>
       <inp v-if="item.type === 3"
            :ID="item.ID"
            :title="item.title"
-           :answer="item.answer"></inp>
+           :answer="item.answer"
+           :index="index"></inp>
       <short v-if="item.type === 4"
              :ID="item.ID"
              :title="item.title"
-             :answer="item.answer"></short>
+             :answer="item.answer"
+             :index="index"></short>
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
                  :title="item.title"
-                 :answer="item.answer"></uploadque> -->
-    <radio></radio>
-    <che></che>
-    <inp></inp>
-    <short></short>
-    <uploadque></uploadque>
+                 :answer="item.answer"
+                 :index="index"></uploadque>
+    </div>
   </div>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -42,33 +44,47 @@ import uploadque from './upload'
 export default {
   name: 'ques',
   data () {
-    var thisgroup = this.$router.query.groups
     return {
-      thisgroup,
       all: [],
-      questions: []
+      questions: [],
+      secindex: 0
+    }
+  },
+  props: {
+    group: {
+      type: Number,
+      default: 0
     }
   },
   components: {
     radio, che, inp, short, uploadque
   },
-  created () {
+  mounted () {
     this.getques()
   },
   methods: {
     getques: function () {
       this.$axios({
         methods: 'post',
-        url: '/user/exam/get',
-        baseURL: 'http://121.48.165.58:17838'
+        url: '/user/exam/get'
       }).then((response) => {
-        if (response.code === 0) {
+        console.log(response)
+        if (response.data.code === 0) {
           this.all = response.data.data
           for (let a = 0; a < this.all.length; a++) {
-            if (a.groups === this.thisgroup) {
+            if (this.all[a].groups === 0) {
               this.questions.push(this.all[a])
             }
           }
+          this.secindex = this.questions.length
+          for (let a = 0; a < this.all.length; a++) {
+            if (this.all[a].groups === this.group) {
+              this.questions.push(this.all[a])
+            }
+          }
+        } else {
+          alert('答卷已提交')
+          this.$router.push({ path: 'main' })
         }
       })
     }
@@ -78,12 +94,15 @@ export default {
 
 <style>
 .headline {
-  margin: 1rem auto 0.5rem auto;
+  margin: 0.5rem auto 1rem 1rem;
+  font-size: 1rem;
+  display: block;
 }
 .rad {
   display: flex;
   justify-content: space-around;
   align-items: stretch;
+  flex-wrap: wrap;
 }
 
 .radio1 {
@@ -97,7 +116,7 @@ export default {
   font-size: 1rem;
   min-height: 2rem;
   padding: 0.5rem 1rem 0 1rem;
-  width: 100%;
+  width: 50%;
   flex-wrap: wrap;
 }
 input:checked + label {
@@ -132,6 +151,7 @@ a {
 }
 .eg {
   margin-left: 20px;
+  min-width: 4.5rem;
 }
 .loading {
   height: 7px;
@@ -146,6 +166,7 @@ a {
   align-items: center;
   width: 90%;
   margin: 0.5rem auto;
+  overflow: scroll;
 }
 .in {
   background-color: #d9d9d9;
@@ -172,11 +193,12 @@ a {
     margin-left: 20px;
   }
   .optall {
-    width: 15%;
+    min-width: 25%;
+    max-width: 25%;
     text-align: center;
   }
   .docu {
-    width: 50%;
+    width: 80%;
     border: solid 2px #4a4a4a;
     margin: 1rem auto 1rem 1rem;
   }

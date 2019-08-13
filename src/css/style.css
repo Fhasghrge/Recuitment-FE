@@ -33,12 +33,13 @@ textarea {
 
 #main {
   width: 100%;
-  height: 768px;
+  height: 750px;
   position: relative;
-  background: url('../img/背景.png');
+  /* background: url('../assets/背景.png'); */
+  /* overflow-x: hidden; */
 }
 
-@media screen and (min-height: 768px) {
+/* @media screen and (min-height: 768px) {
   #main {
     width: 100%;
     height: 920px;
@@ -49,7 +50,7 @@ textarea {
     width: 100%;
     height: 1024px;
   }
-}
+} */
 
 #header {
   position: absolute;
@@ -59,7 +60,7 @@ textarea {
 #header .logo {
   max-width: 70%;
   height: 50px;
-  opacity: 0.8;
+  /* opacity: 1; */
   margin-top: 3%;
   margin-left: 5%;
 }
@@ -229,7 +230,7 @@ textarea {
   position: absolute;
   width: 60%;
   height: 80%;
-  background: url(../img/背景.png);
+  background: url(../assets/背景.png);
   background-size: 132%;
   text-align: center;
   color: white;
@@ -267,9 +268,10 @@ textarea {
 }
 .close {
   z-index: 99999;
-  position: absolute;
-  margin-top: 5%;
-  margin-left: 40%;
+  position: relative;
+  margin-top: 3%;
+  margin-right: 5%;
+  float: right;
 }
 .close:hover {
   cursor: pointer;
@@ -282,24 +284,28 @@ textarea {
 }
 
 #private #priHead {
-  position: absolute;
-  margin-left: -42%;
-  margin-top: 5%;
+  position: relative;
+  float: left;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  margin-top: 3%;
 }
 
 #private #priName {
-  position: absolute;
-  margin-left: -34.5%;
-  margin-top: 6.1%;
+  position: relative;
+  float: left;
+  margin-left: 1%;
+  margin-top: 4%;
+  margin-bottom: 5%;
   font-size: 1.4rem;
 }
 
 #private #priText {
-  position: absolute;
+  position: relative;
   display: flex;
   width: 80%;
-  margin-left: 10%;
-  margin-top: 11.5%;
+  margin: 5% auto;
+  margin-left: -10%;
   flex-wrap: wrap;
 }
 
@@ -312,7 +318,7 @@ textarea {
 }
 
 #private .priBox {
-  margin-left: 10%;
+  margin: 0 auto;
   width: 40%;
 }
 .line {
@@ -333,7 +339,7 @@ textarea {
   width: 100%;
   height: 12%;
   font-family: PingFangSC-Regular;
-  font-size: 24px;
+  font-size: 1.2rem;
   font-weight: normal;
   font-stretch: normal;
   letter-spacing: 0px;
@@ -343,10 +349,12 @@ textarea {
 
 #private .confirm {
   opacity: 1;
-  width: 7%;
-  position: absolute;
-  margin-top: 56%;
-  margin-left: -3.5%;
+  width: 20%;
+  position: relative;
+  padding-left: 10%;
+  padding-right: 10%;
+  /* margin-top: 10%; */
+  /* margin-left: -3.5%; */
   font-size: 1.2rem;
 }
 #private .confirm:hover {
@@ -364,10 +372,10 @@ textarea {
     margin-left: 5%;
   }
 
-  .logo {
-    max-width: 100%;
+  #header .logo {
+    max-width: 50%;
+    margin-left: 25%;
     height: 40px;
-    margin-left: 32%;
   }
   .portrait {
     max-width: 100%;
@@ -392,13 +400,13 @@ textarea {
   .tips,
   .Endtips {
     width: 100%;
-    margin-top: 140%;
+    margin-top: 160%;
     font-size: 1rem;
   }
   .date,
   .begin {
     width: 100%;
-    margin-top: 148%;
+    margin-top: 168%;
     margin-left: 0;
     font-size: 1rem;
   }
@@ -423,9 +431,13 @@ textarea {
   }
   #notes,
   #private {
-    margin-top: 157%;
-    margin-left: 30%;
+    width: 20%;
+    margin-top: 167%;
+    margin-left: 42%;
     font-size: 1rem;
+  }
+  #notes {
+    margin-top: 177%;
   }
   .begin {
     height: 3%;
@@ -524,13 +536,14 @@ textarea {
     -ms-transition: -ms-transform 0.2s;
   }
   .mainbox {
+    z-index: 999999;
     height: 60px;
     width: 98px;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);
     margin-top: 6%;
     margin-left: 84%;
-    padding-top: 10px;
+    /* padding-top: 10px; */
   }
   .draw-enter-active,
   .draw-leave-active {
@@ -563,31 +576,55 @@ textarea {
   .box {
     display: none;
   }
+  #text {
+    /* margin-top: 100%; */
+  }
   #private {
     width: 100%;
+    height: 100%;
     margin: 0;
   }
   #private #priName {
-    margin-top: 8%;
-    width: 35%;
+    margin-top: 6%;
+    /* width: 50%; */
+    font-size: 1.2rem;
   }
   #private .close {
     margin-left: 35%;
   }
   #private #priText {
-    margin-top: 30%;
+    margin: 30% auto;
+    margin-bottom: 5%;
   }
   #private .priVal {
-    width: 80%;
+    width: 100%;
     font-size: 1rem;
+    overflow: visible;
   }
   #private .priMsg {
     width: 100%;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   #private .confirm {
-    margin-left: -10%;
-    width: 20%;
-    margin-top: 120%;
+    padding-left: 10%;
+    padding-right: 10%;
+    /* margin-top: 70%; */
+  }
+}
+.confirmRegister {
+  background-color: rgba(0, 0, 0, 1);
+  height: 70%;
+  margin: -80% auto;
+}
+.confirmRegister h2 {
+  margin-top: 20%;
+}
+.confirmRegister button {
+  margin-top: 20%;
+}
+@media (max-width: 750px) {
+  .confirmRegister {
+    margin: -110% auto;
+    height: 80%;
   }
 }

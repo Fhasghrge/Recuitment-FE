@@ -10,11 +10,14 @@
                 id="quesDescribe"
                 cols="30"
                 rows="5"
-                v-model="quesDescribe"></textarea>
-      <span id='typeTips'>题目类型</span>
+                v-model="quesDescribe"
+                @click="showDes"></textarea>
+      <span id='typeTips'
+            v-if="!$route.query.ID">题目类型</span>
       <select name="questionType"
               id="questionType"
               ref="options"
+              v-show="!$route.query.ID"
               @click="changeFlag">
         <option value="单选">单选</option>
         <option value="多选">多选</option>
@@ -22,7 +25,7 @@
         <option value="简答">简答</option>
         <option value="上传文件">上传文件</option>
       </select>
-      <label><input type="checkbox"
+      <label v-show="!$route.query.ID"><input type="checkbox"
                value="">必答</label>
       <div v-if="flag">
         <div id='optionHead'>
@@ -33,10 +36,12 @@
         <ul id='optionText'>
           <li v-for="(item,index) in optionList"
               :key="index"
-              :class="item.name">
+              :class="item.name"
+              class="option">
             <input type="text"
-                   :value="item.text"
-                   ref="optionText">
+                   v-model="item.text"
+                   ref="optionText"
+                   @click="optionTextShow(index)">
             <img src="../../img/添加icon.png"
                  class="addImg"
                  @click="add(index)">
@@ -57,9 +62,10 @@
         </ul>
         <button id="addBtn"
                 @click="addOption">添加选项</button>
+        <span id='confirmMsg'>{{confirmMsg}}</span><button id="confirmBtn"
+                @click="addQuestion">保存修改</button>
       </div>
-      <span id='confirmMsg'>{{confirmMsg}}</span><button id="confirmBtn"
-              @click="addQuestion">保存修改</button>
+
     </div>
   </div>
 </template>
@@ -73,7 +79,7 @@ export default {
       optionList: [
         { text: '选项1', id: 1, name: 'option1', answer: false }
       ],
-      confirmMsg: '保存失败 请检查网络',
+      confirmMsg: '',
       flag: true,
       quesDescribe: '请输入题目描述',
       groups: this.$route.query.groups,
@@ -84,10 +90,11 @@ export default {
     showGroupName () {
       let group = this.$route.query.groups
       switch (group) {
+        case 0: this.groupName = '公共题库'; break
         case 1: this.groupName = '产品'; break
         case 2: this.groupName = '设计'; break
         case 3: this.groupName = '安卓'; break
-        case 4: this.groupName = 'IOS'; break
+        case 4: this.groupName = 'iOS'; break
         case 5: this.groupName = '前端'; break
         case 6: this.groupName = '后台'; break
         case 7: this.groupName = 'DevOps'; break
@@ -102,16 +109,24 @@ export default {
             ID
           }
         }).then((result) => {
+          console.log(result)
+          result = result.data
           if (result.code === 0) {
             console.log(result.msg)
             result = result.data
-            this.quesDescribe = result.describe
+            this.quesDescribe = result.title
             this.$refs.options[result.type - 1].selected = true
             this.changeFlag()
             if (result.options) {
               this.optionList.splice(0, 1) // 把默认选项删除
               for (let i = 0; i < result.options.length; i++) {
-                this.optionList.push(result.options[i])
+                let option = {
+                  text: result.options[i].content,
+                  answer: result.options[i].answer,
+                  id: i + 1,
+                  name: 'option' + (i + 1).toString()
+                }
+                this.optionList.push(option)
               }
             }
           } else {
@@ -124,10 +139,10 @@ export default {
     },
     addOption () {
       let len = this.optionList.length
-      if (len > 4) {
-        alert('最多只能四个选项')
-        return
-      }
+      // if (len > 4) {
+      //   alert('最多只能四个选项')
+      //   return
+      // }
       let id = len + 1
       let option = {
         text: '选项' + id.toString(),
@@ -176,10 +191,10 @@ export default {
       this.optionList.splice(index, 1)
     },
     add (index) {
-      if (this.optionList.length > 4) {
-        alert('最多只能四个选项')
-        return
-      }
+      // if (this.optionList.length > 4) {
+      //   alert('最多只能四个选项')
+      //   return
+      // }
       let id = this.optionList.length + 1
       let option = {
         text: this.optionList[index].text,
@@ -189,59 +204,81 @@ export default {
       }
       this.optionList.push(option)
     },
+    showDes () {
+      if (!this.$route.query.ID && this.quesDescribe === '请输入题目描述') {
+        this.quesDescribe = ''
+      }
+    },
+    optionTextShow (index) {
+      if (!this.$route.query.ID && this.optionList[index].text === '选项' + String(index + 1)) {
+        this.optionList[index].text = ''
+      }
+    },
     addQuestion () {
+      let trueAnswerCount = 0
       let data = {}
+      let groups = this.$route.query.groups
       let questionType = this.$refs.options.value
       if (questionType === '单选') {
         let type = 1
-        let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
         let options = []
         for (let i = 0; i < this.optionList.length; i++) {
+          if (this.optionList[i].answer) {
+            trueAnswerCount = trueAnswerCount + 1
+          }
+          if (trueAnswerCount > 1) {
+            alert('单选题只能设置一个正确选项')
+            return
+          }
           let option = {
             content: this.optionList[i].text,
             answer: this.optionList[i].answer
           }
           options.push(option)
-        };
-        data = { type, group, title, describe, options }
+        }
+        if (trueAnswerCount === 0) {
+          alert('请设置一个正确选项')
+          return
+        }
+        data = { type, groups, title, describe, options }
         // console.log(data)
       } else if (questionType === '多选') {
         let type = 2
-        let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
         let options = []
         for (let i = 0; i < this.optionList.length; i++) {
+          if (trueAnswerCount === 0) {
+            alert('请设置至少一个正确选项')
+            return
+          }
           let option = {
             content: this.optionList[i].text,
             answer: this.optionList[i].answer
           }
           options.push(option)
         };
-        data = { type, group, title, describe, options }
+        data = { type, groups, title, describe, options }
         // console.log(data)
       } else if (questionType === '填空') {
         let type = 3
-        let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
-        data = { type, group, title, describe }
+        data = { type, groups, title, describe }
         // console.log(data)
       } else if (questionType === '简答') {
         let type = 4
-        let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
-        data = { type, group, title, describe }
+        data = { type, groups, title, describe }
         // console.log(data)
       } else if (questionType === '上传文件') {
         let type = 5
-        let group = this.groupName
         let title = this.quesDescribe
         let describe = this.quesDescribe
-        data = { type, group, title, describe }
+        data = { type, groups, title, describe }
         // console.log(data)
       }
       console.log(data)
@@ -267,23 +304,39 @@ export default {
           console.log(err)
         })
       }
+      alert('修改（添加）成功')
+      this.$router.push({
+        path: '/adminindex/ctrlques',
+        query: {
+          groups: this.groups
+        }
+      })
     }
   },
   created () {
+    let _this = this
     this.showGroupName()
-    this.id = this.$route.query.ID
+    if (this.$route.query.ID || this.$route.query.ID === 0) {
+      this.id = this.$route.query.ID
+    }
     this.getQuestion(this.id)
+    document.onkeydown = function (e) {
+      let _key = window.event.keyCode
+      if (_key === 13) {
+        _this.addOption()
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
 #motify {
-  position: relative;
+  position: absolute;
   margin-left: 20%;
   margin-top: 2%;
   width: 60%;
-  height: 600px;
+  /* height: 600px; */
   background: black;
 }
 #addHead {
@@ -358,7 +411,7 @@ export default {
   color: white;
 }
 #optionHead {
-  position: absolute;
+  position: relative;
   color: white;
   display: flex;
   margin-left: 14%;
@@ -366,7 +419,8 @@ export default {
   height: 6%;
   border: 1.5px solid white;
   margin-top: 32%;
-  padding-left: 1%;
+  padding-top: 0.5%;
+  padding-left: 2%;
 }
 #optionHead .optionHead {
   margin-top: 1%;
@@ -378,55 +432,63 @@ export default {
   margin-left: 21%;
 }
 #optionText {
-  margin-left: 10%;
-  margin-top: 37%;
-  position: absolute;
+  /* margin-left: 10%;
+  margin-top: 37%; */
+  position: relative;
+}
+.option {
+  position: relative;
+  padding-top: 1%;
+  /* margin-top: 37%; */
 }
 #optionText input {
   position: relative;
+  margin-left: 10%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  /* margin-top: 0.1%; */
   color: #e9e9e9;
   background: black;
   border: 1.5px white solid;
-  width: 100%;
-  padding-left: 3%;
-  padding-top: 3%;
-  padding-bottom: 3%;
+  width: 25%;
+  text-align: center;
   font-size: 1rem;
 }
 #optionText .addImg,
 .delImg {
-  position: absolute;
-  margin-left: 95%;
-  margin-top: -12%;
+  position: relative;
+  margin-left: 1%;
+  /* margin-left: 95%; */
+  /* margin-top: -12%; */
 }
 #optionText .delImg {
-  margin-left: 110%;
+  margin-left: 2%;
 }
 #optionText #checkTrueAnswer {
-  position: absolute;
+  position: relative;
   max-width: 5%;
   margin-top: -9%;
-  margin-left: 150%;
+  margin-left: 6%;
 }
 #optionText .upImg,
 .downImg {
-  position: absolute;
-  margin-left: 220%;
+  position: relative;
+  margin-left: 16%;
   margin-top: -12%;
 }
 #optionText .downImg {
-  margin-left: 240%;
+  margin-left: 3%;
 }
-#optionText .option1,
+/* #optionText .option1,
 .option2,
 .option3,
 .option4 {
   margin-top: 5%;
-}
+} */
 #addBtn,
 #confirmBtn {
-  position: absolute;
-  margin-top: 58%;
+  position: relative;
+  /* margin-top: 58%; */
   color: white;
   background: black;
   border: 1.5px solid white;
@@ -444,6 +506,7 @@ export default {
   margin-left: 60%;
 }
 #confirmBtn {
+  margin-top: 0;
   width: 12%;
   margin-left: 80%;
   border: 0.1px solid white;

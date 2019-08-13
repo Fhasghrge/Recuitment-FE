@@ -1,7 +1,8 @@
 <template>
   <div class="leftbar">
     <div class="starlogo">
-      <img src="../assets/LOGO1.png" />
+      <img @click="$router.push({ path: '/adminindex/overview?groups=0' })"
+           src="../assets/LOGO1.png" />
     </div>
     <div class="opin">
       <div class="wrapp"><img src="../assets/icons/产品.svg"
@@ -49,7 +50,7 @@
       <div class="wrapp"><img src="../assets/IOS@3x.svg"
              class="imga">
         <router-link to="/adminindex/overview?groups=4"
-                     class="dire">IOS</router-link>
+                     class="dire">iOS</router-link>
       </div>
     </div>
     <!-- <div class="opin">
@@ -80,6 +81,9 @@ export default {
     margin: 0 auto;
     width: 160px;
     margin-bottom: 34px;
+  }
+  .starlogo:hover {
+    cursor: pointer;
   }
   .starlogo > img {
     width: 160px;

@@ -9,7 +9,7 @@
       <img class="midlogoa"
            src="../img/LOGO.png">
       <img src="../img/头像.png"
-           id="priHeada"><span id="priNamea">{{ privateName }}</span>
+           id="priHeada">
       <img src="../img/close.png"
            class="closea"
            @click="closebar">
@@ -33,9 +33,10 @@
                v-model="priNumber">
 
       </div>
-      <div class="priBoxa priRight">
-        <span class='privala'>旧密码</span><input class="priMsga"
-               v-model="oldPassword">
+      <div class="priBoxa priLeft">
+        <span class='privala'>QQ号</span><input class="priMsga"
+               value="priQQ"
+               v-model="priQQ">
 
       </div>
       <div class="priBoxa priLeft">
@@ -45,16 +46,16 @@
 
       </div>
       <div class="priBoxa priRight">
+        <span class='privala'>旧密码</span><input class="priMsga"
+               v-model="oldPassword">
+
+      </div>
+      <div class="priBoxa priRight">
         <span class='privala'>新密码</span><input class="priMsga"
                v-model="newPassword">
 
       </div>
-      <div class="priBoxa priLeft">
-        <span class='privala'>QQ号</span><input class="priMsga"
-               value="priQQ"
-               v-model="priQQ">
 
-      </div>
       <div class="priBoxa priRight">
         <span class='privala'>重复密码</span><input class="priMsga"
                v-model="rePassword">
@@ -80,7 +81,8 @@ export default {
       newPassword: '',
       priSchool: '霍格沃兹学院',
       priQQ: '123456789',
-      rePassword: ''
+      rePassword: '',
+      show1: false
     }
   },
   props: {
@@ -91,30 +93,39 @@ export default {
   },
   methods: {
     closebar: function () {
-      this.show = false
-      this.$emit('showpribar', this.show)
-      bus.$emit('listen', this.show)
+      this.show1 = false
+      this.$emit('showpribar', this.show1)
+      bus.$emit('listen', this.show1)
     },
-    getPrivateMsg: function () {
+    getPrivateMsg () {
       this.$axios({
         method: 'get',
         url: '/user/userinfo/get'
       }).then((result) => {
-        if (result.code === 0) {
-          console.log(result.msg)
+        if (this.$route.path === '/answer') {
           result = result.data
-          this.priName = this.priNumber = result.stunum
-          this.priPhone = result.phonenum
-          this.priQQ = result.qqnum
-          this.priSchool = result.college
-        } else {
-          console.log('获取用户信息失败')
+          if (result.code === 0) {
+            console.log(result)
+            if (result.data.lock === 1) {
+              alert('您已经提交过试卷')
+              this.$router.push({ path: '/main' })
+            } else {
+              result = result.data
+              this.privateName = this.priNumber = result.stunum
+              this.priName = result.name
+              this.priPhone = result.phonenum
+              this.priQQ = result.qqnum
+              this.priSchool = result.college
+            }
+          } else {
+            console.log('获取用户信息失败')
+          }
         }
       }).catch((err) => {
         console.log(err)
       })
     },
-    changePrivateMsg: function () {
+    changePrivateMsg () {
       this.priFlag = false
       this.$axios({
         method: 'post',
@@ -136,11 +147,21 @@ export default {
             method: 'post',
             url: '/user/userinfo/password',
             data: {
-              oldPassword: this.oldPassword,
-              newPassword: this.newPassword
+              oldpassword: this.oldPassword,
+              newpassword: this.newPassword
             }
           }).then((res) => {
             console.log(res)
+            if (res.data.code === 0) {
+              alert('成功修改密码，请重新登陆')
+              this.$router.push({
+                path: '/home'
+              })
+            } else if (res.data.code === -5) {
+              alert(res.data.msg)
+            } else {
+              alert('修改密码失败')
+            }
           }).catch((err) => {
             console.log(err)
           })
@@ -149,7 +170,8 @@ export default {
     }
   },
   mounted () {
-    this.getPrivateMsg() // 获取用户信息
+    this.getPrivateMsg()// 获取用户信息
+    this.show1 = this.show
   }
 }
 </script>

@@ -5,10 +5,11 @@
            @click="goindex" />
     </div>
     <div class="exit">
-      <img src="../assets/route.png" />
+      <img @click="$router.push('/main')"
+           src="../assets/route.png" />
     </div>
     <div class="middle">
-      <h2>前端组答题</h2>
+      <h2>{{thisgroup + '组答题'}}</h2>
     </div>
     <user @usershow='usertans'></user>
     <img src="../assets/icon.svg"
@@ -27,23 +28,28 @@ export default {
   data () {
     return {
       bannerflag: false,
-      mobflag: false
+      mobflag: false,
+      thisgroup: '',
+      grouplist: [{ groupnum: 0, groupname: '无组别' }, { groupnum: 1, groupname: '产品' }, { groupnum: 2, groupname: '设计' }, { groupnum: 3, groupname: '安卓' }, { groupnum: 4, groupname: 'IOS' }, { groupnum: 5, groupname: '前端' }, { groupnum: 6, groupname: '后台' }, { groupnum: 7, groupname: 'Devops' }]
     }
   },
   components: {
     user, mobbar
   },
+  props: {
+    group: {
+      type: Number,
+      default: 0
+    }
+  },
   methods: {
     mobtans: function () {
       this.mobflag = !this.mobflag
-      console.log(this.mobflag)
       this.$emit('mainshow', this.mobflag)
-      console.log(this.mobflag)
     },
     usertans (userflag) {
       this.bannerflag = userflag
       this.$emit('mainshow', this.bannerflag)
-      console.log(this.bannerflag)
     },
     goindex: function () {
       this.$router.push({ path: 'main' })
@@ -53,6 +59,12 @@ export default {
     bus.$on('listen', (show) => {
       this.mobflag = show
     })
+    for (let a = 0; a < this.grouplist.length; a++) {
+      if (this.group === this.grouplist[a].groupnum) {
+        this.thisgroup = this.grouplist[a].groupname
+        return
+      }
+    }
   }
 }
 </script>

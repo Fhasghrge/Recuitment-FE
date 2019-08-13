@@ -1,17 +1,17 @@
 <template>
   <div class="che">
-    <p class="headline">{{title}}</p>
+    <span class="headline"
+          v-html="trimstr(title)"></span>
     <div class="rad">
       <div v-for="(opt,indexc) in options"
            :key="indexc"
            class="optall">
         <input type="checkbox"
-               name="radio"
                class="radio1"
                :id="che(indexc)"
                :value="options[indexc]"
                v-model="chedata"
-               @change="sendche" />
+               @change="sendche(options[indexc])" />
         <label :for="che(indexc)"
                class="radio2">{{options[indexc]}}</label>
       </div>
@@ -22,11 +22,11 @@
       <input type="button"
              value="添加"
              @click="toAdd">
-      <select name="frontOrBack"
+      <!-- <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
         <option value="于此题前">于此题前</option>
-      </select>
+      </select> -->
       <input type="button"
              value="删除"
              @click="delBoxFlag=true">
@@ -61,7 +61,7 @@ export default {
   props: {
     options: {
       type: Array,
-      default: () => ['帅', '我就是栓', '好帅', '帅爆了']
+      default: () => []
     },
     ID: {
       type: Number,
@@ -69,37 +69,68 @@ export default {
     },
     title: {
       type: String,
-      default: '有多帅'
+      default: ''
     },
     answer: {
       type: Array,
       default: () => []
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
     getlist: function () {
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/control/question/list'
       }).then((res2) => {
-        if (res2.code === 0) {
+        if (res2.data.code === 0) {
           this.list2 = res2.data.data
         }
       })
     },
-    che: function (index) {
-      return 'che' + index
+    trimstr: function (str) {
+      let strindex = String(this.index + 1)
+      let strtrim = '(多选题) '
+      let head = strindex + '.' + strtrim
+      let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
+      let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
+      let strtrim3 = head.concat(strtrim2)
+      return strtrim3
+    },
+    che: function (index1) {
+      return 'che' + this.index + index1
     },
     sendche: function (value) {
       if (this.$route.path === '/answer') {
-        this.$axios({
-          method: 'post',
-          url: '/user/exam/answer',
-          data: {
-            ID: this.ID,
-            answer: this.chedata
+        let cheflag = 0
+        for (let b = 0; b < this.chedata.length; b++) {
+          if (value === this.chedata[b]) {
+            cheflag = 1
+            break
           }
-        })
+        }
+        if (cheflag === 1) {
+          this.$axios({
+            method: 'post',
+            url: '/user/exam/answer',
+            data: {
+              ID: this.ID,
+              answer: value
+            }
+          })
+        } else if (cheflag === 0) {
+          this.$axios({
+            method: 'post',
+            url: '/user/exam/delete',
+            data: {
+              ID: this.ID,
+              answer: value
+            }
+          })
+        }
       }
     },
     toAdd () {
@@ -125,7 +156,7 @@ export default {
         method: 'post',
         url: '/control/question/del',
         data: {
-          id: this.ID
+          ID: this.ID
         }
       }).then((result) => {
         console.log(result)
@@ -146,6 +177,16 @@ export default {
           return
         }
       }
+    }
+    if (this.$route.path === '/adminindex/ctrlques') {
+      let answers = []
+      for (let i = 0; i < this.options.length; i++) {
+        answers.push(this.options[i].content)
+      }
+      for (let i = 0; i < this.options.length; i++) {
+        this.options.splice(i, 1, answers[i])
+      }
+      // console.log(this.options)
     }
   }
 }
@@ -168,7 +209,6 @@ select {
   position: relative;
   color: white;
   width: 60%;
-  height: 30px;
   margin-left: 40%;
   display: flex;
   text-align: center;

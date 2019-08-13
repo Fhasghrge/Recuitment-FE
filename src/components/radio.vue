@@ -1,12 +1,13 @@
 <template>
   <div class="radio">
-    <p class="headline">{{title}}</p>
-    <div class="rad">
+    <span class="headline"
+          v-html="trimstr(title)"></span>
+    <div class="rad"
+         ref="radioref">
       <div v-for="(opt,indexr) in options"
            :key="indexr"
            class="optall">
         <input type="radio"
-               name="radio"
                class="radio1"
                :id="radio(indexr)"
                :value="options[indexr]"
@@ -22,11 +23,11 @@
       <input type="button"
              value="添加"
              @click="toAdd">
-      <select name="frontOrBack"
+      <!-- <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
         <option value="于此题前">于此题前</option>
-      </select>
+      </select> -->
       <input type="button"
              value="删除"
              @click="delBoxFlag=true">
@@ -38,7 +39,8 @@
         <p>是否删除</p>
         <img src="../assets/删除@3x.svg">
         <input type="button"
-               value="确认">
+               value="确认"
+               @click="delConfirm">
         <input type="button"
                value="取消"
                @click="delBoxFlag=false">
@@ -51,16 +53,16 @@
 export default {
   data () {
     return {
-      radiodata: '',
       delBoxFlag: false,
       groups: this.$route.query.groups,
-      list1: []
+      list1: [],
+      radiodata: ''
     }
   },
   props: {
     options: {
       type: Array,
-      default: () => ['帅', '我就是帅帅帅帅', '好帅', '帅爆了']
+      default: () => []
     },
     ID: {
       type: Number,
@@ -68,26 +70,29 @@ export default {
     },
     title: {
       type: String,
-      default: '有多帅'
+      default: ''
     },
     answer: {
       type: String,
-      default: '就是这么帅'
+      default: ''
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
-    getlist: function () {
-      this.$axios({
-        methods: 'post',
-        url: '/control/question/list'
-      }).then((res2) => {
-        if (res2.code === 0) {
-          this.list2 = res2.data.data
-        }
-      })
+    radio: function (index2) {
+      return 'radio' + this.index + index2
     },
-    radio: function (index) {
-      return 'radio' + index
+    trimstr: function (str) {
+      let strindex = String(this.index + 1)
+      let strtrim = '(单选题) '
+      let head = strindex + '.' + strtrim
+      let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
+      let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
+      let strtrim3 = head.concat(strtrim2)
+      return strtrim3
     },
     sendradio: function (value) {
       if (this.$route.path === '/answer') {
@@ -124,10 +129,11 @@ export default {
         method: 'post',
         url: '/control/question/del',
         data: {
-          id: this.ID
+          ID: this.ID
         }
       }).then((result) => {
         console.log(result)
+        this.$router.go(0)
       }).catch((err) => {
         console.log(err)
       })
@@ -137,14 +143,15 @@ export default {
     if (this.answer !== '') {
       this.radiodata = this.answer
     }
-    if (this.$route.path === '/marking') {
-      this.getlist()
-      for (let i = 0; i < this.list1.length; i++) {
-        if (this.ID === this.list1[i].ID) {
-          this.title = this.list1[i].title
-          return
-        }
+    if (this.$route.path === '/adminindex/ctrlques') {
+      let answers = []
+      for (let i = 0; i < this.options.length; i++) {
+        answers.push(this.options[i].content)
       }
+      for (let i = 0; i < this.options.length; i++) {
+        this.options.splice(i, 1, answers[i])
+      }
+      // console.log(this.options)
     }
   }
 }
@@ -170,7 +177,6 @@ select {
   position: relative;
   color: white;
   width: 60%;
-  height: 30px;
   margin-left: 40%;
   display: flex;
   text-align: center;

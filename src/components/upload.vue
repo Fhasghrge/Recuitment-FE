@@ -1,6 +1,7 @@
 <template>
   <div class="upload">
-    <p class="headline">4.画出范老板的肖像画并上传附件</p>
+    <span class="headline"
+          v-html="trimstr(title)"></span>
     <div class="line">
       <img src="../assets/load.png"
            class="load" />
@@ -10,9 +11,8 @@
       <input type="file"
              class="file"
              id="file"
-             multiple="multiple"
              value=""
-             @change="upload">
+             @change="upload($event)">
       <span class="eg">tips:多文件请将所有文件打包成一个zip文件上传</span>
     </div>
     <div class="docu">
@@ -34,11 +34,11 @@
       <input type="button"
              value="添加"
              @click="toAdd">
-      <select name="frontOrBack"
+      <!-- <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
         <option value="于此题前">于此题前</option>
-      </select>
+      </select> -->
       <input type="button"
              value="删除"
              @click="delBoxFlag=true">
@@ -79,21 +79,28 @@ export default {
     },
     title: {
       type: String,
-      default: '有多帅'
+      default: ''
     },
     answer: {
       type: String,
-      default: '就是这么帅'
+      default: ''
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
     getlist: function () {
       this.$axios({
-        methods: 'post',
-        url: '/control/question/list'
+        method: 'post',
+        url: '/control/question/list',
+        data: {
+          ID: this.ID
+        }
       }).then((res2) => {
-        if (res2.code === 0) {
-          this.list3 = res2.data.data
+        if (res2.data.code === 0) {
+          this.title = res2.data.data.title
         }
       })
     },
@@ -124,42 +131,49 @@ export default {
         method: 'post',
         url: '/control/question/del',
         data: {
-          id: this.ID
+          ID: this.ID
         }
       }).then((result) => {
         console.log(result)
+        this.$router.go(0)
       }).catch((err) => {
         console.log(err)
       })
     },
+    trimstr: function (str) {
+      let strindex = String(this.index + 1)
+      let strtrim = '(附件题) '
+      let head = strindex + '.' + strtrim
+      let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
+      let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
+      let strtrim3 = head.concat(strtrim2)
+      return strtrim3
+    },
     upload: function (f) {
-      var form = new FormData()
-      form.append('name', 'txl')
+      var form = new window.FormData()
+      form.append('ID', this.ID)
       for (let i = 0; i < f.target.files.length; i++) {
         var file = f.target.files[i]
+        this.filename.append(file.name)
         form.append('file', file)
-        this.filename.splice(i, 1, file.name)
       }
       if (this.$route.path === '/answer') {
+        let that = this
         this.$axios({
-          methods: 'post',
-          headers: { 'Content-Type': 'multipart/form-data' },
+          method: 'post',
+          headers: { 'Content-Type': 'undefined' },
           url: '/user/file/upload',
-          data: {
-            ID: this.ID,
-            file: form
-          },
+          data: form,
           onUploadProgress: function (f) {
-            console.log('进度：')
             console.log(f)
             // 属性lengthComputable主要表明总共需要完成的工作量和已经完成的工作是否可以被测量
             // 如果lengthComputable为false，就获取不到e.total和e.loaded
             if (f.lengthComputable) {
               var rate = f.loaded / f.total // 已上传的比例
               if (rate < 1) {
-                this.length = (rate * 100).toFixed(2)
+                that.length = (rate * 100).toFixed(2)
               } else {
-                this.flag = false
+                that.flag = false
               }
             }
           }
@@ -169,17 +183,12 @@ export default {
   },
   mounted () {
     if (this.answer !== '') {
-      this.filename.splice(0, 1, this.answer)
+      this.filename = this.filename.concat(this.answer)
+      this.flag = false
     }
     if (this.$route.path === '/marking') {
       this.flag = false
       this.getlist()
-      for (let i = 0; i < this.list3.length; i++) {
-        if (this.ID === this.list3[i].ID) {
-          this.title = this.list3[i].title
-          return
-        }
-      }
     }
   }
 }
@@ -205,7 +214,6 @@ select {
   position: relative;
   color: white;
   width: 60%;
-  height: 30px;
   margin-left: 40%;
   display: flex;
   text-align: center;

@@ -13,6 +13,7 @@
 export default {
   data () {
     return {
+      ddlStr: '2019/09/01',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '前端组',
       introduce: '这里是前端组的介绍哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或'
@@ -26,7 +27,17 @@ export default {
           groups: 5
         }
       })
+    },
+    changeFlag () {
+      if (new Date() - new Date(this.ddlStr) > 0) {
+        this.flag = true
+      } else {
+        this.flag = false
+      }
     }
+  },
+  mounted () {
+    this.changeFlag()
   }
 }
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div class="inp">
-    <p class="headline">{{title}}</p>
+    <span class="headline"
+          v-html="trimstr(title)"></span>
     <input class="ipt"
            v-model="singleinp"
            @blur="sendinp" />
@@ -10,11 +11,11 @@
       <input type="button"
              value="添加"
              @click="toAdd">
-      <select name="frontOrBack"
+      <!-- <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
         <option value="于此题前">于此题前</option>
-      </select>
+      </select> -->
       <input type="button"
              value="删除"
              @click="delBoxFlag=true">
@@ -53,21 +54,29 @@ export default {
     },
     title: {
       type: String,
-      default: '有多帅'
+      default: ''
     },
     answer: {
       type: String,
-      default: '就是这么帅'
+      default: ''
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
     getlist: function () {
+      console.log(this.ID)
       this.$axios({
-        methods: 'post',
-        url: '/control/question/list'
+        method: 'post',
+        url: '/control/question/info',
+        data: {
+          ID: this.ID
+        }
       }).then((res2) => {
-        if (res2.code === 0) {
-          this.list2 = res2.data.data
+        if (res2.data.code === 0) {
+          this.title = res2.data.data.title
         }
       })
     },
@@ -82,6 +91,15 @@ export default {
           }
         })
       }
+    },
+    trimstr: function (str) {
+      let strindex = String(this.index + 1)
+      let strtrim = '(填空题) '
+      let head = strindex + '.' + strtrim
+      let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
+      let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
+      let strtrim3 = head.concat(strtrim2)
+      return strtrim3
     },
     toAdd () {
       this.$router.push({
@@ -106,7 +124,7 @@ export default {
         method: 'post',
         url: '/control/question/del',
         data: {
-          id: this.ID
+          ID: this.ID
         }
       }).then((result) => {
         console.log(result)
@@ -121,12 +139,6 @@ export default {
     }
     if (this.$route.path === '/marking') {
       this.getlist()
-      for (let i = 0; i < this.list2.length; i++) {
-        if (this.ID === this.list2[i].ID) {
-          this.title = this.list2[i].title
-          return
-        }
-      }
     }
   }
 }
@@ -149,7 +161,6 @@ export default {
   position: relative;
   color: white;
   width: 60%;
-  height: 30px;
   margin-left: 40%;
   display: flex;
   text-align: center;

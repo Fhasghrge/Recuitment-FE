@@ -1,6 +1,6 @@
 <template>
   <div class="kind">
-    <!-- <div v-for="(item,index) in que"
+    <div v-for="(item,index) in que"
          :key="index">
       <inp v-if="item.type === 3"
            :ID="item.ID"
@@ -10,12 +10,9 @@
              :answer="item.answer"></short>
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
-                 :answer="item.answer"></uploadque> -->
-    <inp></inp>
-    <short></short>
-    <uploadque></uploadque>
+                 :answer="item.answer"></uploadque>
+    </div>
   </div>
-  <!-- </div> -->
 </template>
 
 <script>

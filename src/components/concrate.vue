@@ -16,12 +16,17 @@
           </tr>
           <tr v-for="(item,index) in userconcrate"
               :key="index">
-            <td>{{item.username}}</td>
+            <td>{{item.name}}</td>
             <td>{{item.stunum}}</td>
             <td>{{item.time}}</td>
             <td>{{item.score}}</td>
-            <td>{{item.judger}}</td>
-            <td><button @click="gomark(item.username,item.judger)">阅卷</button></td>
+            <td>
+              <span v-for="(peo) in item.judger"
+                    :key="peo"
+                    class="judger">{{peo}}</span>
+            </td>
+            <td><button v-if="item.lock"
+                      @click="gomark(item.stunum,item.name,item.judger)">阅卷</button></td>
           </tr>
 
         </table>
@@ -32,22 +37,9 @@
 <script>
 export default {
   data () {
-    var congroup = this.$route.query.groups
+    var congroup = Number(this.$route.query.groups)
     return {
-      userconcrate: [{
-        'username': 'hzy',
-        'stunum': '2018XXXXXXXXX',
-        'time': '07/27 16:44:15',
-        'score': 97,
-        'judger': 'Huang ZY'
-      },
-      {
-        'username': 'whf',
-        'stunum': '2018XXXXXXXXX',
-        'time': '07/27 16:44:15',
-        'score': 97,
-        'judger': 'Huang ZY'
-      }],
+      userconcrate: [],
       congroup
     }
   },
@@ -57,26 +49,25 @@ export default {
     },
     getsta () {
       this.$axios({
-        methods: 'post',
-        url: '/control/exam/list',
+        method: 'post',
+        url: '/control/exam/status',
         data: {
           groups: this.congroup
         }
       }).then((res) => {
-        if (res.code === 0) {
+        if (res.data.code === 0) {
           this.userconcrate = res.data.data
         }
       })
     },
-    gomark (uname, marker) {
-      console.log(uname)
-      this.$router.push({ name: 'marking', params: { username: uname, judger: marker } })
+    gomark (unum, uname, marker) {
+      this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker } })
     },
     download () {
       this.$axios({
-        methods: 'get',
+        method: 'get',
         url: '/control/file/download',
-        data: {
+        params: {
           groups: this.congroup
         }
       })
@@ -124,6 +115,9 @@ export default {
     background-color: inherit;
     color: #ffffff;
     font-size: 1rem;
+  }
+  .judger {
+    margin: 0.5rem 0;
   }
   .table2 {
     margin: 0 auto;
