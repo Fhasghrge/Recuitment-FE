@@ -171,10 +171,10 @@ export default {
         }
         var presentTime = new Date()
         var rightTime = ddl - presentTime
-        var dd = Math.floor(rightTime / 1000 / 60 / 60 / 24)
-        var hh = Math.floor((rightTime / 1000 / 60 / 60) % 24)
-        var mm = Math.floor((rightTime / 1000 / 60) % 60)
-        var ss = Math.floor((rightTime / 1000) % 60)
+        var dd = this.PrefixZero(Math.floor(rightTime / 1000 / 60 / 60 / 24), 2)
+        var hh = this.PrefixZero(Math.floor((rightTime / 1000 / 60 / 60) % 24), 2)
+        var mm = this.PrefixZero(Math.floor((rightTime / 1000 / 60) % 60), 2)
+        var ss = this.PrefixZero(Math.floor((rightTime / 1000) % 60), 2)
         this.date = dd + 'd ' + hh + ':' + mm + ':' + ss
       }, 1000)
     },
@@ -286,6 +286,9 @@ export default {
       } else if (new Date() - new Date(this.ddlStr2) < 0) {
         this.flag = true
       }
+    },
+    PrefixZero (num, n) {
+      return (Array(n).join(0) + num).slice(-n)
     }
   },
   mounted () {
@@ -296,6 +299,7 @@ export default {
     this.changeFlag()
     // console.log(this.$route.path)
     this.getPrivateMsg() // 获取用户信息
+    // console.log(this.PrefixZero(9, 2))
   },
   watch: {
     '$route.path': function (newVal) {
