@@ -59,6 +59,10 @@ export default {
     answer: {
       type: String,
       default: ''
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
@@ -89,9 +93,13 @@ export default {
       }
     },
     trimstr: function (str) {
+      let strindex = String(this.index + 1)
+      let strtrim = '(填空题) '
+      let head = strindex + '.' + strtrim
       let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
       let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
-      return strtrim2
+      let strtrim3 = head.concat(strtrim2)
+      return strtrim3
     },
     toAdd () {
       this.$router.push({

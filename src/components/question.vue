@@ -7,25 +7,28 @@
              :ID="item.ID"
              :title="item.title"
              :answer="item.answer"
-             :index='index+"20"'></radio>
+             :index='index'></radio>
       <che v-if="item.type === 2"
            :options="item.options"
            :ID="item.ID"
            :title="item.title"
            :answer="item.answer"
-           :index="index+'20'"></che>
+           :index="index"></che>
       <inp v-if="item.type === 3"
            :ID="item.ID"
            :title="item.title"
-           :answer="item.answer"></inp>
+           :answer="item.answer"
+           :index="index"></inp>
       <short v-if="item.type === 4"
              :ID="item.ID"
              :title="item.title"
-             :answer="item.answer"></short>
+             :answer="item.answer"
+             :index="index"></short>
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
                  :title="item.title"
-                 :answer="item.answer"></uploadque>
+                 :answer="item.answer"
+                 :index="index"></uploadque>
     </div>
   </div>
 </template>
@@ -66,7 +69,11 @@ export default {
         if (response.data.code === 0) {
           this.all = response.data.data
           for (let a = 0; a < this.all.length; a++) {
-            if (this.all[a].groups === this.group || this.all[a].groups === 0) {
+            if (this.all[a].groups === 0) {
+              this.questions.push(this.all[a])
+            }
+          } for (let a = 0; a < this.all.length; a++) {
+            if (this.all[a].groups === this.group) {
               this.questions.push(this.all[a])
             }
           }

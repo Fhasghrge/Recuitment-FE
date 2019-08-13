@@ -77,8 +77,8 @@ export default {
       default: ''
     },
     index: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     }
   },
   methods: {
@@ -86,9 +86,13 @@ export default {
       return 'radio' + this.index + index2
     },
     trimstr: function (str) {
+      let strindex = String(this.index + 1)
+      let strtrim = '(单选题) '
+      let head = strindex + '.' + strtrim
       let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
       let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
-      return strtrim2
+      let strtrim3 = head.concat(strtrim2)
+      return strtrim3
     },
     sendradio: function (value) {
       if (this.$route.path === '/answer') {

@@ -76,8 +76,8 @@ export default {
       default: () => []
     },
     index: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     }
   },
   methods: {
@@ -92,9 +92,13 @@ export default {
       })
     },
     trimstr: function (str) {
+      let strindex = String(this.index + 1)
+      let strtrim = '(多选题) '
+      let head = strindex + '.' + strtrim
       let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
       let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
-      return strtrim2
+      let strtrim3 = head.concat(strtrim2)
+      return strtrim3
     },
     che: function (index1) {
       return 'che' + this.index + index1
