@@ -97,6 +97,7 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: stretch;
+  flex-wrap: wrap;
 }
 
 .radio1 {
@@ -110,7 +111,7 @@ export default {
   font-size: 1rem;
   min-height: 2rem;
   padding: 0.5rem 1rem 0 1rem;
-  width: 100%;
+  width: 50%;
   flex-wrap: wrap;
 }
 input:checked + label {
@@ -187,7 +188,8 @@ a {
     margin-left: 20px;
   }
   .optall {
-    width: 15%;
+    min-width: 25%;
+    max-width: 25%;
     text-align: center;
   }
   .docu {
