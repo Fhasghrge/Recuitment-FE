@@ -6,15 +6,10 @@
       <div class="btn2">
         <button class="show1"
                 @click="toconcrate"
-<<<<<<< HEAD
-                v-if="showFlag">查看答题情况</button><button class="show1"
-                @click="toCtrlQues">管理{{ groupName }}题库</button></div>
-=======
                 v-if="showFlag">查看答题情况</button>
         <button class="show1"
                 @click="toCtrlQues">{{btntitle}}</button>
       </div>
->>>>>>> 9f743a4a8bde1be9f99d11d19aff058b2d64be75
     </div>
   </div>
 </template>

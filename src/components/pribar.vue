@@ -33,9 +33,10 @@
                v-model="priNumber">
 
       </div>
-      <div class="priBoxa priRight">
-        <span class='privala'>旧密码</span><input class="priMsga"
-               v-model="oldPassword">
+      <div class="priBoxa priLeft">
+        <span class='privala'>QQ号</span><input class="priMsga"
+               value="priQQ"
+               v-model="priQQ">
 
       </div>
       <div class="priBoxa priLeft">
@@ -45,16 +46,16 @@
 
       </div>
       <div class="priBoxa priRight">
+        <span class='privala'>旧密码</span><input class="priMsga"
+               v-model="oldPassword">
+
+      </div>
+      <div class="priBoxa priRight">
         <span class='privala'>新密码</span><input class="priMsga"
                v-model="newPassword">
 
       </div>
-      <div class="priBoxa priLeft">
-        <span class='privala'>QQ号</span><input class="priMsga"
-               value="priQQ"
-               v-model="priQQ">
 
-      </div>
       <div class="priBoxa priRight">
         <span class='privala'>重复密码</span><input class="priMsga"
                v-model="rePassword">
