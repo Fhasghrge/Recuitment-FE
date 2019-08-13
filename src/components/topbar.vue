@@ -26,7 +26,7 @@ export default {
         case 1: this.title = '产品'; break
         case 2: this.title = '设计'; break
         case 3: this.title = '安卓'; break
-        case 4: this.title = 'IOS'; break
+        case 4: this.title = 'iOS'; break
         case 5: this.title = '前端'; break
         case 6: this.title = '后台'; break
         case 7: this.title = 'DevOps'; break

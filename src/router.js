@@ -14,7 +14,7 @@ import product from './router/sub/product.vue'
 import FE from './router/sub/FE.vue'
 import BE from './router/sub/BE.vue'
 import android from './router/sub/android.vue'
-import IOS from './router/sub/IOS.vue'
+import iOS from './router/sub/iOS.vue'
 import design from './router/sub/design.vue'
 import DevOps from './router/sub/DevOps.vue'
 import ending from './router/Ending.vue'
@@ -57,8 +57,8 @@ const router = new VueRouter({
           component: android
         },
         {
-          path: 'IOS',
-          component: IOS
+          path: 'iOS',
+          component: iOS
         },
         {
           path: 'design',

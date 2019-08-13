@@ -50,7 +50,7 @@
       <div class="wrapp"><img src="../assets/IOS@3x.svg"
              class="imga">
         <router-link to="/adminindex/overview?groups=4"
-                     class="dire">IOS</router-link>
+                     class="dire">iOS</router-link>
       </div>
     </div>
     <!-- <div class="opin">

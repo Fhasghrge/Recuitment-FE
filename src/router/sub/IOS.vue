@@ -15,8 +15,8 @@ export default {
     return {
       ddlStr: '2019/09/01',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
-      Header: 'IOS组',
-      introduce: '这里是IOS组的介绍'
+      Header: 'iOS组',
+      introduce: '这里是iOS组的介绍'
     }
   },
   methods: {

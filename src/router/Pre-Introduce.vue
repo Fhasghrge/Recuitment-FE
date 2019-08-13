@@ -50,7 +50,7 @@
       <img src="../assets/安卓@3x.svg">
       <router-link to="/main/android">安卓</router-link>
       <img src="../assets/IOS@3x.svg">
-      <router-link to="/main/IOS">IOS</router-link>
+      <router-link to="/main/iOS">iOS</router-link>
       <img src="../assets/icons/设计.svg">
       <router-link to="/main/design">设计</router-link>
       <img src="../assets/icons-new/DevOps@3x.svg">

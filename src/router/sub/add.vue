@@ -94,7 +94,7 @@ export default {
         case 1: this.groupName = '产品'; break
         case 2: this.groupName = '设计'; break
         case 3: this.groupName = '安卓'; break
-        case 4: this.groupName = 'IOS'; break
+        case 4: this.groupName = 'iOS'; break
         case 5: this.groupName = '前端'; break
         case 6: this.groupName = '后台'; break
         case 7: this.groupName = 'DevOps'; break
