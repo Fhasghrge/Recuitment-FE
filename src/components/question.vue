@@ -196,6 +196,7 @@ a {
     min-width: 25%;
     max-width: 25%;
     text-align: center;
+    margin: 1rem auto;
   }
   .docu {
     width: 80%;
@@ -237,6 +238,9 @@ a {
 }
 
 @media only screen and (max-width: 750px) {
+  .headline {
+    margin-left: 0;
+  }
   .rad {
     flex-wrap: wrap;
   }
@@ -247,8 +251,10 @@ a {
   .radio2 {
     margin: 10px;
     box-sizing: border-box;
-    padding-top: 4px;
+    padding-top: 0.55rem;
     margin-left: 0;
+    width: 90%;
+    height: 2.5rem;
   }
   .ipt {
     width: 100%;

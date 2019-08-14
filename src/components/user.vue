@@ -1,6 +1,6 @@
 <template>
   <div class="right">
-    <img src="../assets/icon.svg"
+    <img src="../img/头像.png"
          v-on:click="x3"
          class="icon" />
     <img src="../assets/route.png"
