@@ -51,7 +51,9 @@ export default {
     return {
       userconcrate: [],
       congroup,
-      colorindex: 0
+      colorindex: 0,
+      sortflag: 0,
+      sortsyb: ''
     }
   },
   methods: {
@@ -75,15 +77,21 @@ export default {
       this.colorindex = index
     },
     usersort (pro) {
-      if (pro === 'stunum' || pro === 'score') {
-        this.userconcrate.sort(
-          this.sortrule1(pro))
-        this.sortflag = 1
-      } else {
-        this.userconcrate.sort(
-          this.sortrule2(pro)
-        )
-        this.sortflag = 1
+      if (this.sortflag === 0 || this.sortsyb !== pro) {
+        this.sortsyb = pro
+        if (pro === 'stunum' || pro === 'score') {
+          this.userconcrate.sort(
+            this.sortrule1(pro))
+          this.sortflag = 1
+        } else {
+          this.userconcrate.sort(
+            this.sortrule2(pro)
+          )
+          this.sortflag = 1
+        }
+      } else if (this.sortsyb === pro) {
+        this.userconcrate.reverse()
+        this.sortflag = 0
       }
     },
     sortrule1 (pro) {
