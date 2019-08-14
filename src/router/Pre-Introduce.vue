@@ -14,8 +14,12 @@
            :class="[{ arrowhead:1},{ rotate1:Boxflag},{ rotate2:(!Boxflag)}]">
       <img src="../assets/头像.png"
            class='portrait'
+<<<<<<< HEAD
            @mouseover="Boxflag=!Boxflag"
            @mouseout="Boxflag=!Boxflag">
+=======
+           @click="priFlag = true">
+>>>>>>> a2b02440a58a928611520138e240dac119d3e68b
     </div>
     <transition name="draw">
       <div class="mainbox"
@@ -25,7 +29,7 @@
         <button class="btn"
                 v-show="Boxflag"
                 @click="priFlag=true;Boxflag=!Boxflag;">个人信息</button>
-        <button class="btn"
+        <button class="btn quitLogin"
                 v-show="Boxflag"
                 @click="quit">退出登陆</button>
       </div>
@@ -131,6 +135,8 @@
       </div>
       <a class='confirm'
          @click='changePrivateMsg'>确认</a>
+      <a class='confirm quitConfirm'
+         @click='quit'>退出登录</a>
     </div>
   </div>
 </template>

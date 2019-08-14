@@ -90,7 +90,7 @@ export default {
 #managerLogin {
   padding-top: 1%;
   width: 30%;
-  height: 350px;
+  /* height: 350px; */
   background-color: rgba(1, 1, 1, 0.3);
   margin: 0 auto;
   text-align: center;

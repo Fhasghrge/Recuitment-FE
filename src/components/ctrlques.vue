@@ -6,24 +6,29 @@
              :options="item.options"
              :ID="item.ID"
              :title="item.title"
-             :answer="item.answer"></radio>
+             :answer="item.answer"
+             :author='item.author'></radio>
       <che v-if="item.type === 2"
            :options="item.options"
            :ID="item.ID"
            :title="item.title"
-           :answer="item.answer"></che>
+           :answer="item.answer"
+           :author='item.author'></che>
       <inp v-if="item.type === 3"
            :ID="item.ID"
            :title="item.title"
-           :answer="item.answer"></inp>
+           :answer="item.answer"
+           :author='item.author'></inp>
       <short v-if="item.type === 4"
              :ID="item.ID"
              :title="item.title"
-             :answer="item.answer"></short>
+             :answer="item.answer"
+             :author='item.author'></short>
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
                  :title="item.title"
-                 :answer="item.answer"></uploadque>
+                 :answer="item.answer"
+                 :author='item.author'></uploadque>
     </div>
     <!-- <radio></radio>
     <che></che>

@@ -13,7 +13,7 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/09/01',
+      ddlStr: '2019/08/01',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '设计组',
       introduce: '这里是设计组的介绍'
