@@ -7,11 +7,21 @@
       <div class="table2">
         <table>
           <tr>
-            <th class="name">姓名</th>
-            <th class="schnum">学号</th>
-            <th class="timeup">最近提交时间</th>
-            <th class="score">分数</th>
-            <th class="peo">阅卷人</th>
+            <th class="name"
+                :class="{colorwhite:colorindex ==1}"
+                @click="colorchange(1);usersort('name')">姓名</th>
+            <th class="schnum"
+                :class="{colorwhite:colorindex ==2}"
+                @click="colorchange(2);usersort('stunum')">学号</th>
+            <th class="timeup"
+                :class="{colorwhite:colorindex ==3}"
+                @click="colorchange(3);usersort('time')">最近提交时间</th>
+            <th class="score"
+                :class="{colorwhite:colorindex ==4}"
+                @click="colorchange(4);usersort('score')">分数</th>
+            <th class="peo"
+                :class="{colorwhite:colorindex ==5}"
+                @click="colorchange(5);usersort('judger')">阅卷人</th>
             <th class="opera">操作</th>
           </tr>
           <tr v-for="(item,index) in userconcrate"
@@ -40,7 +50,10 @@ export default {
     var congroup = Number(this.$route.query.groups)
     return {
       userconcrate: [],
-      congroup
+      congroup,
+      colorindex: 0,
+      sortflag: 0,
+      sortsyb: ''
     }
   },
   methods: {
@@ -59,6 +72,39 @@ export default {
           this.userconcrate = res.data.data
         }
       })
+    },
+    colorchange (index) {
+      this.colorindex = index
+    },
+    usersort (pro) {
+      if (this.sortflag === 0 || this.sortsyb !== pro) {
+        this.sortsyb = pro
+        if (pro === 'stunum' || pro === 'score') {
+          this.userconcrate.sort(
+            this.sortrule1(pro))
+          this.sortflag = 1
+        } else {
+          this.userconcrate.sort(
+            this.sortrule2(pro)
+          )
+          this.sortflag = 1
+        }
+      } else if (this.sortsyb === pro) {
+        this.userconcrate.reverse()
+        this.sortflag = 0
+      }
+    },
+    sortrule1 (pro) {
+      return function (a, b) {
+        return a[pro] - b[pro]
+      }
+    },
+    sortrule2 (pro) {
+      return function (a, b) {
+        if (a[pro] < b[pro]) { return -1 }
+        if (a[pro] > b[pro]) { return 1 }
+        return 0
+      }
     },
     gomark (unum, uname, marker) {
       this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker } })
@@ -80,6 +126,9 @@ export default {
 </script>
 
 <style scoped>
+.colorwhite {
+  color: #ffffff;
+}
 @media (min-width: 751px) {
   .wrapper2 {
     width: calc(100vw - 335px);
@@ -133,6 +182,10 @@ export default {
     height: 64px;
     padding: 0 45px;
     text-align: center;
+    font-weight: 400;
+  }
+  th:hover {
+    cursor: pointer;
   }
   td {
     height: 65px;
