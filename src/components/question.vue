@@ -2,8 +2,8 @@
   <div class="kind">
     <div v-for="(item,index) in questions"
          :key="index">
-      <span v-if="index === 0">一、综合题</span>
-      <span v-if="index === secindex"><br>二、方向题</span>
+      <span v-if="index === 0||$route.path ==='/answer'">一、综合题</span>
+      <span v-if="index === secindex||$route.path ==='/answer'"><br>二、方向题</span>
       <radio v-if="item.type === 1"
              :options="item.options"
              :ID="item.ID"
