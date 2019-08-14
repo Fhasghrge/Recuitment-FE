@@ -20,7 +20,7 @@ export default {
   mounted () {
     var hrt = document.documentElement.clientHeight
     window.onload = function () {
-      document.body.style.height = hrt + 'px'
+      document.getElementById('app').style.height = hrt + 'px'
     }
   }
 }
