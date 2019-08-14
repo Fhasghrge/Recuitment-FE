@@ -16,6 +16,12 @@ export default {
   components: {
     logo,
     login
+  },
+  mounted () {
+    var hrt = document.documentElement.clientHeight
+    window.onload = function () {
+      document.body.style.height = hrt + 'px'
+    }
   }
 }
 </script>
