@@ -2,8 +2,8 @@
   <div class="kind">
     <div v-for="(item,index) in questions"
          :key="index">
-      <span v-if="index === 0||$route.path ==='/answer'">一、综合题</span>
-      <span v-if="index === secindex||$route.path ==='/answer'"><br>二、方向题</span>
+      <span v-if="index === 0&&$route.path ==='/answer'">一、综合题</span>
+      <span v-if="index === secindex&&$route.path ==='/answer'"><br>二、方向题</span>
       <radio v-if="item.type === 1"
              :options="item.options"
              :ID="item.ID"
@@ -70,13 +70,15 @@ export default {
       }).then((response) => {
         console.log(response)
         if (response.data.code === 0) {
-          this.all = response.data.data
-          for (let a = 0; a < this.all.length; a++) {
-            if (this.all[a].groups === 0) {
-              this.questions.push(this.all[a])
+          if (this.$route.path === '/answer') {
+            this.all = response.data.data
+            for (let a = 0; a < this.all.length; a++) {
+              if (this.all[a].groups === 0) {
+                this.questions.push(this.all[a])
+              }
             }
+            this.secindex = this.questions.length
           }
-          this.secindex = this.questions.length
           for (let a = 0; a < this.all.length; a++) {
             if (this.all[a].groups === this.group) {
               this.questions.push(this.all[a])

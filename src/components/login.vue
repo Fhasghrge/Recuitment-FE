@@ -120,7 +120,7 @@ export default {
           if (response.data.code === 0) {
             this.$router.push({ path: 'main' })
           } else if (response.data.code === -5) {
-            this.err = '密码错误'
+            this.err = '账号不存在或密码错误'
           } else {
             this.err = '错误'
           }

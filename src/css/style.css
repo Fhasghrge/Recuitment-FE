@@ -11,9 +11,12 @@ a {
 }
 
 select {
-  -webkit-appearance: none; /* google */
-  -moz-appearance: none; /* firefox */
-  appearance: none; /* IE */
+  -webkit-appearance: none;
+  /* google */
+  -moz-appearance: none;
+  /* firefox */
+  appearance: none;
+  /* IE */
 }
 
 ul {
@@ -64,9 +67,11 @@ textarea {
   margin-top: 3%;
   margin-left: 5%;
 }
+
 #header .logo:hover {
   cursor: pointer;
 }
+
 #header .arrow_right {
   max-width: 100%;
   height: 30px;
@@ -75,6 +80,7 @@ textarea {
   margin-top: 3%;
   margin-right: 10%;
 }
+
 #header .portrait {
   max-width: 23%;
   height: 50px;
@@ -183,6 +189,7 @@ textarea {
   height: 20px;
   margin-left: 7%;
 }
+
 #group a {
   width: 20%;
   height: 100px;
@@ -266,6 +273,7 @@ textarea {
   padding-right: 3%;
   color: white;
 }
+
 .close {
   z-index: 99999;
   position: relative;
@@ -273,6 +281,7 @@ textarea {
   margin-right: 5%;
   float: right;
 }
+
 .close:hover {
   cursor: pointer;
 }
@@ -321,9 +330,11 @@ textarea {
   margin: 0 auto;
   width: 40%;
 }
+
 .line {
   width: 80%;
 }
+
 #private .priVal {
   width: 40%;
   height: 5%;
@@ -335,6 +346,7 @@ textarea {
   letter-spacing: 0px;
   color: #b3b3b3;
 }
+
 #private .priMsg {
   width: 100%;
   height: 12%;
@@ -357,7 +369,12 @@ textarea {
   /* margin-left: -3.5%; */
   font-size: 1.2rem;
 }
+
 #private .confirm:hover {
+  cursor: pointer;
+}
+
+.portrait:hover {
   cursor: pointer;
 }
 
@@ -377,32 +394,40 @@ textarea {
     margin-left: 25%;
     height: 40px;
   }
+
   .portrait {
     max-width: 100%;
     height: 35px;
     margin-top: 3%;
     margin-right: 3%;
   }
+
+
+
   .arrow_right {
     display: none;
   }
+
   .welcome-header {
     width: 100%;
     margin-top: 30%;
     font-size: 1.5rem;
   }
+
   .introduce {
     width: 80%;
     margin-top: 50%;
     margin-left: 10%;
     font-size: 0.85rem;
   }
+
   .tips,
   .Endtips {
     width: 100%;
     margin-top: 160%;
     font-size: 1rem;
   }
+
   .date,
   .begin {
     width: 100%;
@@ -410,6 +435,7 @@ textarea {
     margin-left: 0;
     font-size: 1rem;
   }
+
   #group {
     margin-top: 90%;
     margin-left: 8%;
@@ -418,17 +444,20 @@ textarea {
     flex-wrap: wrap;
     justify-content: center;
   }
+
   #group img {
     max-width: 50%;
     height: 23px;
     margin-left: 20%;
     margin-top: 8%;
   }
+
   #group a {
     height: 100%;
     margin-top: 8%;
     font-size: 1.2rem;
   }
+
   #notes,
   #private {
     width: 20%;
@@ -436,9 +465,11 @@ textarea {
     margin-left: 42%;
     font-size: 1rem;
   }
+
   #notes {
     margin-top: 177%;
   }
+
   .begin {
     height: 3%;
     width: 30%;
@@ -446,33 +477,40 @@ textarea {
     margin-left: 33%;
     opacity: 0.9;
   }
+
   #noteText {
     margin: 30% 0 0 0;
     width: 100%;
     height: 75%;
     background: url(../img/背景.png);
   }
+
   #noteText h2 {
     font-size: 2.3rem;
   }
+
   #noteText p {
     font-size: 1rem;
   }
+
   #noteText .close {
     margin-top: 8%;
     margin-left: 36%;
   }
+
   .QRcode {
     width: 48%;
     margin-left: 57%;
     margin-top: 190%;
   }
+
   .choiceTips {
     width: 100%;
     margin-top: 80%;
     margin-left: 0;
     font-size: 1.3rem;
   }
+
   .Endtips {
     width: 90%;
     margin-top: 90%;
@@ -497,6 +535,7 @@ textarea {
   .icon:hover {
     cursor: pointer;
   }
+
   .arrowhead {
     height: 25px;
     margin-bottom: 12px;
@@ -508,6 +547,7 @@ textarea {
   .arrowhead:hover {
     cursor: pointer;
   }
+
   .rotate1 {
     transform-origin: center center;
     transform: rotate(90deg);
@@ -535,6 +575,7 @@ textarea {
     -o-transition: -o-transform 0.2s;
     -ms-transition: -ms-transform 0.2s;
   }
+
   .mainbox {
     z-index: 999999;
     height: 60px;
@@ -545,11 +586,17 @@ textarea {
     margin-left: 84%;
     /* padding-top: 10px; */
   }
+
   .draw-enter-active,
   .draw-leave-active {
     transition: all 1s ease;
   }
-  .draw-enter, .draw-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+  .draw-enter,
+  .draw-leave-to
+
+  /* .fade-leave-active below version 2.1.8 */
+    {
     height: 0;
   }
 
@@ -561,6 +608,7 @@ textarea {
     border: 0;
     font-size: 1rem;
   }
+
   .btn:hover {
     cursor: pointer;
   }
@@ -576,52 +624,64 @@ textarea {
   .box {
     display: none;
   }
+
   #text {
     /* margin-top: 100%; */
   }
+
   #private {
     width: 100%;
     height: 100%;
     margin: 0;
   }
+
   #private #priName {
     margin-top: 6%;
     /* width: 50%; */
     font-size: 1.2rem;
   }
+
   #private .close {
     margin-left: 35%;
   }
+
   #private #priText {
     margin: 30% auto;
     margin-bottom: 5%;
   }
+
   #private .priVal {
     width: 100%;
     font-size: 1rem;
     overflow: visible;
   }
+
   #private .priMsg {
     width: 100%;
     font-size: 1rem;
   }
+
   #private .confirm {
     padding-left: 10%;
     padding-right: 10%;
     /* margin-top: 70%; */
   }
 }
+
 .confirmRegister {
   background-color: rgba(0, 0, 0, 1);
   height: 70%;
   margin: -80% auto;
 }
+
 .confirmRegister h2 {
   margin-top: 20%;
 }
+
 .confirmRegister button {
   margin-top: 20%;
 }
+
 @media (max-width: 750px) {
   .confirmRegister {
     margin: -110% auto;
