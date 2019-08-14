@@ -24,8 +24,7 @@ export default {
 html,
 body {
   margin: 0;
-  height: 100vh;
-  min-height: 900px;
+  height: 100%;
 }
 body {
   background-image: url("../../assets/back.png");
