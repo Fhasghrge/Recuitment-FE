@@ -14,12 +14,8 @@
            :class="[{ arrowhead:1},{ rotate1:Boxflag},{ rotate2:(!Boxflag)}]">
       <img src="../assets/头像.png"
            class='portrait'
-<<<<<<< HEAD
            @mouseover="Boxflag=!Boxflag"
            @mouseout="Boxflag=!Boxflag">
-=======
-           @click="priFlag = true">
->>>>>>> a2b02440a58a928611520138e240dac119d3e68b
     </div>
     <transition name="draw">
       <div class="mainbox"
