@@ -25,6 +25,7 @@ html,
 body {
   margin: 0;
   height: 100vh;
+  min-height: 900px;
 }
 body {
   background-image: url("../../assets/back.png");
