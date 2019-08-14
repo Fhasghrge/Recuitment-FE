@@ -15,7 +15,7 @@
            @click="Boxflag=!Boxflag">
       <img src="../assets/头像.png"
            class='portrait'
-           @click="priFlag=true">
+           @click="priFlag = true">
     </div>
     <transition name="draw">
       <div class="mainbox"
@@ -23,7 +23,7 @@
         <button class="btn"
                 v-show="Boxflag"
                 @click="priFlag=true;Boxflag=!Boxflag;">个人信息</button>
-        <button class="btn"
+        <button class="btn quitLogin"
                 v-show="Boxflag"
                 @click="quit">退出登陆</button>
       </div>
@@ -129,6 +129,8 @@
       </div>
       <a class='confirm'
          @click='changePrivateMsg'>确认</a>
+      <a class='confirm quitConfirm'
+         @click='quit'>退出登录</a>
     </div>
   </div>
 </template>

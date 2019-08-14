@@ -374,6 +374,10 @@ textarea {
   cursor: pointer;
 }
 
+.quitConfirm {
+  display: none;
+}
+
 .portrait:hover {
   cursor: pointer;
 }
@@ -401,8 +405,6 @@ textarea {
     margin-top: 3%;
     margin-right: 3%;
   }
-
-
 
   .arrow_right {
     display: none;
@@ -596,7 +598,7 @@ textarea {
   .draw-leave-to
 
   /* .fade-leave-active below version 2.1.8 */
-    {
+ {
     height: 0;
   }
 
@@ -642,6 +644,7 @@ textarea {
   }
 
   #private .close {
+    margin-top: -15%;
     margin-left: 35%;
   }
 
@@ -662,10 +665,33 @@ textarea {
   }
 
   #private .confirm {
+    margin-left: 35%;
+    display: flex;
     padding-left: 10%;
-    padding-right: 10%;
+    padding-right: 0;
     /* margin-top: 70%; */
   }
+
+  #private .quitConfirm {
+    /* display: initial; */
+    margin-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  /* .mainbox {
+    position: absolute;
+    margin-left: 50%;
+    width: 45%;
+  }
+
+  .mainbox .btn {
+    position: relative;
+  }
+
+  .mainbox .quitLogin {
+    position: relative;
+  } */
 }
 
 .confirmRegister {

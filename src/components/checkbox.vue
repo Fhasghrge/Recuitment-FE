@@ -18,7 +18,7 @@
     </div>
     <div class="ctrlBox"
          v-if="$route.path == '/adminindex/ctrlques'">
-      <p>出题人：RIO</p>
+      <p>出题人：{{ author }}</p>
       <input type="button"
              value="添加"
              @click="toAdd">
@@ -78,6 +78,10 @@ export default {
     index: {
       type: Number,
       default: 0
+    },
+    author: {
+      type: String,
+      default: ''
     }
   },
   methods: {

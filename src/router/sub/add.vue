@@ -250,9 +250,8 @@ export default {
         let describe = this.quesDescribe
         let options = []
         for (let i = 0; i < this.optionList.length; i++) {
-          if (trueAnswerCount === 0) {
-            alert('请设置至少一个正确选项')
-            return
+          if (this.optionList[i].answer) {
+            trueAnswerCount = trueAnswerCount + 1
           }
           let option = {
             content: this.optionList[i].text,
@@ -260,6 +259,10 @@ export default {
           }
           options.push(option)
         };
+        if (trueAnswerCount <= 1) {
+          alert('请设置至少两个个正确选项')
+          return
+        }
         data = { type, groups, title, describe, options }
         // console.log(data)
       } else if (questionType === '填空') {
