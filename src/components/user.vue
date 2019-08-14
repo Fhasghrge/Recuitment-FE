@@ -1,14 +1,16 @@
 <template>
   <div class="right">
     <img src="../img/头像.png"
-         v-on:click="x3"
+         @mouseover="flag = !flag"
+         @mouseout="flag = !flag"
          class="icon" />
     <img src="../assets/route.png"
-         v-on:click="x3"
          v-bind:class="[{ arrowhead: 1 }, { rotate1: flag }, { rotate2: !flag }]" />
     <transition name="draw">
       <div class="userbox"
-           v-show="flag">
+           v-show="flag"
+           @mouseover="flag = 1"
+           @mouseout="flag = 0">
         <button class="btn"
                 v-show="flag"
                 @click="revisebar">个人信息</button>
@@ -31,9 +33,6 @@ export default {
     }
   },
   methods: {
-    x3: function () {
-      this.flag = !this.flag
-    },
     quit: function () {
       let storage = window.localStorage
       storage.clear()
@@ -82,9 +81,6 @@ export default {
     width: 12px;
   }
 
-  .arrowhead:hover {
-    cursor: pointer;
-  }
   .rotate1 {
     transform-origin: center center;
     transform: rotate(90deg);

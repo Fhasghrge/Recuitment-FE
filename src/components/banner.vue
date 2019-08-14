@@ -12,7 +12,7 @@
       <h2>{{thisgroup + '组答题'}}</h2>
     </div>
     <user @usershow='usertans'></user>
-    <img src="../assets/icon.svg"
+    <img src="../img/头像.png"
          class="icon1"
          @click="mobtans" />
     <mobbar></mobbar>

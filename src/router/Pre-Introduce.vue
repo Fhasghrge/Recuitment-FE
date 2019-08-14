@@ -11,15 +11,17 @@
            @click="returnToMain">
       <img src="../assets/小箭头.png"
            class="arrow_right"
-           :class="[{ arrowhead:1},{ rotate1:Boxflag},{ rotate2:(!Boxflag)}]"
-           @click="Boxflag=!Boxflag">
+           :class="[{ arrowhead:1},{ rotate1:Boxflag},{ rotate2:(!Boxflag)}]">
       <img src="../assets/头像.png"
            class='portrait'
-           @click="priFlag=true">
+           @mouseover="Boxflag=!Boxflag"
+           @mouseout="Boxflag=!Boxflag">
     </div>
     <transition name="draw">
       <div class="mainbox"
-           v-show="Boxflag">
+           v-show="Boxflag"
+           @mouseover="Boxflag=1"
+           @mouseout="Boxflag=0">
         <button class="btn"
                 v-show="Boxflag"
                 @click="priFlag=true;Boxflag=!Boxflag;">个人信息</button>
