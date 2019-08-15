@@ -16,6 +16,12 @@ export default {
   components: {
     logo,
     login
+  },
+  mounted () {
+    var hrt = document.documentElement.clientHeight
+    window.onload = function () {
+      document.getElementById('app').style.height = hrt + 'px'
+    }
   }
 }
 </script>
@@ -24,7 +30,7 @@ export default {
 html,
 body {
   margin: 0;
-  height: 100vh;
+  height: 100%;
 }
 body {
   background-image: url("../../assets/back.png");
