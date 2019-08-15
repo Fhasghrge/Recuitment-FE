@@ -99,14 +99,14 @@ export default {
     trimstr: function (str) {
       if (this.$route.path === '/answer') {
         let strindex = String(this.index + 1)
-        let strtrim = '(单选题) '
+        let strtrim = '(填空题) '
         let head = strindex + '.' + strtrim
         let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
         let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
         let strtrim3 = head.concat(strtrim2)
         return strtrim3
       } else if (this.$route.path === '/adminindex/ctrlques') {
-        let strtrim = '(单选题) '
+        let strtrim = '(填空题) '
         let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
         let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
         let strtrim3 = strtrim.concat(strtrim2)
