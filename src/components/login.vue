@@ -282,7 +282,7 @@ export default {
 @media (max-width: 750px) {
   .part2 {
     width: 100%;
-    height: 360px;
+    height: 380px;
     background-color: black;
     text-align: center;
     margin: 0 auto;
@@ -327,11 +327,12 @@ export default {
   .act {
     height: 210px;
     padding-top: 3.5rem;
-    margin-bottom: -3rem;
+    margin-bottom: -1.5rem;
   }
 
   .hide {
     height: 210px;
+    padding-bottom: 1.5rem;
     padding-top: 0.5rem;
     display: none;
   }
