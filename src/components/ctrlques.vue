@@ -75,7 +75,7 @@ export default {
         if (response.data.code === 0) {
           this.all = response.data.data
           for (let a = 0; a < this.all.length; a++) {
-            if (this.all[a].groups === this.group || this.all[a].groups === 0) {
+            if (this.all[a].groups === this.group) {
               this.questions.push(this.all[a])
             }
           }
