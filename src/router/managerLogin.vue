@@ -77,7 +77,7 @@ export default {
 }
 #BEintroduce {
   margin-top: -0.05%;
-  margin-left: 33%;
+  margin-left: 35%;
   width: 100%;
   font-family: PingFangSC-Regular;
   font-size: 2rem;
@@ -90,7 +90,7 @@ export default {
 #managerLogin {
   padding-top: 1%;
   width: 30%;
-  /* height: 350px; */
+  height: 450px;
   background-color: rgba(1, 1, 1, 0.3);
   margin: 0 auto;
   text-align: center;

@@ -62,10 +62,9 @@
         </ul>
         <button id="addBtn"
                 @click="addOption">添加选项</button>
-        <span id='confirmMsg'>{{confirmMsg}}</span><button id="confirmBtn"
-                @click="addQuestion">保存修改</button>
       </div>
-
+      <span id='confirmMsg'>{{confirmMsg}}</span><button id="confirmBtn"
+              @click="addQuestion">保存修改</button>
     </div>
   </div>
 </template>
@@ -379,49 +378,51 @@ export default {
   cursor: pointer;
 }
 #motify #quesDescribe {
-  position: absolute;
+  position: relative;
   padding-left: 2%;
   padding-top: 2%;
   margin-top: 10%;
+  margin-bottom: 3%;
   margin-left: 13%;
   width: 70%;
   color: #e9e9e9;
   font-size: 1.3rem;
 }
 #motify #questionType {
+  position: relative;
   width: 80px;
   font-size: 0.9rem;
   color: white;
   text-align: center;
 }
 #motify select {
-  position: absolute;
-  margin-top: 26.3%;
-  margin-left: 24%;
+  position: relative;
+  /* margin-top: 26.3%; */
+  margin-left: 5%;
   background: black;
   color: white;
 }
 #motify #typeTips {
-  position: absolute;
-  margin-top: 26%;
-  margin-left: 13%;
+  position: relative;
+  /* margin-top: 26%; */
+  margin-left: 15%;
   color: white;
 }
 #motify label {
-  position: absolute;
+  position: relative;
   margin-top: 26.4%;
-  margin-left: 38%;
+  margin-left: 5%;
   color: white;
 }
 #optionHead {
   position: relative;
   color: white;
   display: flex;
-  margin-left: 14%;
+  margin-left: 13%;
   width: 70%;
   height: 6%;
   border: 1.5px solid white;
-  margin-top: 32%;
+  margin-top: 3%;
   padding-top: 0.5%;
   padding-left: 2%;
 }
@@ -511,7 +512,8 @@ export default {
 #confirmBtn {
   margin-top: 0;
   width: 12%;
-  margin-left: 80%;
+  margin-left: 70%;
+  margin-bottom: 5%;
   border: 0.1px solid white;
   background-color: #10619a;
 }

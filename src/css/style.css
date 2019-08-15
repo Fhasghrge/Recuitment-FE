@@ -631,10 +631,15 @@ textarea {
     /* margin-top: 100%; */
   }
 
+  .mainbox {
+    display: none;
+  }
+
   #private {
     width: 100%;
     height: 100%;
     margin: 0;
+    background: url(../assets/背景.png);
   }
 
   #private #priName {
