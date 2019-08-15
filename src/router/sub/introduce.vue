@@ -58,7 +58,7 @@ export default {
 .store {
   margin-top: 25%;
 }
-@media screen and (min-height: 520px) and (max-width: 1080px) {
+@media screen and (min-height: 520px) and (max-width: 1480px) {
   .store {
     margin-top: 145%;
   }
