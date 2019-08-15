@@ -40,6 +40,7 @@
               class="option">
             <input type="text"
                    v-model="item.text"
+                   v-focus
                    ref="optionText"
                    @click="optionTextShow(index)">
             <img src="../../img/添加icon.png"
@@ -72,6 +73,14 @@
 <script>
 // import { stringify } from 'querystring'
 export default {
+  directives: {
+    focus: {
+      // 指令的定义
+      inserted: function (el) {
+        el.focus()
+      }
+    }
+  },
   data () {
     return {
       groupName: '设计组',
@@ -144,7 +153,7 @@ export default {
       // }
       let id = len + 1
       let option = {
-        text: '选项' + id.toString(),
+        text: '',
         id: id,
         name: 'option' + id.toString(),
         answer: false
