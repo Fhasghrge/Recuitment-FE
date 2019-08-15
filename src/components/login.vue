@@ -282,7 +282,7 @@ export default {
 @media (max-width: 750px) {
   .part2 {
     width: 100%;
-    height: 52%;
+    height: 360px;
     background-color: black;
     text-align: center;
     margin: 0 auto;
@@ -325,14 +325,13 @@ export default {
   }
 
   .act {
-    height: 50%;
+    height: 210px;
     padding-top: 3.5rem;
-    margin-bottom: -1.5rem;
+    margin-bottom: -3rem;
   }
 
   .hide {
-    height: 50%;
-    padding-bottom: 1.5rem;
+    height: 210px;
     padding-top: 0.5rem;
     display: none;
   }
@@ -351,7 +350,7 @@ export default {
   .showerr {
     height: 1rem;
     width: 80%;
-    margin: 1.5rem auto;
+    margin: 1rem auto;
     margin-bottom: 1rem;
   }
   .errmes {

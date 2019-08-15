@@ -16,13 +16,13 @@ export default {
   components: {
     logo,
     login
-  },
-  mounted () {
-    var hrt = document.documentElement.clientHeight
-    window.onload = function () {
-      document.getElementById('app').style.height = hrt + 'px'
-    }
   }
+  // mounted () {
+  //   var hrt = document.documentElement.clientHeight
+  //   window.onload = function () {
+  //     document.getElementById('app').style.height = hrt + 'px'
+  //   }
+  // }
 }
 </script>
 
@@ -31,6 +31,7 @@ html,
 body {
   margin: 0;
   height: 100%;
+  overflow: scroll;
 }
 body {
   background-image: url("../../assets/back.png");
@@ -45,7 +46,7 @@ ul {
   list-style-type: none;
 }
 .mainall {
-  height: 100vh;
+  height: 100%;
   width: 90%;
   margin: 0 auto;
 }
@@ -64,7 +65,7 @@ ul {
     width: 80%;
     text-align: center;
     margin: 0 auto;
-    height: 100vh;
+    height: 100%;
   }
 }
 </style>
