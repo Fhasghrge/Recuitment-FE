@@ -44,20 +44,22 @@
     </div>
     <div id='group'
          v-if='Itemflag'>
-      <img src="../assets/icons/产品.svg">
-      <router-link to="/main/product">产品</router-link>
-      <img src="../assets/icons-new/前端开发@3x.svg">
-      <router-link to="/main/FE">前端</router-link>
-      <img src="../assets/icons/后台@1x.svg">
-      <router-link to="/main/BE">后台</router-link>
-      <img src="../assets/安卓@3x.svg">
-      <router-link to="/main/android">安卓</router-link>
-      <img src="../assets/IOS@3x.svg">
-      <router-link to="/main/iOS">iOS</router-link>
-      <img src="../assets/icons/设计.svg">
-      <router-link to="/main/design">设计</router-link>
-      <img src="../assets/icons-new/DevOps@3x.svg">
-      <router-link to="/main/DevOps">DevOps</router-link>
+      <div class="group">
+        <img src="../assets/icons/产品.svg">
+        <router-link to="/main/product">产品</router-link>
+        <img src="../assets/icons-new/前端开发@3x.svg">
+        <router-link to="/main/FE">前端</router-link>
+        <img src="../assets/icons/后台@1x.svg">
+        <router-link to="/main/BE">后台</router-link>
+        <img src="../assets/安卓@3x.svg">
+        <router-link to="/main/android">安卓</router-link>
+        <img src="../assets/IOS@3x.svg">
+        <router-link to="/main/iOS">iOS</router-link>
+        <img src="../assets/icons/设计.svg">
+        <router-link to="/main/design">设计</router-link>
+        <img src="../assets/icons-new/DevOps@3x.svg">
+        <router-link to="/main/DevOps">DevOps</router-link>
+      </div>
     </div>
 
     <a href=""

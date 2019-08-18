@@ -184,10 +184,17 @@ textarea {
   width: 100%;
 }
 
+.group {
+  width: 90%;
+  margin: 0 auto;
+  margin-left: 10%;
+  overflow: visible;
+}
+
 #group img {
   max-width: 50%;
   height: 20px;
-  margin-left: 7%;
+  margin-left: 5%;
 }
 
 #group a {
@@ -382,7 +389,7 @@ textarea {
   cursor: pointer;
 }
 
-@media screen and (min-height: 520px) and (max-width: 1480px) {
+@media screen and (max-width: 1081px) {
   .arrow_left {
     position: absolute;
     max-width: 100%;
@@ -426,22 +433,28 @@ textarea {
   .tips,
   .Endtips {
     width: 100%;
-    margin-top: 160%;
+    margin-top: 165%;
     font-size: 1rem;
   }
 
   .date,
   .begin {
     width: 100%;
-    margin-top: 168%;
+    margin-top: 173%;
     margin-left: 0;
     font-size: 1rem;
   }
 
   #group {
     margin-top: 90%;
-    margin-left: 8%;
-    width: 70%;
+    /* margin-left: 8%; */
+    width: 100%;
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: center; */
+  }
+  .group {
+    margin-left: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -469,7 +482,7 @@ textarea {
   }
 
   #notes {
-    margin-top: 177%;
+    margin-top: 180%;
   }
 
   .begin {
@@ -517,6 +530,21 @@ textarea {
     width: 90%;
     margin-top: 90%;
     margin-left: 5%;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  #group img {
+    margin-left: 15%;
+  }
+  #text .tips {
+    margin-top: 175%;
+  }
+  #text .date {
+    margin-top: 183%;
+  }
+  #notes {
+    margin-top: 190%;
   }
 }
 
@@ -622,7 +650,7 @@ textarea {
   }
 }
 
-@media screen and (min-height: 520px) and (max-width: 1480px) {
+@media screen and (max-width: 1081px) {
   .box {
     display: none;
   }
