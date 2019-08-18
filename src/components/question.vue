@@ -103,7 +103,7 @@ export default {
 .rad {
   display: flex;
   justify-content: space-around;
-  align-items: stretch;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -116,8 +116,7 @@ export default {
   background-color: rgba(25, 25, 25, 0.8);
   display: inline-block;
   font-size: 1rem;
-  min-height: 2rem;
-  padding: 0.5rem 1rem 0 1rem;
+  padding: 0.5rem 1rem;
   width: 50%;
   flex-wrap: wrap;
 }
@@ -253,10 +252,8 @@ a {
   .radio2 {
     margin: 10px;
     box-sizing: border-box;
-    padding-top: 0.55rem;
     margin-left: 0;
     width: 90%;
-    height: 2.5rem;
   }
   .ipt {
     width: 100%;
