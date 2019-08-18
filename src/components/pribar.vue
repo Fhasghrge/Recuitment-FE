@@ -64,7 +64,9 @@
     </div>
     <div class="btnsuba">
       <button class='confirma'
-              @click='changePrivateMsg'>确认</button></div>
+              @click='changePrivateMsg'>确认</button>
+      <button class='mobquit'
+              @click='quit'>退出登录</button></div>
   </div>
 </template>
 
@@ -92,6 +94,22 @@ export default {
     }
   },
   methods: {
+    quit: function () {
+      this.setCookie('', '', '', '', -1)
+      if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
+        this.$router.push({ path: '/managerlogin' })
+      } else {
+        this.$router.push({ name: 'home' })
+      }
+    },
+    setCookie (name, pwd, adna, adpas, day) {
+      var exdate = new Date()
+      exdate.setTime(exdate.getTime() + 10 * 60 * 1000 * day)
+      window.document.cookie = 'userName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'adminName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'adminPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
+    },
     closebar: function () {
       this.show1 = false
       this.$emit('showpribar', this.show1)
@@ -178,6 +196,9 @@ export default {
 
 <style>
 @media screen and (min-width: 700px) {
+  .mobquit {
+    display: none;
+  }
   #closea {
     display: none;
   }
@@ -271,6 +292,16 @@ export default {
   }
 }
 @media screen and (max-width: 700px) {
+  .mobquit {
+    width: 80%;
+    height: 2.5rem;
+    color: #ffffff;
+    font-size: 1rem;
+    border: solid 1px #ffffff;
+    background-color: inherit;
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
   #privatea {
     background-image: url("../assets/back.png");
     background-repeat: no-repeat;
@@ -278,7 +309,7 @@ export default {
     background-size: cover;
     margin: 0;
     min-height: 100vh;
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 0;
     color: #ffffff;

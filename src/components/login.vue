@@ -60,7 +60,7 @@
     <div>
       <button class="button"
               v-if="flag"
-              @click="login">确认登录</button>
+              @click="login(peraccount,perpassword)">确认登录</button>
       <button class="button"
               v-if="hide"
               @click="register">注册</button>
@@ -90,7 +90,11 @@ export default {
       tel: '',
       qq: '',
       verify: '',
-      err: ''
+      err: '',
+      ruleForm: {
+        userName: '',
+        password: ''
+      }
     }
   },
   methods: {
@@ -106,18 +110,19 @@ export default {
       this.flag = false
       this.hide = true
     },
-    login: function () {
-      if (this.peraccount !== '' && this.perpassword !== '') {
+    login: function (acc, pwd) {
+      if (acc !== '' && pwd !== '') {
         this.err = ''
         this.$axios({
           method: 'post',
           url: '/user/login',
           data: {
-            stunum: this.peraccount,
-            password: this.perpassword
+            stunum: acc,
+            password: pwd
           }
         }).then((response) => {
           if (response.data.code === 0) {
+            this.setCookie(acc, pwd, 1)
             this.$router.push({ path: 'main' })
           } else if (response.data.code === -5) {
             this.err = '账号不存在或密码错误'
@@ -132,9 +137,9 @@ export default {
               this.err = '连接服务器失败'
             }
           })
-      } else if (this.peraccount === '') {
+      } else if (acc === '') {
         this.err = '请输入账号'
-      } else if (this.perpassword === '') {
+      } else if (pwd === '') {
         this.err = '请输入密码'
       }
     },
@@ -176,15 +181,38 @@ export default {
     },
     confirmRegister () {
       this.login()
+    },
+    setCookie (name, pwd, day) {
+      var exdate = new Date()
+      exdate.setTime(exdate.getTime() + 10 * 60 * 1000 * day)
+      window.document.cookie = 'userName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
+    },
+    getCookie: function () {
+      if (document.cookie.length > 0) {
+        var arr = document.cookie.split('; ')
+        for (var i = 0; i < arr.length; i++) {
+          var arr2 = arr[i].split('=')
+          if (arr2[0] === 'userName') {
+            this.ruleForm.userName = arr2[1]
+          } else if (arr2[0] === 'userPwd') {
+            this.ruleForm.password = arr2[1]
+          }
+        }
+        if (this.ruleForm.userName !== '' && this.ruleForm.password !== '') {
+          this.login(this.ruleForm.userName, this.ruleForm.password)
+        }
+      }
     }
   },
   created () {
+    this.getCookie()
     let that = this
     document.onkeydown = function (e) {
       e = window.event || e
       if (that.$route.path === '/home' && (e.code === 'Enter' || e.code === 'enter')) {
         if (that.flag) {
-          that.login()
+          that.login(that.peraccount, that.perpassword)
         }
         if (that.hide) {
           that.register()

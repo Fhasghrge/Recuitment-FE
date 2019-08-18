@@ -24,7 +24,11 @@ export default {
   data () {
     return {
       username: '',
-      password: ''
+      password: '',
+      ruleForm: {
+        adminName: '',
+        adminpassword: ''
+      }
     }
   },
   methods: {
@@ -48,6 +52,7 @@ export default {
           // // 将用户token保存到vuex中
           // _this.changeLogin({ Authorization: _this.userToken })
           if (result.data.code === 0) {
+            this.setCookie(this.username, this.password, 1)
             _this.$router.push({ path: '/adminindex/overview?groups=0' })
           }
         }).catch((err) => {
@@ -55,9 +60,44 @@ export default {
           console.log(err)
         })
       }
+    },
+    setCookie (name, pwd, day) {
+      var exdate = new Date()
+      exdate.setTime(exdate.getTime() + 10 * 60 * 1000 * day)
+      window.document.cookie = 'adminName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'adminPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
+    },
+    getCookie: function () {
+      if (document.cookie.length > 0) {
+        var arr = document.cookie.split('; ')
+        for (var i = 0; i < arr.length; i++) {
+          var arr2 = arr[i].split('=')
+          if (arr2[0] === 'adminName') {
+            this.ruleForm.adminName = arr2[1]
+          } else if (arr2[0] === 'adminPwd') {
+            this.ruleForm.adminpassword = arr2[1]
+          }
+        }
+        if (this.ruleForm.adminName !== '' && this.ruleForm.adminpassword !== '') {
+          this.$axios({
+            method: 'post',
+            url: '/control/login',
+            data: {
+              username: this.ruleForm.adminName,
+              password: this.ruleForm.adminpassword
+            }
+          }).then((result) => {
+            if (result.data.code === 0) {
+              this.setCookie(this.ruleForm.adminName, this.ruleForm.adminpassword, 1)
+              this.$router.push({ path: '/adminindex/overview?groups=0' })
+            }
+          })
+        }
+      }
     }
   },
   created () {
+    this.getCookie()
     let that = this
     document.onkeydown = function (e) {
       e = window.event || e

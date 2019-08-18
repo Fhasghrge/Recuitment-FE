@@ -12,7 +12,7 @@
                :value="options[indexc]"
                v-model="chedata"
                @change="sendche(options[indexc])"
-               :readonly="isread" />
+               :disabled="isread" />
         <label :for="che(indexc)"
                class="radio2">{{options[indexc]}}</label>
       </div>
@@ -50,7 +50,6 @@
 </template>
 
 <script>
-var tempindex
 export default {
   data () {
     return {
@@ -119,8 +118,7 @@ export default {
       if (this.$route.path === 'answer') {
         return 'che' + this.index + index1
       } else {
-        tempindex = Math.random()
-        return 'che' + tempindex + index1
+        return 'che' + this.ID + index1
       }
     },
     sendche: function (value) {

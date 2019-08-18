@@ -278,14 +278,19 @@ export default {
         }
       }
     },
-    quit () {
-      let storage = window.localStorage
-      storage.clear()
+    quit: function () {
+      this.setCookie('', '', -1)
       if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
-        this.$router.push({ path: 'managerlogin' })
+        this.$router.push({ path: '/managerlogin' })
       } else {
         this.$router.push({ name: 'home' })
       }
+    },
+    setCookie (name, pwd, day) {
+      var exdate = new Date()
+      exdate.setTime(exdate.getTime() + 10 * 60 * 1000 * day)
+      window.document.cookie = 'userName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
     },
     changeFlag () {
       if (new Date() - new Date(this.ddlStr) < 0) {

@@ -34,8 +34,7 @@ export default {
   },
   methods: {
     quit: function () {
-      let storage = window.localStorage
-      storage.clear()
+      this.setCookie('', '', '', '', -1)
       if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
         this.$router.push({ path: '/managerlogin' })
       } else {
@@ -45,6 +44,14 @@ export default {
     revisebar: function () {
       this.userflag = !this.userflag
       this.$emit('usershow', this.userflag)
+    },
+    setCookie (name, pwd, adna, adpas, day) {
+      var exdate = new Date()
+      exdate.setTime(exdate.getTime() + 10 * 60 * 1000 * day)
+      window.document.cookie = 'userName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'adminName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'adminPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
     }
   },
   mounted () {

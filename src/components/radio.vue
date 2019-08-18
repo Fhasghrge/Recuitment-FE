@@ -13,7 +13,7 @@
                :value="options[indexr]"
                v-model="radiodata"
                @change="sendradio"
-               :readonly="isread" />
+               :disabled="isread" />
         <label :for="radio(indexr)"
                class="radio2">{{options[indexr]}}</label>
       </div>
@@ -51,7 +51,6 @@
 </template>
 
 <script>
-var tempindex = 0
 export default {
   data () {
     return {
@@ -93,8 +92,7 @@ export default {
       if (this.$route.path === 'answer') {
         return 'radio' + this.index + index2
       } else {
-        tempindex = Math.random()
-        return 'radio' + tempindex + index2
+        return 'radio' + this.ID + index2
       }
     },
     trimstr: function (str) {
