@@ -4,7 +4,8 @@
           v-html="trimstr(title)"></span>
     <input class="ipt"
            v-model="singleinp"
-           @blur="sendinp" />
+           @blur="sendinp"
+           :readonly="isread" />
     <div class="ctrlBox"
          v-if="$route.path == '/adminindex/ctrlques'">
       <p>出题人：{{ author }}</p>
@@ -44,7 +45,8 @@ export default {
       singleinp: '',
       delBoxFlag: false,
       groups: this.$route.query.groups,
-      list2: []
+      list2: [],
+      isread: false
     }
   },
   props: {
@@ -151,6 +153,9 @@ export default {
     }
     if (this.$route.path === '/marking') {
       this.getlist()
+    }
+    if (this.$route.path === '/adminindex/ctrlques') {
+      this.isread = true
     }
   }
 }

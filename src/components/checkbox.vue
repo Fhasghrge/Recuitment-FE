@@ -11,7 +11,8 @@
                :id="che(indexc)"
                :value="options[indexc]"
                v-model="chedata"
-               @change="sendche(options[indexc])" />
+               @change="sendche(options[indexc])"
+               :readonly="isread" />
         <label :for="che(indexc)"
                class="radio2">{{options[indexc]}}</label>
       </div>
@@ -49,13 +50,15 @@
 </template>
 
 <script>
+var tempindex
 export default {
   data () {
     return {
       chedata: [],
       delBoxFlag: false,
       groups: this.$route.query.groups,
-      list1: []
+      list1: [],
+      isread: false
     }
   },
   props: {
@@ -113,7 +116,12 @@ export default {
       }
     },
     che: function (index1) {
-      return 'che' + this.index + index1
+      if (this.$route.path === 'answer') {
+        return 'che' + this.index + index1
+      } else {
+        tempindex = Math.random()
+        return 'che' + tempindex + index1
+      }
     },
     sendche: function (value) {
       if (this.$route.path === '/answer') {
@@ -191,9 +199,13 @@ export default {
       }
     }
     if (this.$route.path === '/adminindex/ctrlques') {
+      this.isread = true
       let answers = []
       for (let i = 0; i < this.options.length; i++) {
         answers.push(this.options[i].content)
+        if (this.options[i].answer === 1) {
+          this.chedata.push(this.options[i].content)
+        }
       }
       for (let i = 0; i < this.options.length; i++) {
         this.options.splice(i, 1, answers[i])

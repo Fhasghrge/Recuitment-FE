@@ -12,7 +12,8 @@
              class="file"
              id="file"
              value=""
-             @change="upload($event)">
+             @change="upload($event)"
+             :readonly="isread">
       <span class="eg">tips:多文件请将所有文件打包成一个zip文件上传</span>
     </div>
     <div class="docu">
@@ -69,7 +70,8 @@ export default {
       flag: true,
       delBoxFlag: false,
       groups: this.$route.query.groups,
-      list3: []
+      list3: [],
+      isread: false
     }
   },
   props: {
@@ -201,6 +203,9 @@ export default {
     if (this.$route.path === '/marking') {
       this.flag = false
       this.getlist()
+    }
+    if (this.$route.path === '/adminindex/ctrlques') {
+      this.isread = true
     }
   }
 }

@@ -4,7 +4,8 @@
           v-html="trimstr(title)"></span>
     <textarea class="txt"
               v-model="shortanswer"
-              @blur="sendshoans"></textarea>
+              @blur="sendshoans"
+              :readonly="isread"></textarea>
     <div class="ctrlBox"
          v-if="$route.path == '/adminindex/ctrlques'">
       <p>出题人：{{ author }}</p>
@@ -45,7 +46,8 @@ export default {
       delBoxFlag: false,
       groups: this.$route.query.groups,
       list1: [],
-      childtitle: this.title
+      childtitle: this.title,
+      isread: false
     }
   },
   props: {
@@ -151,6 +153,9 @@ export default {
     }
     if (this.$route.path === '/marking') {
       this.getlist()
+    }
+    if (this.$route.path === '/adminindex/ctrlques') {
+      this.isread = true
     }
   }
 }

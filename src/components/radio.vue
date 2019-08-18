@@ -12,7 +12,8 @@
                :id="radio(indexr)"
                :value="options[indexr]"
                v-model="radiodata"
-               @change="sendradio" />
+               @change="sendradio"
+               :readonly="isread" />
         <label :for="radio(indexr)"
                class="radio2">{{options[indexr]}}</label>
       </div>
@@ -50,13 +51,15 @@
 </template>
 
 <script>
+var tempindex = 0
 export default {
   data () {
     return {
       delBoxFlag: false,
       groups: this.$route.query.groups,
       list1: [],
-      radiodata: ''
+      radiodata: '',
+      isread: false
     }
   },
   props: {
@@ -87,7 +90,12 @@ export default {
   },
   methods: {
     radio: function (index2) {
-      return 'radio' + this.index + index2
+      if (this.$route.path === 'answer') {
+        return 'radio' + this.index + index2
+      } else {
+        tempindex = Math.random()
+        return 'radio' + tempindex + index2
+      }
     },
     trimstr: function (str) {
       if (this.$route.path === '/answer') {
@@ -156,9 +164,14 @@ export default {
       this.radiodata = this.answer
     }
     if (this.$route.path === '/adminindex/ctrlques') {
+      this.isread = true
+      console.log(this.isread)
       let answers = []
       for (let i = 0; i < this.options.length; i++) {
         answers.push(this.options[i].content)
+        if (this.options[i].answer === 1) {
+          this.radiodata = this.options[i].content
+        }
       }
       for (let i = 0; i < this.options.length; i++) {
         this.options.splice(i, 1, answers[i])
