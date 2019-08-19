@@ -116,6 +116,7 @@ export default {
         }).then((res) => {
           if (res.data.code === 0) {
             let mytime = new Date()
+            this.thistime = ''
             if (mytime.getHours() < 10) {
               this.thistime += '0'
             }
