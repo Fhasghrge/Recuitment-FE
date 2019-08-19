@@ -116,11 +116,22 @@ export default {
         }).then((res) => {
           if (res.data.code === 0) {
             let mytime = new Date()
-            this.thistime = mytime.getHours() + ':' + mytime.getMinutes() + ':' + mytime.getSeconds() + ' ' + '自动保存成功'
+            if (mytime.getHours() < 10) {
+              this.thistime += '0'
+            }
+            this.thistime += mytime.getHours() + ':'
+            if (mytime.getMinutes() < 10) {
+              this.thistime += '0'
+            }
+            this.thistime += mytime.getMinutes() + ':'
+            if (mytime.getSeconds() < 10) {
+              this.thistime += '0'
+            }
+            this.thistime += mytime.getSeconds() + ':'
+            this.thistime += ' ' + '自动保存成功'
             this.$emit('trantime', this.thistime)
           } else {
-            this.thistime = '自动保存失败'
-            this.$emit('trantime', this.thistime)
+            alert('答案上传失败')
           }
         })
       }
