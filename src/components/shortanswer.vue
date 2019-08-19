@@ -47,7 +47,8 @@ export default {
       groups: this.$route.query.groups,
       list1: [],
       childtitle: this.title,
-      isread: false
+      isread: false,
+      thistime: ''
     }
   },
   props: {
@@ -111,6 +112,15 @@ export default {
           data: {
             ID: this.ID,
             answer: this.shortanswer
+          }
+        }).then((res) => {
+          if (res.data.code === 0) {
+            let mytime = new Date()
+            this.thistime = mytime.getHours() + ':' + mytime.getMinutes() + ':' + mytime.getSeconds() + ' ' + '自动保存成功'
+            this.$emit('trantime', this.thistime)
+          } else {
+            this.thistime = '自动保存失败'
+            this.$emit('trantime', this.thistime)
           }
         })
       }
