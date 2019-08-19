@@ -5,7 +5,7 @@
     <a href=""
        class='begin store'
        v-if='flag'
-       @click.prevent="save">保存答卷</a>
+       @click.prevent="save">提交所有答卷</a>
     <p class='choiceTips'
        v-if="flag">选择一个方向开始答题吧</p>
   </div>
@@ -56,10 +56,19 @@ export default {
 
 <style scoped>
 .store {
+  width: 12%;
+  margin-left: 44%;
   margin-top: 25%;
+}
+@media screen and (min-width: 750px) {
+  .store {
+    margin-top: 42%;
+  }
 }
 @media screen and (max-width: 1081px) {
   .store {
+    width: 40%;
+    margin-left: 30%;
     margin-top: 150%;
   }
 }
