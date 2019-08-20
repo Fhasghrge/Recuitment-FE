@@ -157,13 +157,13 @@ export default {
       Boxflag: false, // 控制个人信息小框框的显隐
       arrowFlag: false,
       priFlag: false,
-      priName: '黄老板',
-      priPhone: '110',
-      priNumber: '201601120000',
+      priName: '',
+      priPhone: '',
+      priNumber: '',
       oldPassword: '',
       newPassword: '',
-      priSchool: '霍格沃兹学院',
-      priQQ: '123456789',
+      priSchool: '',
+      priQQ: '',
       rePassword: ''
     }
   },

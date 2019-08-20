@@ -76,13 +76,13 @@ export default {
   name: 'pribar',
   data () {
     return {
-      priName: '黄老板',
-      priPhone: '110',
-      priNumber: '201601120000',
+      priName: '',
+      priPhone: '',
+      priNumber: '',
       oldPassword: '',
       newPassword: '',
-      priSchool: '霍格沃兹学院',
-      priQQ: '123456789',
+      priSchool: '',
+      priQQ: '',
       rePassword: '',
       show1: false
     }
