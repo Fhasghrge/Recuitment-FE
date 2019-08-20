@@ -178,6 +178,10 @@ export default {
               this.thistime = '自动保存失败'
               this.$emit('trantime', this.thistime)
             }
+          }).catch((err) => {
+            if (err) {
+              alert('答案上传失败')
+            }
           })
         }
       }

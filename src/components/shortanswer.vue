@@ -134,6 +134,10 @@ export default {
           } else {
             alert('答案上传失败')
           }
+        }).catch((err) => {
+          if (err) {
+            alert('答案上传失败')
+          }
         })
       }
     },

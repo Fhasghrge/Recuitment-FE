@@ -191,6 +191,10 @@ export default {
               }
             }
           }
+        }).catch((err) => {
+          if (err) {
+            alert('答案上传失败')
+          }
         })
       }
     }
