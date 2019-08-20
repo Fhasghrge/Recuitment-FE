@@ -12,26 +12,30 @@
              :title="item.title"
              :answer="item.answer"
              :index='index'
-             @trantime='transtime'></radio>
+             @trantime='transtime'
+             @tranalert='transalert'></radio>
       <che v-if="item.type === 2"
            :options="item.options"
            :ID="item.ID"
            :title="item.title"
            :answer="item.answer"
            :index="index"
-           @trantime='transtime'></che>
+           @trantime='transtime'
+           @tranalert='transalert'></che>
       <inp v-if="item.type === 3"
            :ID="item.ID"
            :title="item.title"
            :answer="item.answer"
            :index="index"
-           @trantime='transtime'></inp>
+           @trantime='transtime'
+           @tranalert='transalert'></inp>
       <short v-if="item.type === 4"
              :ID="item.ID"
              :title="item.title"
              :answer="item.answer"
              :index="index"
-             @trantime='transtime'></short>
+             @trantime='transtime'
+             @tranalert='transalert'></short>
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
                  :title="item.title"
@@ -72,6 +76,11 @@ export default {
   methods: {
     transtime: function (value) {
       this.thistime = value
+    },
+    transalert: function () {
+      if (this.thistime) {
+        alert('最后成功提交于' + this.thistime.substr(0, 8))
+      }
     },
     getques: function () {
       this.$axios({

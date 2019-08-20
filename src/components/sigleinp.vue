@@ -116,6 +116,7 @@ export default {
             this.$emit('trantime', this.thistime)
           } else {
             alert('答案上传失败')
+            this.$emit('tranalert')
           }
         }).catch((err) => {
           if (err) {
