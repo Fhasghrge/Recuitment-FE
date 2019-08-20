@@ -137,7 +137,7 @@ export default {
             if (mytime.getSeconds() < 10) {
               this.thistime += '0'
             }
-            this.thistime += mytime.getSeconds() + ':'
+            this.thistime += mytime.getSeconds()
             this.thistime += ' ' + '自动保存成功'
             this.$emit('trantime', this.thistime)
           } else {
