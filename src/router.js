@@ -27,111 +27,123 @@ import add from './router/sub/add.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  routes: [
-    {
+  routes: [{
+    path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/main',
+    component: introduce,
+    meta: {
+      requireAuth: true
+    },
+    children: [{
       path: '/',
-      redirect: '/home'
+      component: text
     },
     {
-      path: '/main',
-      component: introduce,
-      children: [
-        {
-          path: '/',
-          component: text
-        },
-        {
-          path: 'product',
-          component: product
-        },
-        {
-          path: 'FE',
-          component: FE
-        },
-        {
-          path: 'BE',
-          component: BE
-        },
-        {
-          path: 'android',
-          component: android
-        },
-        {
-          path: 'iOS',
-          component: iOS
-        },
-        {
-          path: 'design',
-          component: design
-        },
-        {
-          path: 'DevOps',
-          component: DevOps
-        }
-      ]
+      path: 'product',
+      component: product
     },
     {
-      path: '/ending',
-      component: ending
+      path: 'FE',
+      component: FE
     },
     {
-      path: '/managerlogin',
-      component: managerLogin
-    },
-    // {path:'/manager',
-    // component:manager,
-    // children:[
-    //     {path:'checking',component:checking},
-    //     {path:'add',component:add},
-    // ]},
-    {
-      path: '/home',
-      name: 'home',
-      component: home
+      path: 'BE',
+      component: BE
     },
     {
-      path: '/answer',
-      name: 'answer',
-      component: answer
+      path: 'android',
+      component: android
     },
     {
-      path: '/adminindex',
-      component: adminindex,
-      children: [
-        {
-          path: '/',
-          name: 'announce',
-          component: announce
-        },
-        {
-          path: 'overview',
-          name: 'overview',
-          component: overview
-        },
-        {
-          path: 'concrate',
-          name: 'concrate',
-          component: concrate
-        },
-        // {
-        //   path: 'checking',
-        //   component: checking
-        // },
-        {
-          path: 'add',
-          component: add
-        },
-        {
-          path: 'ctrlques',
-          component: ctrlques
-        }
-      ]
+      path: 'iOS',
+      component: iOS
     },
     {
-      path: '/marking',
-      name: 'marking',
-      component: marking
+      path: 'design',
+      component: design
+    },
+    {
+      path: 'DevOps',
+      component: DevOps
     }
+    ]
+  },
+  {
+    path: '/ending',
+    component: ending,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/managerlogin',
+    component: managerLogin
+  },
+  // {path:'/manager',
+  // component:manager,
+  // children:[
+  //     {path:'checking',component:checking},
+  //     {path:'add',component:add},
+  // ]},
+  {
+    path: '/home',
+    name: 'home',
+    component: home
+  },
+  {
+    path: '/answer',
+    name: 'answer',
+    component: answer,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/adminindex',
+    component: adminindex,
+    meta: {
+      requireAdmin: true
+    },
+    children: [{
+      path: '/',
+      name: 'announce',
+      component: announce
+    },
+    {
+      path: 'overview',
+      name: 'overview',
+      component: overview
+    },
+    {
+      path: 'concrate',
+      name: 'concrate',
+      component: concrate
+    },
+    // {
+    //   path: 'checking',
+    //   component: checking
+    // },
+    {
+      path: 'add',
+      component: add
+    },
+    {
+      path: 'ctrlques',
+      component: ctrlques
+    }
+    ]
+  },
+  {
+    path: '/marking',
+    name: 'marking',
+    component: marking,
+    meta: {
+      requireAdmin: true
+    }
+  }
   ]
 })
 
