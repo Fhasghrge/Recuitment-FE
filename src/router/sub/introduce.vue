@@ -56,8 +56,10 @@ export default {
 
 <style scoped>
 .store {
-  width: 12%;
-  margin-left: 44%;
+  padding-top: 0.2%;
+  padding-bottom: 0.45%;
+  width: 15%;
+  margin-left: 42.5%;
   margin-top: 25%;
 }
 @media screen and (min-width: 750px) {
