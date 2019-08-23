@@ -1,5 +1,7 @@
 <template>
   <div class="kind">
+    <span class="timeshow"
+          v-if="$route.path=='/answer'">{{thistime}}</span>
     <div v-for="(item,index) in questions"
          :key="index">
       <span v-if="index === 0&&$route.path ==='/answer'">一、综合题</span>
@@ -9,23 +11,31 @@
              :ID="item.ID"
              :title="item.title"
              :answer="item.answer"
-             :index='index'></radio>
+             :index='index'
+             @trantime='transtime'
+             @tranalert='transalert'></radio>
       <che v-if="item.type === 2"
            :options="item.options"
            :ID="item.ID"
            :title="item.title"
            :answer="item.answer"
-           :index="index"></che>
+           :index="index"
+           @trantime='transtime'
+           @tranalert='transalert'></che>
       <inp v-if="item.type === 3"
            :ID="item.ID"
            :title="item.title"
            :answer="item.answer"
-           :index="index"></inp>
+           :index="index"
+           @trantime='transtime'
+           @tranalert='transalert'></inp>
       <short v-if="item.type === 4"
              :ID="item.ID"
              :title="item.title"
              :answer="item.answer"
-             :index="index"></short>
+             :index="index"
+             @trantime='transtime'
+             @tranalert='transalert'></short>
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
                  :title="item.title"
@@ -47,7 +57,8 @@ export default {
     return {
       all: [],
       questions: [],
-      secindex: 0
+      secindex: 0,
+      thistime: ''
     }
   },
   props: {
@@ -63,6 +74,14 @@ export default {
     this.getques()
   },
   methods: {
+    transtime: function (value) {
+      this.thistime = value
+    },
+    transalert: function () {
+      if (this.thistime) {
+        alert('最后成功提交于' + this.thistime.substr(0, 8))
+      }
+    },
     getques: function () {
       this.$axios({
         methods: 'post',
@@ -89,12 +108,24 @@ export default {
           this.$router.push({ path: 'main' })
         }
       })
+    },
+    gettime: function () {
+      let mytime = new Date()
+      this.thistime = mytime.getHours() + ':' + mytime.getMinutes() + ':' + mytime.getSeconds() + ' ' + '自动保存成功'
     }
   }
 }
 </script>
 
 <style>
+.timeshow {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  display: block;
+  text-align: center;
+  color: #579eda;
+  height: 1rem;
+}
 .headline {
   margin: 0.5rem auto 1rem 1rem;
   font-size: 1rem;

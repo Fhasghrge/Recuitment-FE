@@ -47,7 +47,8 @@ export default {
       groups: this.$route.query.groups,
       list1: [],
       childtitle: this.title,
-      isread: false
+      isread: false,
+      thistime: ''
     }
   },
   props: {
@@ -111,6 +112,32 @@ export default {
           data: {
             ID: this.ID,
             answer: this.shortanswer
+          }
+        }).then((res) => {
+          if (res.data.code === 0) {
+            let mytime = new Date()
+            this.thistime = ''
+            if (mytime.getHours() < 10) {
+              this.thistime += '0'
+            }
+            this.thistime += mytime.getHours() + ':'
+            if (mytime.getMinutes() < 10) {
+              this.thistime += '0'
+            }
+            this.thistime += mytime.getMinutes() + ':'
+            if (mytime.getSeconds() < 10) {
+              this.thistime += '0'
+            }
+            this.thistime += mytime.getSeconds()
+            this.thistime += ' ' + '自动保存成功'
+            this.$emit('trantime', this.thistime)
+          } else {
+            alert('答案上传失败')
+            this.$emit('tranalert')
+          }
+        }).catch((err) => {
+          if (err) {
+            alert('答案上传失败')
           }
         })
       }
