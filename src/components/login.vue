@@ -160,6 +160,7 @@ export default {
               }
             }).then((response) => {
               if (response.data.code === 0) {
+                this.setCookie(this.peraccount, this.perpassword, 1)
                 this.confirmFlag = true
               } else if (response.data.code === -80) {
                 this.err = '用户已存在'
@@ -180,7 +181,7 @@ export default {
       }
     },
     confirmRegister () {
-      this.login()
+      this.login(this.peraccount, this.perpassword)
     },
     setCookie (name, pwd, day) {
       var exdate = new Date()
