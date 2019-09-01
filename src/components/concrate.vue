@@ -110,13 +110,16 @@ export default {
       this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker } })
     },
     download () {
-      this.$axios({
-        method: 'get',
-        url: '/control/file/download',
-        params: {
-          groups: this.congroup
-        }
-      })
+      let a = document.createElement('a')
+      a.href = '/control/file/download?groups=' + this.congroup
+      a.click()
+      // this.$axios({
+      //   method: 'get',
+      //   url: '/control/file/download',
+      //   params: {
+      //     groups: this.congroup
+      //   }
+      // })
     }
   },
   mounted () {
