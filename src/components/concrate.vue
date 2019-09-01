@@ -2,8 +2,11 @@
   <div class="wrapper2">
     <div class="mainshow2">
       <div class="btnbar"><button class="return2"
-                @click="goback">返回</button><button class="download2"
-                @click="download">下载附件</button></div>
+                @click="goback">返回</button>
+        <button class="download2">
+          <a :href="'/control/file/download'+this.congroup">下载附件</a>
+        </button>
+      </div>
       <div class="table2">
         <table>
           <tr>
@@ -108,21 +111,21 @@ export default {
     },
     gomark (unum, uname, marker) {
       this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker } })
-    },
-    download () {
-      // let elemIF = document.createElement('iframe')
-      // elemIF.src = '/control/file/download?groups=' + this.congroup
-      // elemIF.style.display = 'none'
-      // document.body.appendChild(elemIF)
-      this.$axios({
-        method: 'get',
-        url: '/control/file/download',
-        params: {
-          groups: this.congroup
-        },
-        responseType: 'arraybuffer'
-      })
     }
+    // download () {
+    //   // let elemIF = document.createElement('iframe')
+    //   // elemIF.src = '/control/file/download?groups=' + this.congroup
+    //   // elemIF.style.display = 'none'
+    //   // document.body.appendChild(elemIF)
+    //   this.$axios({
+    //     method: 'get',
+    //     url: '/control/file/download',
+    //     params: {
+    //       groups: this.congroup
+    //     },
+    //     responseType: 'arraybuffer'
+    //   })
+    // }
   },
   mounted () {
     this.getsta()
