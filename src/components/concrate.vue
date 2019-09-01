@@ -110,18 +110,18 @@ export default {
       this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker } })
     },
     download () {
-      let elemIF = document.createElement('iframe')
-      elemIF.src = '/control/file/download?groups=' + this.congroup
-      elemIF.style.display = 'none'
-      document.body.appendChild(elemIF)
-      // this.$axios({
-      //   method: 'get',
-      //   url: '/control/file/download',
-      //   params: {
-      //     groups: this.congroup
-      //   },
-      //   responseType: 'arraybuffer'
-      // })
+      // let elemIF = document.createElement('iframe')
+      // elemIF.src = '/control/file/download?groups=' + this.congroup
+      // elemIF.style.display = 'none'
+      // document.body.appendChild(elemIF)
+      this.$axios({
+        method: 'get',
+        url: '/control/file/download',
+        params: {
+          groups: this.congroup
+        },
+        responseType: 'arraybuffer'
+      })
     }
   },
   mounted () {
