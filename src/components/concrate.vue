@@ -126,7 +126,7 @@ export default {
       //   },
       //   responseType: 'arraybuffer'
       // })
-      let url = '/control/file/download' + this.congroup
+      let url = '/control/file/download?groups=' + this.congroup
       const iframe = document.createElement('iframe')
       iframe.style.display = 'none'
       function iframeLoad () {
