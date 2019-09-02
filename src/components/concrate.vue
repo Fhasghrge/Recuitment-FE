@@ -114,49 +114,30 @@ export default {
       this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker } })
     },
     download () {
-      // let elemIF = document.createElement('iframe')
-      // elemIF.src = '/control/file/download?groups=' + this.congroup
-      // elemIF.style.display = 'none'
-      // document.body.appendChild(elemIF)
-      // this.$axios({
-      //   method: 'get',
-      //   url: '/control/file/download',
-      //   params: {
-      //     groups: this.congroup
-      //   },
-      //   responseType: 'arraybuffer'
-      // })
-      let url = '/control/file/download?groups=' + this.congroup
-      const iframe = document.createElement('iframe')
-      iframe.style.display = 'none'
-      function iframeLoad () {
-        console.log('iframe onload')
-        const win = iframe.contentWindow
-        const doc = win.document
-        if (win.location.href === url) {
-          if (doc.body.childNodes.length > 0) {
-            // response is error
-          }
-          iframe.parentNode.removeChild(iframe)
+      this.$axios({
+        method: 'get',
+        url: '/control/file/download',
+        params: {
+          groups: this.congroup
+        },
+        responseType: 'arraybuffer'
+      }).then((res) => {
+        const content = res.data
+        const blob = new Blob([content])
+        const fileName = 'alldata'
+        if ('download' in document.createElement('a')) {
+          const link = document.createElement('a')
+          link.download = fileName
+          link.style.display = 'none'
+          link.href = URL.createObjectURL(blob)
+          document.body.appendChild(link)
+          link.click()
+          URL.revokeObjectURL(link.href)
+          document.body.removeChild(link)
+        } else {
+          navigator.msSaveBlob(blob, fileName)
         }
-      }
-      if ('onload' in iframe) {
-        iframe.onload = iframeLoad
-      } else if (iframe.attachEvent) {
-        iframe.attachEvent('onload', iframeLoad)
-      } else {
-        iframe.onreadystatechange = function onreadystatechange () {
-          if (iframe.readyState === 'complete') {
-            iframeLoad()
-          }
-        }
-      }
-      iframe.src = ''
-      document.body.appendChild(iframe)
-
-      setTimeout(function loadUrl () {
-        iframe.contentWindow.location.href = url
-      }, 50)
+      })
     }
   },
   mounted () {
