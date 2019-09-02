@@ -120,7 +120,7 @@ export default {
         params: {
           groups: this.congroup
         },
-        responseType: 'arraybuffer'
+        responseType: 'blob'
       }).then((res) => {
         const content = res.data
         const blob = new Blob([content])
