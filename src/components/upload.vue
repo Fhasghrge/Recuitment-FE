@@ -2,7 +2,8 @@
   <div class="upload">
     <span class="headline"
           v-html="trimstr(title)"></span>
-    <div class="line">
+    <div class="line"
+         v-if="$route.path=='/answer'">
       <img src="../assets/load.png"
            class="load" />
       <a class="upl"
@@ -16,7 +17,8 @@
              :readonly="isread">
       <span class="eg">tips:多文件请将所有文件打包成一个zip文件上传</span>
     </div>
-    <div class="docu">
+    <div class="docu"
+         v-if="$route.path=='/answer'">
       <div class="single"
            v-for="(item,index) in filename"
            :key="index">
@@ -168,7 +170,7 @@ export default {
       form.append('ID', this.ID)
       for (let i = 0; i < f.target.files.length; i++) {
         var file = f.target.files[i]
-        this.filename.append(file.name)
+        this.filename.push(file.name)
         form.append('file', file)
       }
       if (this.$route.path === '/answer') {
