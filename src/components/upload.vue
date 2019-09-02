@@ -188,10 +188,12 @@ export default {
               var rate = f.loaded / f.total // 已上传的比例
               if (rate < 1) {
                 that.length = (rate * 100).toFixed(2)
-              } else {
-                that.flag = false
               }
             }
+          }
+        }).then((res) => {
+          if (res.data.code === 0) {
+            that.flag = false
           }
         }).catch((err) => {
           if (err) {
