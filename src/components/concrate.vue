@@ -123,8 +123,8 @@ export default {
         responseType: 'blob'
       }).then((res) => {
         const content = res.data
-        const blob = new Blob([content])
-        const fileName = 'alldata'
+        const blob = new Blob([content], { type: 'application.zip' })
+        const fileName = 'data.zip'
         if ('download' in document.createElement('a')) {
           const link = document.createElement('a')
           link.download = fileName
