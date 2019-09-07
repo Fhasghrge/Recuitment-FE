@@ -127,7 +127,7 @@ export default {
   height: 1rem;
 }
 .headline {
-  margin: 0.5rem auto 1rem 1rem;
+  margin: 0.5rem auto 1rem 0;
   font-size: 1rem;
   display: block;
 }
@@ -170,7 +170,6 @@ input:checked + label {
   font-size: 1rem;
 }
 .load {
-  margin-left: 1rem;
   width: 25px;
   height: 20px;
 }

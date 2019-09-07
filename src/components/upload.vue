@@ -15,7 +15,7 @@
              value=""
              @change="upload($event)"
              :readonly="isread">
-      <span class="eg">tips:多文件请将所有文件打包成一个zip文件上传</span>
+      <span style="margin-left:20px;line-height:1.5rem">tips:只能上传一个文件，多文件请将所有文件打包成一个zip后上传，后上传的文件会覆盖之前上传的文件，若上传文件有误，重新上传即可</span>
     </div>
     <div class="docu"
          v-if="$route.path=='/answer'">
@@ -170,7 +170,7 @@ export default {
       form.append('ID', this.ID)
       for (let i = 0; i < f.target.files.length; i++) {
         var file = f.target.files[i]
-        this.filename.push(file.name)
+        this.filename.splice(0, 1, file.name)
         form.append('file', file)
       }
       if (this.$route.path === '/answer') {
@@ -206,7 +206,7 @@ export default {
   },
   mounted () {
     if (this.answer !== '') {
-      this.filename = this.filename.concat(this.answer)
+      this.filename.splice(0, 1, this.answer)
       this.flag = false
     }
     if (this.$route.path === '/marking') {

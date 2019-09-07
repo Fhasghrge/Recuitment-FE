@@ -146,7 +146,13 @@ export default {
     register: function () {
       if (this.peraccount !== '' && this.perpassword !== '' && this.pername !== '' && this.tel !== '' && this.verify !== '') {
         this.err = ''
-        if (this.perpassword === this.verify) {
+        if (!(/^1[3456789]\d{9}$/.test(this.tel))) {
+          this.err = '手机号码有误，请重填'
+        } else if (!(/^201\d{10}$/.test(this.peraccount))) {
+          this.err = '学号有误，请重填'
+        } else if (!(/^[\u4e00-\u9fa5]{2,15}$/.test(this.pername))) {
+          this.err = '姓名有误，请重填'
+        } else if (this.perpassword === this.verify) {
           if (this.perpassword.length >= 6) {
             this.$axios({
               method: 'post',
@@ -185,7 +191,7 @@ export default {
     },
     setCookie (name, pwd, day) {
       var exdate = new Date()
-      exdate.setTime(exdate.getTime() + 10 * 60 * 1000 * day)
+      exdate.setTime(exdate.getTime() + 60 * 60 * 1000 * day)
       window.document.cookie = 'userName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
       window.document.cookie = 'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
     },
