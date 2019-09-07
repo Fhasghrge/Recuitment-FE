@@ -269,6 +269,7 @@ export default {
               })
             } else if (res.data.code === -5) {
               alert('错误的用户名或密码')
+              this.oldPassword = this.newPassword = this.rePassword = ''
             } else {
               alert('修改密码失败')
               this.oldPassword = this.newPassword = this.rePassword = ''
