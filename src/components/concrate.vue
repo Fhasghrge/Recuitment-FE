@@ -35,9 +35,8 @@
             <td>{{item.time}}</td>
             <td>{{item.score}}</td>
             <td>
-              <span v-for="(peo) in item.judger"
-                    :key="peo"
-                    class="judger">{{peo}} </span>
+              <span class="judger"
+                    v-show="item.judger">{{String(item.judger)}} </span>
             </td>
             <td><button v-if="item.lock"
                       @click="gomark(item.stunum,item.name,item.judger)">阅卷</button></td>
