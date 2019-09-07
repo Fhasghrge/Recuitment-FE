@@ -1,7 +1,7 @@
 <template>
   <div class="upload">
     <span class="headline"
-          v-html="trimstr(title)"></span>
+          v-html="trimstr(childtitle)"></span>
     <div class="line"
          v-if="$route.path=='/answer'">
       <img src="../assets/load.png"
@@ -73,6 +73,7 @@ export default {
       delBoxFlag: false,
       groups: this.$route.query.groups,
       list3: [],
+      childtitle: '',
       isread: false
     }
   },
@@ -102,13 +103,13 @@ export default {
     getlist: function () {
       this.$axios({
         method: 'post',
-        url: '/control/question/list',
+        url: '/control/question/info',
         data: {
           ID: this.ID
         }
       }).then((res2) => {
         if (res2.data.code === 0) {
-          this.title = res2.data.data.title
+          this.childtitle = res2.data.data.title
         }
       })
     },
@@ -149,7 +150,7 @@ export default {
       })
     },
     trimstr: function (str) {
-      if (this.$route.path === '/answer') {
+      if (this.$route.path === '/answer' || this.$route.path === '/marking') {
         let strindex = String(this.index + 1)
         let strtrim = '(附件题) '
         let head = strindex + '.' + strtrim
@@ -205,6 +206,7 @@ export default {
     }
   },
   mounted () {
+    this.childtitle = this.title
     if (this.answer !== '') {
       this.filename.splice(0, 1, this.answer)
       this.flag = false

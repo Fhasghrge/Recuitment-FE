@@ -63,7 +63,7 @@ export default {
     },
     setCookie (name, pwd, day) {
       var exdate = new Date()
-      exdate.setTime(exdate.getTime() + 10 * 60 * 1000 * day)
+      exdate.setTime(exdate.getTime() + 60 * 60 * 1000 * day)
       window.document.cookie = 'adminName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
       window.document.cookie = 'adminPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
     },

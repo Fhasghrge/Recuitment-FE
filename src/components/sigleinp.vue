@@ -1,7 +1,7 @@
 <template>
   <div class="inp">
     <span class="headline"
-          v-html="trimstr(title)"></span>
+          v-html="trimstr(childtitle)"></span>
     <input class="ipt"
            v-model="singleinp"
            @blur="sendinp"
@@ -47,7 +47,8 @@ export default {
       groups: this.$route.query.groups,
       list2: [],
       isread: false,
-      thistime: ''
+      thistime: '',
+      childtitle: ''
     }
   },
   props: {
@@ -74,7 +75,6 @@ export default {
   },
   methods: {
     getlist: function () {
-      console.log(this.ID)
       this.$axios({
         method: 'post',
         url: '/control/question/info',
@@ -83,7 +83,7 @@ export default {
         }
       }).then((res2) => {
         if (res2.data.code === 0) {
-          this.title = res2.data.data.title
+          this.childtitle = res2.data.data.title
         }
       })
     },
@@ -126,7 +126,7 @@ export default {
       }
     },
     trimstr: function (str) {
-      if (this.$route.path === '/answer') {
+      if (this.$route.path === '/answer' || this.$route.path === '/marking') {
         let strindex = String(this.index + 1)
         let strtrim = '(填空题) '
         let head = strindex + '.' + strtrim
@@ -175,6 +175,7 @@ export default {
     }
   },
   mounted () {
+    this.childtitle = this.title
     if (this.answer !== '') {
       this.singleinp = this.answer
     }

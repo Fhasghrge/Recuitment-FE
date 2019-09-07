@@ -4,7 +4,8 @@
     <div class="eachsocre">
       <ol class="allopo">
         <li v-for="(item,index) in que "
-            :key="index">
+            :key="index"
+            style="margin:10px auto">
           <span>分数:</span>
           <input @blur="sub(item.ID,index)"
                  class="scoreinp"
@@ -72,7 +73,7 @@ export default {
 .scohead {
   font-weight: 400;
   font-size: 1.3rem;
-  margin: 11px auto 16px 18px;
+  margin: 11px auto 0 18px;
 }
 .eachopo {
   margin: 9px auto;
@@ -85,6 +86,10 @@ export default {
   height: 25px;
   color: #ffffff;
   font-size: 1.1rem;
+}
+.eachsocre {
+  max-height: 260px;
+  overflow: scroll;
 }
 .eachsocre span {
   margin: 0 5px;

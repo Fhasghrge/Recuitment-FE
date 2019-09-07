@@ -1,7 +1,7 @@
 <template>
   <div class="text">
     <span class="headline"
-          v-html="trimstr(title)"></span>
+          v-html="trimstr(childtitle)"></span>
     <textarea class="txt"
               v-model="shortanswer"
               @blur="sendshoans"
@@ -46,7 +46,7 @@ export default {
       delBoxFlag: false,
       groups: this.$route.query.groups,
       list1: [],
-      childtitle: this.title,
+      childtitle: '',
       isread: false,
       thistime: ''
     }
@@ -88,7 +88,7 @@ export default {
       })
     },
     trimstr: function (str) {
-      if (this.$route.path === '/answer') {
+      if (this.$route.path === '/answer' || this.$route.path === '/marking') {
         let strindex = String(this.index + 1)
         let strtrim = '(简答题) '
         let head = strindex + '.' + strtrim
@@ -175,8 +175,9 @@ export default {
     }
   },
   mounted () {
+    this.childtitle = this.title
     if (this.answer !== '') {
-      this.shortanswer = this.answer
+      this.shortanswer = this.childtitle
     }
     if (this.$route.path === '/marking') {
       this.getlist()

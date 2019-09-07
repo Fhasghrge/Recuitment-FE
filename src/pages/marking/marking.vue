@@ -56,6 +56,7 @@ export default {
         console.log(res)
         if (res.data.code === 0) {
           this.que = res.data.data
+          console.log(this.que)
         }
       }).catch((err) => {
         console.log(err)
