@@ -3,6 +3,6 @@ module.exports = {
   // 选项...
   publicPath: './',
   devServer: {
-    proxy: 'http://join.stuhome.com'
+    proxy: 'https://join.stuhome.com'
   }
 }

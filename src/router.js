@@ -27,123 +27,126 @@ import add from './router/sub/add.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  routes: [{
-    path: '/',
-    redirect: '/home'
-  },
-  {
-    path: '/main',
-    component: introduce,
-    meta: {
-      requireAuth: true
-    },
-    children: [{
+  routes: [
+    {
       path: '/',
-      component: text
+      redirect: '/home'
     },
     {
-      path: 'product',
-      component: product
+      path: '/main',
+      component: introduce,
+      meta: {
+        requireAuth: true
+      },
+      children: [
+        {
+          path: '/',
+          component: text
+        },
+        {
+          path: 'product',
+          component: product
+        },
+        {
+          path: 'FE',
+          component: FE
+        },
+        {
+          path: 'BE',
+          component: BE
+        },
+        {
+          path: 'android',
+          component: android
+        },
+        {
+          path: 'iOS',
+          component: iOS
+        },
+        {
+          path: 'design',
+          component: design
+        },
+        {
+          path: 'DevOps',
+          component: DevOps
+        }
+      ]
     },
     {
-      path: 'FE',
-      component: FE
+      path: '/ending',
+      component: ending,
+      meta: {
+        requireAuth: true
+      }
     },
     {
-      path: 'BE',
-      component: BE
+      path: '/managerlogin',
+      component: managerLogin
+    },
+    // {path:'/manager',
+    // component:manager,
+    // children:[
+    //     {path:'checking',component:checking},
+    //     {path:'add',component:add},
+    // ]},
+    {
+      path: '/home',
+      name: 'home',
+      component: home
     },
     {
-      path: 'android',
-      component: android
+      path: '/answer',
+      name: 'answer',
+      component: answer,
+      meta: {
+        requireAuth: true
+      }
     },
     {
-      path: 'iOS',
-      component: iOS
+      path: '/adminindex',
+      component: adminindex,
+      meta: {
+        requireAdmin: true
+      },
+      children: [
+        {
+          path: '/',
+          name: 'announce',
+          component: announce
+        },
+        {
+          path: 'overview',
+          name: 'overview',
+          component: overview
+        },
+        {
+          path: 'concrate',
+          name: 'concrate',
+          component: concrate
+        },
+        // {
+        //   path: 'checking',
+        //   component: checking
+        // },
+        {
+          path: 'add',
+          component: add
+        },
+        {
+          path: 'ctrlques',
+          component: ctrlques
+        }
+      ]
     },
     {
-      path: 'design',
-      component: design
-    },
-    {
-      path: 'DevOps',
-      component: DevOps
+      path: '/marking',
+      name: 'marking',
+      component: marking,
+      meta: {
+        requireAdmin: true
+      }
     }
-    ]
-  },
-  {
-    path: '/ending',
-    component: ending,
-    meta: {
-      requireAuth: true
-    }
-  },
-  {
-    path: '/managerlogin',
-    component: managerLogin
-  },
-  // {path:'/manager',
-  // component:manager,
-  // children:[
-  //     {path:'checking',component:checking},
-  //     {path:'add',component:add},
-  // ]},
-  {
-    path: '/home',
-    name: 'home',
-    component: home
-  },
-  {
-    path: '/answer',
-    name: 'answer',
-    component: answer,
-    meta: {
-      requireAuth: true
-    }
-  },
-  {
-    path: '/adminindex',
-    component: adminindex,
-    meta: {
-      requireAdmin: true
-    },
-    children: [{
-      path: '/',
-      name: 'announce',
-      component: announce
-    },
-    {
-      path: 'overview',
-      name: 'overview',
-      component: overview
-    },
-    {
-      path: 'concrate',
-      name: 'concrate',
-      component: concrate
-    },
-    // {
-    //   path: 'checking',
-    //   component: checking
-    // },
-    {
-      path: 'add',
-      component: add
-    },
-    {
-      path: 'ctrlques',
-      component: ctrlques
-    }
-    ]
-  },
-  {
-    path: '/marking',
-    name: 'marking',
-    component: marking,
-    meta: {
-      requireAdmin: true
-    }
-  }
   ]
 })
 

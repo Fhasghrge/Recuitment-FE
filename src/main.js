@@ -5,7 +5,8 @@ import store from './store'
 import './axios'
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requireAuth)) { // 判断该路由是否需要登录权限
+  if (to.matched.some(record => record.meta.requireAuth)) {
+    // 判断该路由是否需要登录权限
     let username = ''
     let userpwd = ''
     if (document.cookie.length > 0) {
@@ -56,6 +57,9 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
+})
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0)
 })
 
 new Vue({
