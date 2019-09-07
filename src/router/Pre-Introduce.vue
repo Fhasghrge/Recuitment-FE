@@ -268,13 +268,18 @@ export default {
                 path: '/home'
               })
             } else if (res.data.code === -5) {
-              alert(res.data.msg)
+              alert('错误的用户名或密码')
+              this.oldPassword = this.newPassword = this.rePassword = ''
             } else {
               alert('修改密码失败')
+              this.oldPassword = this.newPassword = this.rePassword = ''
             }
           }).catch((err) => {
             console.log(err)
           })
+        } else {
+          alert('新密码与重复的密码不一致，请重新输入')
+          this.oldPassword = this.newPassword = this.rePassword = ''
         }
       }
     },

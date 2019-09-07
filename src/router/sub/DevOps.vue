@@ -38,6 +38,12 @@ export default {
   },
   mounted () {
     this.changeFlag()
+  },
+  created () {
+    if (window.screen.width <= 1080) {
+      var sTop = document.body || document.documentElement
+      sTop.scrollTop = 0
+    }
   }
 }
 </script>
