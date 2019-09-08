@@ -112,6 +112,38 @@ export default {
     gomark (unum, uname, marker) {
       this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker } })
     },
+    checktime (i) {
+      if (i < 10) {
+        let c = '0' + i
+        return c
+      } else {
+        return i
+      }
+    },
+    checkgroup (a) {
+      if (a === '1') {
+        let b = '产品'
+        return b
+      } else if (a === '2') {
+        let b = '设计'
+        return b
+      } else if (a === '3') {
+        let b = '安卓'
+        return b
+      } else if (a === '4') {
+        let b = 'IOS'
+        return b
+      } else if (a === '5') {
+        let b = '前端'
+        return b
+      } else if (a === '6') {
+        let b = '后台'
+        return b
+      } else if (a === '7') {
+        let b = 'DevOps'
+        return b
+      }
+    },
     download () {
       this.$axios({
         method: 'get',
@@ -123,7 +155,18 @@ export default {
       }).then((res) => {
         const content = res.data
         const blob = new Blob([content], { type: 'application.zip' })
-        const fileName = 'data.zip'
+        let presentTime = new Date()
+        let month = presentTime.getMonth()
+        let day = presentTime.getDate()
+        let hour = presentTime.getHours()
+        let m = presentTime.getMinutes()
+
+        month = this.checktime(String(parseInt(month) + 1))
+        day = this.checktime(day)
+        hour = this.checktime(hour)
+        m = this.checktime(m)
+        let group = this.checkgroup(this.$route.query.groups)
+        const fileName = group + '附件-' + month + day + hour + m + '.zip'
         if ('download' in document.createElement('a')) {
           const link = document.createElement('a')
           link.download = fileName
