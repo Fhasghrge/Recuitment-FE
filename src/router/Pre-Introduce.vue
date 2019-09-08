@@ -86,7 +86,7 @@
            id="priHead"><span id="priName">{{ privateName }}</span>
       <img src="../assets/close.png"
            class="close"
-           @click="priFlag=false">
+           @click="closePrivate">
       <div id='priText'>
         <div class="priBox priLeft">
           <p class='priVal'>真实姓名</p><input class="priMsg"
@@ -252,6 +252,11 @@ export default {
         console.log(err)
       })
       if (this.newPassword !== '' && this.rePassword !== '') {
+        if (this.newPassword.length < 6) {
+          alert('新密码长度过短')
+          this.closePrivate()
+          return
+        }
         if (this.newPassword === this.rePassword) {
           this.$axios({
             method: 'post',
@@ -308,6 +313,10 @@ export default {
     },
     PrefixZero (num, n) {
       return (Array(n).join(0) + num).slice(-n)
+    },
+    closePrivate () {
+      this.priFlag = false
+      this.oldPassword = this.newPassword = this.rePassword = ''
     }
   },
   mounted () {
