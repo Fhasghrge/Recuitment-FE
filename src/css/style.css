@@ -252,7 +252,9 @@ textarea {
 }
 
 #noteText h2 {
+  /* position: relative; */
   font-size: 3rem;
+  /* margin: 0 auto; */
 }
 
 #noteText p {
