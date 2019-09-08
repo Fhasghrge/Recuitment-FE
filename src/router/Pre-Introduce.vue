@@ -236,7 +236,7 @@ export default {
       })
     },
     changePrivateMsg () {
-      this.priFlag = false
+      // this.priFlag = false
       this.$axios({
         method: 'post',
         url: '/user/userinfo/change',
@@ -281,6 +281,8 @@ export default {
           alert('新密码与重复的密码不一致，请重新输入')
           this.oldPassword = this.newPassword = this.rePassword = ''
         }
+      } else {
+        this.priFlag = false
       }
     },
     quit: function () {
