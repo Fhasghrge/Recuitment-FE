@@ -1,7 +1,8 @@
 <template>
   <div id='text'>
     <h1 class='welcome-header'>{{Header}}</h1>
-    <p class='introduce'>{{ introduce }}</p>
+    <p class='introduce'
+       v-html="introduce"></p>
     <a href=""
        class='begin'
        v-if='flag'
@@ -13,10 +14,11 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/08/01',
+      ddlStr: '2019/09/15',
+      ddlStr2: '2019/10/15',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '设计组',
-      introduce: '这里是设计组的介绍'
+      introduce: '负责产品的UI设计<br>海报的平面设计<br>制作产品宣传、团队宣传等视频<br>技能：PS、Sketch'
     }
   },
   methods: {
@@ -29,7 +31,7 @@ export default {
       })
     },
     changeFlag () {
-      if (new Date() - new Date(this.ddlStr) > 0) {
+      if (new Date() - new Date(this.ddlStr) > 0 && new Date() - new Date(this.ddlStr2) < 0) {
         this.flag = true
       } else {
         this.flag = false
@@ -41,10 +43,14 @@ export default {
   },
   created () {
     if (window.screen.width <= 1080) {
-      var sTop = document.body || document.documentElement
-      sTop.scrollTop = 0
-      window.pageYOffset = 0
+      window.pageYOffset = document.body.scrollTop = document.documentElement.scrollTop = 0
     }
   }
 }
 </script>
+
+<style scoped>
+.text-wrapper {
+  white-space: pre-wrap;
+}
+</style>

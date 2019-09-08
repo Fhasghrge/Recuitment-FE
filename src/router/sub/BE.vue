@@ -13,10 +13,11 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/08/01',
+      ddlStr: '2019/09/15',
+      ddlStr2: '2019/10/15',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '后台组',
-      introduce: '这里是后台组的介绍'
+      introduce: '后台的小星星，日常必不可缺少的是各种后台变成语言（PHP,java等），结合数据库、服务器等共同组建一个功能完善的web服务器端，实现数据的处理、分析与下发，性能的优化等工作。只要你有学习的热情和团队合作'
     }
   },
   methods: {
@@ -29,7 +30,7 @@ export default {
       })
     },
     changeFlag () {
-      if (new Date() - new Date(this.ddlStr) > 0) {
+      if (new Date() - new Date(this.ddlStr) > 0 && new Date() - new Date(this.ddlStr2) < 0) {
         this.flag = true
       } else {
         this.flag = false
@@ -41,9 +42,7 @@ export default {
   },
   created () {
     if (window.screen.width <= 1080) {
-      var sTop = document.body || document.documentElement
-      sTop.scrollTop = 0
-      window.pageYOffset = 0
+      window.pageYOffset = document.body.scrollTop = document.documentElement.scrollTop = 0
     }
   }
 }

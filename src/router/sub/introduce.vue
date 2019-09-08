@@ -15,7 +15,8 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/08/01', // 开始答题的日期，待更改
+      ddlStr: '2019/09/15', // 开始答题的日期，待更改
+      ddlStr2: '2019/10/15',
       flag: false, // flag 控制tips，true为显示，false为隐藏
       Header: 'Welcome to Star Studio!',
       introduce: '星辰工作室是……（工作室的介绍段落）有什么事问豆豆就对了哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或'
@@ -23,7 +24,7 @@ export default {
   },
   methods: {
     changeFlag () {
-      if (new Date() - new Date(this.ddlStr) > 0) {
+      if (new Date() - new Date(this.ddlStr) > 0 && new Date() - new Date(this.ddlStr2) < 0) {
         this.flag = true
       } else {
         this.flag = false
@@ -53,9 +54,7 @@ export default {
   },
   created () {
     if (window.screen.width <= 1080) {
-      var sTop = document.body || document.documentElement
-      sTop.scrollTop = 0
-      window.pageYOffset = 0
+      window.pageYOffset = document.body.scrollTop = document.documentElement.scrollTop = 0
     }
   }
 }

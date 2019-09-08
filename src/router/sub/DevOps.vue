@@ -13,10 +13,11 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/08/01',
+      ddlStr: '2019/09/15',
+      ddlStr2: '2019/10/15',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
-      Header: '运维组',
-      introduce: '这里是运维组的介绍'
+      Header: 'DevOps组',
+      introduce: '合格运维的日常是进行工作室服务器、各种线上服务的基础运维。我们也将进行服务发布、更新和维护。Starstudio DevOps期待你的加入'
     }
   },
   methods: {
@@ -29,7 +30,7 @@ export default {
       })
     },
     changeFlag () {
-      if (new Date() - new Date(this.ddlStr) > 0) {
+      if (new Date() - new Date(this.ddlStr) > 0 && new Date() - new Date(this.ddlStr2) < 0) {
         this.flag = true
       } else {
         this.flag = false
@@ -41,9 +42,7 @@ export default {
   },
   created () {
     if (window.screen.width <= 1080) {
-      var sTop = document.body || document.documentElement
-      sTop.scrollTop = 0
-      window.pageYOffset = 0
+      window.pageYOffset = document.body.scrollTop = document.documentElement.scrollTop = 0
     }
   }
 }

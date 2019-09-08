@@ -147,8 +147,8 @@ export default {
   data () {
     return {
       date: '',
-      ddlStr: '2019/09/01',
-      ddlStr2: '2019/10/01',
+      ddlStr: '2019/09/15',
+      ddlStr2: '2019/10/15',
       flag: true, // flag 控制 显示倒计时 还是 显示开始答题按钮,true为未开始，false为进行中
       notesFlag: false,
       Itemflag: true,
