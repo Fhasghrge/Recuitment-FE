@@ -176,8 +176,10 @@ export default {
   },
   mounted () {
     this.childtitle = this.title
+    console.log(this.answer)
     if (this.answer !== '') {
-      this.shortanswer = this.childtitle
+      console.log(this.answer)
+      this.shortanswer = this.answer
     }
     if (this.$route.path === '/marking') {
       this.getlist()
