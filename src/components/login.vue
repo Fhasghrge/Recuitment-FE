@@ -151,7 +151,7 @@ export default {
         } else if (!(/^201\d{10}$/.test(this.peraccount))) {
           this.err = '学号有误，请重填'
         } else if (!(/^[\u4e00-\u9fa5]{2,15}$/.test(this.pername))) {
-          this.err = '姓名有误，请重填'
+          this.err = '姓名为2-15位的中文，请重填'
         } else if (this.perpassword === this.verify) {
           if (this.perpassword.length >= 6) {
             this.$axios({
