@@ -55,6 +55,7 @@ export default {
     if (window.screen.width <= 1080) {
       var sTop = document.body || document.documentElement
       sTop.scrollTop = 0
+      window.pageYOffset = 0
     }
   }
 }
