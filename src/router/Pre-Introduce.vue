@@ -251,7 +251,7 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
-      if (this.newPassword !== '' && this.rePassword !== '') {
+      if (this.newPassword !== '' || this.rePassword !== '') {
         if (this.newPassword.length < 6) {
           alert('新密码长度过短')
           this.closePrivate()
@@ -287,7 +287,10 @@ export default {
           this.oldPassword = this.newPassword = this.rePassword = ''
         }
       } else {
-        this.priFlag = false
+        if (this.oldPassword !== '') {
+          alert('新密码为空，请重新输入')
+        }
+        this.closePrivate()
       }
     },
     quit: function () {
@@ -328,6 +331,7 @@ export default {
     // console.log(this.$route.path)
     this.getPrivateMsg() // 获取用户信息
     // console.log(this.PrefixZero(9, 2))
+    this.closePrivate()
   },
   watch: {
     '$route.path': function (newVal) {
