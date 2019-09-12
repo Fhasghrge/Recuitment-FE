@@ -148,7 +148,7 @@ export default {
         this.err = ''
         if (!(/^1[3456789]\d{9}$/.test(this.tel))) {
           this.err = '手机号码有误，请重填'
-        } else if (!(/^201\d{10}$/.test(this.peraccount))) {
+        } else if (!(/^201\d{9,10}$/.test(this.peraccount))) {
           this.err = '学号有误，请重填'
         } else if (!(/^[\u4e00-\u9fa5]{2,15}$/.test(this.pername))) {
           this.err = '姓名为2-15位的中文，请重填'
