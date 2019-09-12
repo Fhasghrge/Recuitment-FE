@@ -13,8 +13,8 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/09/15',
-      ddlStr2: '2019/10/15',
+      ddlStr: '2019/09/16',
+      ddlStr2: '2019/09/23',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '前端组',
       introduce: '能够运用前端技术包括JavaScript、CSS、HTML等传统技术与概念性较强的交互式设计，艺术性较强的视觉设计等等。'

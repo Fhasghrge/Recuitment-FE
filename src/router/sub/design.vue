@@ -14,8 +14,8 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/09/15',
-      ddlStr2: '2019/10/15',
+      ddlStr: '2019/09/16',
+      ddlStr2: '2019/09/23',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '设计组',
       introduce: '负责产品的UI设计<br>海报的平面设计<br>制作产品宣传、团队宣传等视频<br>技能：PS、Sketch'
