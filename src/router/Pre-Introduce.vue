@@ -182,7 +182,7 @@ export default {
         var hh = this.PrefixZero(Math.floor((rightTime / 1000 / 60 / 60) % 24), 2)
         var mm = this.PrefixZero(Math.floor((rightTime / 1000 / 60) % 60), 2)
         var ss = this.PrefixZero(Math.floor((rightTime / 1000) % 60), 2)
-        this.date = dd + 'd ' + hh + ':' + mm + ':' + ss
+        this.date = dd + '天 ' + hh + ':' + mm + ':' + ss
       }, 1000)
     },
     mobileStyle () {
