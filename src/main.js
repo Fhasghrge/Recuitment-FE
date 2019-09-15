@@ -27,30 +27,6 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
-  } else if (to.matched.some(record => record.meta.requireAdmin)) {
-    let adminname = ''
-    let adminpwd = ''
-    if (document.cookie.length > 0) {
-      let arry = document.cookie.split('; ')
-      for (let a = 0; a < arry.length; a++) {
-        let arry2 = arry[a].split('=')
-        if (arry2[0] === 'adminName') {
-          adminname = arry2[1]
-        } else if (arry2[0] === 'adminPwd') {
-          adminpwd = arry2[1]
-        }
-      }
-    }
-    if (!adminname && !adminpwd) {
-      next({
-        path: '/managerlogin',
-        query: {
-          redirect: to.fullPath
-        } // 将跳转的路由path作为参数，登录成功后跳转到该路由
-      })
-    } else {
-      next()
-    }
   } else {
     next()
   }
