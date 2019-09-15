@@ -12,7 +12,7 @@
       <h2>{{thisgroup + '组答题'}}</h2>
     </div>
     <user @usershow='usertans'></user>
-    <img src="../img/头像.png"
+    <img src="../assets/头像.png"
          class="icon1"
          @click="mobtans" />
     <mobbar></mobbar>
@@ -146,6 +146,7 @@ export default {
     width: 40px;
     height: 40px;
     margin-bottom: 5px;
+    border-radius: 50%;
   }
 
   .exit {

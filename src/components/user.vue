@@ -1,6 +1,6 @@
 <template>
   <div class="right">
-    <img src="../img/头像.png"
+    <img src="../assets/头像.png"
          @mouseover="flag = !flag"
          @mouseout="flag = !flag"
          class="icon" />
@@ -75,6 +75,7 @@ export default {
     height: 50px;
     width: 50px;
     margin-right: 8px;
+    border-radius: 50%;
   }
 
   .icon:hover .btn:hover {

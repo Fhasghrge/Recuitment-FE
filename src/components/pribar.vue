@@ -8,8 +8,11 @@
              @click="closebar"></div>
       <img class="midlogoa"
            src="../img/LOGO.png">
-      <img src="../img/头像.png"
-           id="priHeada">
+      <div class="infowrap">
+        <img src="../assets/头像.png"
+             id="priHeada">
+        <span class="Name">{{ priName }}</span>
+      </div>
       <img src="../img/close.png"
            class="closea"
            @click="closebar">
@@ -195,7 +198,22 @@ export default {
 </script>
 
 <style>
+.infowrap {
+  display: flex;
+}
+
 @media screen and (min-width: 700px) {
+  .Name {
+    color: #ffffff;
+    font-size: 1.4rem;
+    line-height: 50px;
+    margin-left: 1.4rem;
+  }
+  #priHeada {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
   .mobquit {
     display: none;
   }
@@ -292,6 +310,9 @@ export default {
   }
 }
 @media screen and (max-width: 700px) {
+  .Name {
+    display: none;
+  }
   .mobquit {
     width: 80%;
     height: 2.5rem;
@@ -346,6 +367,7 @@ export default {
   #priHeada {
     width: 40px;
     height: 40px;
+    border-radius: 50%;
   }
   .pribara {
     display: flex;

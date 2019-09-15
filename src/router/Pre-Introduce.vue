@@ -83,7 +83,7 @@
     <div id='private'
          v-if='priFlag'>
       <img src="../assets/头像.png"
-           id="priHead"><span id="priName">{{ privateName }}</span>
+           id="priHead"><span id="priName">{{ priName }}</span>
       <img src="../assets/close.png"
            class="close"
            @click="closePrivate">
