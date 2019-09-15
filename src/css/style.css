@@ -304,6 +304,7 @@ textarea {
 #private #priHead {
   position: relative;
   float: left;
+  max-width: 5%;
   margin-bottom: 5%;
   margin-left: 5%;
   margin-top: 3%;
@@ -695,6 +696,10 @@ textarea {
   #private #priText {
     margin: 30% auto;
     margin-bottom: 5%;
+  }
+
+  #private #priHead {
+    max-width: 10%;
   }
 
   #private .priVal {

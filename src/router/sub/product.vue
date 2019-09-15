@@ -13,7 +13,7 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/09/16', //  暂时开放产品答题做测试
+      ddlStr: '2019/09/15/16:00', //  暂时开放产品答题做测试
       ddlStr2: '2019/09/23',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '产品组',
