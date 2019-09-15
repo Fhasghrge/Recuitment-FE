@@ -348,7 +348,7 @@ textarea {
 
 .line {
   margin-top: 0;
-  width: 80%;
+  width: 80%
 }
 
 #private .priVal {
@@ -400,6 +400,10 @@ textarea {
 }
 
 @media screen and (max-width: 1081px) {
+  .line {
+    width: 100%
+  }
+
   .arrow_left {
     position: absolute;
     max-width: 100%;
@@ -640,7 +644,7 @@ textarea {
   .draw-leave-to
 
   /* .fade-leave-active below version 2.1.8 */
- {
+    {
     height: 0;
   }
 
@@ -775,6 +779,7 @@ textarea {
     margin: -110% auto;
     height: 80%;
   }
+
   .introduce {
     margin-top: 40%;
   }
@@ -784,6 +789,7 @@ textarea {
   #noteText h2 {
     font-size: 2rem;
   }
+
   .introduce {
     margin-top: 40%;
   }

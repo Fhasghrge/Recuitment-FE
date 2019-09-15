@@ -213,6 +213,9 @@ a {
   height: 1rem;
 }
 @media only screen and (min-width: 751px) {
+  .headline {
+    width: 80%;
+  }
   .ipt {
     width: 50%;
     margin-left: 1rem;
