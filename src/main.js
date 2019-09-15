@@ -8,19 +8,16 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requireAuth)) {
     // 判断该路由是否需要登录权限
     let username = ''
-    let userpwd = ''
     if (document.cookie.length > 0) {
       let arr = document.cookie.split('; ')
       for (let i = 0; i < arr.length; i++) {
         let arr2 = arr[i].split('=')
-        if (arr2[0] === 'userName') {
+        if (arr2[0] === 'jwt') {
           username = arr2[1]
-        } else if (arr2[0] === 'userPwd') {
-          userpwd = arr2[1]
         }
       }
     }
-    if (!username && !userpwd) {
+    if (!username) {
       next({
         path: '/home',
         query: {

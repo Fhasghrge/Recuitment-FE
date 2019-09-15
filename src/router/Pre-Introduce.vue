@@ -294,18 +294,11 @@ export default {
       }
     },
     quit: function () {
-      this.setCookie('', '', -1)
       if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
         this.$router.push({ path: '/managerlogin' })
       } else {
         this.$router.push({ name: 'home' })
       }
-    },
-    setCookie (name, pwd, day) {
-      var exdate = new Date()
-      exdate.setTime(exdate.getTime() + 10 * 60 * 1000 * day)
-      window.document.cookie = 'userName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
-      window.document.cookie = 'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
     },
     changeFlag () {
       console.log(8)
@@ -330,7 +323,7 @@ export default {
     this.arrowStyle()
     this.showHead()
     this.changeFlag()
-    console.log(12)
+    console.log(8)
     // console.log(this.$route.path)
     this.getPrivateMsg() // 获取用户信息
     // console.log(this.PrefixZero(9, 2))

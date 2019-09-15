@@ -122,7 +122,6 @@ export default {
           }
         }).then((response) => {
           if (response.data.code === 0) {
-            this.setCookie(acc, pwd, 1)
             this.$router.push({ path: 'main' })
           } else if (response.data.code === -5) {
             this.err = '账号不存在或密码错误'
@@ -166,7 +165,6 @@ export default {
               }
             }).then((response) => {
               if (response.data.code === 0) {
-                this.setCookie(this.peraccount, this.perpassword, 1)
                 this.confirmFlag = true
               } else if (response.data.code === -80) {
                 this.err = '用户已存在'
@@ -188,32 +186,9 @@ export default {
     },
     confirmRegister () {
       this.login(this.peraccount, this.perpassword)
-    },
-    setCookie (name, pwd, day) {
-      var exdate = new Date()
-      exdate.setTime(exdate.getTime() + 60 * 60 * 1000 * day)
-      window.document.cookie = 'userName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
-      window.document.cookie = 'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
-    },
-    getCookie: function () {
-      if (document.cookie.length > 0) {
-        var arr = document.cookie.split('; ')
-        for (var i = 0; i < arr.length; i++) {
-          var arr2 = arr[i].split('=')
-          if (arr2[0] === 'userName') {
-            this.ruleForm.userName = arr2[1]
-          } else if (arr2[0] === 'userPwd') {
-            this.ruleForm.password = arr2[1]
-          }
-        }
-        if (this.ruleForm.userName !== '' && this.ruleForm.password !== '') {
-          this.login(this.ruleForm.userName, this.ruleForm.password)
-        }
-      }
     }
   },
   created () {
-    this.getCookie()
     let that = this
     document.onkeydown = function (e) {
       e = window.event || e
