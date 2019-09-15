@@ -130,6 +130,7 @@ export default {
   margin: 0.5rem auto 1rem 0;
   font-size: 1rem;
   display: block;
+  word-break: break-all;
 }
 .rad {
   display: flex;
