@@ -328,7 +328,8 @@ textarea {
   display: flex;
   width: 80%;
   margin: 5% auto;
-  margin-left: -10%;
+  margin-top: 15%;
+  /* margin-left: -10%; */
   flex-wrap: wrap;
 }
 
