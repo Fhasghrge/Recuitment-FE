@@ -311,7 +311,7 @@ textarea {
   margin-top: 3%;
   border-radius: 50%;
   height: 50px;
-  width: 50px
+  width: 50px;
 }
 
 #private #priName {
@@ -639,7 +639,7 @@ textarea {
   .draw-leave-to
 
   /* .fade-leave-active below version 2.1.8 */
-    {
+ {
     height: 0;
   }
 
@@ -672,9 +672,9 @@ textarea {
     display: none;
   }
 
-  #text {
-    /* margin-top: 100%; */
-  }
+  /* #text {
+    margin-top: 100%;
+  } */
 
   .mainbox {
     display: none;
@@ -774,10 +774,16 @@ textarea {
     margin: -110% auto;
     height: 80%;
   }
+  .introduce {
+    margin-top: 40%;
+  }
 }
 
 @media screen and (max-width: 321px) {
   #noteText h2 {
     font-size: 2rem;
+  }
+  .introduce {
+    margin-top: 40%;
   }
 }
