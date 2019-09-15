@@ -31,7 +31,7 @@
                 @click="quit">退出登陆</button>
       </div>
     </transition>
-    <router-view></router-view>
+    <router-view :key="$route.path"></router-view>
     <div id='text'>
       <p class='tips'
          v-if="!flag">距离开始答题还有：</p>
@@ -147,7 +147,7 @@ export default {
   data () {
     return {
       date: '',
-      ddlStr: '2019/09/15/16:00',
+      ddlStr: '2019/09/15 16:00',
       ddlStr2: '2019/09/23',
       flag: true, // flag 控制 显示倒计时 还是 显示开始答题按钮,true为未开始，false为进行中
       notesFlag: false,
@@ -308,8 +308,10 @@ export default {
       window.document.cookie = 'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
     },
     changeFlag () {
+      console.log(8)
       if (new Date() - new Date(this.ddlStr) < 0) {
         this.flag = false
+        console.log(10)
       } else if (new Date() - new Date(this.ddlStr2) < 0) {
         this.flag = true
       }
@@ -328,6 +330,7 @@ export default {
     this.arrowStyle()
     this.showHead()
     this.changeFlag()
+    console.log(12)
     // console.log(this.$route.path)
     this.getPrivateMsg() // 获取用户信息
     // console.log(this.PrefixZero(9, 2))

@@ -15,7 +15,7 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/09/15/16:00', // 开始答题的日期，待更改
+      ddlStr: '2019/09/15 16:00', // 开始答题的日期，待更改
       ddlStr2: '2019/09/23',
       flag: false, // flag 控制tips，true为显示，false为隐藏
       Header: 'Welcome to Star Studio!',
