@@ -55,7 +55,8 @@ export default {
         method: 'post',
         url: '/control/exam/get',
         data: {
-          stunum: this.stunum
+          stunum: this.stunum,
+          groups: this.group
         }
       }).then((res) => {
         if (res.data.code === 0) {
