@@ -71,6 +71,10 @@ export default {
     author: {
       type: String,
       default: ''
+    },
+    group: {
+      type: String,
+      default: ''
     }
   },
   methods: {

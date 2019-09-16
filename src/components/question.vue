@@ -40,6 +40,7 @@
                  :ID="item.ID"
                  :title="item.title"
                  :answer="item.answer"
+                 :key="index"
                  :index="index"></uploadque>
     </div>
   </div>

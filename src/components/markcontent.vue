@@ -5,14 +5,17 @@
       <inp v-if="item.type === 3"
            :ID="item.ID"
            :index="index"
-           :answer="item.answer"></inp>
+           :answer="item.answer"
+           :group='group'></inp>
       <short v-if="item.type === 4"
              :ID="item.ID"
              :index="index"
+             :group='group'
              :answer="item.answer"></short>
       <uploadque v-if="item.type === 5"
                  :ID="item.ID"
                  :index="index"
+                 :group='group'
                  :answer="item.answer"></uploadque>
     </div>
   </div>
@@ -36,6 +39,10 @@ export default {
     que: {
       type: Array,
       default: () => []
+    },
+    group: {
+      type: String,
+      default: ''
     }
   },
   components: {

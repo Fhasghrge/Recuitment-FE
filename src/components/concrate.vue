@@ -39,7 +39,7 @@
                     v-show="item.judger">{{String(item.judger)}} </span>
             </td>
             <td><button v-if="item.lock"
-                      @click="gomark(item.stunum,item.name,item.judger)">阅卷</button></td>
+                      @click="gomark(item.stunum,item.name,item.judger,congroup)">阅卷</button></td>
           </tr>
 
         </table>
@@ -109,8 +109,8 @@ export default {
         return 0
       }
     },
-    gomark (unum, uname, marker) {
-      this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker } })
+    gomark (unum, uname, marker, congroup) {
+      this.$router.push({ path: '/marking', query: { stunum: unum, username: uname, judger: marker, groups: congroup } })
     },
     checktime (i) {
       if (i < 10) {

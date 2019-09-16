@@ -11,7 +11,7 @@
          @click="uploadFile">上传文件</a>
       <input type="file"
              class="file"
-             id="file"
+             :id="ID"
              value=""
              @change="upload($event)"
              :readonly="isread">
@@ -82,6 +82,10 @@ export default {
       type: Number,
       default: 0
     },
+    group: {
+      type: String,
+      default: ''
+    },
     title: {
       type: String,
       default: ''
@@ -114,7 +118,7 @@ export default {
       })
     },
     uploadFile: function () {
-      let file = document.getElementById('file')
+      let file = document.getElementById(this.ID)
       file.click()
     },
     toAdd () {
@@ -167,10 +171,10 @@ export default {
       }
     },
     upload: function (f) {
-      var form = new window.FormData()
+      let form = new FormData()
       form.append('ID', this.ID)
       for (let i = 0; i < f.target.files.length; i++) {
-        var file = f.target.files[i]
+        let file = f.target.files[i]
         this.filename.splice(0, 1, file.name)
         form.append('file', file)
       }
@@ -209,6 +213,8 @@ export default {
     this.childtitle = this.title
     if (this.answer !== '') {
       this.filename.splice(0, 1, this.answer)
+      console.log(1)
+      console.log(this.filename)
       this.flag = false
     }
     if (this.$route.path === '/marking') {
