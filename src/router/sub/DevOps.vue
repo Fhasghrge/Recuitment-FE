@@ -14,7 +14,7 @@ export default {
   data () {
     return {
       ddlStr: '2019/09/15 16:00',
-      ddlStr2: '2019/09/23 24:00',
+      ddlStr2: '2019/09/24',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: 'DevOps组',
       introduce: '合格运维的日常是进行工作室服务器、各种线上服务的基础运维。我们也将进行服务发布、更新和维护。Starstudio DevOps期待你的加入'

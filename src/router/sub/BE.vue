@@ -14,7 +14,7 @@ export default {
   data () {
     return {
       ddlStr: '2019/09/15 16:00',
-      ddlStr2: '2019/09/23 24:00',
+      ddlStr2: '2019/09/24',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '后台组',
       introduce: '后台的小星星，日常必不可缺少的是各种后台变成语言（PHP,java等），结合数据库、服务器等共同组建一个功能完善的web服务器端，实现数据的处理、分析与下发，性能的优化等工作。只要你有学习的热情和团队合作'
