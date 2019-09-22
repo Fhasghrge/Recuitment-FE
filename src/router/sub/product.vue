@@ -14,7 +14,7 @@ export default {
   data () {
     return {
       ddlStr: '2019/09/15 16:00', //  暂时开放产品答题做测试
-      ddlStr2: '2019/09/23',
+      ddlStr2: '2019/09/23 24:00',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '产品组',
       introduce: '产品经理是一个项目的顶梁柱。从策划到研发，再到最后展现在客户面前的人，我们需要在整个项目的运营过程中，协调各方，统筹全局。'

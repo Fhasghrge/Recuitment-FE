@@ -16,7 +16,7 @@ export default {
   data () {
     return {
       ddlStr: '2019/09/15 16:00', // 开始答题的日期，待更改
-      ddlStr2: '2019/09/23',
+      ddlStr2: '2019/09/23 24:00',
       flag: false, // flag 控制tips，true为显示，false为隐藏
       Header: 'Welcome to Star Studio!',
       introduce: '欢迎您参加星辰工作室2019年秋季招新答题，可根据您的意向选择方向进行答题。答题过程中可选择保存答卷以便退出后答卷丢失，完成答题后请务必提交答卷。本次答题时间为09.15—09.22，请在规定时间内完成答题。答题结果将以短信形式通知。Good luck！'
