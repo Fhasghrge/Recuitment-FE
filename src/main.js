@@ -17,7 +17,8 @@ router.beforeEach((to, from, next) => {
         }
       }
     }
-    if (!username) {
+    if (username) {
+      // 原本这是里是 !username
       next({
         path: '/home',
         query: {
