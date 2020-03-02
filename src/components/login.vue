@@ -1,75 +1,31 @@
 <template>
-  <div class="part2"
-       id="part2">
+  <div class="part2" id="part2">
     <div class="opion">
-      <button id="act1"
-              @click="x1"
-              v-bind:class="[{ button1: flag }, { button2: hide }]">登录</button>
-      <button id="act2"
-              @click="x2"
-              v-bind:class="[{ button2: flag }, { button1: hide }]">注册</button>
+      <button id="act1" @click="x1" v-bind:class="[{ button1: flag }, { button2: hide }]">登录</button>
+      <button id="act2" @click="x2" v-bind:class="[{ button2: flag }, { button1: hide }]">注册</button>
     </div>
-    <div class="act"
-         v-bind:style="flag1">
-      <input class="input1"
-             id="username"
-             type="text"
-             v-model="peraccount"
-             placeholder="账号|信息门户账号" />
-      <input class="input1"
-             id="password"
-             type="password"
-             v-model="perpassword"
-             placeholder="密码" />
+    <div class="act" v-bind:style="flag1">
+      <input class="input1" id="username" type="text" v-model="peraccount" placeholder="账号|信息门户账号" />
+      <input class="input1" id="password" type="password" v-model="perpassword" placeholder="密码" />
     </div>
-    <div class="hide"
-         v-bind:style="flag2">
-      <input class="input1"
-             id="name"
-             type="text"
-             v-model="pername"
-             placeholder="真实姓名" />
-      <input class="input1"
-             id="schnum"
-             type="text"
-             v-model="peraccount"
-             placeholder="学号" />
-      <input class="input1"
-             id="tel"
-             type="text"
-             v-model="tel"
-             placeholder="手机号（联系方式）" />
-      <input class="input1"
-             id="qq"
-             type="text"
-             v-model="qq"
-             placeholder="QQ号" />
-      <input class="input1"
-             id="pas"
-             type="password"
-             v-model="perpassword"
-             placeholder="密码" />
-      <input class="input1"
-             id="pas1"
-             type="password"
-             v-model="verify"
-             placeholder="重复密码" />
+    <div class="hide" v-bind:style="flag2">
+      <input class="input1" id="name" type="text" v-model="pername" placeholder="真实姓名" />
+      <input class="input1" id="schnum" type="text" v-model="peraccount" placeholder="学号" />
+      <input class="input1" id="tel" type="text" v-model="tel" placeholder="手机号（联系方式）" />
+      <input class="input1" id="qq" type="text" v-model="qq" placeholder="QQ号" />
+      <input class="input1" id="pas" type="password" v-model="perpassword" placeholder="密码" />
+      <input class="input1" id="pas1" type="password" v-model="verify" placeholder="重复密码" />
     </div>
-    <div class="showerr"><span class="errmes"
-            v-text="err"></span></div>
+    <div class="showerr">
+      <span class="errmes" v-text="err"></span>
+    </div>
     <div>
-      <button class="button"
-              v-if="flag"
-              @click="login(peraccount,perpassword)">确认登录</button>
-      <button class="button"
-              v-if="hide"
-              @click="register">注册</button>
+      <button class="button" v-if="flag" @click="login(peraccount, perpassword)">确认登录</button>
+      <button class="button" v-if="hide" @click="register">注册</button>
     </div>
-    <div class="confirm confirmRegister"
-         v-if="confirmFlag">
+    <div class="confirm confirmRegister" v-if="confirmFlag">
       <h2>注册成功</h2>
-      <button class="button"
-              @click="confirmRegister">确认</button>
+      <button class="button" @click="confirmRegister">确认</button>
     </div>
   </div>
 </template>
@@ -120,16 +76,17 @@ export default {
             stunum: acc,
             password: pwd
           }
-        }).then((response) => {
-          if (response.data.code === 0) {
-            this.$router.push({ path: 'main' })
-          } else if (response.data.code === -5) {
-            this.err = '账号不存在或密码错误'
-          } else {
-            this.err = '错误'
-          }
         })
-          .catch((error) => {
+          .then(response => {
+            if (response.data.code === 0) {
+              this.$router.push({ path: 'main' })
+            } else if (response.data.code === -5) {
+              this.err = '账号不存在或密码错误'
+            } else {
+              this.err = '错误'
+            }
+          })
+          .catch(error => {
             if (error.response) {
               this.err = '连接服务器失败'
             } else {
@@ -143,13 +100,19 @@ export default {
       }
     },
     register: function () {
-      if (this.peraccount !== '' && this.perpassword !== '' && this.pername !== '' && this.tel !== '' && this.verify !== '') {
+      if (
+        this.peraccount !== '' &&
+        this.perpassword !== '' &&
+        this.pername !== '' &&
+        this.tel !== '' &&
+        this.verify !== ''
+      ) {
         this.err = ''
-        if (!(/^1[3456789]\d{9}$/.test(this.tel))) {
+        if (!/^1[3456789]\d{9}$/.test(this.tel)) {
           this.err = '手机号码有误，请重填'
-        } else if (!(/^201\d{9,10}$/.test(this.peraccount))) {
+        } else if (!/^201\d{9,10}$/.test(this.peraccount)) {
           this.err = '学号有误，请重填'
-        } else if (!(/^[\u4e00-\u9fa5]{2,15}$/.test(this.pername))) {
+        } else if (!/^[\u4e00-\u9fa5]{2,15}$/.test(this.pername)) {
           this.err = '姓名为2-15位的中文，请重填'
         } else if (this.perpassword === this.verify) {
           if (this.perpassword.length >= 6) {
@@ -163,7 +126,7 @@ export default {
                 phonenum: this.tel,
                 qqnum: this.qq
               }
-            }).then((response) => {
+            }).then(response => {
               if (response.data.code === 0) {
                 this.confirmFlag = true
               } else if (response.data.code === -80) {
@@ -192,7 +155,10 @@ export default {
     let that = this
     document.onkeydown = function (e) {
       e = window.event || e
-      if (that.$route.path === '/home' && (e.code === 'Enter' || e.code === 'enter')) {
+      if (
+        that.$route.path === '/home' &&
+        (e.code === 'Enter' || e.code === 'enter')
+      ) {
         if (that.flag) {
           that.login(that.peraccount, that.perpassword)
         }
@@ -210,7 +176,7 @@ export default {
   .part2 {
     width: 30%;
     height: 65%;
-    background-color: black;
+    background-image: url('../assets/back.png');
     text-align: center;
     margin-left: -15%;
     min-width: 325px;

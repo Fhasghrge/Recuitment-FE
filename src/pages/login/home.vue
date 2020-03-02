@@ -2,7 +2,7 @@
   <div class="mainall">
     <div class="main">
       <logo></logo>
-      <login></login>
+      <!-- <login></login> -->
     </div>
   </div>
 </template>
@@ -13,9 +13,14 @@ import logo from '../../components/logo'
 import login from '../../components/login'
 export default {
   name: 'home',
+  data () {
+    return {
+      showflag: false
+    }
+  },
   components: {
-    logo,
-    login
+    logo
+    // login
   }
   // mounted () {
   //   var hrt = document.documentElement.clientHeight
@@ -34,7 +39,7 @@ body {
   overflow: scroll;
 }
 body {
-  background-image: url("../../assets/back.png");
+  background-image: url('../../assets/back.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -52,11 +57,10 @@ ul {
 }
 @media (min-width: 751px) {
   .main {
-    display: flex;
     justify-content: space-around;
     align-items: center;
     height: 100vh;
-    margin: 0 auto;
+    width: 44%;
   }
 }
 

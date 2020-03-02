@@ -1,10 +1,27 @@
 <template>
   <div class="part1">
-    <img src="../assets/LOGO1.png"
-         class="logo" />
-    <img src="../assets/font.png"
-         class="p1" />
-    <h2 class="p2">2019年秋季招新答题系统</h2>
+    <img
+      src="../assets/LOGO1.png"
+      class="logo"
+    />
+    <!-- <img src="../assets/font.png"
+         class="p1" /> -->
+    <!-- <h2 class="p2">2019年秋季招新答题系统</h2> -->
+    <div class="headwrap">
+      <h1 class="headfont">春季</h1>
+      <h1
+        class="headfont"
+        style="text-align: right;"
+      >招新</h1>
+    </div>
+    <div class="slogan">
+      <div class="slo-con">
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈或hh或或或或哈哈哈哈哈哈哈哈哈哈或hh或哈哈哈哈哈哈哈哈哈哈或hh或哈哈哈哈哈哈哈哈哈哈或hh或
+      </div>
+    </div>
+    <button class="loginbutton">
+      <div class="btndiv">登录/注册</div>
+    </button>
   </div>
 </template>
 
@@ -15,18 +32,57 @@ export default {
 </script>
 
 <style>
+.loginbutton {
+  margin-top: 40px;
+  background: url('../assets/loginbutton.png') no-repeat 100% 100%;
+  width: 150px;
+  height: 50px;
+  border-style: none;
+  font-size: 17px;
+}
+.btndiv {
+  width: 80%;
+  align-items: left;
+  color: #ffffff;
+}
+.slogan {
+  margin-top: 3vh;
+  border-top: 2px solid #a1afc5;
+  border-bottom: 2px solid #a1afc5;
+  width: 100%;
+}
+.slo-con {
+  width: 76%;
+  margin: 3vh auto;
+  text-align: left;
+  color: #ffffff;
+}
+.headfont {
+  color: #ffffff;
+  font-size: 100px;
+  font-weight: bold;
+  font-stretch: normal;
+  letter-spacing: 6px;
+  width: 67%;
+  margin: 0 auto;
+  margin-top: -7px;
+  text-align: left;
+  margin-left: 3%;
+}
 @media (min-width: 751px) {
   .part1 {
-    width: 48%;
     text-align: center;
-    margin-top: -9%;
-    margin-left: -9%;
+    position: relative;
+    padding-top: 25%;
   }
 
   .part1 .logo {
-    width: 70%;
+    width: 37%;
     opacity: 0.9;
     display: inline-block;
+    position: absolute;
+    top: 5.6vh;
+    left: 0;
   }
 
   .p1 {
