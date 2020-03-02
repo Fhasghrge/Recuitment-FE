@@ -1,11 +1,16 @@
 <template>
-  <div id='text'>
-    <h1 class='welcome-header'>{{Header}}</h1>
-    <p class='introduce'>{{ introduce }}</p>
-    <a href=""
-       class='begin'
-       v-if='flag'
-       @click.prevent="toAnswer">开始答题</a>
+  <div id="text">
+    <h1 class="welcome-header">{{ Header }}</h1>
+    <h1 class="welcome-header header2 header3">{{ Header2 }}</h1>
+    <p class="introduce">{{ introduce }}</p>
+    <div class="begin">
+      <a href=""
+         v-if="flag"
+         @click.prevent="toAnswer">开始答题</a>
+      <img src="../../assets/三角.png"
+           class="delta">
+    </div>
+
   </div>
 </template>
 
@@ -13,11 +18,13 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/09/15 16:00',
-      ddlStr2: '2019/09/24',
+      ddlStr: '2020/03/01 16:00',
+      ddlStr2: '2020/04/01',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
-      Header: '后台组',
-      introduce: '后台的小星星，日常必不可缺少的是各种后台变成语言（PHP,java等），结合数据库、服务器等共同组建一个功能完善的web服务器端，实现数据的处理、分析与下发，性能的优化等工作。只要你有学习的热情和团队合作'
+      Header: '后',
+      Header2: '台',
+      introduce:
+        '后台的小星星，日常必不可缺少的是各种后台变成语言（PHP,java等），结合数据库、服务器等共同组建一个功能完善的web服务器端，实现数据的处理、分析与下发，性能的优化等工作。只要你有学习的热情和团队合作'
     }
   },
   methods: {
@@ -30,7 +37,10 @@ export default {
       })
     },
     changeFlag () {
-      if (new Date() - new Date(this.ddlStr) > 0 && new Date() - new Date(this.ddlStr2) < 0) {
+      if (
+        new Date() - new Date(this.ddlStr) > 0 &&
+        new Date() - new Date(this.ddlStr2) < 0
+      ) {
         this.flag = true
       } else {
         this.flag = false

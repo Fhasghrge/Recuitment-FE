@@ -2,10 +2,13 @@
   <div id='text'>
     <h1 class='welcome-header'>{{Header}}</h1>
     <p class='introduce'>{{ introduce }}</p>
-    <a href=""
-       class='begin'
-       v-if='flag'
-       @click.prevent="toAnswer">开始答题</a>
+    <div class="begin">
+      <a href=""
+         v-if="flag"
+         @click.prevent="toAnswer">开始答题</a>
+      <img src="../../assets/三角.png"
+           class="delta">
+    </div>
   </div>
 </template>
 
@@ -13,10 +16,10 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/09/15 16:00',
-      ddlStr2: '2019/09/24',
+      ddlStr: '2020/03/01 16:00',
+      ddlStr2: '2020/04/01',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
-      Header: 'iOS组',
+      Header: 'iOS',
       introduce: 'iOS开发是一个充满爱与信仰的工作，在苹果的框架下，一切繁琐的环境配置与机型适配都形如浮云，你只需要拥有良好的objective-C语言基础与APP设计思维，便能开发出一款自己的APP应用。iOS开发是宝贵的人力资源，我们需要你能够熟练运用网络资源、能够快速融入团体集体并与其他方向的同学相互交流学习，从而在iOS开发的过程中不断完善自我。我们诚心邀您加入我们，一同在互联网的时代不断学习、成长！'
     }
   },

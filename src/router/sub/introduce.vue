@@ -1,13 +1,14 @@
 <template>
   <div id='text'>
     <h1 class='welcome-header'>{{Header}}</h1>
+    <h1 class='welcome-header header2'>{{Header2}}</h1>
     <p class='introduce'>{{ introduce }}</p>
-    <a href=""
+    <!-- <a href=""
        class='begin store'
        v-if='flag'
-       @click.prevent="save">提交所有答卷</a>
-    <p class='choiceTips'
-       v-if="flag">选择一个方向开始答题吧</p>
+       @click.prevent="save">提交所有答卷</a> -->
+    <!-- <p class='choiceTips'
+       v-if="flag">选择一个方向开始答题吧</p> -->
   </div>
 </template>
 
@@ -15,10 +16,11 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/09/15 16:00', // 开始答题的日期，待更改
-      ddlStr2: '2019/09/24',
+      ddlStr: '2020/03/01 16:00',
+      ddlStr2: '2020/04/01',
       flag: false, // flag 控制tips，true为显示，false为隐藏
-      Header: 'Welcome to Star Studio!',
+      Header: '春季',
+      Header2: '招新',
       introduce: '欢迎您参加星辰工作室2019年秋季招新答题，可根据您的意向选择方向进行答题。答题过程中可选择保存答卷以便退出后答卷丢失，完成答题后请务必提交答卷。本次答题时间为09.15—09.23 23:59(由于之前的网络故障，现延长一天答卷时间），请在规定时间内完成答题。答题结果将以短信形式通知。Good luck！'
     }
   },

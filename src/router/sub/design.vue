@@ -1,12 +1,16 @@
 <template>
   <div id='text'>
     <h1 class='welcome-header'>{{Header}}</h1>
+    <h1 class='welcome-header header2 header3'>{{Header2}}</h1>
     <p class='introduce'
        v-html="introduce"></p>
-    <a href=""
-       class='begin'
-       v-if='flag'
-       @click.prevent="toAnswer">开始答题</a>
+    <div class="begin">
+      <a href=""
+         v-if="flag"
+         @click.prevent="toAnswer">开始答题</a>
+      <img src="../../assets/三角.png"
+           class="delta">
+    </div>
   </div>
 </template>
 
@@ -14,10 +18,11 @@
 export default {
   data () {
     return {
-      ddlStr: '2019/09/15 16:00',
-      ddlStr2: '2019/09/24',
+      ddlStr: '2020/03/01 16:00',
+      ddlStr2: '2020/04/01',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
-      Header: '设计组',
+      Header: '设',
+      Header2: '计',
       introduce: '负责产品的UI设计<br>海报的平面设计<br>制作产品宣传、团队宣传等视频<br>技能：PS、Sketch'
     }
   },
