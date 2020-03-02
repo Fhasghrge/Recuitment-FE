@@ -123,6 +123,7 @@ export default {
       }
     },
     sendche: function (value) {
+      // console.log(1)
       if (this.$route.path === '/answer') {
         let cheflag = 0
         for (let b = 0; b < this.chedata.length; b++) {
