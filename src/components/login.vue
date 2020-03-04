@@ -1,31 +1,113 @@
 <template>
-  <div class="part2" id="part2">
+  <div
+    class="part2"
+    id="part2"
+  >
     <div class="opion">
-      <button id="act1" @click="x1" v-bind:class="[{ button1: flag }, { button2: hide }]">登录</button>
-      <button id="act2" @click="x2" v-bind:class="[{ button2: flag }, { button1: hide }]">注册</button>
+      <button
+        id="act1"
+        @click="x1"
+        v-bind:class="[{ button1: flag }, { button2: hide }]"
+      >登录</button>
+      <button
+        id="act2"
+        @click="x2"
+        v-bind:class="[{ button2: flag }, { button1: hide }]"
+      >注册</button>
     </div>
-    <div class="act" v-bind:style="flag1">
-      <input class="input1" id="username" type="text" v-model="peraccount" placeholder="账号|信息门户账号" />
-      <input class="input1" id="password" type="password" v-model="perpassword" placeholder="密码" />
+    <div
+      class="act"
+      v-bind:style="flag1"
+    >
+      <input
+        class="input1"
+        id="username"
+        type="text"
+        v-model="peraccount"
+        placeholder="账号|信息门户账号"
+      />
+      <input
+        class="input1"
+        id="password"
+        type="password"
+        v-model="perpassword"
+        placeholder="密码"
+      />
     </div>
-    <div class="hide" v-bind:style="flag2">
-      <input class="input1" id="name" type="text" v-model="pername" placeholder="真实姓名" />
-      <input class="input1" id="schnum" type="text" v-model="peraccount" placeholder="学号" />
-      <input class="input1" id="tel" type="text" v-model="tel" placeholder="手机号（联系方式）" />
-      <input class="input1" id="qq" type="text" v-model="qq" placeholder="QQ号" />
-      <input class="input1" id="pas" type="password" v-model="perpassword" placeholder="密码" />
-      <input class="input1" id="pas1" type="password" v-model="verify" placeholder="重复密码" />
+    <div
+      class="hide"
+      v-bind:style="flag2"
+    >
+      <input
+        class="input1"
+        id="name"
+        type="text"
+        v-model="pername"
+        placeholder="真实姓名"
+      />
+      <input
+        class="input1"
+        id="schnum"
+        type="text"
+        v-model="peraccount"
+        placeholder="学号"
+      />
+      <input
+        class="input1"
+        id="tel"
+        type="text"
+        v-model="tel"
+        placeholder="手机号（联系方式）"
+      />
+      <input
+        class="input1"
+        id="qq"
+        type="text"
+        v-model="qq"
+        placeholder="QQ号"
+      />
+      <input
+        class="input1"
+        id="pas"
+        type="password"
+        v-model="perpassword"
+        placeholder="密码"
+      />
+      <input
+        class="input1"
+        id="pas1"
+        type="password"
+        v-model="verify"
+        placeholder="重复密码"
+      />
     </div>
     <div class="showerr">
-      <span class="errmes" v-text="err"></span>
+      <span
+        class="errmes"
+        v-text="err"
+      ></span>
     </div>
     <div>
-      <button class="button" v-if="flag" @click="login(peraccount, perpassword)">确认登录</button>
-      <button class="button" v-if="hide" @click="register">注册</button>
+      <button
+        class="button"
+        v-if="flag"
+        @click="login(peraccount, perpassword)"
+      >确认登录</button>
+      <button
+        class="button"
+        v-if="hide"
+        @click="register"
+      >注册</button>
     </div>
-    <div class="confirm confirmRegister" v-if="confirmFlag">
+    <div
+      class="confirm confirmRegister"
+      v-if="confirmFlag"
+    >
       <h2>注册成功</h2>
-      <button class="button" @click="confirmRegister">确认</button>
+      <button
+        class="button"
+        @click="confirmRegister"
+      >确认</button>
     </div>
   </div>
 </template>
@@ -59,12 +141,20 @@ export default {
       this.flag2 = 'display:none'
       this.flag = true
       this.hide = false
+      let p2 = document.getElementById('part2')
+      p2.style.height = 46 + 'vh'
+      p2.style.minHeight = 315 + 'px'
+      p2.style.top = 27 + 'vh'
     },
     x2: function () {
       this.flag1 = 'display:none'
       this.flag2 = 'display:block'
       this.flag = false
       this.hide = true
+      let p2 = document.getElementById('part2')
+      p2.style.height = 75 + 'vh'
+      p2.style.minHeight = 513 + 'px'
+      p2.style.top = 12.5 + 'vh'
     },
     login: function (acc, pwd) {
       if (acc !== '' && pwd !== '') {
@@ -167,6 +257,14 @@ export default {
         }
       }
     }
+  },
+  computed: {
+    toppos: function () {
+      let p2height = document.getElementById('part2').offsetHeight
+      let htmlheight = document.body.clientWidth
+      console.log((htmlheight - p2height) / 2)
+      return (htmlheight - p2height) / 2
+    }
   }
 }
 </script>
@@ -174,12 +272,17 @@ export default {
 <style>
 @media (min-width: 751px) {
   .part2 {
-    width: 30%;
-    height: 65%;
-    background-image: url('../assets/back.png');
+    width: 24vw;
+    min-height: 315px;
+    height: 46vh;
+    background-image: url('../assets/loginbg.png');
     text-align: center;
     margin-left: -15%;
     min-width: 325px;
+    position: absolute;
+    top: 27vh;
+    left: 38vw;
+    border-radius: 30px;
   }
   .showerr {
     height: 1rem;
@@ -217,13 +320,10 @@ export default {
   }
 
   .act {
-    height: 45%;
-    padding-top: 15%;
+    padding-top: 12%;
   }
 
   .hide {
-    height: 45%;
-    padding-bottom: 15%;
     display: none;
   }
 
@@ -231,17 +331,26 @@ export default {
     height: 1rem;
     width: 80%;
     margin: 0 auto;
-    border: 1px;
-    border-bottom: 1px solid rgb(171, 171, 171);
-    background-color: inherit;
+    margin-bottom: 15px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    background-color: #9091c1;
     font-size: 1rem;
     font-family: PingFangSC-Light;
     color: #ffffff;
     padding: 0.7rem 0 0.7rem 0.5rem;
   }
-
+  .input1::-webkit-input-placeholder {
+    color: #ffffff;
+  }
+  .input1::-moz-input-placeholder {
+    color: #ffffff;
+  }
+  .input1::-ms-input-placeholder {
+    color: #ffffff;
+  }
   .button {
-    border: solid 3px rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
     width: 80%;
     height: 2.5rem;
     font-family: PingFangSC-Regular;
@@ -252,6 +361,7 @@ export default {
     background-color: inherit;
     margin-top: 1rem;
     font-size: 1rem;
+    margin-bottom: 20px;
   }
 }
 

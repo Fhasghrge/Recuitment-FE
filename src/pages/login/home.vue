@@ -2,7 +2,7 @@
   <div class="mainall">
     <div class="main">
       <logo></logo>
-      <!-- <login></login> -->
+      <login></login>
     </div>
   </div>
 </template>
@@ -19,8 +19,8 @@ export default {
     }
   },
   components: {
-    logo
-    // login
+    logo,
+    login
   }
   // mounted () {
   //   var hrt = document.documentElement.clientHeight
@@ -60,6 +60,7 @@ ul {
     justify-content: space-around;
     align-items: center;
     height: 100vh;
+    position: relative;
     width: 44%;
   }
 }
