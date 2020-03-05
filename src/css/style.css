@@ -288,10 +288,11 @@ textarea {
   margin-left: 20%;
   position: fixed;
   width: 60%;
-  height: 80%;
+  height: 620px;
+  border-radius: 50px;
   background: url(../assets/背景.png);
   background-repeat: no-repeat;
-  background-size: 132%;
+  background-size: 100%;
   text-align: center;
   color: white;
   font-family: PingFangSC-Medium;
@@ -363,7 +364,7 @@ textarea {
   float: left;
   margin-left: 1%;
   margin-top: 4%;
-  margin-bottom: 5%;
+  /* margin-bottom: 5%; */
   font-size: 1.4rem;
 }
 
@@ -423,6 +424,9 @@ textarea {
 #private .confirm {
   opacity: 1;
   width: 20%;
+  border: none;
+  background-color: rgb(101, 81, 216);
+  border-radius: 10px;
   position: relative;
   padding-left: 10%;
   padding-right: 10%;
