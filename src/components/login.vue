@@ -54,7 +54,7 @@
         id="schnum"
         type="text"
         v-model="peraccount"
-        placeholder="学号"
+        placeholder="信息门户账号|13位学号"
       />
       <input
         class="input1"
@@ -299,8 +299,11 @@ export default {
     left: 3vh;
     padding: 0;
     background-color: inherit;
-    border: 1px solid #ffffff;
+    border: 2px solid #ffffff;
     border-radius: 50%;
+  }
+  .crosswrap :hover {
+    cursor: pointer;
   }
   .cross {
     display: inline-block;

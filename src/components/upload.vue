@@ -1,63 +1,97 @@
 <template>
   <div class="upload">
-    <span class="headline"
-          v-html="trimstr(childtitle)"></span>
-    <div class="line"
-         v-if="$route.path=='/answer'">
-      <img src="../assets/load.png"
-           class="load" />
-      <a class="upl"
-         href="javascript:void(0)"
-         @click="uploadFile">上传文件</a>
-      <input type="file"
-             class="file"
-             :id="ID"
-             value=""
-             @change="upload($event)"
-             :readonly="isread">
+    <span
+      class="headline"
+      v-html="trimstr(childtitle)"
+    ></span>
+    <div
+      class="line"
+      v-if="$route.path!=='/adminindex/ctrlques'&&$route.path!=='/marking'"
+    >
+      <img
+        src="../assets/load.png"
+        class="load"
+      />
+      <a
+        class="upl"
+        href="javascript:void(0)"
+        @click="uploadFile"
+      >上传文件</a>
+      <input
+        type="file"
+        class="file"
+        :id="ID"
+        value=""
+        @change="upload($event)"
+        :readonly="isread"
+      >
       <span style="margin-left:20px;line-height:1.5rem">tips:只能上传一个文件，多文件请将所有文件打包成一个zip后上传，后上传的文件会覆盖之前上传的文件，若上传文件有误，重新上传即可</span>
     </div>
-    <div class="docu"
-         v-if="$route.path=='/answer'">
-      <div class="single"
-           v-for="(item,index) in filename"
-           :key="index">
+    <div
+      class="docu"
+      v-if="$route.path!=='/adminindex/ctrlques'&&$route.path!=='/marking'"
+    >
+      <div
+        class="single"
+        v-for="(item,index) in filename"
+        :key="index"
+      >
         <span class="docname">{{filename[index]}}</span>
-        <div class="loading"
-             v-if="flag">
-          <div class="in"
-               :style="{ width: length + '%' }"></div>
-        </div><span v-else
-              class="eg">上传成功</span>
+        <div
+          class="loading"
+          v-if="flag"
+        >
+          <div
+            class="in"
+            :style="{ width: length + '%' }"
+          ></div>
+        </div><span
+          v-else
+          class="eg"
+        >上传成功</span>
       </div>
     </div>
-    <div class="ctrlBox"
-         v-if="$route.path == '/adminindex/ctrlques'">
+    <div
+      class="ctrlBox"
+      v-if="$route.path == '/adminindex/ctrlques'"
+    >
       <p>出题人：{{ author }}</p>
-      <input type="button"
-             value="添加"
-             @click="toAdd">
+      <input
+        type="button"
+        value="添加"
+        @click="toAdd"
+      >
       <!-- <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
         <option value="于此题前">于此题前</option>
       </select> -->
-      <input type="button"
-             value="删除"
-             @click="delBoxFlag=true">
-      <input type="button"
-             value="修改"
-             @click="toChange">
-      <div class="delBox"
-           v-if="delBoxFlag">
+      <input
+        type="button"
+        value="删除"
+        @click="delBoxFlag=true"
+      >
+      <input
+        type="button"
+        value="修改"
+        @click="toChange"
+      >
+      <div
+        class="delBox"
+        v-if="delBoxFlag"
+      >
         <p>是否删除</p>
         <img src="../assets/删除@3x.svg">
-        <input type="button"
-               value="确认"
-               @click="delConfirm">
-        <input type="button"
-               value="取消"
-               @click="delBoxFlag=false">
+        <input
+          type="button"
+          value="确认"
+          @click="delConfirm"
+        >
+        <input
+          type="button"
+          value="取消"
+          @click="delBoxFlag=false"
+        >
       </div>
     </div>
   </div>
@@ -154,7 +188,7 @@ export default {
       })
     },
     trimstr: function (str) {
-      if (this.$route.path === '/answer' || this.$route.path === '/marking') {
+      if (this.$route.path !== '/adminindex/ctrlques') {
         let strindex = String(this.index + 1)
         let strtrim = '(附件题) '
         let head = strindex + '.' + strtrim
@@ -162,7 +196,7 @@ export default {
         let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
         let strtrim3 = head.concat(strtrim2)
         return strtrim3
-      } else if (this.$route.path === '/adminindex/ctrlques') {
+      } else {
         let strtrim = '(附件题) '
         let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
         let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
@@ -178,7 +212,7 @@ export default {
         this.filename.splice(0, 1, file.name)
         form.append('file', file)
       }
-      if (this.$route.path === '/answer') {
+      if (this.$route.path !== '/adminindex/ctrlques' && this.$route.path !== '/marking') {
         let that = this
         this.$axios({
           method: 'post',

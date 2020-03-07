@@ -1,38 +1,56 @@
 <template>
   <div class="text">
-    <span class="headline"
-          v-html="trimstr(childtitle)"></span>
-    <textarea class="txt"
-              v-model="shortanswer"
-              @blur="sendshoans"
-              :readonly="isread"></textarea>
-    <div class="ctrlBox"
-         v-if="$route.path == '/adminindex/ctrlques'">
+    <span
+      class="headline"
+      v-html="trimstr(childtitle)"
+    ></span>
+    <textarea
+      class="txt"
+      v-model="shortanswer"
+      @blur="sendshoans"
+      :readonly="isread"
+    ></textarea>
+    <div
+      class="ctrlBox"
+      v-if="$route.path == '/adminindex/ctrlques'"
+    >
       <p>出题人：{{ author }}</p>
-      <input type="button"
-             value="添加"
-             @click="toAdd">
+      <input
+        type="button"
+        value="添加"
+        @click="toAdd"
+      >
       <!-- <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
         <option value="于此题前">于此题前</option>
       </select> -->
-      <input type="button"
-             value="删除"
-             @click="delBoxFlag=true">
-      <input type="button"
-             value="修改"
-             @click="toChange">
-      <div class="delBox"
-           v-if="delBoxFlag">
+      <input
+        type="button"
+        value="删除"
+        @click="delBoxFlag=true"
+      >
+      <input
+        type="button"
+        value="修改"
+        @click="toChange"
+      >
+      <div
+        class="delBox"
+        v-if="delBoxFlag"
+      >
         <p>是否删除</p>
         <img src="../assets/删除@3x.svg">
-        <input type="button"
-               value="确认"
-               @click="delConfirm">
-        <input type="button"
-               value="取消"
-               @click="delBoxFlag=false">
+        <input
+          type="button"
+          value="确认"
+          @click="delConfirm"
+        >
+        <input
+          type="button"
+          value="取消"
+          @click="delBoxFlag=false"
+        >
       </div>
     </div>
   </div>
@@ -92,7 +110,8 @@ export default {
       })
     },
     trimstr: function (str) {
-      if (this.$route.path === '/answer' || this.$route.path === '/marking') {
+      console.log(this.$route.path)
+      if (this.$route.path !== '/adminindex/ctrlques') {
         let strindex = String(this.index + 1)
         let strtrim = '(简答题) '
         let head = strindex + '.' + strtrim
@@ -100,7 +119,7 @@ export default {
         let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
         let strtrim3 = head.concat(strtrim2)
         return strtrim3
-      } else if (this.$route.path === '/adminindex/ctrlques') {
+      } else {
         let strtrim = '(简答题) '
         let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
         let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
@@ -109,7 +128,7 @@ export default {
       }
     },
     sendshoans: function () {
-      if (this.$route.path === '/answer') {
+      if (this.$route.path !== '/adminindex/ctrlques' && this.$route.path !== '/marking') {
         this.$axios({
           method: 'post',
           url: '/user/exam/answer',
@@ -180,7 +199,6 @@ export default {
   },
   mounted () {
     this.childtitle = this.title
-    console.log(this.answer)
     if (this.answer !== '') {
       console.log(this.answer)
       this.shortanswer = this.answer

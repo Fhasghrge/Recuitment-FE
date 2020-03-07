@@ -1,15 +1,19 @@
 <template>
   <div class="mainans">
-    <banner @mainshow="transmit"
-            :group='thegroup'></banner>
+    <banner
+      @mainshow="transmit"
+      :group='thegroup'
+    ></banner>
     <div class="ques">
       <div class="que">
         <p style="color:#ffffff">作答时系统会自动保存答案，不需要手动保存，下次可以修改答案和继续作答。<br>首页的“提交所有答卷”为最终提交按钮，提交后所有方向试卷锁定，无法修改所有方向的任何答案。</p>
         <question :group='thegroup'></question>
       </div>
     </div>
-    <pribar :show='show'
-            @showpribar="transmit"></pribar>
+    <pribar
+      :show='show'
+      @showpribar="transmit"
+    ></pribar>
   </div>
 </template>
 
@@ -40,13 +44,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 html {
   margin: 0;
   min-height: 100vh;
 }
 body {
-  background-image: url("../../assets/back.png");
+  background-image: url('../../assets/back.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

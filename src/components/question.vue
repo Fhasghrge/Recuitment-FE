@@ -1,47 +1,64 @@
 <template>
   <div class="kind">
-    <span class="timeshow"
-          v-if="$route.path=='/answer'">{{thistime}}</span>
-    <div v-for="(item,index) in questions"
-         :key="index">
-      <span v-if="index === 0&&$route.path ==='/answer'">一、综合题</span>
-      <span v-if="index === secindex&&$route.path ==='/answer'"><br>二、方向题</span>
-      <radio v-if="item.type === 1"
-             :options="item.options"
-             :ID="item.ID"
-             :title="item.title"
-             :answer="item.answer"
-             :index='index'
-             @trantime='transtime'
-             @tranalert='transalert'></radio>
-      <che v-if="item.type === 2"
-           :options="item.options"
-           :ID="item.ID"
-           :title="item.title"
-           :answer="item.answer"
-           :index="index"
-           @trantime='transtime'
-           @tranalert='transalert'></che>
-      <inp v-if="item.type === 3"
-           :ID="item.ID"
-           :title="item.title"
-           :answer="item.answer"
-           :index="index"
-           @trantime='transtime'
-           @tranalert='transalert'></inp>
-      <short v-if="item.type === 4"
-             :ID="item.ID"
-             :title="item.title"
-             :answer="item.answer"
-             :index="index"
-             @trantime='transtime'
-             @tranalert='transalert'></short>
-      <uploadque v-if="item.type === 5"
-                 :ID="item.ID"
-                 :title="item.title"
-                 :answer="item.answer"
-                 :key="index"
-                 :index="index"></uploadque>
+    <span
+      class="timeshow"
+      v-if="$route.path !== '/adminindex/ctrlques' && $route.path !== '/marking'"
+    >{{thistime}}</span>
+    <div
+      v-for="(item,index) in questions"
+      :key="index"
+      class="queswrap"
+    >
+      <!-- <span v-if="index === 0&&$route.path ==='/answer'">一、综合题</span>
+      <span v-if="index === secindex&&$route.path ==='/answer'"><br>二、方向题</span> -->
+      <span v-if="index === 0">一、综合题</span>
+      <span v-if="index === secindex"><br>二、方向题</span>
+      <radio
+        v-if="item.type === 1"
+        :options="item.options"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index='index'
+        @trantime='transtime'
+        @tranalert='transalert'
+      ></radio>
+      <che
+        v-if="item.type === 2"
+        :options="item.options"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index="index"
+        @trantime='transtime'
+        @tranalert='transalert'
+      ></che>
+      <inp
+        v-if="item.type === 3"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index="index"
+        @trantime='transtime'
+        @tranalert='transalert'
+      ></inp>
+      <short
+        v-if="item.type === 4"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index="index"
+        @trantime='transtime'
+        @tranalert='transalert'
+      ></short>
+      <uploadque
+        v-if="item.type === 5"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :key="index"
+        :index="index"
+      ></uploadque>
     </div>
   </div>
 </template>
@@ -52,6 +69,7 @@ import che from './checkbox'
 import inp from './sigleinp'
 import short from './shortanswer'
 import uploadque from './upload'
+import testdata from '../test.json'
 export default {
   name: 'ques',
   data () {
@@ -72,7 +90,20 @@ export default {
     radio, che, inp, short, uploadque
   },
   mounted () {
-    this.getques()
+    // this.getques()
+    this.all = testdata.data
+    for (let a = 0; a < this.all.length; a++) {
+      if (this.all[a].groups === 0) {
+        this.questions.push(this.all[a])
+      }
+    }
+    this.secindex = this.questions.length
+    for (let a = 0; a < this.all.length; a++) {
+      if (this.all[a].groups === this.group) {
+        this.questions.push(this.all[a])
+      }
+    }
+    console.log(this.questions)
   },
   methods: {
     transtime: function (value) {
@@ -146,7 +177,8 @@ export default {
 
 .radio2 {
   position: relative;
-  background-color: rgba(25, 25, 25, 0.8);
+  /* background-color: rgba(25, 25, 25, 0.8); */
+  background-color: inherit;
   display: inline-block;
   font-size: 1rem;
   padding: 0.5rem 1rem;
@@ -154,12 +186,13 @@ export default {
   flex-wrap: wrap;
 }
 input:checked + label {
-  background-color: #3e3e3e;
+  /* background-color: #3e3e3e; */
+  background-color: #21add0;
 }
 .ipt {
   background-color: inherit;
   border: 0;
-  border-bottom: solid 2px #4a4a4a;
+  border-bottom: solid 2px #ffffff;
   line-height: 2rem;
   color: #ffffff;
   font-size: 1rem;
@@ -167,7 +200,8 @@ input:checked + label {
 .txt {
   background-color: inherit;
   color: #ffffff;
-  border: solid 2px #4a4a4a;
+  /* border: solid 2px #4a4a4a; */
+  border: solid 1px #ffffff;
   height: 5rem;
   font-size: 1rem;
 }
@@ -180,7 +214,8 @@ input:checked + label {
   margin: 0 5px;
 }
 a {
-  color: #d9d9d9;
+  /* color: #d9d9d9; */
+  color: #ffffff;
 }
 .eg {
   margin-left: 20px;
@@ -236,7 +271,7 @@ a {
   }
   .docu {
     width: 80%;
-    border: solid 2px #4a4a4a;
+    border: solid 1px #ffffff41;
     margin: 1rem auto 1rem 1rem;
   }
   .sub {

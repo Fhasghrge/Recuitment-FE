@@ -1,22 +1,32 @@
 <template>
   <div class="right">
-    <img src="../assets/头像.png"
-         @mouseover="flag = !flag"
-         @mouseout="flag = !flag"
-         class="icon" />
-    <img src="../assets/route.png"
-         v-bind:class="[{ arrowhead: 1 }, { rotate1: flag }, { rotate2: !flag }]" />
+    <img
+      src="../assets/头像.png"
+      @mouseover="flag = !flag"
+      @mouseout="flag = !flag"
+      class="icon"
+    />
+    <img
+      src="../assets/route.png"
+      v-bind:class="[{ arrowhead: 1 }, { rotate1: flag }, { rotate2: !flag }]"
+    />
     <transition name="draw">
-      <div class="userbox"
-           v-show="flag"
-           @mouseover="flag = 1"
-           @mouseout="flag = 0">
-        <button class="btn"
-                v-show="flag"
-                @click="revisebar">个人信息</button>
-        <button class="btn"
-                v-show="flag"
-                @click="quit">退出登陆</button>
+      <div
+        class="userbox"
+        v-show="flag"
+        @mouseover="flag = 1"
+        @mouseout="flag = 0"
+      >
+        <button
+          class="btn"
+          v-show="flag"
+          @click="revisebar"
+        >个人信息</button>
+        <button
+          class="btn"
+          v-show="flag"
+          @click="quit"
+        >退出登陆</button>
       </div>
     </transition>
   </div>
@@ -66,7 +76,7 @@ export default {
 @media (min-width: 400px) {
   .right {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.3);
+    /* background-color: rgba(0, 0, 0, 0.3); */
     text-align: right;
     width: 160px;
   }
@@ -117,13 +127,13 @@ export default {
     -ms-transition: -ms-transform 0.2s;
   }
   .userbox {
-    height: 60px;
+    height: 80px;
     width: 98px;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);
     top: 52px;
     right: -20px;
-    padding-top: 10px;
+    /* padding-top: 10px; */
   }
   .draw-enter-active,
   .draw-leave-active {

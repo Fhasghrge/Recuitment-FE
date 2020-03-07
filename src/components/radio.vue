@@ -1,50 +1,74 @@
 <template>
   <div class="radio">
-    <span class="headline"
-          v-html="trimstr(title)"></span>
-    <div class="rad"
-         ref="radioref">
-      <div v-for="(opt,indexr) in options"
-           :key="indexr"
-           class="optall">
-        <input type="radio"
-               class="radio1"
-               :id="radio(indexr)"
-               :value="options[indexr]"
-               v-model="radiodata"
-               @change="sendradio"
-               :disabled="isread" />
-        <label :for="radio(indexr)"
-               class="radio2">{{options[indexr]}}</label>
+    <span
+      class="headline"
+      v-html="trimstr(title)"
+    ></span>
+    <div
+      class="rad"
+      ref="radioref"
+    >
+      <div
+        v-for="(opt,indexr) in options"
+        :key="indexr"
+        class="optall"
+      >
+        <input
+          type="radio"
+          class="radio1"
+          :id="radio(indexr)"
+          :value="options[indexr]"
+          v-model="radiodata"
+          @change="sendradio"
+          :disabled="isread"
+        />
+        <label
+          :for="radio(indexr)"
+          class="radio2"
+        >{{options[indexr]}}</label>
       </div>
     </div>
-    <div class="ctrlBox"
-         v-if="$route.path == '/adminindex/ctrlques'">
+    <div
+      class="ctrlBox"
+      v-if="$route.path == '/adminindex/ctrlques'"
+    >
       <p>出题人：{{ author }}</p>
-      <input type="button"
-             value="添加"
-             @click="toAdd">
+      <input
+        type="button"
+        value="添加"
+        @click="toAdd"
+      >
       <!-- <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
         <option value="于此题前">于此题前</option>
       </select> -->
-      <input type="button"
-             value="删除"
-             @click="delBoxFlag=true">
-      <input type="button"
-             value="修改"
-             @click="toChange">
-      <div class="delBox"
-           v-if="delBoxFlag">
+      <input
+        type="button"
+        value="删除"
+        @click="delBoxFlag=true"
+      >
+      <input
+        type="button"
+        value="修改"
+        @click="toChange"
+      >
+      <div
+        class="delBox"
+        v-if="delBoxFlag"
+      >
         <p>是否删除</p>
         <img src="../assets/删除@3x.svg">
-        <input type="button"
-               value="确认"
-               @click="delConfirm">
-        <input type="button"
-               value="取消"
-               @click="delBoxFlag=false">
+        <input
+          type="button"
+          value="确认"
+          @click="delConfirm"
+        >
+        <input
+          type="button"
+          value="取消"
+          @click="delBoxFlag=false"
+        >
       </div>
     </div>
   </div>
@@ -97,7 +121,7 @@ export default {
       }
     },
     trimstr: function (str) {
-      if (this.$route.path === '/answer') {
+      if (this.$route.path !== '/adminindex/ctrlques') {
         let strindex = String(this.index + 1)
         let strtrim = '(单选题) '
         let head = strindex + '.' + strtrim
@@ -105,7 +129,7 @@ export default {
         let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
         let strtrim3 = head.concat(strtrim2)
         return strtrim3
-      } else if (this.$route.path === '/adminindex/ctrlques') {
+      } else {
         let strtrim = '(单选题) '
         let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
         let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
@@ -114,7 +138,7 @@ export default {
       }
     },
     sendradio: function (value) {
-      if (this.$route.path === '/answer') {
+      if (this.$route.path !== '/adminindex/ctrlques' && this.$route.path !== '/marking') {
         this.$axios({
           method: 'post',
           url: '/user/exam/answer',
@@ -233,7 +257,7 @@ select {
   font-size: 1.2rem;
 }
 input {
-  background-color: black;
+  background-color: #21add0;
   color: white;
   border: solid white 1px;
   height: 30px;
