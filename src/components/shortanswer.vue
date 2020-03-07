@@ -4,12 +4,12 @@
       class="headline"
       v-html="trimstr(childtitle)"
     ></span>
-    <textarea
+    <mavon-editor
       class="txt"
       v-model="shortanswer"
       @blur="sendshoans"
       :readonly="isread"
-    ></textarea>
+    />
     <div
       class="ctrlBox"
       v-if="$route.path == '/adminindex/ctrlques'"
@@ -19,7 +19,7 @@
         type="button"
         value="添加"
         @click="toAdd"
-      >
+      />
       <!-- <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
@@ -28,29 +28,29 @@
       <input
         type="button"
         value="删除"
-        @click="delBoxFlag=true"
-      >
+        @click="delBoxFlag = true"
+      />
       <input
         type="button"
         value="修改"
         @click="toChange"
-      >
+      />
       <div
         class="delBox"
         v-if="delBoxFlag"
       >
         <p>是否删除</p>
-        <img src="../assets/删除@3x.svg">
+        <img src="../assets/删除@3x.svg" />
         <input
           type="button"
           value="确认"
           @click="delConfirm"
-        >
+        />
         <input
           type="button"
           value="取消"
-          @click="delBoxFlag=false"
-        >
+          @click="delBoxFlag = false"
+        />
       </div>
     </div>
   </div>
@@ -103,7 +103,7 @@ export default {
         data: {
           ID: this.ID
         }
-      }).then((res2) => {
+      }).then(res2 => {
         if (res2.data.code === 0) {
           this.childtitle = res2.data.data.title
         }
@@ -128,7 +128,10 @@ export default {
       }
     },
     sendshoans: function () {
-      if (this.$route.path !== '/adminindex/ctrlques' && this.$route.path !== '/marking') {
+      if (
+        this.$route.path !== '/adminindex/ctrlques' &&
+        this.$route.path !== '/marking'
+      ) {
         this.$axios({
           method: 'post',
           url: '/user/exam/answer',
@@ -136,33 +139,35 @@ export default {
             ID: this.ID,
             answer: this.shortanswer
           }
-        }).then((res) => {
-          if (res.data.code === 0) {
-            let mytime = new Date()
-            this.thistime = ''
-            if (mytime.getHours() < 10) {
-              this.thistime += '0'
-            }
-            this.thistime += mytime.getHours() + ':'
-            if (mytime.getMinutes() < 10) {
-              this.thistime += '0'
-            }
-            this.thistime += mytime.getMinutes() + ':'
-            if (mytime.getSeconds() < 10) {
-              this.thistime += '0'
-            }
-            this.thistime += mytime.getSeconds()
-            this.thistime += ' ' + '自动保存成功'
-            this.$emit('trantime', this.thistime)
-          } else {
-            alert('答案上传失败')
-            this.$emit('tranalert')
-          }
-        }).catch((err) => {
-          if (err) {
-            alert('答案上传失败')
-          }
         })
+          .then(res => {
+            if (res.data.code === 0) {
+              let mytime = new Date()
+              this.thistime = ''
+              if (mytime.getHours() < 10) {
+                this.thistime += '0'
+              }
+              this.thistime += mytime.getHours() + ':'
+              if (mytime.getMinutes() < 10) {
+                this.thistime += '0'
+              }
+              this.thistime += mytime.getMinutes() + ':'
+              if (mytime.getSeconds() < 10) {
+                this.thistime += '0'
+              }
+              this.thistime += mytime.getSeconds()
+              this.thistime += ' ' + '自动保存成功'
+              this.$emit('trantime', this.thistime)
+            } else {
+              alert('答案上传失败')
+              this.$emit('tranalert')
+            }
+          })
+          .catch(err => {
+            if (err) {
+              alert('答案上传失败')
+            }
+          })
       }
     },
     toAdd () {
@@ -190,11 +195,13 @@ export default {
         data: {
           ID: this.ID
         }
-      }).then((result) => {
-        console.log(result)
-      }).catch((err) => {
-        console.log(err)
       })
+        .then(result => {
+          console.log(result)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
   mounted () {
