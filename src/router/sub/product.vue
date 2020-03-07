@@ -4,25 +4,17 @@
     <h1 class='welcome-header header2 header3'>{{Header2}}</h1>
     <p class='introduce'>{{ introduce }}</p>
     <div class="begin">
-      <a
-        href=""
-        v-if="flag"
-        @click.prevent="toAnswer"
-      >开始答题</a>
-      <img
-        src="../../assets/三角.png"
-        class="delta"
-      >
+      <a href=""
+         v-if="flag"
+         @click.prevent="toAnswer">开始答题</a>
+      <img src="../../assets/三角.png"
+           class="delta">
     </div>
-    <div
-      class="mainans"
-      v-show="queflag"
-    >
+    <div class="mainans"
+         v-show="queflag">
       <div class="ques">
-        <button
-          class="crosswrap"
-          @click="toAnswer"
-        ><span class="cross"></span></button>
+        <button class="crosswrap"
+                @click="toAnswer"><span class="cross"></span></button>
         <h1>招新答题</h1>
         <h2>——{{ Header }}{{ Header2 }}组</h2>
         <div class="que">
@@ -120,7 +112,7 @@ body {
   .ques {
     width: 60vw;
     /* background-color: rgba(25, 25, 25, 0.8); */
-    background-image: url('../../assets/背景.png');
+    background-image: url("../../assets/背景.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
