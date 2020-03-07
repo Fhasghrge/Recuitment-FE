@@ -47,6 +47,7 @@ export default {
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '设',
       Header2: '计',
+      queflag: false,
       introduce: '负责产品的UI设计<br>海报的平面设计<br>制作产品宣传、团队宣传等视频<br>技能：PS、Sketch'
     }
   },

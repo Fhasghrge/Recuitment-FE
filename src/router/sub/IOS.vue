@@ -23,7 +23,7 @@
           @click="toAnswer"
         ><span class="cross"></span></button>
         <h1>招新答题</h1>
-        <h2>——{{ Header }}{{ Header2 }}组</h2>
+        <h2>——{{ Header }}组</h2>
         <div class="que">
           <p style="color:#ffffff">作答时系统会自动保存答案，不需要手动保存，下次可以修改答案和继续作答。<br>首页的“提交所有答卷”为最终提交按钮，提交后所有方向试卷锁定，无法修改所有方向的任何答案。</p>
           <ques :group='4'></ques>
@@ -42,6 +42,7 @@ export default {
       ddlStr2: '2020/04/01',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: 'iOS',
+      queflag: false,
       introduce: 'iOS开发是一个充满爱与信仰的工作，在苹果的框架下，一切繁琐的环境配置与机型适配都形如浮云，你只需要拥有良好的objective-C语言基础与APP设计思维，便能开发出一款自己的APP应用。iOS开发是宝贵的人力资源，我们需要你能够熟练运用网络资源、能够快速融入团体集体并与其他方向的同学相互交流学习，从而在iOS开发的过程中不断完善自我。我们诚心邀您加入我们，一同在互联网的时代不断学习、成长！'
     }
   },
