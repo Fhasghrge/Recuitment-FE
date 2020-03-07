@@ -4,6 +4,11 @@
       <logo></logo>
       <!-- <login></login> -->
     </div>
+    <div class="penotice">
+      <img src="../../assets/logo.png">
+      <br>
+      <span>请到pc端参加招新笔试</span>
+    </div>
   </div>
 </template>
 
@@ -54,12 +59,12 @@ button {
 ul {
   list-style-type: none;
 }
-.mainall {
-  height: 100%;
-  width: 90%;
-  margin: 0 auto;
-}
 @media (min-width: 751px) {
+  .mainall {
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+  }
   .main {
     justify-content: space-around;
     align-items: center;
@@ -67,14 +72,36 @@ ul {
     position: relative;
     width: 44%;
   }
+  .penotice {
+    display: none;
+  }
 }
 
 @media (max-width: 750px) {
   .main {
-    width: 80%;
+    /* width: 80%;
     text-align: center;
     margin: 0 auto;
-    height: 100%;
+    height: 100%; */
+    display: none;
+  }
+  .penotice {
+    width: 80vw;
+    text-align: center;
+    color: #ffffff;
+    margin: 0 auto;
+    height: 100vh;
+  }
+  .penotice img {
+    position: absolute;
+    top: 2vh;
+    left: 5vw;
+    width: 40vw;
+  }
+  .penotice span {
+    text-align: center;
+    line-height: 100vh;
+    font-size: 25px;
   }
 }
 </style>
