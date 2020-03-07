@@ -15,7 +15,7 @@
         <button class="crosswrap"
                 @click="toAnswer"><span class="cross"></span></button>
         <h1>招新答题</h1>
-        <h2>——{{ Header }}{{ Header2 }}组</h2>
+        <h2>——{{ Header }}组</h2>
         <div class="que">
           <p style="color:#ffffff">作答时系统会自动保存答案，不需要手动保存，下次可以修改答案和继续作答。<br>首页的“提交所有答卷”为最终提交按钮，提交后所有方向试卷锁定，无法修改所有方向的任何答案。</p>
           <ques :group='4'></ques>
