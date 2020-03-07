@@ -2,7 +2,7 @@
   <div class="mainall">
     <div class="main">
       <logo></logo>
-      <login></login>
+      <!-- <login></login> -->
     </div>
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 // @ is an alias to /src
 import logo from '../../components/logo'
-import login from '../../components/login'
+// import login from '../../components/login'
 export default {
   name: 'home',
   data () {
@@ -19,8 +19,8 @@ export default {
     }
   },
   components: {
-    logo,
-    login
+    logo
+    // login
   }
   // mounted () {
   //   var hrt = document.documentElement.clientHeight
@@ -43,6 +43,10 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+}
+button {
+  outline: none;
+  outline-color: rgba(255, 255, 255, 0);
 }
 #app {
   margin: 0;

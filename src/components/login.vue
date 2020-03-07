@@ -3,6 +3,10 @@
     class="part2"
     id="part2"
   >
+    <button
+      class="crosswrap"
+      @click="closeflag"
+    ><span class="cross"></span></button>
     <div class="opion">
       <button
         id="act1"
@@ -156,6 +160,9 @@ export default {
       p2.style.minHeight = 513 + 'px'
       p2.style.top = 12.5 + 'vh'
     },
+    closeflag: function () {
+      this.$emit('closelgn')
+    },
     login: function (acc, pwd) {
       if (acc !== '' && pwd !== '') {
         this.err = ''
@@ -284,6 +291,39 @@ export default {
     left: 38vw;
     border-radius: 30px;
   }
+  .crosswrap {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 2vh;
+    left: 3vh;
+    padding: 0;
+    background-color: inherit;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+  }
+  .cross {
+    display: inline-block;
+    width: 20px;
+    height: 4px;
+    border-radius: 10px;
+    background: #ffffff;
+    line-height: 0;
+    font-size: 0;
+    vertical-align: middle;
+    -webkit-transform: rotate(45deg);
+    margin-top: -2px;
+  }
+
+  .cross:after {
+    content: '/';
+    display: block;
+    width: 20px;
+    height: 4px;
+    border-radius: 10px;
+    background: #ffffff;
+    -webkit-transform: rotate(-90deg);
+  }
   .showerr {
     height: 1rem;
     width: 80%;
@@ -295,12 +335,11 @@ export default {
   }
   .opion {
     height: 10%;
-    width: 100%;
     display: flex;
     justify-content: space-around;
     font-size: 1.2rem;
     padding: 0;
-    width: 80%;
+    width: 40%;
     margin: 1.2rem auto;
   }
 
@@ -320,7 +359,7 @@ export default {
   }
 
   .act {
-    padding-top: 12%;
+    padding-top: 9%;
   }
 
   .hide {
@@ -332,7 +371,7 @@ export default {
     width: 80%;
     margin: 0 auto;
     margin-bottom: 15px;
-    border: 1px solid rgb(255, 255, 255);
+    border: 0px solid rgb(255, 255, 255);
     border-radius: 10px;
     background-color: #9091c1;
     font-size: 1rem;
@@ -350,6 +389,8 @@ export default {
     color: #ffffff;
   }
   .button {
+    border: 0px;
+    background-color: #369cee;
     border-radius: 10px;
     width: 80%;
     height: 2.5rem;
@@ -358,7 +399,6 @@ export default {
     font-stretch: normal;
     letter-spacing: 0px;
     color: #ffffff;
-    background-color: inherit;
     margin-top: 1rem;
     font-size: 1rem;
     margin-bottom: 20px;

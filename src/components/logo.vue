@@ -20,14 +20,35 @@
       </div>
     </div>
     <button class="loginbutton">
-      <div class="btndiv">登录/注册</div>
+      <div
+        class="btndiv"
+        @click="showlogin"
+      >登录/注册</div>
     </button>
+    <login
+      v-show="loginshow"
+      @closelgn="showlogin"
+    ></login>
   </div>
 </template>
 
 <script>
+import login from '../components/login'
 export default {
-  name: 'logo'
+  name: 'logo',
+  components: {
+    login
+  },
+  data () {
+    return {
+      loginshow: false
+    }
+  },
+  methods: {
+    showlogin: function () {
+      this.loginshow = !this.loginshow
+    }
+  }
 }
 </script>
 
