@@ -90,20 +90,20 @@ export default {
     radio, che, inp, short, uploadque
   },
   mounted () {
-    // this.getques()
-    this.all = testdata.data
-    for (let a = 0; a < this.all.length; a++) {
-      if (this.all[a].groups === 0) {
-        this.questions.push(this.all[a])
-      }
-    }
-    this.secindex = this.questions.length
-    for (let a = 0; a < this.all.length; a++) {
-      if (this.all[a].groups === this.group) {
-        this.questions.push(this.all[a])
-      }
-    }
-    console.log(this.questions)
+    this.getques()
+    // this.all = testdata.data
+    // for (let a = 0; a < this.all.length; a++) {
+    //   if (this.all[a].groups === 0) {
+    //     this.questions.push(this.all[a])
+    //   }
+    // }
+    // this.secindex = this.questions.length
+    // for (let a = 0; a < this.all.length; a++) {
+    //   if (this.all[a].groups === this.group) {
+    //     this.questions.push(this.all[a])
+    //   }
+    // }
+    // console.log(this.questions)
   },
   methods: {
     transtime: function (value) {
@@ -121,7 +121,7 @@ export default {
       }).then((response) => {
         console.log(response)
         if (response.data.code === 0) {
-          if (this.$route.path === '/answer') {
+          if (this.$route.path !== '/adminindex/ctrlques' && this.$route.path !== '/marking') {
             this.all = response.data.data
             for (let a = 0; a < this.all.length; a++) {
               if (this.all[a].groups === 0) {
@@ -135,9 +135,6 @@ export default {
               this.questions.push(this.all[a])
             }
           }
-        } else {
-          alert('答卷已提交')
-          this.$router.push({ path: 'main' })
         }
       })
     },
