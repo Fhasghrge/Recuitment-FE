@@ -277,14 +277,14 @@ textarea {
 
 .delta {
   float: right;
-  margin-top: 20px;
+  margin-top: 21px;
   margin-right: 10px;
 }
 
 #noteText,
 #private {
   z-index: 999999;
-  margin-top: -45%;
+  margin-top: 5%;
   margin-left: 20%;
   position: fixed;
   width: 60%;
