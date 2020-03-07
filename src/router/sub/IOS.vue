@@ -3,25 +3,17 @@
     <h1 class='welcome-header'>{{Header}}</h1>
     <p class='introduce'>{{ introduce }}</p>
     <div class="begin">
-      <a
-        href=""
-        v-if="flag"
-        @click.prevent="toAnswer"
-      >开始答题</a>
-      <img
-        src="../../assets/三角.png"
-        class="delta"
-      >
+      <a href=""
+         v-if="flag"
+         @click.prevent="toAnswer">开始答题</a>
+      <img src="../../assets/三角.png"
+           class="delta">
     </div>
-    <div
-      class="mainans"
-      v-show="queflag"
-    >
+    <div class="mainans"
+         v-show="queflag">
       <div class="ques">
-        <button
-          class="crosswrap"
-          @click="toAnswer"
-        ><span class="cross"></span></button>
+        <button class="crosswrap"
+                @click="toAnswer"><span class="cross"></span></button>
         <h1>招新答题</h1>
         <h2>——{{ Header }}{{ Header2 }}组</h2>
         <div class="que">
@@ -42,6 +34,7 @@ export default {
       ddlStr2: '2020/04/01',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: 'iOS',
+      queflag: false,
       introduce: 'iOS开发是一个充满爱与信仰的工作，在苹果的框架下，一切繁琐的环境配置与机型适配都形如浮云，你只需要拥有良好的objective-C语言基础与APP设计思维，便能开发出一款自己的APP应用。iOS开发是宝贵的人力资源，我们需要你能够熟练运用网络资源、能够快速融入团体集体并与其他方向的同学相互交流学习，从而在iOS开发的过程中不断完善自我。我们诚心邀您加入我们，一同在互联网的时代不断学习、成长！'
     }
   },
@@ -118,7 +111,7 @@ body {
   .ques {
     width: 60vw;
     /* background-color: rgba(25, 25, 25, 0.8); */
-    background-image: url('../../assets/背景.png');
+    background-image: url("../../assets/背景.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

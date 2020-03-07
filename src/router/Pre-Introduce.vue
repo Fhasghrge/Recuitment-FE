@@ -75,9 +75,9 @@
         <el-slider v-model="value"
                    :step="1"
                    :show-stops="false"
-                   show-tooltip='false'
+                   :show-tooltip='false'
                    :max="7"
-                   disabled="true">
+                   :disabled="true">
         </el-slider>
       </div>
       <!-- <div class="group">

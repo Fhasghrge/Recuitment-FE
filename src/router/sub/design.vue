@@ -2,30 +2,20 @@
   <div id='text'>
     <h1 class='welcome-header'>{{Header}}</h1>
     <h1 class='welcome-header header2 header3'>{{Header2}}</h1>
-    <p
-      class='introduce'
-      v-html="introduce"
-    ></p>
+    <p class='introduce'
+       v-html="introduce"></p>
     <div class="begin">
-      <a
-        href=""
-        v-if="flag"
-        @click.prevent="toAnswer"
-      >开始答题</a>
-      <img
-        src="../../assets/三角.png"
-        class="delta"
-      >
+      <a href=""
+         v-if="flag"
+         @click.prevent="toAnswer">开始答题</a>
+      <img src="../../assets/三角.png"
+           class="delta">
     </div>
-    <div
-      class="mainans"
-      v-show="queflag"
-    >
+    <div class="mainans"
+         v-show="queflag">
       <div class="ques">
-        <button
-          class="crosswrap"
-          @click="toAnswer"
-        ><span class="cross"></span></button>
+        <button class="crosswrap"
+                @click="toAnswer"><span class="cross"></span></button>
         <h1>招新答题</h1>
         <h2>——{{ Header }}{{ Header2 }}组</h2>
         <div class="que">
@@ -47,7 +37,8 @@ export default {
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '设',
       Header2: '计',
-      introduce: '负责产品的UI设计<br>海报的平面设计<br>制作产品宣传、团队宣传等视频<br>技能：PS、Sketch'
+      introduce: '负责产品的UI设计<br>海报的平面设计<br>制作产品宣传、团队宣传等视频<br>技能：PS、Sketch',
+      queflag: false
     }
   },
   components: {
@@ -112,7 +103,7 @@ export default {
   .ques {
     width: 60vw;
     /* background-color: rgba(25, 25, 25, 0.8); */
-    background-image: url('../../assets/背景.png');
+    background-image: url("../../assets/背景.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
