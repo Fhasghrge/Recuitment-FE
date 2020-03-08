@@ -157,7 +157,7 @@ export default {
       this.hide = true
       let p2 = document.getElementById('part2')
       p2.style.height = 75 + 'vh'
-      p2.style.minHeight = 513 + 'px'
+      p2.style.minHeight = 553 + 'px'
       p2.style.top = 12.5 + 'vh'
     },
     closeflag: function () {
@@ -283,6 +283,8 @@ export default {
     min-height: 315px;
     height: 46vh;
     background-image: url('../assets/loginbg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     text-align: center;
     margin-left: -15%;
     min-width: 325px;
@@ -331,6 +333,7 @@ export default {
     height: 1rem;
     width: 80%;
     margin: 0 auto;
+    margin-bottom: 1vh;
   }
   .errmes {
     color: red;
@@ -373,7 +376,7 @@ export default {
     height: 1rem;
     width: 80%;
     margin: 0 auto;
-    margin-bottom: 15px;
+    margin-bottom: 3vh;
     border: 0px solid rgb(255, 255, 255);
     border-radius: 10px;
     background-color: #9091c1;

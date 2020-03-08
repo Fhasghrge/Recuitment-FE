@@ -2,26 +2,28 @@
   <div class="kind">
     <span
       class="timeshow"
-      v-if="$route.path !== '/adminindex/ctrlques' && $route.path !== '/marking'"
-    >{{thistime}}</span>
+      v-if="
+        $route.path !== '/adminindex/ctrlques' && $route.path !== '/marking'
+      "
+    >{{ thistime }}</span>
     <div
-      v-for="(item,index) in questions"
+      v-for="(item, index) in questions"
       :key="index"
       class="queswrap"
     >
       <!-- <span v-if="index === 0&&$route.path ==='/answer'">一、综合题</span>
       <span v-if="index === secindex&&$route.path ==='/answer'"><br>二、方向题</span> -->
       <span v-if="index === 0">一、综合题</span>
-      <span v-if="index === secindex"><br>二、方向题</span>
+      <span v-if="index === secindex"><br />二、方向题</span>
       <radio
         v-if="item.type === 1"
         :options="item.options"
         :ID="item.ID"
         :title="item.title"
         :answer="item.answer"
-        :index='index'
-        @trantime='transtime'
-        @tranalert='transalert'
+        :index="index"
+        @trantime="transtime"
+        @tranalert="transalert"
       ></radio>
       <che
         v-if="item.type === 2"
@@ -30,8 +32,8 @@
         :title="item.title"
         :answer="item.answer"
         :index="index"
-        @trantime='transtime'
-        @tranalert='transalert'
+        @trantime="transtime"
+        @tranalert="transalert"
       ></che>
       <inp
         v-if="item.type === 3"
@@ -39,8 +41,8 @@
         :title="item.title"
         :answer="item.answer"
         :index="index"
-        @trantime='transtime'
-        @tranalert='transalert'
+        @trantime="transtime"
+        @tranalert="transalert"
       ></inp>
       <short
         v-if="item.type === 4"
@@ -48,8 +50,8 @@
         :title="item.title"
         :answer="item.answer"
         :index="index"
-        @trantime='transtime'
-        @tranalert='transalert'
+        @trantime="transtime"
+        @tranalert="transalert"
       ></short>
       <uploadque
         v-if="item.type === 5"
@@ -87,7 +89,11 @@ export default {
     }
   },
   components: {
-    radio, che, inp, short, uploadque
+    radio,
+    che,
+    inp,
+    short,
+    uploadque
   },
   mounted () {
     // this.getques()
@@ -118,10 +124,13 @@ export default {
       this.$axios({
         methods: 'post',
         url: '/user/exam/get'
-      }).then((response) => {
+      }).then(response => {
         console.log(response)
         if (response.data.code === 0) {
-          if (this.$route.path === '/answer') {
+          if (
+            this.$route.path !== '/adminindex/ctrlques' &&
+            this.$route.path !== '/marking'
+          ) {
             this.all = response.data.data
             for (let a = 0; a < this.all.length; a++) {
               if (this.all[a].groups === 0) {
@@ -135,15 +144,19 @@ export default {
               this.questions.push(this.all[a])
             }
           }
-        } else {
-          alert('答卷已提交')
-          this.$router.push({ path: 'main' })
         }
       })
     },
     gettime: function () {
       let mytime = new Date()
-      this.thistime = mytime.getHours() + ':' + mytime.getMinutes() + ':' + mytime.getSeconds() + ' ' + '自动保存成功'
+      this.thistime =
+        mytime.getHours() +
+        ':' +
+        mytime.getMinutes() +
+        ':' +
+        mytime.getSeconds() +
+        ' ' +
+        '自动保存成功'
     }
   }
 }
@@ -257,7 +270,7 @@ a {
     margin-left: 1rem;
   }
   .txt {
-    width: 80%;
+    width: 94%;
     margin-left: 1rem;
   }
   .eg {

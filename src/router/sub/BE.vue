@@ -145,6 +145,7 @@ body {
     /* left: 20vw; */
     /* top: 10vh; */
     height: 80vh;
+    min-height: 546px;
     overflow: auto;
     border-radius: 20px;
     margin: 0 auto;

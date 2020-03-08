@@ -285,11 +285,14 @@ textarea {
 #noteText,
 #private {
   z-index: 999999;
-  margin-top: 5%;
-  margin-left: 20%;
+  /* margin-top: 5%;
+  margin-left: 20%; */
   position: fixed;
-  width: 60%;
-  height: 620px;
+  top: 10vh;
+  left: 20vw;
+  width: 60vw;
+  height: 80vh;
+  min-height: 570px;
   border-radius: 50px;
   background: url(../assets/背景.png);
   background-repeat: no-repeat;
@@ -710,7 +713,7 @@ textarea {
   .draw-leave-to
 
   /* .fade-leave-active below version 2.1.8 */
- {
+    {
     height: 0;
   }
 
