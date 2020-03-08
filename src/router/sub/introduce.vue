@@ -2,7 +2,7 @@
   <div id='text'>
     <h1 class='welcome-header'>{{Header}}</h1>
     <h1 class='welcome-header header2'>{{Header2}}</h1>
-    <p class='introduce'>{{ introduce }}</p>
+    <p class='introduce main_introduce'>{{ introduce }}</p>
     <!-- <a href=""
        class='begin store'
        v-if='flag'

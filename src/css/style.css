@@ -126,6 +126,7 @@ textarea {
 
 .introduce {
   width: 65%;
+  height: 120px;
   font-family: DengXian;
   font-size: 1.2rem;
   font-weight: bold;
@@ -137,6 +138,10 @@ textarea {
   line-height: 25px;
   margin-top: -5%;
   margin-left: 8%;
+}
+
+.IOS {
+  height: 177px;
 }
 
 .tips,
@@ -175,6 +180,10 @@ textarea {
   margin-top: -1%;
 }
 
+.date {
+  color: gold;
+}
+
 .choiceTips {
   width: 40%;
   height: 160px;
@@ -204,12 +213,12 @@ textarea {
   cursor: pointer;
 }
 
-#group .arrow_right {
+#group .right_arrow {
   margin-right: -15%;
   float: right;
 }
 
-#group .arrow_right:hover {
+#group .right_arrow:hover {
   cursor: pointer;
 }
 
@@ -456,15 +465,15 @@ textarea {
     width: 100%;
   }
 
-  .arrow_left {
+  /* .arrow_left {
     position: absolute;
     max-width: 100%;
     height: 30px;
-    /* background-color: black; */
+    background-color: black;
     float: left;
     margin-top: 3%;
     margin-left: 5%;
-  }
+  } */
 
   #header .logo {
     max-width: 50%;
@@ -498,9 +507,18 @@ textarea {
 
   .introduce {
     width: 80%;
+    height: 120px;
     /* margin-top: 50%; */
     margin-left: 10%;
     font-size: 1rem;
+  }
+
+  .main_introduce {
+    height: 165px;
+  }
+
+  .IOS {
+    height: 205px;
   }
 
   .tips,
@@ -518,20 +536,24 @@ textarea {
     font-size: 1.3rem;
   }
 
-  .block {
+  .date {
+    font-size: 1.4rem;
+  }
+
+  /* .block {
     width: 35%;
     margin-top: -85%;
     margin-left: 15%;
-  }
+  } */
 
-  #group .arrow_left {
+  /* #group .arrow_left {
     max-width: 150%;
-  }
+  } */
 
   #group {
-    margin-top: 90%;
+    /* margin-top: 90%; */
     /* margin-left: 8%; */
-    width: 100%;
+    width: 50%;
     /* display: flex;
     flex-wrap: wrap;
     justify-content: center; */
@@ -565,21 +587,33 @@ textarea {
     font-size: 1rem;
   }
 
-  /* #notes {
-    margin-top: 180%;
-  } */
+  #notes {
+    margin-top: 5%;
+    font-size: 1.4rem;
+    margin-left: 25%;
+  }
 
   .begin {
-    height: 3%;
+    height: 35px;
     width: 30%;
-    margin-top: 145%;
+    /* height: 53px; */
+    /* margin-top: 145%; */
     margin-left: 35%;
     opacity: 0.9;
   }
 
+  .begin a {
+    margin-top: 10px;
+  }
+
+  .delta {
+    margin-top: 10px;
+  }
+
   #noteText {
-    margin: 30% 0 0 0;
-    width: 100%;
+    /* margin: 30% 0 0 0; */
+    margin: 0 auto;
+    width: 70%;
     height: 75%;
     background: url(../img/背景.png);
   }
@@ -630,9 +664,9 @@ textarea {
     margin-top: 183%;
   }
 
-  #notes {
+  /* #notes {
     margin-top: 190%;
-  }
+  } */
 }
 
 @media (min-width: 751px) {
@@ -713,7 +747,7 @@ textarea {
   .draw-leave-to
 
   /* .fade-leave-active below version 2.1.8 */
-    {
+ {
     height: 0;
   }
 

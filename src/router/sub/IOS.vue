@@ -1,7 +1,7 @@
 <template>
   <div id='text'>
     <h1 class='welcome-header'>{{Header}}</h1>
-    <p class='introduce'>{{ introduce }}</p>
+    <p class='introduce IOS'>{{ introduce }}</p>
     <div class="begin">
       <a href=""
          v-if="flag"

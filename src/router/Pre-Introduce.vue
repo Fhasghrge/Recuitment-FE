@@ -135,7 +135,7 @@
       <img class="arrow_left"
            @click="toGroup(0)"
            src="../assets/箭头4_右 拷贝.png" />
-      <img class="arrow_right"
+      <img class="right_arrow"
            @click="toGroup(1)"
            src="../assets/箭头4_右.png" />
       <div class="block">
@@ -181,76 +181,6 @@
         选择一个方向，然后开始答题吧！当然了，您也可以作答多个方向的题目<br /><br />作答时系统会自动保存答案，不需要手动保存，下次可以修改答案和继续作答。<br /><br />首页的“提交所有答卷”为最终提交按钮，提交后所有方向试卷锁定，无法修改所有方向的任何答案。
       </p>
     </div> -->
-
-    <<<<<<< HEAD=======<div
-            id="private"
-            v-if="priFlag">
-      <img src="../assets/头像.png"
-           id="priHead" /><span id="priName">{{
-        priName
-      }}</span>
-      <img src="../assets/close.png"
-           class="close"
-           @click="closePrivate" />
-      <div id="priText">
-        <div class="priBox priLeft">
-          <p class="priVal">真实姓名</p>
-          <input class="priMsg"
-                 v-model="priName" />
-          <hr class="line" />
-        </div>
-        <div class="priBox priRight">
-          <p class="priVal">手机号</p>
-          <input class="priMsg"
-                 v-model="priPhone" />
-          <hr class="line" />
-        </div>
-        <div class="priBox priLeft">
-          <p class="priVal">信息门户账号</p>
-          <input class="priMsg"
-                 v-model="priNumber" />
-          <hr class="line" />
-        </div>
-        <div class="priBox priRight">
-          <p class="priVal">旧密码</p>
-          <input class="priMsg"
-                 v-model="oldPassword"
-                 type="password" />
-          <hr class="line" />
-        </div>
-        <div class="priBox priLeft">
-          <p class="priVal">学院</p>
-          <input class="priMsg"
-                 v-model="priSchool" />
-          <hr class="line" />
-        </div>
-        <div class="priBox priRight">
-          <p class="priVal">新密码</p>
-          <input class="priMsg"
-                 v-model="newPassword"
-                 type="password" />
-          <hr class="line" />
-        </div>
-        <div class="priBox priLeft">
-          <p class="priVal">QQ号</p>
-          <input class="priMsg"
-                 v-model="priQQ" />
-          <hr class="line" />
-        </div>
-        <div class="priBox priRight">
-          <p class="priVal">重复密码</p>
-          <input class="priMsg"
-                 v-model="rePassword"
-                 type="password" />
-          <hr class="line" />
-        </div>
-      </div>
-      <a class="confirm"
-         @click="changePrivateMsg">确认</a>
-      <a class="confirm quitConfirm"
-         @click="quit">退出登录</a>
-  </div>
-  >>>>>>> staging
   </div>
 </template>
 
