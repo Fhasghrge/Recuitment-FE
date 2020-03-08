@@ -28,7 +28,7 @@
         id="username"
         type="text"
         v-model="peraccount"
-        placeholder="账号|信息门户账号"
+        placeholder="账号 | 信息门户账号"
       />
       <input
         class="input1"
@@ -54,7 +54,7 @@
         id="schnum"
         type="text"
         v-model="peraccount"
-        placeholder="信息门户账号|13位学号"
+        placeholder="信息门户账号 | 13位学号"
       />
       <input
         class="input1"
