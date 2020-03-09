@@ -96,20 +96,20 @@ export default {
     uploadque
   },
   mounted () {
-    // this.getques()
-    this.all = testdata.data
-    for (let a = 0; a < this.all.length; a++) {
-      if (this.all[a].groups === 0) {
-        this.questions.push(this.all[a])
-      }
-    }
-    this.secindex = this.questions.length
-    for (let a = 0; a < this.all.length; a++) {
-      if (this.all[a].groups === this.group) {
-        this.questions.push(this.all[a])
-      }
-    }
-    console.log(this.questions)
+    this.getques()
+    // this.all = testdata.data
+    // for (let a = 0; a < this.all.length; a++) {
+    //   if (this.all[a].groups === 0) {
+    //     this.questions.push(this.all[a])
+    //   }
+    // }
+    // this.secindex = this.questions.length
+    // for (let a = 0; a < this.all.length; a++) {
+    //   if (this.all[a].groups === this.group) {
+    //     this.questions.push(this.all[a])
+    //   }
+    // }
+    // console.log(this.questions)
   },
   methods: {
     transtime: function (value) {
