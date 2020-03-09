@@ -49,7 +49,8 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
-button {
+button,
+input {
   outline: none;
   outline-color: rgba(255, 255, 255, 0);
 }
