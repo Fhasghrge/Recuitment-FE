@@ -169,18 +169,24 @@
        id="notes"
        ref="notes"
        @click.prevent="notesFlag = !notesFlag">答题须知</a>
-
-    <!-- <div id="noteText"
-         v-if="notesFlag"
-         ref="noteText">
-      <img src="../assets/close.png"
-           class="close"
-           @click="notesFlag = false" />
-      <h2>答题须知</h2>
-      <p>
-        选择一个方向，然后开始答题吧！当然了，您也可以作答多个方向的题目<br /><br />作答时系统会自动保存答案，不需要手动保存，下次可以修改答案和继续作答。<br /><br />首页的“提交所有答卷”为最终提交按钮，提交后所有方向试卷锁定，无法修改所有方向的任何答案。
-      </p>
-    </div> -->
+    <div id="lock">
+      <img src="../assets/侧栏1.png"
+           class="lock1"
+           v-if="lock_flag"
+           @click="lock_flag=!lock_flag">
+      <div v-if="!lock_flag"
+           class="lock2">
+        <img src="../assets/圆角矩形 5.png">
+        <img src="../assets/侧栏button.png"
+             class="but"
+             @click="save">
+        <div class="word but"
+             @click="save"><span>提交答卷</span></div>
+        <img src="../assets/三角 拷贝 4.png"
+             class="lock_close"
+             @click="lock_flag=!lock_flag">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -209,7 +215,8 @@ export default {
       priSchool: '',
       priQQ: '',
       rePassword: '',
-      value: 0
+      value: 0,
+      lock_flag: true
     }
   },
   methods: {
@@ -461,6 +468,24 @@ export default {
         case '/main/Devops':
           this.value = 7
           break
+      }
+    },
+    save () {
+      let confirmbtn = confirm('确认提交吗？提交后无法再次修改')
+      if (confirmbtn === true) {
+        this.$axios({
+          methods: 'post',
+          url: '/user/exam/lock'
+        }).then((response) => {
+          console.log(response)
+          if (response.data.code === 0 || response.data.code === -90) {
+            this.saveflag = true
+            alert('答卷已提交')
+            this.$router.push({ path: 'main' })
+          } else {
+            alert('提交失败')
+          }
+        })
       }
     }
   },
