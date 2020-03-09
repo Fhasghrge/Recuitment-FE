@@ -460,6 +460,57 @@ textarea {
   cursor: pointer;
 }
 
+#lock {
+  position: absolute;
+  margin-top: -30%;
+  color: white;
+  height: 120px;
+}
+
+.lock2 {
+  -webkit-animation: out 1s; /* Safari 和 Chrome */
+}
+
+@-webkit-keyframes out {
+  from {
+    margin-left: -100px;
+  }
+  to {
+    margin-left: 0;
+  }
+}
+
+.lock1:hover {
+  cursor: pointer;
+}
+
+.lock_close {
+  position: absolute;
+  margin-top: -50px;
+  margin-left: 100px;
+}
+
+.lock_close:hover {
+  cursor: pointer;
+}
+
+.but:hover {
+  cursor: pointer;
+}
+
+.but {
+  margin-bottom: 12px;
+  margin-left: -110px;
+}
+
+.word {
+  letter-spacing: 4px;
+  width: 50px;
+  font-size: 1.2rem;
+  margin-top: -80px;
+  margin-left: 32px;
+}
+
 @media screen and (max-width: 1081px) {
   .line {
     width: 100%;
