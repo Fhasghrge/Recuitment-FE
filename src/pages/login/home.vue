@@ -54,6 +54,9 @@ input {
   outline: none;
   outline-color: rgba(255, 255, 255, 0);
 }
+button:hover {
+  cursor: pointer;
+}
 #app {
   margin: 0;
 }
