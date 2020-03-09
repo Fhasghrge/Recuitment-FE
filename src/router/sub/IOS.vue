@@ -1,7 +1,8 @@
 <template>
   <div id='text'>
-    <h1 class='welcome-header'>{{Header}}</h1>
-    <p class='introduce IOS'>{{ introduce }}</p>
+    <h1 class='welcome-header'>{{ Header }}</h1>
+    <h1 class="welcome-header header2 header3">{{ Header2 }}</h1>
+    <p class='introduce'>{{ introduce }}</p>
     <div class="begin">
       <a href=""
          v-if="flag"

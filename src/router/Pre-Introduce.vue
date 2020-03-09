@@ -164,18 +164,16 @@
         <router-link to="/main/DevOps">DevOps</router-link>
       </div> -->
     </div>
+    <div id="notes">
+      <a href=""
+         ref="notes"
+         @click.prevent="notesFlag = !notesFlag">答题须知</a>
+    </div>
 
-    <a href=""
-       id="notes"
-       ref="notes"
-       @click.prevent="notesFlag = !notesFlag">答题须知</a>
     <div id="lock">
       <img src="../assets/侧栏1.png"
-           class="lock1"
-           v-if="lock_flag"
-           @click="lock_flag=!lock_flag">
-      <div v-if="!lock_flag"
-           class="lock2">
+           class="lock1">
+      <div class="lock2">
         <img src="../assets/圆角矩形 5.png">
         <img src="../assets/侧栏button.png"
              class="but"
@@ -183,8 +181,7 @@
         <div class="word but"
              @click="save"><span>提交答卷</span></div>
         <img src="../assets/三角 拷贝 4.png"
-             class="lock_close"
-             @click="lock_flag=!lock_flag">
+             class="lock_close">
       </div>
     </div>
   </div>

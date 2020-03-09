@@ -116,17 +116,17 @@ textarea {
 }
 
 .header2 {
-  margin-top: -5%;
+  margin-top: -37.5px;
   margin-left: 25%;
 }
 
 .header3 {
-  margin-top: -12%;
+  margin-top: -100px;
 }
 
 .introduce {
   width: 65%;
-  height: 120px;
+  height: 200px;
   font-family: DengXian;
   font-size: 1.2rem;
   font-weight: bold;
@@ -136,12 +136,12 @@ textarea {
   position: relative;
   letter-spacing: 2px;
   line-height: 25px;
-  margin-top: -5%;
+  margin-top: -40px;
   margin-left: 8%;
 }
 
 .IOS {
-  height: 177px;
+  height: 182px;
 }
 
 .tips,
@@ -177,7 +177,7 @@ textarea {
   text-align: center;
   position: relative;
   margin-left: 14%;
-  margin-top: -1%;
+  margin-top: -10px;
 }
 
 .date {
@@ -224,6 +224,7 @@ textarea {
 
 .block {
   position: relative;
+  /* width: 70%; */
   margin-left: 30%;
 }
 
@@ -254,7 +255,7 @@ textarea {
 } */
 
 #notes {
-  width: 50%;
+  width: 10%;
   font-family: PingFangSC-Regular;
   font-size: 1.6rem;
   font-weight: normal;
@@ -263,7 +264,6 @@ textarea {
   color: white;
   position: relative;
   margin-left: 20%;
-  margin-top: -5%;
 }
 
 .begin {
@@ -468,7 +468,8 @@ textarea {
 }
 
 .lock2 {
-  -webkit-animation: out 1s; /* Safari 和 Chrome */
+  display: none;
+  -webkit-animation: out 1s;
 }
 
 @-webkit-keyframes out {
@@ -480,8 +481,12 @@ textarea {
   }
 }
 
-.lock1:hover {
-  cursor: pointer;
+#lock:hover .lock2 {
+  display: block;
+}
+
+#lock:hover .lock1 {
+  display: none;
 }
 
 .lock_close {
@@ -510,6 +515,10 @@ textarea {
   margin-top: -80px;
   margin-left: 32px;
 }
+
+/* .main_introduce {
+  height: 180px;
+} */
 
 @media screen and (max-width: 1081px) {
   .line {
@@ -639,7 +648,7 @@ textarea {
   }
 
   #notes {
-    margin-top: 5%;
+    margin-top: 0%;
     font-size: 1.4rem;
     margin-left: 25%;
   }
