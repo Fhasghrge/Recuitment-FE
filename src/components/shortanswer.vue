@@ -7,7 +7,7 @@
     <mavon-editor
       class="txt"
       v-model="shortanswer"
-      @blur="sendshoans"
+      @save="sendshoans"
       :readonly="isread"
     />
     <div
