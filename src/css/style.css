@@ -268,27 +268,23 @@ textarea {
 
 .begin {
   width: 160px;
-  height: 53px;
   background-color: #df492c;
-  border-radius: 27px;
+  border-radius: 28px;
   margin-left: 30%;
+  padding-bottom: 11px;
 }
 
 .begin a {
-  width: 82px;
-  height: 20px;
   font-family: DengXian;
   font-size: 20px;
   font-weight: normal;
   font-stretch: normal;
   color: #ffffff;
-  margin-right: -10px;
+  margin-left: 25px;
 }
 
 .delta {
-  float: right;
-  margin-top: 21px;
-  margin-right: 10px;
+  margin-left: 20px;
 }
 
 #noteText,
@@ -314,7 +310,7 @@ textarea {
 #noteText h2 {
   /* position: relative; */
   font-size: 3rem;
-  /* margin: 0 auto; */
+  margin-left: 90px;
 }
 
 #noteText p {

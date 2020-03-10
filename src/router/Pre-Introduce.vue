@@ -5,10 +5,10 @@
          ref="noteText">
       <img src="../assets/close.png"
            class="close"
-           @click="notesFlag = false" />
+           @click="notesFlag = !notesFlag" />
       <h2>答题须知</h2>
       <p>
-        选择一个方向，然后开始答题吧！当然了，您也可以作答多个方向的题目<br /><br />作答时系统会自动保存答案，不需要手动保存，下次可以修改答案和继续作答。<br /><br />首页的“提交所有答卷”为最终提交按钮，提交后所有方向试卷锁定，无法修改所有方向的任何答案。
+        选择一个方向，然后开始答题吧！<br /><br />当然了，您也可以作答多个方向的题目<br /><br />作答时有markdown渲染器的题目需要按下保存键才能保存题目，其他题目则会自动保存。下次登录可以修改答案和继续作答。<br /><br />首页左侧的“提交答卷”为最终提交按钮，提交后所有方向视觉锁定，无法修改所有方向的任何答案。
       </p>
       <!-- <a href=""
          v-if='!flag'
@@ -197,7 +197,7 @@ export default {
       ddlStr: '2020/03/01 16:00',
       ddlStr2: '2020/04/01',
       flag: true, // flag 控制 显示倒计时 还是 显示开始答题按钮,true为未开始，false为进行中
-      notesFlag: false,
+      notesFlag: true,
       Itemflag: true,
       privateName: 'Olina',
       headFlag: true,

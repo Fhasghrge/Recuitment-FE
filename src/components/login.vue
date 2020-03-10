@@ -1,89 +1,76 @@
 <template>
-  <div class="part2" id="part2">
-    <button class="crosswrap" @click="closeflag">
+  <div class="part2"
+       id="part2">
+    <button class="crosswrap"
+            @click="closeflag">
       <span class="cross"></span>
     </button>
     <div class="opion">
-      <button
-        id="act1"
-        @click="x1"
-        v-bind:class="[{ button1: flag }, { button2: hide }]"
-      >
+      <button id="act1"
+              @click="x1"
+              v-bind:class="[{ button1: flag }, { button2: hide }]">
         登录
       </button>
-      <button
-        id="act2"
-        @click="x2"
-        v-bind:class="[{ button2: flag }, { button1: hide }]"
-      >
+      <button id="act2"
+              @click="x2"
+              v-bind:class="[{ button2: flag }, { button1: hide }]">
         注册
       </button>
     </div>
-    <div class="act" v-bind:style="flag1">
-      <input
-        class="input1"
-        id="username"
-        type="text"
-        v-model="peraccount"
-        placeholder="账号 | 信息门户账号"
-      />
-      <input
-        class="input1"
-        id="password"
-        type="password"
-        v-model="perpassword"
-        placeholder="密码"
-      />
+    <div class="act"
+         v-bind:style="flag1">
+      <input class="input1"
+             id="username"
+             type="text"
+             v-model="peraccount"
+             placeholder="账号 | 信息门户账号" />
+      <input class="input1"
+             id="password"
+             type="password"
+             v-model="perpassword"
+             placeholder="密码" />
     </div>
-    <div class="hide" v-bind:style="flag2">
-      <input
-        class="input1"
-        id="name"
-        type="text"
-        v-model="pername"
-        placeholder="真实姓名"
-      />
-      <input
-        class="input1"
-        id="schnum"
-        type="text"
-        v-model="peraccount"
-        placeholder="信息门户账号 | 13位学号"
-      />
-      <input
-        class="input1"
-        id="tel"
-        type="text"
-        v-model="tel"
-        placeholder="手机号（联系方式）"
-      />
-      <input
-        class="input1"
-        id="qq"
-        type="text"
-        v-model="qq"
-        placeholder="QQ号"
-      />
-      <input
-        class="input1"
-        id="pas"
-        type="password"
-        v-model="perpassword"
-        placeholder="密码"
-      />
+    <div class="hide"
+         v-bind:style="flag2">
+      <input class="input1"
+             id="name"
+             type="text"
+             v-model="pername"
+             placeholder="真实姓名" />
+      <input class="input1"
+             id="schnum"
+             type="text"
+             v-model="peraccount"
+             placeholder="信息门户账号 | 13位学号" />
+      <input class="input1"
+             id="tel"
+             type="text"
+             v-model="tel"
+             placeholder="手机号（联系方式）" />
+      <input class="input1"
+             id="qq"
+             type="text"
+             v-model="qq"
+             placeholder="QQ号" />
+      <input class="input1"
+             id="pas"
+             type="password"
+             v-model="perpassword"
+             placeholder="密码" />
     </div>
     <div class="showerr">
-      <span class="errmes" v-text="err"></span>
+      <span class="errmes"
+            v-text="err"></span>
     </div>
     <div>
-      <button
-        class="button"
-        v-if="flag"
-        @click="login(peraccount, perpassword)"
-      >
+      <button class="button"
+              v-if="flag"
+              @click="login(peraccount, perpassword)">
         确认登录
       </button>
-      <button class="button" v-if="hide" @click="register">注册</button>
+      <button class="button"
+              v-if="hide"
+              @click="register">注册</button>
     </div>
     <!-- <div class="confirm confirmRegister" v-if="confirmFlag">
       <h2>注册成功</h2>
@@ -94,7 +81,7 @@
 <script>
 export default {
   name: 'login',
-  data() {
+  data () {
     return {
       confirmFlag: false,
       flag1: 'display:block',
@@ -115,7 +102,7 @@ export default {
     }
   },
   methods: {
-    x1: function() {
+    x1: function () {
       this.flag1 = 'display:block'
       this.flag2 = 'display:none'
       this.flag = true
@@ -125,7 +112,7 @@ export default {
       p2.style.minHeight = 315 + 'px'
       p2.style.top = 27 + 'vh'
     },
-    x2: function() {
+    x2: function () {
       this.flag1 = 'display:none'
       this.flag2 = 'display:block'
       this.flag = false
@@ -135,10 +122,10 @@ export default {
       p2.style.minHeight = 480 + 'px'
       p2.style.top = 14 + 'vh'
     },
-    closeflag: function() {
+    closeflag: function () {
       this.$emit('closelgn')
     },
-    login: function(acc, pwd) {
+    login: function (acc, pwd) {
       if (acc !== '' && pwd !== '') {
         this.err = ''
         this.$axios({
@@ -171,7 +158,7 @@ export default {
         this.err = '请输入密码'
       }
     },
-    register: function() {
+    register: function () {
       if (
         this.peraccount !== '' &&
         this.perpassword !== '' &&
@@ -210,13 +197,13 @@ export default {
         this.err = '请将信息填写完整'
       }
     },
-    confirmRegister() {
+    confirmRegister () {
       this.login(this.peraccount, this.perpassword)
     }
   },
-  created() {
+  created () {
     let that = this
-    document.onkeydown = function(e) {
+    document.onkeydown = function (e) {
       e = window.event || e
       if (
         that.$route.path === '/home' &&
@@ -232,7 +219,7 @@ export default {
     }
   },
   computed: {
-    toppos: function() {
+    toppos: function () {
       let p2height = document.getElementById('part2').offsetHeight
       let htmlheight = document.body.clientWidth
       console.log((htmlheight - p2height) / 2)
@@ -247,7 +234,7 @@ export default {
     width: 24vw;
     min-height: 315px;
     height: 46vh;
-    background-image: url('../assets/loginbg.png');
+    background-image: url("../assets/loginbg.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     text-align: center;
@@ -286,7 +273,7 @@ export default {
   }
 
   .cross:after {
-    content: '/';
+    content: "/";
     display: block;
     width: 20px;
     height: 4px;
