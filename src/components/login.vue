@@ -1,28 +1,25 @@
 <template>
-  <div
-    class="part2"
-    id="part2"
-  >
-    <button
-      class="crosswrap"
-      @click="closeflag"
-    ><span class="cross"></span></button>
+  <div class="part2" id="part2">
+    <button class="crosswrap" @click="closeflag">
+      <span class="cross"></span>
+    </button>
     <div class="opion">
       <button
         id="act1"
         @click="x1"
         v-bind:class="[{ button1: flag }, { button2: hide }]"
-      >登录</button>
+      >
+        登录
+      </button>
       <button
         id="act2"
         @click="x2"
         v-bind:class="[{ button2: flag }, { button1: hide }]"
-      >注册</button>
+      >
+        注册
+      </button>
     </div>
-    <div
-      class="act"
-      v-bind:style="flag1"
-    >
+    <div class="act" v-bind:style="flag1">
       <input
         class="input1"
         id="username"
@@ -38,10 +35,7 @@
         placeholder="密码"
       />
     </div>
-    <div
-      class="hide"
-      v-bind:style="flag2"
-    >
+    <div class="hide" v-bind:style="flag2">
       <input
         class="input1"
         id="name"
@@ -77,49 +71,30 @@
         v-model="perpassword"
         placeholder="密码"
       />
-      <input
-        class="input1"
-        id="pas1"
-        type="password"
-        v-model="verify"
-        placeholder="重复密码"
-      />
     </div>
     <div class="showerr">
-      <span
-        class="errmes"
-        v-text="err"
-      ></span>
+      <span class="errmes" v-text="err"></span>
     </div>
     <div>
       <button
         class="button"
         v-if="flag"
         @click="login(peraccount, perpassword)"
-      >确认登录</button>
-      <button
-        class="button"
-        v-if="hide"
-        @click="register"
-      >注册</button>
+      >
+        确认登录
+      </button>
+      <button class="button" v-if="hide" @click="register">注册</button>
     </div>
-    <div
-      class="confirm confirmRegister"
-      v-if="confirmFlag"
-    >
+    <!-- <div class="confirm confirmRegister" v-if="confirmFlag">
       <h2>注册成功</h2>
-      <button
-        class="button"
-        @click="confirmRegister"
-      >确认</button>
-    </div>
+      <button class="button" @click="confirmRegister">确认</button>
+    </div> -->
   </div>
 </template>
-
 <script>
 export default {
   name: 'login',
-  data () {
+  data() {
     return {
       confirmFlag: false,
       flag1: 'display:block',
@@ -140,7 +115,7 @@ export default {
     }
   },
   methods: {
-    x1: function () {
+    x1: function() {
       this.flag1 = 'display:block'
       this.flag2 = 'display:none'
       this.flag = true
@@ -150,7 +125,7 @@ export default {
       p2.style.minHeight = 315 + 'px'
       p2.style.top = 27 + 'vh'
     },
-    x2: function () {
+    x2: function() {
       this.flag1 = 'display:none'
       this.flag2 = 'display:block'
       this.flag = false
@@ -160,15 +135,15 @@ export default {
       p2.style.minHeight = 553 + 'px'
       p2.style.top = 12.5 + 'vh'
     },
-    closeflag: function () {
+    closeflag: function() {
       this.$emit('closelgn')
     },
-    login: function (acc, pwd) {
+    login: function(acc, pwd) {
       if (acc !== '' && pwd !== '') {
         this.err = ''
         this.$axios({
           method: 'post',
-          url: '/user/login',
+          url: '/user/portal/login',
           data: {
             stunum: acc,
             password: pwd
@@ -196,61 +171,52 @@ export default {
         this.err = '请输入密码'
       }
     },
-    register: function () {
+    register: function() {
       if (
         this.peraccount !== '' &&
         this.perpassword !== '' &&
         this.pername !== '' &&
-        this.tel !== '' &&
-        this.verify !== ''
+        this.tel !== ''
       ) {
         this.err = ''
         if (!/^1[3456789]\d{9}$/.test(this.tel)) {
           this.err = '手机号码有误，请重填'
-        } else if (!/^201\d{9,10}$/.test(this.peraccount)) {
-          this.err = '学号有误，请重填'
         } else if (!/^[\u4e00-\u9fa5]{2,15}$/.test(this.pername)) {
           this.err = '姓名为2-15位的中文，请重填'
-        } else if (this.perpassword === this.verify) {
-          if (this.perpassword.length >= 6) {
-            this.$axios({
-              method: 'post',
-              url: '/user/register',
-              data: {
-                stunum: this.peraccount,
-                password: this.perpassword,
-                name: this.pername,
-                phonenum: this.tel,
-                qqnum: this.qq
-              }
-            }).then(response => {
-              if (response.data.code === 0) {
-                this.confirmFlag = true
-              } else if (response.data.code === -80) {
-                this.err = '用户已存在'
-              } else if (response.data.code === -60) {
-                this.err = '不存在这个学号'
-              } else {
-                this.err = '错误'
-              }
-            })
-          } else {
-            this.err = '密码长度过短'
-          }
         } else {
-          this.err = '两次输入的密码不同'
+          this.$axios({
+            method: 'post',
+            url: '/user/portal/register',
+            data: {
+              stunum: this.peraccount,
+              password: this.perpassword,
+              name: this.pername,
+              phonenum: this.tel,
+              qqnum: this.qq
+            }
+          }).then(response => {
+            if (response.data.code === 0) {
+              this.login(this.peraccount, this.perpassword)
+            } else if (response.data.code === -80) {
+              this.err = '用户已存在'
+            } else if (response.data.code === -60) {
+              this.err = '不存在这个学号'
+            } else {
+              this.err = '错误'
+            }
+          })
         }
       } else {
         this.err = '请将信息填写完整'
       }
     },
-    confirmRegister () {
+    confirmRegister() {
       this.login(this.peraccount, this.perpassword)
     }
   },
-  created () {
+  created() {
     let that = this
-    document.onkeydown = function (e) {
+    document.onkeydown = function(e) {
       e = window.event || e
       if (
         that.$route.path === '/home' &&
@@ -266,7 +232,7 @@ export default {
     }
   },
   computed: {
-    toppos: function () {
+    toppos: function() {
       let p2height = document.getElementById('part2').offsetHeight
       let htmlheight = document.body.clientWidth
       console.log((htmlheight - p2height) / 2)
@@ -275,7 +241,6 @@ export default {
   }
 }
 </script>
-
 <style>
 @media (min-width: 751px) {
   .part2 {
