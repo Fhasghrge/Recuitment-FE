@@ -131,9 +131,9 @@ export default {
       this.flag = false
       this.hide = true
       let p2 = document.getElementById('part2')
-      p2.style.height = 75 + 'vh'
-      p2.style.minHeight = 553 + 'px'
-      p2.style.top = 12.5 + 'vh'
+      p2.style.height = 72 + 'vh'
+      p2.style.minHeight = 480 + 'px'
+      p2.style.top = 14 + 'vh'
     },
     closeflag: function() {
       this.$emit('closelgn')
