@@ -91,13 +91,15 @@ export default {
         let head = strindex + '.' + strtrim
         let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
         let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
-        let strtrim3 = head.concat(strtrim2)
+        let tempstr = strtrim2.replace(/img&nbsp/g, 'img ')
+        let strtrim3 = head.concat(tempstr)
         return strtrim3
       } else {
         let strtrim = '(多选题) '
         let strtrim1 = str.replace(/\n|\r\n/g, '<br/>')
         let strtrim2 = strtrim1.replace(/\s/g, '&nbsp')
-        let strtrim3 = strtrim.concat(strtrim2)
+        let tempstr = strtrim2.replace(/img&nbsp/g, 'img ')
+        let strtrim3 = strtrim.concat(tempstr)
         return strtrim3
       }
     },

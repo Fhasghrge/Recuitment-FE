@@ -215,6 +215,8 @@ export default {
               this.err = '用户已存在'
             } else if (response.data.code === -60) {
               this.err = '不存在这个学号'
+            } else if (response.data.code === -666) {
+              this.err = '信息门户密码错误'
             } else {
               this.err = '错误'
             }
