@@ -1,18 +1,12 @@
 <template>
   <div class="part1">
-    <img
-      src="../assets/LOGO1.png"
-      class="logo"
-    />
+    <img src="../assets/LOGO1.png" class="logo" />
     <!-- <img src="../assets/font.png"
          class="p1" /> -->
     <!-- <h2 class="p2">2019年秋季招新答题系统</h2> -->
     <div class="headwrap">
       <h1 class="headfont">春季</h1>
-      <h1
-        class="headfont"
-        style="text-align: right;"
-      >招新</h1>
+      <h1 class="headfont" style="text-align: right;">招新</h1>
     </div>
     <div class="slogan">
       <div class="slo-con">
@@ -20,15 +14,9 @@
       </div>
     </div>
     <button class="loginbutton">
-      <div
-        class="btndiv"
-        @click="showlogin"
-      >登录/注册</div>
+      <div class="btndiv" @click="showlogin">登录/注册</div>
     </button>
-    <login
-      v-show="loginshow"
-      @closelgn="showlogin"
-    ></login>
+    <login v-show="loginshow" @closelgn="showlogin"></login>
   </div>
 </template>
 
@@ -39,13 +27,13 @@ export default {
   components: {
     login
   },
-  data () {
+  data() {
     return {
       loginshow: false
     }
   },
   methods: {
-    showlogin: function () {
+    showlogin: function() {
       this.loginshow = !this.loginshow
     }
   }
@@ -60,6 +48,7 @@ export default {
   height: 50px;
   border-style: none;
   font-size: 17px;
+  border-radius: 10px;
 }
 .btndiv {
   width: 80%;

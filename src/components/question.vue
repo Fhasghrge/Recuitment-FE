@@ -1,52 +1,63 @@
 <template>
   <div class="kind">
-    <span class="timeshow"
-          v-if="
+    <span
+      class="timeshow"
+      v-if="
         $route.path !== '/adminindex/ctrlques' && $route.path !== '/marking'
-      ">{{ thistime }}</span>
-    <div v-for="(item, index) in questions"
-         :key="index"
-         class="queswrap">
+      "
+      >{{ thistime }}</span
+    >
+    <div v-for="(item, index) in questions" :key="index" class="queswrap">
       <!-- <span v-if="index === 0&&$route.path ==='/answer'">一、综合题</span>
       <span v-if="index === secindex&&$route.path ==='/answer'"><br>二、方向题</span> -->
       <span v-if="index === 0">一、综合题</span>
       <span v-if="index === secindex"><br />二、方向题</span>
-      <radio v-if="item.type === 1"
-             :options="item.options"
-             :ID="item.ID"
-             :title="item.title"
-             :answer="item.answer"
-             :index="index"
-             @trantime="transtime"
-             @tranalert="transalert"></radio>
-      <che v-if="item.type === 2"
-           :options="item.options"
-           :ID="item.ID"
-           :title="item.title"
-           :answer="item.answer"
-           :index="index"
-           @trantime="transtime"
-           @tranalert="transalert"></che>
-      <inp v-if="item.type === 3"
-           :ID="item.ID"
-           :title="item.title"
-           :answer="item.answer"
-           :index="index"
-           @trantime="transtime"
-           @tranalert="transalert"></inp>
-      <short v-if="item.type === 4"
-             :ID="item.ID"
-             :title="item.title"
-             :answer="item.answer"
-             :index="index"
-             @trantime="transtime"
-             @tranalert="transalert"></short>
-      <uploadque v-if="item.type === 5"
-                 :ID="item.ID"
-                 :title="item.title"
-                 :answer="item.answer"
-                 :key="index"
-                 :index="index"></uploadque>
+      <radio
+        v-if="item.type === 1"
+        :options="item.options"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index="index"
+        @trantime="transtime"
+        @tranalert="transalert"
+      ></radio>
+      <che
+        v-if="item.type === 2"
+        :options="item.options"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index="index"
+        @trantime="transtime"
+        @tranalert="transalert"
+      ></che>
+      <inp
+        v-if="item.type === 3"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index="index"
+        @trantime="transtime"
+        @tranalert="transalert"
+      ></inp>
+      <short
+        v-if="item.type === 4"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index="index"
+        @trantime="transtime"
+        @tranalert="transalert"
+      ></short>
+      <uploadque
+        v-if="item.type === 5"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :key="index"
+        :index="index"
+      ></uploadque>
     </div>
   </div>
 </template>
@@ -60,7 +71,7 @@ import uploadque from './upload'
 import testdata from '../test.json'
 export default {
   name: 'ques',
-  data () {
+  data() {
     return {
       all: [],
       questions: [],
@@ -81,7 +92,7 @@ export default {
     short,
     uploadque
   },
-  mounted () {
+  mounted() {
     this.getques()
     // this.all = testdata.data
     // for (let a = 0; a < this.all.length; a++) {
@@ -98,15 +109,15 @@ export default {
     // console.log(this.questions)
   },
   methods: {
-    transtime: function (value) {
+    transtime: function(value) {
       this.thistime = value
     },
-    transalert: function () {
+    transalert: function() {
       if (this.thistime) {
         alert('最后成功提交于' + this.thistime.substr(0, 8))
       }
     },
-    getques: function () {
+    getques: function() {
       this.$axios({
         methods: 'post',
         url: '/user/exam/get'
@@ -133,7 +144,7 @@ export default {
         }
       })
     },
-    gettime: function () {
+    gettime: function() {
       let mytime = new Date()
       this.thistime =
         mytime.getHours() +

@@ -1,33 +1,24 @@
 <template>
-  <div id='text'>
-    <h1 class='welcome-header'>{{Header}}</h1>
-    <h1 class='welcome-header header2 header3'>{{Header2}}</h1>
-    <p class='introduce'>{{ introduce }}</p>
+  <div id="text">
+    <h1 class="welcome-header">{{ Header }}</h1>
+    <h1 class="welcome-header header2 header3">{{ Header2 }}</h1>
+    <p class="introduce">{{ introduce }}</p>
     <div class="begin">
-      <a
-        href=""
-        v-if="flag"
-        @click.prevent="toAnswer"
-      >开始答题</a>
-      <img
-        src="../../assets/三角.png"
-        class="delta"
-      >
+      <a href="" v-if="flag" @click.prevent="toAnswer">开始答题</a>
+      <img src="../../assets/三角.png" class="delta" />
     </div>
-    <div
-      class="mainans"
-      v-show="queflag"
-    >
+    <div class="mainans" v-show="queflag">
       <div class="ques">
-        <button
-          class="crosswrap"
-          @click="toAnswer"
-        ><span class="cross"></span></button>
+        <button class="crosswrap" @click="toAnswer">
+          <span class="cross"></span>
+        </button>
         <h1>招新答题</h1>
         <h2>——{{ Header }}{{ Header2 }}组</h2>
         <div class="que">
-          <p style="color:#ffffff">作答时系统会自动保存答案，不需要手动保存，下次可以修改答案和继续作答。<br>首页的“提交所有答卷”为最终提交按钮，提交后所有方向试卷锁定，无法修改所有方向的任何答案。</p>
-          <ques :group='5'></ques>
+          <p style="color:#ffffff">
+            作答时系统会自动保存答案，不需要手动保存，下次可以修改答案和继续作答。<br />首页的“提交所有答卷”为最终提交按钮，提交后所有方向试卷锁定，无法修改所有方向的任何答案。
+          </p>
+          <ques :group="5"></ques>
         </div>
       </div>
     </div>
@@ -37,7 +28,7 @@
 <script>
 import ques from '../../components/question'
 export default {
-  data () {
+  data() {
     return {
       ddlStr: '2020/03/01 16:00',
       ddlStr2: '2020/04/01',
@@ -45,14 +36,15 @@ export default {
       Header: '前',
       Header2: '端',
       queflag: false,
-      introduce: '能够运用前端技术包括JavaScript、CSS、HTML等传统技术与概念性较强的交互式设计，艺术性较强的视觉设计等等。'
+      introduce:
+        '能够运用前端技术包括JavaScript、CSS、HTML等传统技术与概念性较强的交互式设计，艺术性较强的视觉设计等等。'
     }
   },
   components: {
     ques
   },
   methods: {
-    toAnswer () {
+    toAnswer() {
       // this.$router.push({
       //   path: '/answer',
       //   query: {
@@ -61,10 +53,13 @@ export default {
       // })
       this.queflag = !this.queflag
     },
-    changeFlag () {
+    changeFlag() {
       console.log(2)
       console.log(new Date() - new Date(this.ddlStr))
-      if (new Date() - new Date(this.ddlStr) > 0 && new Date() - new Date(this.ddlStr2) < 0) {
+      if (
+        new Date() - new Date(this.ddlStr) > 0 &&
+        new Date() - new Date(this.ddlStr2) < 0
+      ) {
         this.flag = true
         console.log(3)
       } else {
@@ -72,7 +67,7 @@ export default {
       }
     }
   },
-  created () {
+  created() {
     console.log(1)
     this.changeFlag()
     if (window.screen.width <= 1080) {
