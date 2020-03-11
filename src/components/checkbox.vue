@@ -1,15 +1,8 @@
 <template>
   <div class="che">
-    <span
-      class="headline"
-      v-html="trimstr(title)"
-    ></span>
+    <span class="headline" v-html="trimstr(title)"></span>
     <div class="rad">
-      <div
-        v-for="(opt,indexc) in options"
-        :key="indexc"
-        class="optall"
-      >
+      <div v-for="(opt, indexc) in options" :key="indexc" class="optall">
         <input
           type="checkbox"
           class="radio1"
@@ -19,53 +12,24 @@
           @change="sendche(options[indexc])"
           :disabled="isread"
         />
-        <label
-          :for="che(indexc)"
-          class="radio2"
-        >{{options[indexc]}}</label>
+        <label :for="che(indexc)" class="radio2">{{ options[indexc] }}</label>
       </div>
     </div>
-    <div
-      class="ctrlBox"
-      v-if="$route.path == '/adminindex/ctrlques'"
-    >
+    <div class="ctrlBox" v-if="$route.path == '/adminindex/ctrlques'">
       <p>出题人：{{ author }}</p>
-      <input
-        type="button"
-        value="添加"
-        @click="toAdd"
-      >
+      <input type="button" value="添加" @click="toAdd" />
       <!-- <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
         <option value="于此题前">于此题前</option>
       </select> -->
-      <input
-        type="button"
-        value="删除"
-        @click="delBoxFlag=true"
-      >
-      <input
-        type="button"
-        value="修改"
-        @click="toChange"
-      >
-      <div
-        class="delBox"
-        v-if="delBoxFlag"
-      >
+      <input type="button" value="删除" @click="delBoxFlag = true" />
+      <input type="button" value="修改" @click="toChange" />
+      <div class="delBox" v-if="delBoxFlag">
         <p>是否删除</p>
-        <img src="../assets/删除@3x.svg">
-        <input
-          type="button"
-          value="确认"
-          @click="delConfirm"
-        >
-        <input
-          type="button"
-          value="取消"
-          @click="delBoxFlag=false"
-        >
+        <img src="../assets/删除@3x.svg" />
+        <input type="button" value="确认" @click="delConfirm" />
+        <input type="button" value="取消" @click="delBoxFlag = false" />
       </div>
     </div>
   </div>
@@ -73,7 +37,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       chedata: [],
       delBoxFlag: false,
@@ -110,17 +74,17 @@ export default {
     }
   },
   methods: {
-    getlist: function () {
+    getlist: function() {
       this.$axios({
         method: 'post',
         url: '/control/question/list'
-      }).then((res2) => {
+      }).then(res2 => {
         if (res2.data.code === 0) {
           this.list2 = res2.data.data
         }
       })
     },
-    trimstr: function (str) {
+    trimstr: function(str) {
       if (this.$route.path !== '/adminindex/ctrlques') {
         let strindex = String(this.index + 1)
         let strtrim = '(多选题) '
@@ -137,16 +101,22 @@ export default {
         return strtrim3
       }
     },
-    che: function (index1) {
-      if (this.$route.path !== '/adminindex/ctrlques' && this.$route.path !== '/marking') {
+    che: function(index1) {
+      if (
+        this.$route.path !== '/adminindex/ctrlques' &&
+        this.$route.path !== '/marking'
+      ) {
         return 'che' + this.ID + index1
       } else {
         return 'che' + this.index + index1
       }
     },
-    sendche: function (value) {
+    sendche: function(value) {
       // console.log(1)
-      if (this.$route.path !== '/adminindex/ctrlques' && this.$route.path !== '/marking') {
+      if (
+        this.$route.path !== '/adminindex/ctrlques' &&
+        this.$route.path !== '/marking'
+      ) {
         let cheflag = 0
         for (let b = 0; b < this.chedata.length; b++) {
           if (value === this.chedata[b]) {
@@ -162,7 +132,7 @@ export default {
               ID: this.ID,
               answer: value
             }
-          }).then((res) => {
+          }).then(res => {
             if (res.data.code === 0) {
               let mytime = new Date()
               this.thistime = ''
@@ -180,6 +150,10 @@ export default {
               this.thistime += mytime.getSeconds() + ':'
               this.thistime += ' ' + '自动保存成功'
               this.$emit('trantime', this.thistime)
+              this.$message({
+                message: '自动保存成功',
+                type: 'success'
+              })
             } else {
               alert('答案上传失败')
             }
@@ -192,37 +166,43 @@ export default {
               ID: this.ID,
               answer: value
             }
-          }).then((res) => {
-            if (res.data.code === 0) {
-              let mytime = new Date()
-              this.thistime = ''
-              if (mytime.getHours() < 10) {
-                this.thistime += '0'
-              }
-              this.thistime += mytime.getHours() + ':'
-              if (mytime.getMinutes() < 10) {
-                this.thistime += '0'
-              }
-              this.thistime += mytime.getMinutes() + ':'
-              if (mytime.getSeconds() < 10) {
-                this.thistime += '0'
-              }
-              this.thistime += mytime.getSeconds()
-              this.thistime += ' ' + '自动保存成功'
-              this.$emit('trantime', this.thistime)
-            } else {
-              alert('答案上传失败')
-            }
-          }).catch((err) => {
-            if (err) {
-              alert('答案上传失败')
-              this.$emit('tranalert')
-            }
           })
+            .then(res => {
+              if (res.data.code === 0) {
+                let mytime = new Date()
+                this.thistime = ''
+                if (mytime.getHours() < 10) {
+                  this.thistime += '0'
+                }
+                this.thistime += mytime.getHours() + ':'
+                if (mytime.getMinutes() < 10) {
+                  this.thistime += '0'
+                }
+                this.thistime += mytime.getMinutes() + ':'
+                if (mytime.getSeconds() < 10) {
+                  this.thistime += '0'
+                }
+                this.thistime += mytime.getSeconds()
+                this.thistime += ' ' + '自动保存成功'
+                this.$emit('trantime', this.thistime)
+                this.$message({
+                  message: this.thistime,
+                  type: 'success'
+                })
+              } else {
+                alert('答案上传失败')
+              }
+            })
+            .catch(err => {
+              if (err) {
+                alert('答案上传失败')
+                this.$emit('tranalert')
+              }
+            })
         }
       }
     },
-    toAdd () {
+    toAdd() {
       this.$router.push({
         path: '/adminindex/add',
         query: {
@@ -230,7 +210,7 @@ export default {
         }
       })
     },
-    toChange () {
+    toChange() {
       this.$router.push({
         path: '/adminindex/add',
         query: {
@@ -239,7 +219,7 @@ export default {
         }
       })
     },
-    delConfirm () {
+    delConfirm() {
       this.delBoxFlag = false
       this.$axios({
         method: 'post',
@@ -247,14 +227,16 @@ export default {
         data: {
           ID: this.ID
         }
-      }).then((result) => {
-        console.log(result)
-      }).catch((err) => {
-        console.log(err)
       })
+        .then(result => {
+          console.log(result)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
-  mounted () {
+  mounted() {
     if (this.answer !== []) {
       this.chedata = this.answer
     }

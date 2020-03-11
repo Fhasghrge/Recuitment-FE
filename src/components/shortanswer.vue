@@ -1,56 +1,27 @@
 <template>
   <div class="text">
-    <span
-      class="headline"
-      v-html="trimstr(childtitle)"
-    ></span>
+    <span class="headline" v-html="trimstr(childtitle)"></span>
     <mavon-editor
       class="txt"
       v-model="shortanswer"
       @save="sendshoans"
       :readonly="isread"
     />
-    <div
-      class="ctrlBox"
-      v-if="$route.path == '/adminindex/ctrlques'"
-    >
+    <div class="ctrlBox" v-if="$route.path == '/adminindex/ctrlques'">
       <p>出题人：{{ author }}</p>
-      <input
-        type="button"
-        value="添加"
-        @click="toAdd"
-      />
+      <input type="button" value="添加" @click="toAdd" />
       <!-- <select name="frontOrBack"
               id="frontOrBack">
         <option value="于此题后">于此题后</option>
         <option value="于此题前">于此题前</option>
       </select> -->
-      <input
-        type="button"
-        value="删除"
-        @click="delBoxFlag = true"
-      />
-      <input
-        type="button"
-        value="修改"
-        @click="toChange"
-      />
-      <div
-        class="delBox"
-        v-if="delBoxFlag"
-      >
+      <input type="button" value="删除" @click="delBoxFlag = true" />
+      <input type="button" value="修改" @click="toChange" />
+      <div class="delBox" v-if="delBoxFlag">
         <p>是否删除</p>
         <img src="../assets/删除@3x.svg" />
-        <input
-          type="button"
-          value="确认"
-          @click="delConfirm"
-        />
-        <input
-          type="button"
-          value="取消"
-          @click="delBoxFlag = false"
-        />
+        <input type="button" value="确认" @click="delConfirm" />
+        <input type="button" value="取消" @click="delBoxFlag = false" />
       </div>
     </div>
   </div>
@@ -58,7 +29,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       shortanswer: '',
       delBoxFlag: false,
@@ -96,7 +67,7 @@ export default {
     }
   },
   methods: {
-    getlist: function () {
+    getlist: function() {
       this.$axios({
         method: 'post',
         url: '/control/question/info',
@@ -109,7 +80,7 @@ export default {
         }
       })
     },
-    trimstr: function (str) {
+    trimstr: function(str) {
       console.log(this.$route.path)
       if (this.$route.path !== '/adminindex/ctrlques') {
         let strindex = String(this.index + 1)
@@ -127,7 +98,7 @@ export default {
         return strtrim3
       }
     },
-    sendshoans: function () {
+    sendshoans: function() {
       if (
         this.$route.path !== '/adminindex/ctrlques' &&
         this.$route.path !== '/marking'
@@ -156,8 +127,12 @@ export default {
                 this.thistime += '0'
               }
               this.thistime += mytime.getSeconds()
-              this.thistime += ' ' + '自动保存成功'
+              this.thistime += ' ' + '保存成功'
               this.$emit('trantime', this.thistime)
+              this.$message({
+                message: this.thistime,
+                type: 'success'
+              })
             } else {
               alert('答案上传失败')
               this.$emit('tranalert')
@@ -170,7 +145,7 @@ export default {
           })
       }
     },
-    toAdd () {
+    toAdd() {
       this.$router.push({
         path: '/adminindex/add',
         query: {
@@ -178,7 +153,7 @@ export default {
         }
       })
     },
-    toChange () {
+    toChange() {
       this.$router.push({
         path: '/adminindex/add',
         query: {
@@ -187,7 +162,7 @@ export default {
         }
       })
     },
-    delConfirm () {
+    delConfirm() {
       this.delBoxFlag = false
       this.$axios({
         method: 'post',
@@ -204,7 +179,7 @@ export default {
         })
     }
   },
-  mounted () {
+  mounted() {
     this.childtitle = this.title
     if (this.answer !== '') {
       console.log(this.answer)
