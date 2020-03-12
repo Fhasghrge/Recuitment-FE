@@ -5,8 +5,8 @@
       <!-- <login></login> -->
     </div>
     <div class="penotice">
-      <img src="../../assets/logo.png">
-      <br>
+      <img src="../../assets/logo.png" />
+      <br />
       <span>请到pc端参加招新笔试</span>
     </div>
   </div>
@@ -18,7 +18,7 @@ import logo from '../../components/logo'
 // import login from '../../components/login'
 export default {
   name: 'home',
-  data () {
+  data() {
     return {
       showflag: false
     }
@@ -74,7 +74,7 @@ ul {
     align-items: center;
     height: 100vh;
     position: relative;
-    width: 44%;
+    width: 47%;
   }
   .penotice {
     display: none;

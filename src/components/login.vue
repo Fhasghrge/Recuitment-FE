@@ -168,6 +168,8 @@ export default {
               this.$router.push({ path: 'main' })
             } else if (response.data.code === -5) {
               this.err = '账号不存在或密码错误'
+            } else if (response.data.code === -666) {
+              this.err = '信息门户密码错误'
             } else {
               this.err = '错误'
             }

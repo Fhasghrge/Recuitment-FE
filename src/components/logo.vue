@@ -10,7 +10,14 @@
     </div>
     <div class="slogan">
       <div class="slo-con">
-        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈或hh或或或或哈哈哈哈哈哈哈哈哈哈或hh或哈哈哈哈哈哈哈哈哈哈或hh或哈哈哈哈哈哈哈哈哈哈或hh或
+        你喜欢与一群极客交流吗？👀<br />
+        你期待在更大的平台展示自己的作品吗？👀<br />
+        你想要有一段充满意义的课外时光吗？👀<br />
+        经过了一学期的成电生活，相信你已经收获能力，渴望施展了吧！<br />
+        看着大佬们成果颇丰，你也一定摩拳擦掌了吧！<br />
+        在春招中，我们希望你在选定的方向上拥有一定的技术基础与能力💪，<br />
+        这样才能在竞争激烈，要求严格招新中脱颖而出。👍<br />
+        如果你有热情，有想法，有能力！电子科技大学星辰工作室期待你的到来ヾ(@^▽^@)ノ<br />
       </div>
     </div>
     <button class="loginbutton">
@@ -56,43 +63,43 @@ export default {
   color: #ffffff;
 }
 .slogan {
-  margin-top: 3vh;
+  margin-top: 1vh;
   border-top: 2px solid #a1afc5;
   border-bottom: 2px solid #a1afc5;
   width: 100%;
 }
 .slo-con {
-  width: 76%;
-  margin: 3vh auto;
+  width: 90%;
+  margin: 1vh auto;
   text-align: left;
   color: #ffffff;
 }
 .headfont {
   color: #ffffff;
-  font-size: 100px;
+  font-size: 90px;
   font-weight: bold;
   font-stretch: normal;
   letter-spacing: 6px;
-  width: 67%;
+  width: 60%;
   margin: 0 auto;
-  margin-top: -7px;
+  margin-top: -2vh;
   text-align: left;
-  margin-left: 3%;
+  margin-left: 9%;
 }
 @media (min-width: 751px) {
   .part1 {
     text-align: center;
     position: relative;
-    padding-top: 25%;
+    padding-top: 17%;
   }
 
   .part1 .logo {
-    width: 37%;
+    width: 29%;
     opacity: 0.9;
     display: inline-block;
     position: absolute;
-    top: 5.6vh;
-    left: 0;
+    top: 6vh;
+    left: -2vh;
   }
 
   .p1 {
