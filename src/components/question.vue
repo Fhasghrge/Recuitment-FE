@@ -95,11 +95,15 @@ export default {
   mounted() {
     this.getques()
     // this.all = testdata.data
-    // for (let a = 0; a < this.all.length; a++) {
-    //   if (this.all[a].groups === 0) {
-    //     this.questions.push(this.all[a])
+    // if (this.group !== 1 && this.group !== 2) {
+    //   for (let a = 0; a < this.all.length; a++) {
+    //     if (this.all[a].groups === 0) {
+    //       this.questions.push(this.all[a])
+    //     }
     //   }
+    //   console.log(1)
     // }
+    // console.log(2)
     // this.secindex = this.questions.length
     // for (let a = 0; a < this.all.length; a++) {
     //   if (this.all[a].groups === this.group) {
@@ -129,9 +133,11 @@ export default {
             this.$route.path !== '/marking'
           ) {
             this.all = response.data.data
-            for (let a = 0; a < this.all.length; a++) {
-              if (this.all[a].groups === 0) {
-                this.questions.push(this.all[a])
+            if (this.group !== 1 && this.group !== 2) {
+              for (let a = 0; a < this.all.length; a++) {
+                if (this.all[a].groups === 0) {
+                  this.questions.push(this.all[a])
+                }
               }
             }
             this.secindex = this.questions.length

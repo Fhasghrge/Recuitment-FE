@@ -1,28 +1,19 @@
 {
   "code": 0,
   "msg": "ok",
-  "data": [{
+  "data": [
+    {
       "type": 1,
-      "options": [
-        "hello",
-        "help1",
-        "help2",
-        "help3"
-      ],
-      "groups": 0,
+      "options": ["hello", "help1", "help2", "help3"],
+      "groups": 1,
       "ID": 1893,
       "title": "Which is short?",
       "answer": "help"
     },
     {
       "type": 2,
-      "options": [
-        "hello1",
-        "help121",
-        "help22",
-        "help33"
-      ],
-      "groups": 0,
+      "options": ["hello1", "help121", "help22", "help33"],
+      "groups": 1,
       "ID": 1893,
       "title": "Which is short?",
       "answer": ["help121"]
