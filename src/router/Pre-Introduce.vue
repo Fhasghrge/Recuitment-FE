@@ -195,7 +195,7 @@ export default {
     return {
       date: '',
       ddlStr: '2020/03/13 19:00',
-      ddlStr2: '2020/03/20 19:00',
+      ddlStr2: '2020/03/20 23:59',
       flag: true, // flag 控制 显示倒计时 还是 显示开始答题按钮,true为未开始，false为进行中
       notesFlag: true,
       Itemflag: true,

@@ -512,6 +512,10 @@ textarea {
   margin-left: 32px;
 }
 
+.introduce span {
+  color: gold;
+}
+
 /* .main_introduce {
   height: 180px;
 } */

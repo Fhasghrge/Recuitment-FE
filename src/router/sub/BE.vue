@@ -39,7 +39,7 @@ export default {
   data () {
     return {
       ddlStr: '2020/03/13 19:00',
-      ddlStr2: '2020/03/20 19:00',
+      ddlStr2: '2020/03/20 23:59',
       flag: false, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '后',
       Header2: '台',
