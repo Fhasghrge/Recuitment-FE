@@ -8,8 +8,11 @@
              @click="closebar"></div>
       <img class="midlogoa"
            src="../img/LOGO.png">
-      <img src="../img/头像.png"
-           id="priHeada">
+      <div class="infowrap">
+        <img src="../assets/头像.png"
+             id="priHeada">
+        <span class="Name">{{ priName }}</span>
+      </div>
       <img src="../img/close.png"
            class="closea"
            @click="closebar">
@@ -64,7 +67,9 @@
     </div>
     <div class="btnsuba">
       <button class='confirma'
-              @click='changePrivateMsg'>确认</button></div>
+              @click='changePrivateMsg'>确认</button>
+      <button class='mobquit'
+              @click='quit'>退出登录</button></div>
   </div>
 </template>
 
@@ -74,13 +79,13 @@ export default {
   name: 'pribar',
   data () {
     return {
-      priName: '黄老板',
-      priPhone: '110',
-      priNumber: '201601120000',
+      priName: '',
+      priPhone: '',
+      priNumber: '',
       oldPassword: '',
       newPassword: '',
-      priSchool: '霍格沃兹学院',
-      priQQ: '123456789',
+      priSchool: '',
+      priQQ: '',
       rePassword: '',
       show1: false
     }
@@ -92,6 +97,22 @@ export default {
     }
   },
   methods: {
+    quit: function () {
+      this.setCookie('', '', '', '', -1)
+      if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
+        this.$router.push({ path: '/managerlogin' })
+      } else {
+        this.$router.push({ name: 'home' })
+      }
+    },
+    setCookie (name, pwd, adna, adpas, day) {
+      var exdate = new Date()
+      exdate.setTime(exdate.getTime() + 10 * 60 * 1000 * day)
+      window.document.cookie = 'userName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'adminName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'adminPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
+    },
     closebar: function () {
       this.show1 = false
       this.$emit('showpribar', this.show1)
@@ -177,7 +198,25 @@ export default {
 </script>
 
 <style>
+.infowrap {
+  display: flex;
+}
+
 @media screen and (min-width: 700px) {
+  .Name {
+    color: #ffffff;
+    font-size: 1.4rem;
+    line-height: 50px;
+    margin-left: 1.4rem;
+  }
+  #priHeada {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .mobquit {
+    display: none;
+  }
   #closea {
     display: none;
   }
@@ -271,6 +310,19 @@ export default {
   }
 }
 @media screen and (max-width: 700px) {
+  .Name {
+    display: none;
+  }
+  .mobquit {
+    width: 80%;
+    height: 2.5rem;
+    color: #ffffff;
+    font-size: 1rem;
+    border: solid 1px #ffffff;
+    background-color: inherit;
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
   #privatea {
     background-image: url("../assets/back.png");
     background-repeat: no-repeat;
@@ -278,7 +330,7 @@ export default {
     background-size: cover;
     margin: 0;
     min-height: 100vh;
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 0;
     color: #ffffff;
@@ -315,6 +367,7 @@ export default {
   #priHeada {
     width: 40px;
     height: 40px;
+    border-radius: 50%;
   }
   .pribara {
     display: flex;

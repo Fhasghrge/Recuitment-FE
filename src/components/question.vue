@@ -1,36 +1,63 @@
 <template>
   <div class="kind">
-    <div v-for="(item,index) in questions"
-         :key="index">
+    <span
+      class="timeshow"
+      v-if="
+        $route.path !== '/adminindex/ctrlques' && $route.path !== '/marking'
+      "
+      >{{ thistime }}</span
+    >
+    <div v-for="(item, index) in questions" :key="index" class="queswrap">
+      <!-- <span v-if="index === 0&&$route.path ==='/answer'">一、综合题</span>
+      <span v-if="index === secindex&&$route.path ==='/answer'"><br>二、方向题</span> -->
       <span v-if="index === 0">一、综合题</span>
-      <span v-if="index === secindex"><br>二、方向题</span>
-      <radio v-if="item.type === 1"
-             :options="item.options"
-             :ID="item.ID"
-             :title="item.title"
-             :answer="item.answer"
-             :index='index'></radio>
-      <che v-if="item.type === 2"
-           :options="item.options"
-           :ID="item.ID"
-           :title="item.title"
-           :answer="item.answer"
-           :index="index"></che>
-      <inp v-if="item.type === 3"
-           :ID="item.ID"
-           :title="item.title"
-           :answer="item.answer"
-           :index="index"></inp>
-      <short v-if="item.type === 4"
-             :ID="item.ID"
-             :title="item.title"
-             :answer="item.answer"
-             :index="index"></short>
-      <uploadque v-if="item.type === 5"
-                 :ID="item.ID"
-                 :title="item.title"
-                 :answer="item.answer"
-                 :index="index"></uploadque>
+      <span v-if="index === secindex"><br />二、方向题</span>
+      <radio
+        v-if="item.type === 1"
+        :options="item.options"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index="index"
+        @trantime="transtime"
+        @tranalert="transalert"
+      ></radio>
+      <che
+        v-if="item.type === 2"
+        :options="item.options"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index="index"
+        @trantime="transtime"
+        @tranalert="transalert"
+      ></che>
+      <inp
+        v-if="item.type === 3"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index="index"
+        @trantime="transtime"
+        @tranalert="transalert"
+      ></inp>
+      <short
+        v-if="item.type === 4"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :index="index"
+        @trantime="transtime"
+        @tranalert="transalert"
+      ></short>
+      <uploadque
+        v-if="item.type === 5"
+        :ID="item.ID"
+        :title="item.title"
+        :answer="item.answer"
+        :key="index"
+        :index="index"
+      ></uploadque>
     </div>
   </div>
 </template>
@@ -41,13 +68,15 @@ import che from './checkbox'
 import inp from './sigleinp'
 import short from './shortanswer'
 import uploadque from './upload'
+import testdata from '../test.json'
 export default {
   name: 'ques',
-  data () {
+  data() {
     return {
       all: [],
       questions: [],
-      secindex: 0
+      secindex: 0,
+      thistime: ''
     }
   },
   props: {
@@ -57,51 +86,109 @@ export default {
     }
   },
   components: {
-    radio, che, inp, short, uploadque
+    radio,
+    che,
+    inp,
+    short,
+    uploadque
   },
-  mounted () {
+  mounted() {
     this.getques()
+    // this.all = testdata.data
+    // if (this.group !== 1 && this.group !== 2) {
+    //   for (let a = 0; a < this.all.length; a++) {
+    //     if (this.all[a].groups === 0) {
+    //       this.questions.push(this.all[a])
+    //     }
+    //   }
+    //   console.log(1)
+    // }
+    // console.log(2)
+    // this.secindex = this.questions.length
+    // for (let a = 0; a < this.all.length; a++) {
+    //   if (this.all[a].groups === this.group) {
+    //     this.questions.push(this.all[a])
+    //   }
+    // }
+    // console.log(this.questions)
   },
   methods: {
-    getques: function () {
+    transtime: function(value) {
+      this.thistime = value
+    },
+    transalert: function() {
+      if (this.thistime) {
+        alert('最后成功提交于' + this.thistime.substr(0, 8))
+      }
+    },
+    getques: function() {
       this.$axios({
         methods: 'post',
         url: '/user/exam/get'
-      }).then((response) => {
+      }).then(response => {
         console.log(response)
         if (response.data.code === 0) {
-          this.all = response.data.data
-          for (let a = 0; a < this.all.length; a++) {
-            if (this.all[a].groups === 0) {
-              this.questions.push(this.all[a])
+          if (
+            this.$route.path !== '/adminindex/ctrlques' &&
+            this.$route.path !== '/marking'
+          ) {
+            this.all = response.data.data
+            if (this.group !== 1 && this.group !== 2) {
+              for (let a = 0; a < this.all.length; a++) {
+                if (this.all[a].groups === 0) {
+                  this.questions.push(this.all[a])
+                }
+              }
             }
+            this.secindex = this.questions.length
           }
-          this.secindex = this.questions.length
           for (let a = 0; a < this.all.length; a++) {
             if (this.all[a].groups === this.group) {
               this.questions.push(this.all[a])
             }
           }
-        } else {
-          alert('答卷已提交')
-          this.$router.push({ path: 'main' })
         }
       })
+    },
+    gettime: function() {
+      let mytime = new Date()
+      this.thistime =
+        mytime.getHours() +
+        ':' +
+        mytime.getMinutes() +
+        ':' +
+        mytime.getSeconds() +
+        ' ' +
+        '自动保存成功'
     }
   }
 }
 </script>
 
 <style>
+.text,
+.inp,
+.upload {
+  margin-bottom: 3vh;
+}
+.timeshow {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  display: block;
+  text-align: center;
+  color: #579eda;
+  height: 1rem;
+}
 .headline {
-  margin: 0.5rem auto 1rem 1rem;
+  margin: 0.5rem auto 1rem 0;
   font-size: 1rem;
   display: block;
+  word-break: break-all;
 }
 .rad {
   display: flex;
   justify-content: space-around;
-  align-items: stretch;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -111,21 +198,22 @@ export default {
 
 .radio2 {
   position: relative;
-  background-color: rgba(25, 25, 25, 0.8);
+  /* background-color: rgba(25, 25, 25, 0.8); */
+  background-color: inherit;
   display: inline-block;
   font-size: 1rem;
-  min-height: 2rem;
-  padding: 0.5rem 1rem 0 1rem;
+  padding: 0.5rem 1rem;
   width: 50%;
   flex-wrap: wrap;
 }
 input:checked + label {
-  background-color: #3e3e3e;
+  /* background-color: #3e3e3e; */
+  background-color: #21add0;
 }
 .ipt {
   background-color: inherit;
   border: 0;
-  border-bottom: solid 2px #4a4a4a;
+  border-bottom: solid 2px #ffffff;
   line-height: 2rem;
   color: #ffffff;
   font-size: 1rem;
@@ -133,12 +221,12 @@ input:checked + label {
 .txt {
   background-color: inherit;
   color: #ffffff;
-  border: solid 2px #4a4a4a;
+  /* border: solid 2px #4a4a4a; */
+  border: solid 1px #ffffff;
   height: 5rem;
   font-size: 1rem;
 }
 .load {
-  margin-left: 1rem;
   width: 25px;
   height: 20px;
 }
@@ -147,7 +235,8 @@ input:checked + label {
   margin: 0 5px;
 }
 a {
-  color: #d9d9d9;
+  /* color: #d9d9d9; */
+  color: #ffffff;
 }
 .eg {
   margin-left: 20px;
@@ -181,12 +270,15 @@ a {
   height: 1rem;
 }
 @media only screen and (min-width: 751px) {
+  .headline {
+    width: 80%;
+  }
   .ipt {
     width: 50%;
     margin-left: 1rem;
   }
   .txt {
-    width: 80%;
+    width: 94%;
     margin-left: 1rem;
   }
   .eg {
@@ -196,10 +288,11 @@ a {
     min-width: 25%;
     max-width: 25%;
     text-align: center;
+    margin: 1rem auto;
   }
   .docu {
     width: 80%;
-    border: solid 2px #4a4a4a;
+    border: solid 1px #ffffff41;
     margin: 1rem auto 1rem 1rem;
   }
   .sub {
@@ -237,6 +330,9 @@ a {
 }
 
 @media only screen and (max-width: 750px) {
+  .headline {
+    margin-left: 0;
+  }
   .rad {
     flex-wrap: wrap;
   }
@@ -247,8 +343,8 @@ a {
   .radio2 {
     margin: 10px;
     box-sizing: border-box;
-    padding-top: 4px;
     margin-left: 0;
+    width: 90%;
   }
   .ipt {
     width: 100%;

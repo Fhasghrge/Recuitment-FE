@@ -6,7 +6,8 @@
               @click="gobackto">返回</button><span class="notice">离开前请一定记得点击：“保存阅卷”</span>
       <div class="markque">
         <markcontent :username='username'
-                     :que='que'></markcontent>
+                     :que='que'
+                     :group='group'></markcontent>
       </div>
     </div>
     <scorebar :judger='judger'
@@ -31,14 +32,18 @@ export default {
     var username = String(this.$route.query.username)
     var judger = String(this.$route.query.judger)
     return {
+      group: String(this.$route.query.groups),
       stunum,
       judger,
       username,
-      que: []
+      que: [],
+      ques: []
     }
   },
   mounted () {
     this.getques()
+    console.log(this.$route.query.groups)
+    console.log(this.group)
   },
   methods: {
     gobackto: function () {
@@ -50,12 +55,19 @@ export default {
         method: 'post',
         url: '/control/exam/get',
         data: {
-          stunum: this.stunum
+          stunum: this.stunum,
+          groups: this.group
         }
       }).then((res) => {
-        console.log(res)
         if (res.data.code === 0) {
-          this.que = res.data.data
+          this.ques = res.data.data
+          console.log(this.ques)
+          for (let a = 0; a < this.ques.length; a++) {
+            if (this.ques[a].groups === this.thisgroup) {
+              this.que.push(this.ques[a])
+            }
+          }
+          console.log(this.que)
         }
       }).catch((err) => {
         console.log(err)

@@ -1,20 +1,32 @@
 <template>
   <div class="right">
-    <img src="../assets/icon.svg"
-         v-on:click="x3"
-         class="icon" />
-    <img src="../assets/route.png"
-         v-on:click="x3"
-         v-bind:class="[{ arrowhead: 1 }, { rotate1: flag }, { rotate2: !flag }]" />
+    <img
+      src="../assets/头像.png"
+      @mouseover="flag = !flag"
+      @mouseout="flag = !flag"
+      class="icon"
+    />
+    <img
+      src="../assets/route.png"
+      v-bind:class="[{ arrowhead: 1 }, { rotate1: flag }, { rotate2: !flag }]"
+    />
     <transition name="draw">
-      <div class="userbox"
-           v-show="flag">
-        <button class="btn"
-                v-show="flag"
-                @click="revisebar">个人信息</button>
-        <button class="btn"
-                v-show="flag"
-                @click="quit">退出登陆</button>
+      <div
+        class="userbox"
+        v-show="flag"
+        @mouseover="flag = 1"
+        @mouseout="flag = 0"
+      >
+        <button
+          class="btn"
+          v-show="flag"
+          @click="revisebar"
+        >个人信息</button>
+        <button
+          class="btn"
+          v-show="flag"
+          @click="quit"
+        >退出登陆</button>
       </div>
     </transition>
   </div>
@@ -31,12 +43,8 @@ export default {
     }
   },
   methods: {
-    x3: function () {
-      this.flag = !this.flag
-    },
     quit: function () {
-      let storage = window.localStorage
-      storage.clear()
+      this.setCookie('', '', '', '', -1)
       if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
         this.$router.push({ path: '/managerlogin' })
       } else {
@@ -46,6 +54,14 @@ export default {
     revisebar: function () {
       this.userflag = !this.userflag
       this.$emit('usershow', this.userflag)
+    },
+    setCookie (name, pwd, adna, adpas, day) {
+      var exdate = new Date()
+      exdate.setTime(exdate.getTime() + 10 * 60 * 1000 * day)
+      window.document.cookie = 'userName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'adminName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie = 'adminPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
     }
   },
   mounted () {
@@ -60,7 +76,7 @@ export default {
 @media (min-width: 400px) {
   .right {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.3);
+    /* background-color: rgba(0, 0, 0, 0.3); */
     text-align: right;
     width: 160px;
   }
@@ -69,6 +85,7 @@ export default {
     height: 50px;
     width: 50px;
     margin-right: 8px;
+    border-radius: 50%;
   }
 
   .icon:hover .btn:hover {
@@ -82,9 +99,6 @@ export default {
     width: 12px;
   }
 
-  .arrowhead:hover {
-    cursor: pointer;
-  }
   .rotate1 {
     transform-origin: center center;
     transform: rotate(90deg);
@@ -113,13 +127,13 @@ export default {
     -ms-transition: -ms-transform 0.2s;
   }
   .userbox {
-    height: 60px;
+    height: 80px;
     width: 98px;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);
     top: 52px;
     right: -20px;
-    padding-top: 10px;
+    /* padding-top: 10px; */
   }
   .draw-enter-active,
   .draw-leave-active {

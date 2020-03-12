@@ -35,6 +35,9 @@ const router = new VueRouter({
     {
       path: '/main',
       component: introduce,
+      meta: {
+        requireAuth: true
+      },
       children: [
         {
           path: '/',
@@ -72,7 +75,10 @@ const router = new VueRouter({
     },
     {
       path: '/ending',
-      component: ending
+      component: ending,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/managerlogin',
@@ -92,11 +98,17 @@ const router = new VueRouter({
     {
       path: '/answer',
       name: 'answer',
-      component: answer
+      component: answer,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/adminindex',
       component: adminindex,
+      meta: {
+        requireAdmin: true
+      },
       children: [
         {
           path: '/',
@@ -130,7 +142,10 @@ const router = new VueRouter({
     {
       path: '/marking',
       name: 'marking',
-      component: marking
+      component: marking,
+      meta: {
+        requireAdmin: true
+      }
     }
   ]
 })

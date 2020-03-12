@@ -2,7 +2,8 @@
   <div id='private'
        v-if='priFlag'>
     <img src="./img/头像.png"
-         id="priHead"><span id="priName">{{ privateName }}</span>
+         id="priHead">
+    <span id="priName">{{ priName }}</span>
     <img src="./img/close.png"
          class="close"
          @click="priFlag=false">
