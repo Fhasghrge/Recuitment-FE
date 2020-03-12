@@ -16,8 +16,8 @@
 export default {
   data () {
     return {
-      ddlStr: '2020/03/01 16:00',
-      ddlStr2: '2020/04/01',
+      ddlStr: '2020/03/13 19:00',
+      ddlStr2: '2020/03/20 19:00',
       flag: false, // flag 控制tips，true为显示，false为隐藏
       Header: '春季',
       Header2: '招新',
