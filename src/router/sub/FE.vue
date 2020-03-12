@@ -3,13 +3,18 @@
     <h1 class="welcome-header">{{ Header }}</h1>
     <h1 class="welcome-header header2 header3">{{ Header2 }}</h1>
     <p class="introduce">{{ introduce }}</p>
-    <div class="begin">
-      <a href="" v-if="flag" @click.prevent="toAnswer">开始答题</a>
-      <img src="../../assets/三角.png" class="delta" />
+    <div class="begin"
+         v-if="flag">
+      <a href=""
+         @click.prevent="toAnswer">开始答题</a>
+      <img src="../../assets/三角.png"
+           class="delta" />
     </div>
-    <div class="mainans" v-show="queflag">
+    <div class="mainans"
+         v-show="queflag">
       <div class="ques">
-        <button class="crosswrap" @click="toAnswer">
+        <button class="crosswrap"
+                @click="toAnswer">
           <span class="cross"></span>
         </button>
         <h1>招新答题</h1>
@@ -28,10 +33,10 @@
 <script>
 import ques from '../../components/question'
 export default {
-  data() {
+  data () {
     return {
-      ddlStr: '2020/03/01 16:00',
-      ddlStr2: '2020/04/01',
+      ddlStr: '2020/03/13 19:00',
+      ddlStr2: '2020/03/20 19:00',
       flag: true, // flag控制开始答题按钮，true为显示，false为隐藏
       Header: '前',
       Header2: '端',
@@ -44,7 +49,7 @@ export default {
     ques
   },
   methods: {
-    toAnswer() {
+    toAnswer () {
       // this.$router.push({
       //   path: '/answer',
       //   query: {
@@ -53,7 +58,7 @@ export default {
       // })
       this.queflag = !this.queflag
     },
-    changeFlag() {
+    changeFlag () {
       console.log(2)
       console.log(new Date() - new Date(this.ddlStr))
       if (
@@ -67,7 +72,7 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     console.log(1)
     this.changeFlag()
     if (window.screen.width <= 1080) {
@@ -118,7 +123,7 @@ body {
   .ques {
     width: 60vw;
     /* background-color: rgba(25, 25, 25, 0.8); */
-    background-image: url('../../assets/背景.png');
+    background-image: url("../../assets/背景.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
