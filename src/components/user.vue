@@ -17,16 +17,12 @@
         @mouseover="flag = 1"
         @mouseout="flag = 0"
       >
-        <button
+        <!-- <button
           class="btn"
           v-show="flag"
           @click="revisebar"
-        >个人信息</button>
-        <button
-          class="btn"
-          v-show="flag"
-          @click="quit"
-        >退出登陆</button>
+        >个人信息</button> -->
+        <button class="btn" v-show="flag" @click="quit">退出登陆</button>
       </div>
     </transition>
   </div>
@@ -36,36 +32,43 @@
 import bus from '../components/bus.js'
 export default {
   name: 'banner',
-  data () {
+  data() {
     return {
       flag: false,
       userflag: false
     }
   },
   methods: {
-    quit: function () {
+    quit: function() {
       this.setCookie('', '', '', '', -1)
-      if (this.$route.path === '/adminindex/overview' || this.$route.path === '/adminindex') {
+      if (
+        this.$route.path === '/adminindex/overview' ||
+        this.$route.path === '/adminindex'
+      ) {
         this.$router.push({ path: '/managerlogin' })
       } else {
         this.$router.push({ name: 'home' })
       }
     },
-    revisebar: function () {
+    revisebar: function() {
       this.userflag = !this.userflag
       this.$emit('usershow', this.userflag)
     },
-    setCookie (name, pwd, adna, adpas, day) {
+    setCookie(name, pwd, adna, adpas, day) {
       var exdate = new Date()
       exdate.setTime(exdate.getTime() + 10 * 60 * 1000 * day)
-      window.document.cookie = 'userName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
-      window.document.cookie = 'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
-      window.document.cookie = 'adminName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
-      window.document.cookie = 'adminPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie =
+        'userName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie =
+        'userPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie =
+        'adminName' + '=' + name + ';path=/;expires=' + exdate.toGMTString()
+      window.document.cookie =
+        'adminPwd' + '=' + pwd + ';path=/;expires=' + exdate.toGMTString()
     }
   },
-  mounted () {
-    bus.$on('listen', (show) => {
+  mounted() {
+    bus.$on('listen', show => {
       this.userflag = show
     })
   }
@@ -127,7 +130,7 @@ export default {
     -ms-transition: -ms-transform 0.2s;
   }
   .userbox {
-    height: 80px;
+    height: 40px;
     width: 98px;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);

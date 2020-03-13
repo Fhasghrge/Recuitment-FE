@@ -3,18 +3,13 @@
     <h1 class="welcome-header">{{ Header }}</h1>
     <h1 class="welcome-header header2 header3">{{ Header2 }}</h1>
     <p class="introduce">{{ introduce }}</p>
-    <div class="begin"
-         v-if="flag">
-      <a href=""
-         @click.prevent="toAnswer">开始答题</a>
-      <img src="../../assets/三角.png"
-           class="delta" />
+    <div class="begin" v-if="flag">
+      <a href="" @click.prevent="toAnswer">开始答题</a>
+      <img src="../../assets/三角.png" class="delta" />
     </div>
-    <div class="mainans"
-         v-show="queflag">
+    <div class="mainans" v-show="queflag">
       <div class="ques">
-        <button class="crosswrap"
-                @click="toAnswer">
+        <button class="crosswrap" @click="toAnswer">
           <span class="cross"></span>
         </button>
         <h1>招新答题</h1>
@@ -33,7 +28,7 @@
 <script>
 import ques from '../../components/question'
 export default {
-  data () {
+  data() {
     return {
       ddlStr: '2020/03/13 19:00',
       ddlStr2: '2020/03/20 19:00',
@@ -49,7 +44,7 @@ export default {
     ques
   },
   methods: {
-    toAnswer () {
+    toAnswer() {
       // this.$router.push({
       //   path: '/answer',
       //   query: {
@@ -58,7 +53,7 @@ export default {
       // })
       this.queflag = !this.queflag
     },
-    changeFlag () {
+    changeFlag() {
       if (
         new Date() - new Date(this.ddlStr) > 0 &&
         new Date() - new Date(this.ddlStr2) < 0
@@ -69,10 +64,10 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     this.changeFlag()
     let that = this
-    document.getElementById('main').onclick = function (event) {
+    document.getElementById('main').onclick = function(event) {
       let ans = document.getElementsByClassName('mainans')[0]
       let beginbtn = document.getElementsByClassName('begin')[0]
       if (ans) {
@@ -82,7 +77,7 @@ export default {
       }
     }
   },
-  created () {
+  created() {
     if (window.screen.width <= 1080) {
       window.pageYOffset = document.body.scrollTop = document.documentElement.scrollTop = 0
     }
@@ -132,7 +127,7 @@ body {
   .ques {
     width: 60vw;
     /* background-color: rgba(25, 25, 25, 0.8); */
-    background-image: url("../../assets/背景.png");
+    background-image: url('../../assets/背景.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

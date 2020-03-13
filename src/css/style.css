@@ -785,7 +785,7 @@ textarea {
 
   .mainbox {
     z-index: 999999;
-    height: 80px;
+    height: 40px;
     width: 98px;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);

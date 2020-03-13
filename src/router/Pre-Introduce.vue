@@ -1,11 +1,11 @@
 <template>
   <div id="main">
-    <div id="noteText"
-         v-if="notesFlag"
-         ref="noteText">
-      <img src="../assets/close.png"
-           class="close"
-           @click="notesFlag = !notesFlag" />
+    <div id="noteText" v-if="notesFlag" ref="noteText">
+      <img
+        src="../assets/close.png"
+        class="close"
+        @click="notesFlag = !notesFlag"
+      />
       <h2>答题须知</h2>
       <p>
         选择一个方向，然后开始答题吧！<br /><br />当然了，您也可以作答多个方向的题目<br /><br />各方向作答要求在各方向简介里，请仔细阅读<br /><br />作答时有markdown渲染器的题目需要按下保存键才能保存题目，其他题目则会自动保存。下次登录可以修改答案和继续作答。<br /><br />首页左侧的“提交答卷”为最终提交按钮，提交后所有方向锁定，无法修改所有方向的任何答案。
@@ -14,137 +14,124 @@
          v-if='!flag'
          @click.prevent="notesFlag=false">开始答题</a> -->
     </div>
-    <div id="private"
-         v-if="priFlag">
-      <img src="../assets/头像.png"
-           id="priHead" /><span id="priName">{{
+    <div id="private" v-if="priFlag">
+      <img src="../assets/头像.png" id="priHead" /><span id="priName">{{
         priName
       }}</span>
-      <img src="../assets/close.png"
-           class="close"
-           @click="closePrivate" />
+      <img src="../assets/close.png" class="close" @click="closePrivate" />
       <div id="priText">
         <div class="priBox priLeft">
           <p class="priVal">真实姓名</p>
-          <input class="priMsg"
-                 v-model="priName" />
+          <input class="priMsg" v-model="priName" />
           <hr class="line" />
         </div>
         <div class="priBox priRight">
           <p class="priVal">手机号</p>
-          <input class="priMsg"
-                 v-model="priPhone" />
+          <input class="priMsg" v-model="priPhone" />
           <hr class="line" />
         </div>
         <div class="priBox priLeft">
           <p class="priVal">信息门户账号</p>
-          <input class="priMsg"
-                 v-model="priNumber" />
+          <input class="priMsg" v-model="priNumber" />
           <hr class="line" />
         </div>
         <div class="priBox priRight">
           <p class="priVal">旧密码</p>
-          <input class="priMsg"
-                 v-model="oldPassword"
-                 type="password" />
+          <input class="priMsg" v-model="oldPassword" type="password" />
           <hr class="line" />
         </div>
         <div class="priBox priLeft">
           <p class="priVal">学院</p>
-          <input class="priMsg"
-                 v-model="priSchool" />
+          <input class="priMsg" v-model="priSchool" />
           <hr class="line" />
         </div>
         <div class="priBox priRight">
           <p class="priVal">新密码</p>
-          <input class="priMsg"
-                 v-model="newPassword"
-                 type="password" />
+          <input class="priMsg" v-model="newPassword" type="password" />
           <hr class="line" />
         </div>
         <div class="priBox priLeft">
           <p class="priVal">QQ号</p>
-          <input class="priMsg"
-                 v-model="priQQ" />
+          <input class="priMsg" v-model="priQQ" />
           <hr class="line" />
         </div>
         <div class="priBox priRight">
           <p class="priVal">重复密码</p>
-          <input class="priMsg"
-                 v-model="rePassword"
-                 type="password" />
+          <input class="priMsg" v-model="rePassword" type="password" />
           <hr class="line" />
         </div>
       </div>
-      <a class="confirm"
-         @click="changePrivateMsg">确认</a>
-      <a class="confirm quitConfirm"
-         @click="quit">退出登录</a>
+      <a class="confirm" @click="changePrivateMsg">确认</a>
+      <a class="confirm quitConfirm" @click="quit">退出登录</a>
     </div>
-    <div id="header"
-         v-if="headFlag">
-      <img src="../assets/小箭头-左.png"
-           class="arrow_left"
-           @click="returnToMain"
-           v-if="arrowFlag" />
-      <img src="../assets/LOGO1.png"
-           class="logo"
-           @click="returnToMain" />
-      <img src="../assets/小箭头.png"
-           class="arrow_right"
-           :class="[{ arrowhead: 1 }, { rotate1: Boxflag }, { rotate2: !Boxflag }]" />
-      <img src="../assets/头像.png"
-           class="portrait"
-           @click="priFlag = true"
-           @mouseover="Boxflag = !Boxflag"
-           @mouseout="Boxflag = !Boxflag" />
+    <div id="header" v-if="headFlag">
+      <img
+        src="../assets/小箭头-左.png"
+        class="arrow_left"
+        @click="returnToMain"
+        v-if="arrowFlag"
+      />
+      <img src="../assets/LOGO1.png" class="logo" @click="returnToMain" />
+      <img
+        src="../assets/小箭头.png"
+        class="arrow_right"
+        :class="[{ arrowhead: 1 }, { rotate1: Boxflag }, { rotate2: !Boxflag }]"
+      />
+      <img
+        src="../assets/头像.png"
+        class="portrait"
+        @click="priFlag = true"
+        @mouseover="Boxflag = !Boxflag"
+        @mouseout="Boxflag = !Boxflag"
+      />
     </div>
     <transition name="draw">
-      <div class="mainbox"
-           v-show="Boxflag"
-           @mouseover="Boxflag = 1"
-           @mouseout="Boxflag = 0">
-        <button class="btn"
+      <div
+        class="mainbox"
+        v-show="Boxflag"
+        @mouseover="Boxflag = 1"
+        @mouseout="Boxflag = 0"
+      >
+        <!-- <button class="btn"
                 v-show="Boxflag"
                 @click="
             priFlag = true
             Boxflag = !Boxflag
           ">
           个人信息
-        </button>
-        <button class="btn quitLogin"
-                v-show="Boxflag"
-                @click="quit">
+        </button> -->
+        <button class="btn quitLogin" v-show="Boxflag" @click="quit">
           退出登陆
         </button>
       </div>
     </transition>
     <router-view :key="$route.path"></router-view>
     <div id="text">
-      <p class="tips"
-         v-if="!flag">距离开始答题还有：</p>
-      <p class="date"
-         v-if="!flag">{{ date }}</p>
-      <p class="tips"
-         v-if="flag">距离答题结束还有：</p>
-      <p class="date"
-         v-if="flag">{{ date }}</p>
+      <p class="tips" v-if="!flag">距离开始答题还有：</p>
+      <p class="date" v-if="!flag">{{ date }}</p>
+      <p class="tips" v-if="flag">距离答题结束还有：</p>
+      <p class="date" v-if="flag">{{ date }}</p>
     </div>
-    <div id="group"
-         v-if="Itemflag">
-      <img class="arrow_left"
-           @click="toGroup(0)"
-           src="../assets/箭头4_右 拷贝.png" />
-      <img class="right_arrow"
-           @click="toGroup(1)"
-           src="../assets/箭头4_右.png" />
+    <div id="group" v-if="Itemflag">
+      <img
+        class="arrow_left"
+        @click="toGroup(0)"
+        src="../assets/箭头4_右 拷贝.png"
+      />
+      <img
+        class="right_arrow"
+        @click="toGroup(1)"
+        src="../assets/箭头4_右.png"
+      />
       <div class="block">
-        <el-slider v-model="value"
-                   :step="1"
-                   :show-stops="false"
-                   :show-tooltip="false"
-                   :max="7"
-                   :disabled="true">
+        <el-slider
+          v-model="value"
+          :step="1"
+          :show-stops="false"
+          :show-tooltip="false"
+          :max="7"
+          :disabled="true"
+        >
         </el-slider>
       </div>
       <!-- <div class="group">
@@ -165,23 +152,18 @@
       </div> -->
     </div>
     <div id="notes">
-      <a href=""
-         ref="notes"
-         @click.prevent="notesFlag = !notesFlag">答题须知</a>
+      <a href="" ref="notes" @click.prevent="notesFlag = !notesFlag"
+        >答题须知</a
+      >
     </div>
 
     <div id="lock">
-      <img src="../assets/侧栏1.png"
-           class="lock1">
+      <img src="../assets/侧栏1.png" class="lock1" />
       <div class="lock2">
-        <img src="../assets/圆角矩形 5.png">
-        <img src="../assets/侧栏button.png"
-             class="but"
-             @click="save">
-        <div class="word but"
-             @click="save"><span>提交答卷</span></div>
-        <img src="../assets/三角 拷贝 4.png"
-             class="lock_close">
+        <img src="../assets/圆角矩形 5.png" />
+        <img src="../assets/侧栏button.png" class="but" @click="save" />
+        <div class="word but" @click="save"><span>提交答卷</span></div>
+        <img src="../assets/三角 拷贝 4.png" class="lock_close" />
       </div>
     </div>
   </div>
@@ -191,7 +173,7 @@
 import '../css/style.css'
 import { setInterval } from 'timers'
 export default {
-  data () {
+  data() {
     return {
       date: '',
       ddlStr: '2020/03/13 19:00',
@@ -217,7 +199,7 @@ export default {
     }
   },
   methods: {
-    Djs_time () {
+    Djs_time() {
       // 拼接出日期
       setInterval(() => {
         var ddl = new Date()
@@ -238,7 +220,7 @@ export default {
         this.date = dd + '天 ' + hh + ':' + mm + ':' + ss
       }, 1000)
     },
-    mobileStyle () {
+    mobileStyle() {
       if (this.$route.path !== '/main') {
         if (window.screen.height >= 520 && window.screen.width <= 1080) {
           this.Itemflag = false
@@ -247,11 +229,11 @@ export default {
         this.Itemflag = true
       }
     },
-    returnToMain () {
+    returnToMain() {
       this.$router.push('/main')
       this.value = 0
     },
-    arrowStyle () {
+    arrowStyle() {
       if (this.$route.path !== '/main') {
         if (window.screen.height >= 520 && window.screen.width <= 1080) {
           this.arrowFlag = true
@@ -260,7 +242,7 @@ export default {
         this.arrowFlag = false
       }
     },
-    showHead () {
+    showHead() {
       if (
         this.$route.path === '/login' ||
         this.$route.path === '/managerlogin'
@@ -270,7 +252,7 @@ export default {
         this.headFlag = true
       }
     },
-    getPrivateMsg () {
+    getPrivateMsg() {
       this.$axios({
         method: 'get',
         url: '/user/userinfo/get'
@@ -294,7 +276,7 @@ export default {
           console.log(err)
         })
     },
-    changePrivateMsg () {
+    changePrivateMsg() {
       // this.priFlag = false
       this.$axios({
         method: 'post',
@@ -356,7 +338,7 @@ export default {
         this.closePrivate()
       }
     },
-    quit: function () {
+    quit: function() {
       if (
         this.$route.path === '/adminindex/overview' ||
         this.$route.path === '/adminindex'
@@ -366,7 +348,7 @@ export default {
         this.$router.push({ name: 'home' })
       }
     },
-    changeFlag () {
+    changeFlag() {
       console.log(8)
       if (new Date() - new Date(this.ddlStr) < 0) {
         this.flag = false
@@ -375,14 +357,14 @@ export default {
         this.flag = true
       }
     },
-    PrefixZero (num, n) {
+    PrefixZero(num, n) {
       return (Array(n).join(0) + num).slice(-n)
     },
-    closePrivate () {
+    closePrivate() {
       this.priFlag = false
       this.oldPassword = this.newPassword = this.rePassword = ''
     },
-    toGroup (val) {
+    toGroup(val) {
       if (val === 0) {
         if (this.value === 0) {
           this.value = 7
@@ -439,7 +421,7 @@ export default {
           break
       }
     },
-    refreshValue () {
+    refreshValue() {
       switch (this.$route.path) {
         case '/main':
           this.value = 0
@@ -467,13 +449,13 @@ export default {
           break
       }
     },
-    save () {
+    save() {
       let confirmbtn = confirm('确认提交吗？提交后无法再次修改')
       if (confirmbtn === true) {
         this.$axios({
           methods: 'post',
           url: '/user/exam/lock'
-        }).then((response) => {
+        }).then(response => {
           console.log(response)
           if (response.data.code === 0 || response.data.code === -90) {
             this.saveflag = true
@@ -486,7 +468,7 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     this.Djs_time()
     this.mobileStyle()
     this.arrowStyle()
@@ -500,7 +482,7 @@ export default {
     this.refreshValue()
   },
   watch: {
-    '$route.path': function (newVal) {
+    '$route.path': function(newVal) {
       this.mobileStyle()
       this.arrowStyle()
       this.showHead()
