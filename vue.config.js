@@ -4,5 +4,6 @@ module.exports = {
   publicPath: './',
   devServer: {
     proxy: 'http://starstudio.uestc.edu.cn'
-  }
+  },
+  productionSourceMap: false
 }
