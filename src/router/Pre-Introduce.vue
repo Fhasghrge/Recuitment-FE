@@ -80,7 +80,7 @@
       <img
         src="../assets/头像.png"
         class="portrait"
-        @click="priFlag = true"
+        @click="priFlag = false"
         @mouseover="Boxflag = !Boxflag"
         @mouseout="Boxflag = !Boxflag"
       />
