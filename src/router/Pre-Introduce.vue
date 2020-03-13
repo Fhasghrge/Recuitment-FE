@@ -14,7 +14,7 @@
          v-if='!flag'
          @click.prevent="notesFlag=false">开始答题</a> -->
     </div>
-    <div id="private" v-if="priFlag">
+    <div id="private" v-if="false">
       <img src="../assets/头像.png" id="priHead" /><span id="priName">{{
         priName
       }}</span>
