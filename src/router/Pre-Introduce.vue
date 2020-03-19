@@ -15,7 +15,7 @@
          @click.prevent="notesFlag=false">开始答题</a> -->
     </div>
     <div id="private"
-         v-if="priFlag">
+         v-if="false">
       <img src="../assets/头像.png"
            id="priHead" /><span id="priName">{{
         priName
@@ -95,7 +95,7 @@
            :class="[{ arrowhead: 1 }, { rotate1: Boxflag }, { rotate2: !Boxflag }]" />
       <img src="../assets/头像.png"
            class="portrait"
-           @click="priFlag = true"
+           @click="priFlag = false"
            @mouseover="Boxflag = !Boxflag"
            @mouseout="Boxflag = !Boxflag" />
     </div>
@@ -104,18 +104,18 @@
            v-show="Boxflag"
            @mouseover="Boxflag = 1"
            @mouseout="Boxflag = 0">
-        <button class="btn"
+        <!-- <button class="btn"
                 v-show="Boxflag"
                 @click="
             priFlag = true
             Boxflag = !Boxflag
           ">
           个人信息
-        </button>
+        </button> -->
         <button class="btn quitLogin"
                 v-show="Boxflag"
                 @click="quit">
-          退出登陆
+          退出登录
         </button>
       </div>
     </transition>
@@ -172,16 +172,16 @@
 
     <div id="lock">
       <img src="../assets/侧栏1.png"
-           class="lock1">
+           class="lock1" />
       <div class="lock2">
-        <img src="../assets/圆角矩形 5.png">
+        <img src="../assets/圆角矩形 5.png" />
         <img src="../assets/侧栏button.png"
              class="but"
-             @click="save">
+             @click="save" />
         <div class="word but"
              @click="save"><span>提交答卷</span></div>
         <img src="../assets/三角 拷贝 4.png"
-             class="lock_close">
+             class="lock_close" />
       </div>
     </div>
   </div>
@@ -195,7 +195,7 @@ export default {
     return {
       date: '',
       ddlStr: '2020/03/13 19:00',
-      ddlStr2: '2020/03/20 19:00',
+      ddlStr2: '2020/03/20 23:59',
       flag: true, // flag 控制 显示倒计时 还是 显示开始答题按钮,true为未开始，false为进行中
       notesFlag: true,
       Itemflag: true,
@@ -473,7 +473,7 @@ export default {
         this.$axios({
           methods: 'post',
           url: '/user/exam/lock'
-        }).then((response) => {
+        }).then(response => {
           console.log(response)
           if (response.data.code === 0 || response.data.code === -90) {
             this.saveflag = true
