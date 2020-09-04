@@ -7,7 +7,6 @@ stages:
 test:
     stage: test
     script:
-        - apk add npm
         - npm install --registry=https://registry.npm.taobao.org
         - npm run build
 
