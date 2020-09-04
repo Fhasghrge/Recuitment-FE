@@ -13,12 +13,14 @@ test:
 
 deploy-staging:
     stage: deploy
-    only: staging
+    only: 
+        - staging
     script:
         - curl -X POST -F token=fb8d1f500ea2ef085afbfb2b69a183 -F ref=staging https://git.uestc.cn/api/v4/projects/553/trigger/pipeline
 
 deploy-production:
     stage: deploy
-    only: master
+    only: 
+        - master
     script:
         - curl -X POST -F token=fb8d1f500ea2ef085afbfb2b69a183 -F ref=master https://git.uestc.cn/api/v4/projects/553/trigger/pipeline
