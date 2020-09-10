@@ -1,0 +1,53 @@
+.introduce {
+    margin-top: 10px;
+    .intr {
+        margin-top: 50px;
+        // border: 1px solid red;
+        display: flex;
+        justify-content: space-evenly;
+        .text {
+            flex: 3;
+            .title {
+                font-size: 1.5rem;
+            }
+            p {
+                margin: 20px;
+            }
+        }
+        .img {
+            flex: 1;
+            text-align: center;
+            // border: 1px solid red;
+            position: relative;
+            img {
+                vertical-align: middle;
+                width: 120px;
+            }
+            .clock-title {
+                // margin-top: 20px;
+            }
+            .remain-time {
+                color: red;
+            }
+        }
+    }
+}
+@media (max-width: 450px) {
+    .introduce {
+        width: 80vw;
+        .intr {
+            .img {
+                position: relative;
+                > img {
+                    position: absolute;
+                    width: 100%;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-70%);
+                    line-height: 40vh;;
+                    // display: none;
+                }
+            }
+        }
+    }
+}

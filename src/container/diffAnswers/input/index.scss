@@ -1,0 +1,9 @@
+.input-answer {
+    border-top: 1px solid rgb(233, 215, 215);
+    background-color: white;
+    padding: 1rem 2rem 3rem;
+    > div {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}

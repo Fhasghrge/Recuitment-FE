@@ -1,0 +1,97 @@
+@media (min-width: 751px) {
+    .login {
+        background-image: url('../../images/background.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        .logos {
+            position: relative;
+        }
+    }
+    .logos {
+        width: 48%;
+        text-align: center;
+        margin-top: -9%;
+        margin-left: -9%;
+        > .logo {
+            width: 70%;
+            opacity: 0.9;
+            display: inline-block;
+        }
+    }
+
+
+    .p1 {
+        width: 50%;
+        margin: 1.3rem auto;
+    }
+
+    .p2 {
+        font-family: PingFangSC-Semibold;
+        font-size: 2rem;
+        font-weight: normal;
+        font-stretch: normal;
+        letter-spacing: 2.1px;
+        color: #ffffff;
+        text-align: center;
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 450px) {
+    .login {
+        background-image: url('../../images/phone.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        height: 100vh;
+        position: relative;
+        .logos {
+            margin-top: 5vh;
+            .logo {
+                width: 70vw;
+            }
+            .p1{
+                display: none;
+            }
+        }
+    }
+    // .logos {
+    //     // display: none;
+    //     width: 90%;
+    //     text-align: center;
+    //     margin: 0 auto;
+    //     padding-top: 12%;
+    //     > .logo {
+    //         width: 90%;
+    //         opacity: 0.9;
+    //         display: inline-block;
+    //     }
+    // }
+
+
+    // .p1 {
+    //     width: 70%;
+    //     margin: 0.5rem auto;
+    // }
+
+    // .p2 {
+    //     font-family: PingFangSC-Semibold;
+    //     font-size: 1rem;
+    //     font-weight: normal;
+    //     font-stretch: normal;
+    //     letter-spacing: 4px;
+    //     color: #ffffff;
+    //     text-align: center;
+    // }
+    // .form {
+    //     border: 1px solid red;;
+    // }
+}

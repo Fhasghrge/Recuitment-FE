@@ -1,0 +1,94 @@
+// @media (min-width: 751px) {
+.progress {
+    display: flex;
+    height: 100px;
+    justify-content: space-evenly;
+    // box-shadow: 0 2px 2px #ddd;
+    border-bottom: 1px solid #ddd;
+    justify-items: center;
+    .img {
+        margin-top: 25px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+            width: 60px;
+            height: 60px;
+        }
+    }
+    > .amain {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        .username {
+            font-size: 1.2rem;
+            text-indent: 1rem;
+        }
+    }
+    .btns {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        button {
+            border: none;
+            background-color: rgb(255, 156, 110);
+            border-radius: 10px;
+            width: 80px;
+            margin-right: 20px;
+            color: white;
+            height: 30px;
+            &:disabled {
+                background-color: rgb(137, 131, 131);
+            }
+        }
+        .btn {
+            border: 1px solid red;
+            border: none;
+            border-radius: 10px;
+            width: 80px;
+            margin-right: 20px;
+            color: white;
+            height: 30px;
+            &:disabled {
+                background-color: rgb(137, 131, 131);
+            }
+        }
+    }
+}
+// }
+@media (max-width: 450px) {
+    .progress {
+        width: 60vw;
+        height: 10vh;
+        margin-left: 0vw;
+        .img {
+            display: none;
+        }
+        > .amain {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            .username {
+                font-size: 1.2rem;
+                text-indent: 1rem;
+            }
+        }
+        .btns {
+            // display: none;
+            button {
+                width: 4rem;
+                margin-left: 0;
+                position: relative;
+                left: -20%;
+
+            }
+            > button {
+                display: none;
+            }
+        }
+    }
+}

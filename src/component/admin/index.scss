@@ -1,0 +1,32 @@
+.admin {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    .navs {
+      text-align: center;
+      flex: 1;
+        > img {
+            width: 200px;
+            margin: 20px auto;
+        }
+        .nav {
+            li {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-top: 20px;
+                img {
+                    width: 2rem;
+                    height: 2rem;
+                    vertical-align: middle;
+                }
+                div {
+                    margin-left: 1rem;
+                }
+            }
+        }
+    }
+    main {
+      flex: 5;
+    }
+}
