@@ -26,7 +26,7 @@ import NoMatch from './component/Nomatch/index'
 
 
 ReactDOM.render(
-  <Router>
+  <Router basename='/join'>
     <Switch>
       <Route path='/' exact component={Login}></Route>
       <Route path='/main' exact component={Main}></Route>
