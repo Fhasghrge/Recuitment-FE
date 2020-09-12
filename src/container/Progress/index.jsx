@@ -78,7 +78,7 @@ const Progerss = () => {
                         提交
                     </button>
                 </Popconfirm>
-                ,<button onClick={dropSign}>退出</button>
+                <button onClick={dropSign}>退出</button>
             </div>
         </div>
     );

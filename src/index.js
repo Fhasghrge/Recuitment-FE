@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import 'normalize.css/normalize.css'
 import 'antd/dist/antd.css'
 
@@ -26,7 +26,7 @@ import NoMatch from './component/Nomatch/index'
 
 
 ReactDOM.render(
-  <Router basename='/join'>
+  <Router>
     <Switch>
       <Route path='/' exact component={Login}></Route>
       <Route path='/main' exact component={Main}></Route>

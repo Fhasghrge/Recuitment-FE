@@ -39,15 +39,15 @@ const Questions = ({ group }) => {
                 {questions.map((item, index) => {
                     switch (item.type) {
                         case 1:
-                            return <MyRadio {...item} index={index + 1} />;
+                            return <MyRadio {...item} key={item.ID} index={index + 1} />;
                         case 2:
-                            return <MyCheckbox {...item} index={index + 1} />;
+                            return <MyCheckbox {...item} key={item.ID} index={index + 1} />;
                         case 3:
-                            return <MyInput {...item} index={index + 1} />;
+                            return <MyInput {...item} key={item.ID} index={index + 1} />;
                         case 4:
-                            return <MySimple {...item} index={index + 1} />;
+                            return <MySimple {...item} key={item.ID} index={index + 1} />;
                         case 5:
-                            return <MyUpload {...item} index={index + 1} />;
+                            return <MyUpload {...item} key={item.ID} index={index + 1} />;
                         default:
                             return <div>default</div>;
                     }

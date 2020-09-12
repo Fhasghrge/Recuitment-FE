@@ -67,13 +67,6 @@ const Branch = () => {
                 </Menu>
                 <p className="branch-introd">{introdInfos[current]}</p>
             </main>
-            {/* <footer className='goto-answer'>
-                <button onClick={() => {
-                    // ! change to the fixed position
-                    console.log(current)
-                    history.push('#fe')                    
-                }}>进入答题</button>
-            </footer> */}
         </div>
     );
 };

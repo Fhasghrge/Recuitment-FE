@@ -33,6 +33,12 @@ const Main = () => {
                         onChange={(key) => {
                             setGroup(key);
                         }}
+                        onClick = {
+                            // 防止路由模式和喵点冲突
+                            (e) => {
+                                e.preventDefault()
+                            }
+                        }
                         className="navs"
                     >
                         <Link href="#main" title="主页"></Link>
