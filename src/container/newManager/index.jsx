@@ -10,7 +10,7 @@ const FormLayoutDemo = () => {
         try{  
             const res = await axios({
                 method:'post',
-                url: '/control/admin/new',
+                url: '/join/api/control/admin/new',
                 data: {
                     username: values.username,
                     password: values.password,

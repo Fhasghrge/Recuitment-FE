@@ -29,7 +29,7 @@ const AdminLogin = (props) => {
             bodyFormData.set('password', password);
             const userinfo = await axios({
                 method: 'post',
-                url: '/control/login',
+                url: '/join/api/control/login',
                 headers: { 'Content-Type': 'multipart/form-data' },
                 data: bodyFormData,
             });

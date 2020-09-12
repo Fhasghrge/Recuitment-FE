@@ -14,7 +14,7 @@ const ChangeLogin = (props) => {
             try {
                 let res = await axios({
                     method: 'post',
-                    url: '/user/login',
+                    url: '/join/api/user/login',
                     data: {
                         stunum: username,
                         password: passwd,
@@ -70,10 +70,7 @@ const ChangeSignIn = () => {
                 try {
                     const res = await axios({
                         method: 'post',
-                        url: '/user/register',
-                        headers: {
-                            'X-Testing': 'true',
-                        },
+                        url: '/join/api/user/register',
                         data: {
                             stunum: stdnum,
                             password: passwd,

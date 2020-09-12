@@ -51,7 +51,7 @@ const EditableTable = ({ group }) => {
             try {
                 const res = await axios({
                     method: 'post',
-                    url: '/control/exam/status',
+                    url: '/join/api/control/exam/status',
                     data: {
                         groups: group
                     }

@@ -50,7 +50,7 @@ const UserQuest = ({ group, stunum }) => {
                     try {
                         const res = await axios({
                             method: 'post',
-                            url: '/control/exam/mark',
+                            url: '/join/api/control/exam/mark',
                             data: {
                                 stunum: stunum,
                                 questionID: record.ID,
@@ -83,7 +83,7 @@ const UserQuest = ({ group, stunum }) => {
             try {
                 const res = await axios({
                     method: 'post',
-                    url: '/control/exam/get',
+                    url: '/join/api/control/exam/get',
                     data: {
                         stunum,
                         groups: group,

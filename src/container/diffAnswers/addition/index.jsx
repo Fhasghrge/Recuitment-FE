@@ -9,7 +9,7 @@ const MyUpload = ({ title, ID, index }) => {
     const props = {
         name: 'file',
         method: 'post',
-        action: '/user/file/upload',
+        action: '/join/api/user/file/upload',
         headers: {
             authorization: 'authorization-text',
             'Content-Type': 'multipart/form-data',

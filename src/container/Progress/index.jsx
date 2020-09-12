@@ -15,7 +15,7 @@ const Progerss = () => {
             try {
                 const res = await axios({
                     method: 'post',
-                    url: '/user/userinfo/get',
+                    url: '/join/api/user/userinfo/get',
                 });
                 if (res.data.code === 0) {
                     setLock(res.data.data.lock === 1);
@@ -34,7 +34,7 @@ const Progerss = () => {
         try {
             const res = await axios({
                 method: 'post',
-                url: '/user/exam/lock',
+                url: '/join/api/user/exam/lock',
             });
             if (res.data.code === 0) {
                 message.success('您已提交试卷，请耐性等候！');

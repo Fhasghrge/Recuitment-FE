@@ -17,7 +17,7 @@ const Questions = ({ group }) => {
             try {
                 const res = await axios({
                     method: 'post',
-                    url: '/user/exam/get',
+                    url: '/join/api/user/exam/get',
                 });
                 if (res.data.code === 0) {
                     setQuestions(

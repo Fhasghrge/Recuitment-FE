@@ -9,7 +9,7 @@ const handleDelete = async (id) => {
     try {
         const res = await axios({
             method: 'post',
-            url: '/control/admin/del',
+            url: '/join/api/control/admin/del',
             data: {
                 ID: id
             }
@@ -105,7 +105,7 @@ const ManagersInfo = () => {
             try {
                 const res = await axios({
                     method: 'post',
-                    url: '/control/admin/list',
+                    url: '/join/api/control/admin/list',
                 });
                 if(res.data.code === 0) {
                     setData(res.data.data)

@@ -52,7 +52,7 @@ const EditableTable = ({ group }) => {
             try {
                 const res = await axios({
                     method: 'post',
-                    url: '/control/question/list',
+                    url: '/join/api/control/question/list',
                     data: {
                         groups: group,
                     },
@@ -82,7 +82,7 @@ const EditableTable = ({ group }) => {
         try {
             const res = await axios({
                 method: 'post',
-                url: '/control/question/del',
+                url: '/join/api/control/question/del',
                 data: {
                     ID: record.ID,
                 },
@@ -112,7 +112,7 @@ const EditableTable = ({ group }) => {
         try {
             const res = await axios({
                 method: 'post',
-                url: '/control/question/change',
+                url: '/join/api/control/question/change',
                 data: {
                     ID: record.ID,
                     type: record.type,

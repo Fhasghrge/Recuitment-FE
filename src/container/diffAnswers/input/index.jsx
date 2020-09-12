@@ -9,7 +9,7 @@ const MyInput = ({ ID, title, answer, index }) => {
         try {
             const res = await axios({
                 method:'post',
-                url:'/user/exam/answer',
+                url:'/join/api/user/exam/answer',
                 data: {
                     ID: ID,
                     answer: e.currentTarget.value

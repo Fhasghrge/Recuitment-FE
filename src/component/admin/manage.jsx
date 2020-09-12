@@ -29,7 +29,7 @@ const Manage = (props) => {
             headers: {
                 'Content-Type': 'application/octet-stream',
             },
-            url: `/control/file/download/?groups=${which}`,
+            url: `/join/api/control/file/download/?groups=${which}`,
         });
     };
     if (which !== 8) {

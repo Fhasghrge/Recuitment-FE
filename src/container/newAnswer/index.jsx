@@ -103,7 +103,7 @@ const NewAnswer = ({group}) => {
       try {
         const res = await axios({
           method: 'post',
-          url: 'control/question/add',
+          url: '/join/api/control/question/add',
           data: {
             type,
             title,
