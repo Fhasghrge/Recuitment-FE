@@ -17,7 +17,6 @@
         background-color: rgb(237, 237, 237);
         overflow-y: scroll;
         display: flex;
-        height: 100vh;
         justify-content: center;
         &::-webkit-scrollbar {
             display: none;
@@ -25,10 +24,10 @@
         > main {
             #main {
                 padding-right: 50px;
+                padding-bottom: 30px;
             }
             background-color: white;
             box-sizing: border-box;
-            height: 115vh;
             min-width: 500px;
             width: 991px;
             .navs {

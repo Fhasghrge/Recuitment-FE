@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Anchor } from 'antd';
-import DynamicAntdTheme from 'dynamic-antd-theme';
-
 import Logo from '../../images/logo.png';
 import Bg from '../../images/cloud.png';
 import Progerss from '../../container/Progress/index';
@@ -17,10 +15,6 @@ const Main = () => {
     const [group, setGroup] = useState('#main');
     return (
         <>
-            <DynamicAntdTheme
-                primaryColor={'#FF9C6E'}
-                style={{ display: 'none' }}
-            />
             <header className="logo-header">
                 <img src={Logo} alt="StarStudio" className="logo" />
                 <img src={Bg} alt="background" className="bg" />
