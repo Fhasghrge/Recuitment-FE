@@ -47,6 +47,5 @@
     "devDependencies": {
         "node-sass": "^4.14.1"
     },
-    "homepage": "/join",
-    "proxy": "https://starstudio.uestc.edu.cn"
+    "homepage": "/join"
 }
