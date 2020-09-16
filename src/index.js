@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import 'normalize.css/normalize.css'
+import 'antd-mobile/dist/antd-mobile.css';  
 import 'antd/dist/antd.css'
 
 import Login from './component/login/Login.jsx'

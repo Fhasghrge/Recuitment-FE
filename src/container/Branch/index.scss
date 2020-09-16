@@ -1,11 +1,11 @@
+.branch-title {
+    font-size: 1.5rem;
+    margin-top: 40px;
+}
 @media (min-width: 751px) {
     .branch-introd {
         padding-top: 0.5rem;
         padding-left: 1rem;
-    }
-    .branch-title {
-        font-size: 1.5rem;
-        margin-top: 40px;
     }
     .goto-answer {
         text-align: right;
@@ -19,7 +19,13 @@
     }
 }
 @media (max-width: 450px) {
-  .branch {
-    width: 80vw;
-  }
+    .branch {
+        width: 100vw;
+        box-sizing: border-box;
+        padding: 0 20px;
+        padding-bottom: 2rem;
+    }
+    .branch-introd {
+        padding: 0.5rem 1rem;
+    }
 }

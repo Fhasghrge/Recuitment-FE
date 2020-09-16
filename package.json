@@ -10,6 +10,7 @@
         "@types/react-dom": "^16.9.8",
         "animate.css": "^4.1.0",
         "antd": "^4.4.1",
+        "antd-mobile": "^2.3.3",
         "axios": "^0.19.2",
         "dynamic-antd-theme": "^0.6.1",
         "jsencrypt": "^3.0.0-rc.1",
@@ -47,5 +48,6 @@
     "devDependencies": {
         "node-sass": "^4.14.1"
     },
-    "homepage": "/join"
+    "homepage": "/join",
+    "proxy": "https://starstudio.uestc.edu.cn/"
 }

@@ -2,7 +2,8 @@
     position: fixed;
     z-index: 999;
     .bg {
-        width: 100vw;
+        // width: 100vw;
+        width: 1500px;
         height: 80px;
     }
     .logo {
@@ -13,6 +14,9 @@
     }
 }
 @media (min-width: 751px) {
+    .drawer-logo {
+        display: none;
+    }
     .main {
         background-color: rgb(237, 237, 237);
         overflow-y: scroll;
@@ -61,24 +65,51 @@
 }
 @media (max-width: 450px) {
     .logo-header {
-        display: none;
+        position: fixed;
+        z-index: 999;
+        .drawer-logo {
+            width: 1.4rem;
+            position: fixed;
+            top: 2.5vh;
+            left: 1rem;
+            z-index: 9999;
+            transform: translateY(-50%);
+        }
+        .bg {
+            width: 1500px;
+            height: 5vh;
+        }
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 50vw;
+            width: 25vw;
+            transform: translate(-50%, -50%);
+        }
     }
     .navs {
-        position: fixed;
-        padding: 10px 10px 0 10px;
-        box-shadow: 1px -1px 9px #ddd;
-        flex: 1;
-        height: 100vh;
-        overflow: hidden;
+        display: none;
     }
     .main {
+        box-sizing: border-box;
         > main {
-            display: flex;
             > main {
-                margin-left: 20vw;
-                box-sizing: border-box;
-                width: 100%;
+                padding-top: 7vh;
             }
         }
     }
+    .siderbar-style {
+        padding-top: 5vh;
+        div {
+            span {
+                font-size: .8rem;
+                margin-left: .5rem;
+            }
+        }
+    }
+    .am-drawer-sidebar {
+        background-color: white;
+        position: fixed;
+    }
+
 }

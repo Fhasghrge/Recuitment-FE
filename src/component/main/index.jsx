@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
 import { Anchor } from 'antd';
+import { Drawer, List } from 'antd-mobile'
 import Logo from '../../images/logo.png';
 import Bg from '../../images/cloud.png';
+import Webicon from '../../images/icon/web.png'
+import Homeicon from '../../images/icon/home.png'
+import Pmicon from '../../images/icon/chanpin.png'
+import Designicon from '../../images/icon/shejitu.png'
+import Beicon from '../../images/icon/houtai.png'
+import Devopsicon from '../../images/icon/bushudian.png'
+import Androidicon from '../../images/icon/anzhuo.png'
+import Iosicon from '../../images/icon/ios.png'
+import DrawerIcon from '../../images/drawer.png'
 import Progerss from '../../container/Progress/index';
 import Introduce from '../../container/Introduce/index';
 import Branch from '../../container/Branch/index';
@@ -13,12 +23,88 @@ const { Link } = Anchor;
 
 const Main = () => {
     const [group, setGroup] = useState('#main');
+    const [isOpen, setIsOpen] = useState(false)
+    const sidebar = (
+        <List className='siderbar-style'>
+            <List.Item onClick={(e) => {
+                setIsOpen(false)
+                setGroup('#main')
+            }} key="main" >
+                <img src={Homeicon} alt="homoicon" />
+                <span>主页</span>
+                </List.Item>
+            <List.Item onClick={(e) => {
+                setIsOpen(false)
+                setGroup('#pm')
+            }} key="pm">
+                <img src={Pmicon} alt="pmicon" />
+                <span>产品</span>
+                </List.Item>
+            <List.Item onClick={(e) => {
+                setIsOpen(false)
+                setGroup('#design')
+            }} key="design">
+                <img src={Designicon} alt="designicon" />
+                <span>设计</span>
+                </List.Item>
+            <List.Item onClick={(e) => {
+                setIsOpen(false)
+                setGroup('#fe')
+            }} key="fe">
+                <img src={Webicon} alt="webicon" />
+                <span>前端</span>
+                </List.Item>
+            <List.Item onClick={(e) => {
+                setIsOpen(false)
+                setGroup('#fe')
+            }} key="be">
+                <img src={Beicon} alt="beicon" />
+                <span>后台</span>
+                </List.Item>
+            <List.Item onClick={(e) => {
+                setIsOpen(false)
+                setGroup('#devops')
+            }} key="devops" title="DevOps">
+                <img src={Devopsicon} alt="devopsicon" />
+                <span>Devops</span>
+                </List.Item>
+            <List.Item onClick={(e) => {
+                setIsOpen(false)
+                setGroup('#android')
+            }} key="android">
+                <img src={Androidicon} alt="androidicon" />
+                <span>Android</span>
+                </List.Item>
+            <List.Item onClick={(e) => {
+                setIsOpen(false)
+                setGroup('#ios')
+            }} key="ios">
+                <img src={Iosicon} alt="iosicon" />
+                <span>iOS</span>
+                </List.Item>
+        </List>
+    );
+    const onOpenChange = () => {
+        setIsOpen(!isOpen)
+    }
     return (
         <>
             <header className="logo-header">
+                <img src={DrawerIcon} alt="drawer" onClick={onOpenChange} className='drawer-logo' />
                 <img src={Logo} alt="StarStudio" className="logo" />
                 <img src={Bg} alt="background" className="bg" />
             </header>
+            <Drawer
+                className="my-drawer"
+                style={{ minHeight: document.documentElement.clientHeight }}
+                enableDragHandle
+
+                contentStyle={{ color: '#A6A6A6', textAlign: 'center', display: 'none', backgroundColor: 'white' }}
+                sidebar={sidebar}
+                open={isOpen}
+                onOpenChange={onOpenChange}
+            >
+            </Drawer>
             <div className="main">
                 <main>
                     <Anchor
@@ -27,7 +113,7 @@ const Main = () => {
                         onChange={(key) => {
                             setGroup(key);
                         }}
-                        onClick = {
+                        onClick={
                             // 防止路由模式和喵点冲突
                             (e) => {
                                 e.preventDefault()
@@ -108,10 +194,10 @@ const Main = () => {
                                         <Questions group={4} />
                                     </main>
                                 );
-                            default :
-                                    return (
-                                        <div>error</div>
-                                    )
+                            default:
+                                return (
+                                    <div>error</div>
+                                )
                         }
                     })()}
                 </main>

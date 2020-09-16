@@ -30,7 +30,9 @@
 }
 @media (max-width: 450px) {
     .introduce {
-        width: 80vw;
+        width: 100vw;
+        box-sizing: border-box;
+        padding: 0px 20px;
         .intr {
             .img {
                 position: relative;
@@ -42,6 +44,17 @@
                     transform: translateY(-70%);
                     line-height: 40vh;;
                     // display: none;
+                }
+                .clock-title {
+                    display: none;
+                }
+                .remain-time {
+                    position: fixed;
+                    top: 2.5vh;
+                    right: 1rem;
+                    z-index: 9999;
+                    transform: translate(0, -50%);
+                    color: white;
                 }
             }
         }

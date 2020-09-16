@@ -66,7 +66,7 @@ const Progerss = () => {
             </div>
             <div className="btns">
                 <Popconfirm
-                    title="只能提交一次，确认取消？"
+                    title="只能提交一次，请确认？"
                     onConfirm={lockSubmit}
                     onCancel={cancel}
                     disabled={lock !== false}

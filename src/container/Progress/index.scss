@@ -1,71 +1,50 @@
-// @media (min-width: 751px) {
-.progress {
+.btns {
+    margin-left: 20px;
     display: flex;
-    height: 100px;
+    align-items: center;
     justify-content: space-evenly;
-    // box-shadow: 0 2px 2px #ddd;
-    border-bottom: 1px solid #ddd;
-    justify-items: center;
-    .img {
-        margin-top: 25px;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        overflow: hidden;
-        img {
-            width: 60px;
-            height: 60px;
+    button {
+        border: none;
+        background-color: rgb(255, 156, 110);
+        border-radius: 10px;
+        width: 80px;
+        margin-right: 20px;
+        color: white;
+        height: 30px;
+        &:disabled {
+            background-color: rgb(137, 131, 131);
         }
     }
-    > .amain {
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        .username {
-            font-size: 1.2rem;
-            text-indent: 1rem;
-        }
-    }
-    .btns {
-        margin-left: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        button {
-            border: none;
-            background-color: rgb(255, 156, 110);
-            border-radius: 10px;
-            width: 80px;
-            margin-right: 20px;
-            color: white;
-            height: 30px;
-            &:disabled {
-                background-color: rgb(137, 131, 131);
-            }
-        }
-        .btn {
-            border: 1px solid red;
-            border: none;
-            border-radius: 10px;
-            width: 80px;
-            margin-right: 20px;
-            color: white;
-            height: 30px;
-            &:disabled {
-                background-color: rgb(137, 131, 131);
-            }
+    .btn {
+        border: none;
+        border-radius: 10px;
+        width: 80px;
+        margin-right: 20px;
+        color: white;
+        height: 30px;
+        &:disabled {
+            background-color: rgb(137, 131, 131);
         }
     }
 }
-// }
-@media (max-width: 450px) {
+@media (min-width: 751px) {
     .progress {
-        width: 60vw;
-        height: 10vh;
-        margin-left: 0vw;
+        display: flex;
+        height: 100px;
+        justify-content: space-evenly;
+        // box-shadow: 0 2px 2px #ddd;
+        border-bottom: 1px solid #ddd;
+        justify-items: center;
         .img {
-            display: none;
+            margin-top: 25px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                width: 60px;
+                height: 60px;
+            }
         }
         > .amain {
             background-color: white;
@@ -78,13 +57,67 @@
             }
         }
         .btns {
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            button {
+                border: none;
+                background-color: rgb(255, 156, 110);
+                border-radius: 10px;
+                width: 80px;
+                margin-right: 20px;
+                color: white;
+                height: 30px;
+                &:disabled {
+                    background-color: rgb(137, 131, 131);
+                }
+            }
+            .btn {
+                border: 1px solid red;
+                border: none;
+                border-radius: 10px;
+                width: 80px;
+                margin-right: 20px;
+                color: white;
+                height: 30px;
+                &:disabled {
+                    background-color: rgb(137, 131, 131);
+                }
+            }
+        }
+    }
+}
+@media (max-width: 450px) {
+    .progress {
+        // border: 1px solid red;
+        width: 100vw;
+        height: 10vh;
+        display: flex;
+        border-bottom: 1px solid #ddd;
+        justify-content: center;
+        .img {
+            display: none;
+        }
+        > .amain {
+            // border: 1px solid red;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            .username {
+                font-size: 1.2rem;
+                text-indent: 1rem;
+            }
+        }
+        .btns {
+            // border: 1px solid red;
             // display: none;
             button {
                 width: 4rem;
                 margin-left: 0;
                 position: relative;
-                left: -20%;
-
+                // left: -20%;
             }
             > button {
                 display: none;
