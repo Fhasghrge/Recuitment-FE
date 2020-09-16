@@ -6,6 +6,7 @@
     .branch-introd {
         padding-top: 0.5rem;
         padding-left: 1rem;
+        padding-bottom: 5rem;
     }
     .goto-answer {
         text-align: right;
@@ -23,9 +24,16 @@
         width: 100vw;
         box-sizing: border-box;
         padding: 0 20px;
-        padding-bottom: 2rem;
+        padding-bottom: 3rem;
     }
     .branch-introd {
         padding: 0.5rem 1rem;
+    }
+    main {
+        overflow: hidden;
+        overflow: auto;
+        .diff-single {
+            width: 150vw;
+        }
     }
 }

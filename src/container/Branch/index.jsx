@@ -58,7 +58,7 @@ const Branch = () => {
     <div className="branch">
       <header className="branch-title">方向简介</header>
       <main>
-        <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
+        <Menu className='diff-single' onClick={handleClick} selectedKeys={[current]} mode="horizontal">
           <Menu.Item key="pm">产品</Menu.Item>
           <Menu.Item key="design">设计</Menu.Item>
           <Menu.Item key="fe">前端</Menu.Item>
@@ -67,8 +67,8 @@ const Branch = () => {
           <Menu.Item key="android">Android</Menu.Item>
           <Menu.Item key="ios">iOS</Menu.Item>
         </Menu>
-        <div className="branch-introd">{introdInfos[current]}</div>
       </main>
+      <div className="branch-introd">{introdInfos[current]}</div>
     </div>
   );
 };

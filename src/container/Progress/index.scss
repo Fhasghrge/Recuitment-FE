@@ -94,6 +94,7 @@
         width: 100vw;
         height: 10vh;
         display: flex;
+        padding-bottom: 10px;
         border-bottom: 1px solid #ddd;
         justify-content: center;
         .img {
@@ -111,15 +112,13 @@
             }
         }
         .btns {
-            // border: 1px solid red;
-            // display: none;
             button {
                 width: 4rem;
                 margin-left: 0;
                 position: relative;
                 // left: -20%;
             }
-            > button {
+            .logout {
                 display: none;
             }
         }
