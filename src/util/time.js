@@ -4,7 +4,7 @@
  * @param {array} endTime  year, month, data, hour, mintue, second
  * * return now-time is waiting? pending? ended?
  */
-export function calProgress(startTime = [2020, 9, 19, 0, 0, 0], endTime = [2020, 9, 26, 0, 0, 0]) {
+export function calProgress(startTime = [2020, 9, 20, 14, 30, 0], endTime = [2020, 9, 27, 14, 30, 0]) {
   const nowTime = getNow()
   if (compareTime(nowTime, startTime) === 0) {
     return 'waiting'
@@ -49,7 +49,7 @@ function compareTime(pTime, nTime) {
  * @param {array} endTime 
  * * return the time lefted
  */
-export function lastTime(startTime = [2020, 9, 19, 0, 0, 0], endTime = [2020, 9, 26, 0, 0, 0]) {
+export function lastTime(startTime = [2020, 9, 20, 14, 30, 0], endTime = [2020, 9, 27, 14, 30, 0]) {
   const progress = calProgress(startTime, endTime)
   if (progress === 'waiting') {
     return timeFn(`${startTime[0]}-${startTime[1]}-${startTime[2]} ${startTime[3]}:${startTime[4]}:${startTime[5]}`)

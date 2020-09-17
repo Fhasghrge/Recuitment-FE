@@ -2,7 +2,7 @@
     font-size: 1.5rem;
     margin-top: 40px;
 }
-@media (min-width: 751px) {
+@media (min-width: 451px) {
     .branch-introd {
         padding-top: 0.5rem;
         padding-left: 1rem;
@@ -20,6 +20,13 @@
     }
 }
 @media (max-width: 450px) {
+    .branch-title {
+        &::after {
+            content: '(滑动了解更多)';
+            font-size: .6rem;
+            color: rgb(95, 94, 94);
+        }
+    }
     .branch {
         width: 100vw;
         box-sizing: border-box;

@@ -1,4 +1,4 @@
-@media (min-width: 751px) {
+@media (min-width: 451px) {
     .loginForm {
         min-width: 300px;
         width: 450px;
@@ -152,6 +152,8 @@
             justify-content: center;
             .btn {
                 border: 0;
+                width: 5rem;
+                font-size: 1.1rem;
                 background: none;
                 display: block;
                 margin: 20px 10px;

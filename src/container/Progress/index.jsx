@@ -56,7 +56,7 @@ const Progerss = () => {
     return (
         <div className="progress">
             <div className="img">
-                <img src={Default} alt="avatar" />
+                {/* <img src={Default} alt="avatar" /> */}
             </div>
             <div className="amain">
                 <div className="username">{name}</div>

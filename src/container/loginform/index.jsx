@@ -44,7 +44,7 @@ const ChangeLogin = (props) => {
                 type="text"
                 name="username"
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="用户名"
+                placeholder="学号"
             />
             <input
                 type="password"
@@ -67,25 +67,31 @@ const ChangeSignIn = () => {
     const register = async () => {
         if (realName && stdnum && tel && qqnum && passwd && repeat) {
             if (passwd === repeat) {
-                try {
-                    const res = await axios({
-                        method: 'post',
-                        url: '/join/api/user/register',
-                        data: {
-                            stunum: stdnum,
-                            password: passwd,
-                            name: realName,
-                            phonenum: tel,
-                            qqnum: qqnum,
-                        },
-                    });
-                    if (res.data.code === 0) {
-                        message.info('注册成功,请前往登录!');
-                    } else {
-                        message.info(res.data.msg);
+                if (!(/^20\d{6,17}$/.test(stdnum))) {
+                    message.warning('请填写正确的学号！')
+                } else if (!/^1[3-9]\d{9}$/.test(tel)) {
+                    message.warning('手机电话号码有误，请重填！')
+                } else {
+                    try {
+                        const res = await axios({
+                            method: 'post',
+                            url: '/join/api/user/register',
+                            data: {
+                                stunum: stdnum,
+                                password: passwd,
+                                name: realName,
+                                phonenum: tel,
+                                qqnum: qqnum,
+                            },
+                        });
+                        if (res.data.code === 0) {
+                            message.info('注册成功,请前往登录!');
+                        } else {
+                            message.info(res.data.msg);
+                        }
+                    } catch (err) {
+                        console.log(err);
                     }
-                } catch (err) {
-                    console.log(err);
                 }
             } else {
                 message.error('请输入相同的两次密码！');
@@ -166,8 +172,8 @@ const LoginForm = ({ changeToMain }) => {
             {isLogin ? (
                 <ChangeLogin changeToMain={changeToMain} />
             ) : (
-                <ChangeSignIn />
-            )}
+                    <ChangeSignIn />
+                )}
         </div>
     );
 };

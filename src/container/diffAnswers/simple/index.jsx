@@ -32,7 +32,7 @@ const MySimple = ({ title, ID, answer, index }) => {
                 <Tag color="blue">{index}</Tag>
                 {title}
             </p>
-            <Tooltip placement="rightTop" color='#f6ab6c' title="回车提交">
+            <Tooltip placement="bottomLeft" color='#f6ab6c' trigger='focus' title="回车提交">
                 <TextArea
                     onPressEnter={onChange}
                     allowClear

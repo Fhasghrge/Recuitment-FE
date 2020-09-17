@@ -13,7 +13,11 @@
         transform: translate(60%, -50%) scale(1.4);
     }
 }
-@media (min-width: 751px) {
+.my-drawer {
+    position: fixed;
+    z-index: -1;
+}
+@media (min-width: 451px) {
     .drawer-logo {
         display: none;
     }
@@ -68,12 +72,12 @@
         position: fixed;
         z-index: 999;
         .drawer-logo {
-            width: 1.4rem;
-            height: 1.6rem;
             position: fixed;
             top: 2.5vh;
             left: 1rem;
+            color: white;
             z-index: 9999;
+            font-size: .8rem;
             transform: translateY(-50%);
         }
         .bg {

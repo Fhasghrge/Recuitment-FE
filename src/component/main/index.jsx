@@ -11,7 +11,6 @@ import Beicon from '../../images/icon/houtai.png'
 import Devopsicon from '../../images/icon/bushudian.png'
 import Androidicon from '../../images/icon/anzhuo.png'
 import Iosicon from '../../images/icon/ios.png'
-import DrawerIcon from '../../images/drawer.png'
 import Progerss from '../../container/Progress/index';
 import Introduce from '../../container/Introduce/index';
 import Branch from '../../container/Branch/index';
@@ -56,7 +55,7 @@ const Main = () => {
                 </List.Item>
             <List.Item onClick={(e) => {
                 setIsOpen(false)
-                setGroup('#fe')
+                setGroup('#be')
             }} key="be">
                 <img src={Beicon} alt="beicon" />
                 <span>后台</span>
@@ -90,7 +89,7 @@ const Main = () => {
     return (
         <>
             <header className="logo-header">
-                <img src={DrawerIcon} alt="drawer" onClick={onOpenChange} className='drawer-logo' />
+                <div onClick={onOpenChange} className='drawer-logo'>开始答题</div>
                 <img src={Logo} alt="StarStudio" className="logo" />
                 <img src={Bg} alt="background" className="bg" />
             </header>
@@ -99,7 +98,11 @@ const Main = () => {
                 style={{ minHeight: document.documentElement.clientHeight }}
                 enableDragHandle
 
-                contentStyle={{ color: '#A6A6A6', textAlign: 'center', display: 'none', backgroundColor: 'white' }}
+                contentStyle={{ color: '#A6A6A6', 
+                                textAlign: 'center', 
+                                display: 'none', 
+                                backgroundColor: 'white',
+                            }}
                 sidebar={sidebar}
                 open={isOpen}
                 onOpenChange={onOpenChange}
