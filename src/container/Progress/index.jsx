@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { message, Tag, Popconfirm } from 'antd';
 import axios from 'axios';
 import { useHistory } from 'react-router';
-import Default from '../../images/default_avatar .png';
 import './index.scss';
 
 const Progerss = () => {
