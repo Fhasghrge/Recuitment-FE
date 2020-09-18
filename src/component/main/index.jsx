@@ -94,7 +94,8 @@ const Main = () => {
                 <img src={Bg} alt="background" className="bg" />
             </header>
             <Drawer
-                className="my-drawer"
+            // the mobile drawer component hide all click event, so make z-index = -1
+                className={isOpen? "" : "my-drawer"}
                 style={{ minHeight: document.documentElement.clientHeight }}
                 enableDragHandle
 

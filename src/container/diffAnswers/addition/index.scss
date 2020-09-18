@@ -6,4 +6,19 @@
       display: flex;
       justify-content: space-evenly;
   }
+  .file {
+    border: none;
+  }
+  .tips {
+    justify-content: left;
+    text-align: left;
+    color: #7e7c7cdd;
+    font-size: 6px;
+    margin-top: .2rem;
+    span {
+      color:red;
+      border-radius: .2rem;
+      margin-right: .4rem;
+    }
+  }
 }
