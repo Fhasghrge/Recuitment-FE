@@ -98,17 +98,38 @@ class EditableTagGroup extends React.Component {
 const NewAnswer = ({group}) => {
     const [type, setType] = useState(3);
     const [title, setTitle] = useState();
-    const [options, setOptions] = useState([]);
+    const [errOpts, setErrOpts] = useState([]);
+    const [rightOpts, setRightOpts] = useState([])
     const submit = async () => {
+      const options = []
       try {
+        if(type === 0 && rightOpts.length !== 1) {
+          message.warning('单选题请只输入一个正确选项！')
+          return
+        }
+        errOpts.forEach(item => {
+          options.push({
+            content: item,
+            answer: 0
+          })
+        })
+        rightOpts.forEach(item => {
+          options.push({
+            content: item,
+            answer: 1
+          })
+        })
         const res = await axios({
           method: 'post',
           url: '/join/api/control/question/add',
+          headers: {
+            "Content-Type": 'application/json'
+          },
           data: {
-            type,
+            type: Number(type),
             title,
             options,
-            groups: group
+            groups: Number(group)
           }
         })
         if(res.data.code === 0){
@@ -119,12 +140,6 @@ const NewAnswer = ({group}) => {
       }catch (err) {
         console.error(err)
       }
-        console.log({
-          type,
-          title,
-          options,
-          group
-        })
     };
 
     return (
@@ -150,8 +165,11 @@ const NewAnswer = ({group}) => {
                 <Form.Item label="题目" name="title">
                     <TextArea rows={5} onChange={e => setTitle(e.currentTarget.value)}/>
                 </Form.Item>
-                <Form.Item className={type > 2 ? 'hide':''} label="选项" name="options">
-                  <EditableTagGroup  changeOptions = {setOptions}/>
+                <Form.Item className={type > 2 ? 'hide':''} label="正确选项" name="options">
+                  <EditableTagGroup  changeOptions = {setRightOpts}/>
+                </Form.Item>
+                <Form.Item className={type > 2 ? 'hide':''} label="错误选项" name="options">
+                  <EditableTagGroup  changeOptions = {setErrOpts}/>
                 </Form.Item>
                 <Form.Item label="提交">
                     <button className="addQuest" onClick={submit}>添加</button>

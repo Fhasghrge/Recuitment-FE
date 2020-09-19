@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { message, Tag, Popconfirm } from 'antd';
 import axios from 'axios';
+import Default from '../../images/default_avatar .png'
 import { useHistory } from 'react-router';
 import './index.scss';
 
@@ -45,6 +46,7 @@ const Progerss = () => {
         }
     };
     const dropSign = () => {
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         history.push('/');
     };
 
@@ -54,8 +56,10 @@ const Progerss = () => {
     };
     return (
         <div className="progress">
-            <div className="img">
-                {/* <img src={Default} alt="avatar" /> */}
+            <div className='img-box'>
+                <div className="img">
+                    <img src={Default} alt="avatar" />
+                </div>
             </div>
             <div className="amain">
                 <div className="username">{name}</div>

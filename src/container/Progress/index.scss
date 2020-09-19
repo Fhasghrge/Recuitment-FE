@@ -1,52 +1,27 @@
 @media (min-width: 451px) {
-    .btns {
-        margin-left: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        button {
-            border: none;
-            background-color: rgb(255, 156, 110);
-            border-radius: 10px;
-            width: 80px;
-            margin-right: 20px;
-            color: white;
-            height: 30px;
-            &:disabled {
-                background-color: rgb(137, 131, 131);
-            }
-        }
-        .btn {
-            border: none;
-            border-radius: 10px;
-            width: 80px;
-            margin-right: 20px;
-            color: white;
-            height: 30px;
-            &:disabled {
-                background-color: rgb(137, 131, 131);
-            }
-        }
-    }
     .progress {
         display: flex;
         height: 100px;
         justify-content: space-evenly;
-        // box-shadow: 0 2px 2px #ddd;
         border-bottom: 1px solid #ddd;
         justify-items: center;
+        .img-box {
+            flex: 1;
+        }
         .img {
             margin-top: 25px;
-            width: 10px;
+            min-width: 60px;
+            width: 60px;
             height: 60px;
             border-radius: 50%;
             overflow: hidden;
             img {
-                // width: 60px;
-                // height: 60px;
+                width: 100%;
+                height: 100%;
             }
         }
         > .amain {
+            flex: 3;
             background-color: white;
             display: flex;
             flex-direction: column;
@@ -55,9 +30,12 @@
                 font-size: 1.2rem;
                 text-indent: 1rem;
             }
+            .college {
+                width: min-content;
+            }
         }
         .btns {
-            margin-left: 20px;
+            flex: 3;
             display: flex;
             align-items: center;
             justify-content: space-evenly;
