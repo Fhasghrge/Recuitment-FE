@@ -20,15 +20,15 @@
             justify-content: center;
             .btn {
                 border: 0;
+                width: 5rem;
+                font-size: 1.1rem;
                 background: none;
                 display: block;
                 margin: 20px 10px;
                 text-align: center;
                 border-bottom: 1px solid #838584;
-                // padding: 14px 40px;
                 outline: none;
                 color: white;
-                // border-radius: 24px;
                 border-radius: 0;
                 transition: 0.25s;
                 &:hover {
