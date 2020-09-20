@@ -2,8 +2,8 @@
     position: fixed;
     z-index: 999;
     .bg {
-        // width: 100vw;
-        width: 1500px;
+        width: 100vw;
+        min-width: 1500px;
         height: 80px;
     }
     .logo {
