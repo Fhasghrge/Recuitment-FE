@@ -1,6 +1,7 @@
 import React, { useState, lazy, Suspense } from 'react';
 import { Menu } from 'antd';
 
+import Normal from '../../images/normal.png'
 import PM from '../../images/icon/chanpin.png';
 import FE from '../../images/icon/web.png';
 import BE from '../../images/icon/houtai.png';
@@ -17,7 +18,7 @@ import Logo from '../../images/logo.png';
 const Main = lazy(() => import(/* webpackChunkName: "about"*/ './manage'));
 
 const Admin = (props) => {
-    const [key, setKey] = useState(1);
+    const [key, setKey] = useState(0);
     const select = (item) => {
         setKey(Number(item.key));
     };
@@ -32,6 +33,10 @@ const Admin = (props) => {
                     style={{ width: 256 }}
                     onSelect={select}
                 >
+                    <Menu.Item key="0">
+                        <img src={Normal} alt="normal" />
+                        <div>通用</div>
+                    </Menu.Item>
                     <Menu.Item key="1">
                         <img src={PM} alt="pm" />
                         <div>产品</div>

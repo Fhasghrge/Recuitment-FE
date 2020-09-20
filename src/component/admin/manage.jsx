@@ -7,6 +7,7 @@ import ManagersInfo from '../../container/ManagersInfo';
 import './manage.scss';
 
 const keyToWord = [
+    '通用',
     '产品',
     '设计',
     '安卓',
@@ -91,20 +92,11 @@ const Manage = (props) => {
             }
         })
     }
-    // const downloadzip = () => {
-    //     axios({
-    //         method: 'get',
-    //         headers: {
-    //             'Content-Type': 'application/octet-stream',
-    //         },
-    //         url: `/join/api/control/file/download/?groups=${which}`,
-    //     });
-    // };
     if (which !== 8) {
         return (
             <div className="manage-main">
                 <header>
-                    <div className="title">{keyToWord[which - 1]}</div>
+                    <div className="title">{keyToWord[which]}</div>
                     <div
                         className="logout"
                         onClick={() => {
