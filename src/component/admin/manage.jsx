@@ -21,17 +21,85 @@ const Manage = (props) => {
     const { which } = props;
     const [status, setStatus] = useState(0);
     const history = useHistory();
-    
+    const checktime = (i) => {
+        if (i < 10) {
+            let c = '0' + i
+            return c
+        } else {
+            return i
+        }
+    }
+    const checkgroup = (a) => {
+        if (a === '1') {
+            let b = '产品'
+            return b
+        } else if (a === '2') {
+            let b = '设计'
+            return b
+        } else if (a === '3') {
+            let b = '安卓'
+            return b
+        } else if (a === '4') {
+            let b = 'IOS'
+            return b
+        } else if (a === '5') {
+            let b = '前端'
+            return b
+        } else if (a === '6') {
+            let b = '后台'
+            return b
+        } else if (a === '7') {
+            let b = 'DevOps'
+            return b
+        }
+    }
     // ! 下载文件的写法！！！！！！
-    const downloadzip = () => {
+    const download = () => {
         axios({
             method: 'get',
-            headers: {
-                'Content-Type': 'application/octet-stream',
+            url: '/join/api/control/file/download',
+            params: {
+                groups: which
             },
-            url: `/join/api/control/file/download/?groups=${which}`,
-        });
-    };
+            responseType: 'blob'
+        }).then((res) => {
+            const content = res.data
+            const blob = new Blob([content], { type: 'application.zip' })
+            let presentTime = new Date()
+            let month = presentTime.getMonth()
+            let day = presentTime.getDate()
+            let hour = presentTime.getHours()
+            let m = presentTime.getMinutes()
+
+            month = checktime(String(parseInt(month) + 1))
+            day = checktime(day)
+            hour = checktime(hour)
+            m = checktime(m)
+            let group = checkgroup(which)
+            const fileName = group + '附件-' + month + day + hour + m + '.zip'
+            if ('download' in document.createElement('a')) {
+                const link = document.createElement('a')
+                link.download = fileName
+                link.style.display = 'none'
+                link.href = URL.createObjectURL(blob)
+                document.body.appendChild(link)
+                link.click()
+                URL.revokeObjectURL(link.href)
+                document.body.removeChild(link)
+            } else {
+                navigator.msSaveBlob(blob, fileName)
+            }
+        })
+    }
+    // const downloadzip = () => {
+    //     axios({
+    //         method: 'get',
+    //         headers: {
+    //             'Content-Type': 'application/octet-stream',
+    //         },
+    //         url: `/join/api/control/file/download/?groups=${which}`,
+    //     });
+    // };
     if (which !== 8) {
         return (
             <div className="manage-main">
@@ -77,14 +145,14 @@ const Manage = (props) => {
                         >
                             返回
                         </button>
-                        <button className="download-btn" onClick={downloadzip}>
+                        <button className="download-btn" onClick={download}>
                             该方向所有附件
                         </button>
                         {status === 1 ? (
                             <CheckAnswers group={which} />
                         ) : (
-                            <MgAnswers group={which} />
-                        )}
+                                <MgAnswers group={which} />
+                            )}
                     </div>
                 </main>
             </div>

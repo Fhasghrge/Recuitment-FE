@@ -12,6 +12,10 @@
   }
   > div {
       display: flex;
+      flex-direction: column;
       justify-content: space-evenly;
+      .option {
+        margin-top: 1vh;
+      }
   }
 }

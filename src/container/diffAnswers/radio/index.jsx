@@ -3,7 +3,7 @@ import React from 'react';
 import { Radio, message,Tag } from 'antd';
 import axios from 'axios'
 import './index.scss'
-
+// 单选题
 const MyRadio = ({ options, title, answer, ID, index }) => {
     const changeOptions = async (e) => {
         console.log(e.target.value);

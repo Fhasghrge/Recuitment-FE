@@ -3,7 +3,7 @@ import { Checkbox, message, Tag } from 'antd';
 import axios from 'axios'
 import './index.scss'
 
-
+// 多选题
 const MyCheckbox = ({ options, title, ID, answer, index }) => {
     const onChange = async (e) => {
         console.log(e);

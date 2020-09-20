@@ -21,7 +21,13 @@ const Questions = ({ group }) => {
                 });
                 if (res.data.code === 0) {
                     setQuestions(
-                        res.data.data.filter((item) => item.groups === group)
+                        res.data.data.filter((item) => {
+                            if (group === 1 || group === 2) {
+                                return item.groups === group
+                            } else {
+                                return (item.groups === group) || (item.groups === 0)
+                            }
+                        })
                     );
                 } else {
                     message.warning(res.data.msg);
