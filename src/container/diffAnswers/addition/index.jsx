@@ -54,7 +54,7 @@ const MyUpload = ({ title, ID, index }) => {
         <div className='addition-answer'>
             <p>
                 <Tag color='geekblue'>{index}</Tag>
-                {title}
+                <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
             </p>
             <input
                 type="file"

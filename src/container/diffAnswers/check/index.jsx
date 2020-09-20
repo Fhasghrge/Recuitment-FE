@@ -30,7 +30,8 @@ const MyCheckbox = ({ options, title, ID, answer, index }) => {
         <div className='checkbox-answer'>
             <p>
                 <Tag color='geekblue'>{index}</Tag>
-                {title}</p>
+                <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
+            </p>
             <Checkbox.Group
                 options={options}
                 defaultValue={answer}

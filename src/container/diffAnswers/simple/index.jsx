@@ -30,7 +30,7 @@ const MySimple = ({ title, ID, answer, index }) => {
         <div className="simple-answer">
             <p>
                 <Tag color="blue">{index}</Tag>
-                {title}
+                <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
             </p>
             <Tooltip placement="bottomLeft" color='#f6ab6c' trigger='focus' title="回车提交">
                 <TextArea

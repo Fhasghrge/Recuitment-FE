@@ -29,7 +29,8 @@ const MyInput = ({ ID, title, answer, index }) => {
         <div className='input-answer'>
             <p>
                 <Tag color='geekblue'>{index}</Tag>
-                {title}</p>
+                <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
+            </p>
             <Tooltip placement="bottomLeft" color='#f6ab6c' trigger='focus' title="回车提交">
                 <Input onPressEnter={onChange} placeholder={answer} />
             </Tooltip>

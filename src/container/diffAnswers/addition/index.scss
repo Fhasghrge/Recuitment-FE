@@ -2,6 +2,14 @@
   border-top: 1px solid rgb(233, 215, 215);
   background-color: white;
   padding: 1rem 2rem 2rem;
+  p {
+    span {
+      img {
+        width: 80%;
+        display: block;
+      }
+    }
+  }
   > div {
       display: flex;
       justify-content: space-evenly;
@@ -13,7 +21,7 @@
     justify-content: left;
     text-align: left;
     color: #7e7c7cdd;
-    font-size: 6px;
+    font-size: .7rem;
     margin-top: .2rem;
     span {
       color:red;

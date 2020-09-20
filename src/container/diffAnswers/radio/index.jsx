@@ -29,7 +29,8 @@ const MyRadio = ({ options, title, answer, ID, index }) => {
         <div className='radio-answer'>
             <p>
                 <Tag color='geekblue'>{index}</Tag>
-                {title}</p>
+                <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
+            </p>
             <Radio.Group onChange={changeOptions} defaultValue={answer} >
                 {options.map((item) => {
                     return <Radio.Button key={item} className='option' value={item}>{item}</Radio.Button>;
