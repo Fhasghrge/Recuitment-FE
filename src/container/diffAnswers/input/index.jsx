@@ -30,10 +30,11 @@ const MyInput = ({ ID, title, answer, index }) => {
         <div className='input-answer'>
             <p>
                 <Tag color='geekblue'>{index}</Tag>
-                <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
+                <span dangerouslySetInnerHTML={{ __html: title.replace(/[\r\n]/g, '<br/>') }}></span>
             </p>
             <Tooltip placement="bottomLeft" color='#f6ab6c' trigger='focus' title="回车提交">
-                <Input onPressEnter={(e)=> debounce(onChange,500)(e)} placeholder={answer} />
+                <Input onPressEnter={(e) => debounce(onChange, 500)(e)} defaultValue={answer}
+                />
             </Tooltip>
         </div>
     );

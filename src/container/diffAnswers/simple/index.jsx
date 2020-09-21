@@ -1,7 +1,8 @@
 import React from 'react';
-import { Input, message, Tag,Tooltip } from 'antd';
+import { Input, message, Tag, Tooltip } from 'antd';
 import debounce from '../../../util/debounce'
 import axios from 'axios';
+// import ReactMarkdown from 'react-markdown/with-html';
 import './index.scss';
 const { TextArea } = Input;
 
@@ -32,14 +33,16 @@ const MySimple = ({ title, ID, answer, index }) => {
         <div className="simple-answer">
             <p>
                 <Tag color="blue">{index}</Tag>
-                <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
+                {/* <ReactMarkdown source={title} /> */}
+                <span dangerouslySetInnerHTML={{ __html: title.replace(/[\r\n]/g, '<br/>') }}></span>
             </p>
             <Tooltip placement="bottomLeft" color='#f6ab6c' trigger='focus' title="回车提交">
                 <TextArea
-                    onPressEnter={(e)=> debounce(onChange,500)(e.currentTarget.value)}
+                    onPressEnter={(e) => debounce(onChange, 500)(e.currentTarget.value)}
+                    onBlur={(e) => debounce(onChange, 500)(e.currentTarget.value)}
                     allowClear
                     rows={4}
-                    placeholder={answer}
+                    defaultValue={answer}
                 />
             </Tooltip>
         </div>
