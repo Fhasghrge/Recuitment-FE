@@ -1,19 +1,21 @@
 import React from 'react';
 import { Input, message, Tag,Tooltip } from 'antd';
+import debounce from '../../../util/debounce'
 import axios from 'axios';
 import './index.scss';
 const { TextArea } = Input;
 
 const MySimple = ({ title, ID, answer, index }) => {
     const onChange = async (e) => {
-        console.log(e.currentTarget.value);
+        console.log(e)
+        console.log(e)
         try {
             const res = await axios({
                 method: 'post',
                 url: '/join/api/user/exam/answer',
                 data: {
                     ID: ID,
-                    answer: e.currentTarget.value,
+                    answer: e,
                 },
             });
             if (res.data.code === 0) {
@@ -34,7 +36,7 @@ const MySimple = ({ title, ID, answer, index }) => {
             </p>
             <Tooltip placement="bottomLeft" color='#f6ab6c' trigger='focus' title="回车提交">
                 <TextArea
-                    onPressEnter={onChange}
+                    onPressEnter={(e)=> debounce(onChange,500)(e.currentTarget.value)}
                     allowClear
                     rows={4}
                     placeholder={answer}

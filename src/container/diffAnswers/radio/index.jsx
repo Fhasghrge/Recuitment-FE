@@ -1,7 +1,7 @@
 import React from 'react';
-
 import { Radio, message,Tag } from 'antd';
 import axios from 'axios'
+import debounce from '../../../util/debounce'
 import './index.scss'
 // 单选题
 const MyRadio = ({ options, title, answer, ID, index }) => {
@@ -31,7 +31,7 @@ const MyRadio = ({ options, title, answer, ID, index }) => {
                 <Tag color='geekblue'>{index}</Tag>
                 <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
             </p>
-            <Radio.Group onChange={changeOptions} defaultValue={answer} >
+            <Radio.Group onChange={(e) => debounce(changeOptions,500)(e)} defaultValue={answer}  size='small'>
                 {options.map((item) => {
                     return <Radio.Button key={item} className='option' value={item}>{item}</Radio.Button>;
                 })}

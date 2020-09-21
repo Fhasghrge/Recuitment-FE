@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import ChiLogo from '../../images/logo.png';
 import EGLogo from '../../images/font.png';
@@ -6,6 +6,19 @@ import LoginFrom from '../../container/loginform/index';
 import './Login.scss';
 
 const Login = (props) => {
+    useEffect(() => {
+        const initViewport = function (height) {
+            let metaEl = document.querySelector('#viewportMeta');
+            let content =
+                'height=' +
+                height +
+                ',width=device-width,initial-scale=1.0,user-scalable=no';
+            metaEl.setAttribute('name', 'viewport');
+            metaEl.setAttribute('content', content);
+        };
+        const realHeight = window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight;
+        initViewport(realHeight);
+    }, [])
     return (
         <div className="login">
             <div className="logos">

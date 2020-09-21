@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input, message, Tag, Tooltip } from 'antd';
+import debounce from '../../../util/debounce'
 import axios from 'axios'
 import './index.scss'
 
@@ -32,7 +33,7 @@ const MyInput = ({ ID, title, answer, index }) => {
                 <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
             </p>
             <Tooltip placement="bottomLeft" color='#f6ab6c' trigger='focus' title="回车提交">
-                <Input onPressEnter={onChange} placeholder={answer} />
+                <Input onPressEnter={(e)=> debounce(onChange,500)(e)} placeholder={answer} />
             </Tooltip>
         </div>
     );

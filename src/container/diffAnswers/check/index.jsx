@@ -1,4 +1,5 @@
 import React from 'react';
+import debounce from '../../../util/debounce'
 import { Checkbox, message, Tag } from 'antd';
 import axios from 'axios'
 import './index.scss'
@@ -6,7 +7,6 @@ import './index.scss'
 // 多选题
 const MyCheckbox = ({ options, title, ID, answer, index }) => {
     const onChange = async (e) => {
-        console.log(e);
         try {
             const res = await axios({
                 method:'post',
@@ -17,7 +17,6 @@ const MyCheckbox = ({ options, title, ID, answer, index }) => {
                 }
             })
             if(res.data.code === 0) {
-                console.log("check:" + e);
                 message.success('答案提交成功')
             }else {
                 message.error('答案上传失败!')
@@ -35,7 +34,7 @@ const MyCheckbox = ({ options, title, ID, answer, index }) => {
             <Checkbox.Group
                 options={options}
                 defaultValue={answer}
-                onChange={onChange}
+                onChange={(e)=> debounce(onChange,500)(e)}
             />
         </div>
     );
