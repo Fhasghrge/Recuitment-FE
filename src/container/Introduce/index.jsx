@@ -5,6 +5,7 @@ import clock from '../../images/Clock.png';
 import './index.scss';
 import { calProgress, lastTime } from '../../util/time';
 import { useEffect, useState } from 'react';
+import axios from 'axios'
 
 let status = calProgress();
 let last = lastTime();
@@ -12,18 +13,37 @@ let last = lastTime();
 const Main = () => {
     const [progress, Setprogress] = useState(status);
     const [lastime, SetLastTime] = useState(last);
+    const [startTime, setStartTime] = useState([])
+    const [endTime, setEndTime] = useState([])
     useEffect(() => {
-        const clear = setInterval(() => {
-            /**
-             * * 为什么需要用hooks存放时间信息呢？
-             * 因为页面的动态刷新需要根据state
-             */
-            Setprogress(calProgress());
-            SetLastTime(lastTime());
-        }, 1000);
-        return () => {
-            clearInterval(clear);
-        };
+        const middle = async () => {
+            try {
+                let res = await axios({
+                    method: 'get',
+                    url: '/join/api/user/exam/getdate',
+                })
+                if (res.data.code === 0) {
+                    setStartTime(res.data.data.starttime)
+                    setEndTime(res.data.data.closingtime)
+                    const clear = setInterval(() => {
+                        /**
+                         * * 为什么需要用hooks存放时间信息呢？
+                         * 因为页面的动态刷新需要根据state
+                         */
+                        Setprogress(calProgress(res.data.data.starttime));
+                        SetLastTime(lastTime(res.data.data.closingtime));
+                    }, 1000);
+                    return () => {
+                        clearInterval(clear);
+                    };
+                } else {
+                    console.log(res.data.msg)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        middle()
     }, []);
     return (
         <div className="introduce">
@@ -45,8 +65,8 @@ const Main = () => {
                     <div className="title">答题简介</div>
                     <p>
                         选择感兴趣的方向进行答题，可以提交多个方向的答卷，
-                        本次线上答题时间为9.21 18:00截止9.28 18:00，请在规定时间里面完成答题并提交答卷才算成功喔！
                         点击导航栏对应方向开始答题吧！
+                        本次线上答题时间为{" " + startTime.slice(0, 3).join('-') + " " + startTime.slice(3).join(':') + " "}截止{" " + endTime.slice(0, 3).join('-') + " " + endTime.slice(3).join(':') + " "}，请在规定时间里面完成答题并提交答卷才算成功喔！
                     </p>
                 </div>
                 <div className="img">

@@ -162,6 +162,7 @@ const Main = () => {
                                 return (
                                     <main className="branch-answer" id="fe">
                                         <div className="group-name">前端组</div>
+                                        <Questions group={0} />
                                         <Questions group={5} />
                                     </main>
                                 );
@@ -169,6 +170,7 @@ const Main = () => {
                                 return (
                                     <main className="branch-answer" id="be">
                                         <div className="group-name">后台组</div>
+                                        <Questions group={0} />
                                         <Questions group={6} />
                                     </main>
                                 );
@@ -178,6 +180,7 @@ const Main = () => {
                                         <div className="group-name">
                                             DevOps组
                                         </div>
+                                        <Questions group={0} />
                                         <Questions group={7} />
                                     </main>
                                 );
@@ -188,6 +191,7 @@ const Main = () => {
                                         id="android"
                                     >
                                         <div className="group-name">安卓组</div>
+                                        <Questions group={0} />
                                         <Questions group={3} />
                                     </main>
                                 );
@@ -195,12 +199,17 @@ const Main = () => {
                                 return (
                                     <main className="branch-answer" id="ios">
                                         <div className="group-name">iOS组</div>
+                                        <Questions group={0} />
                                         <Questions group={4} />
                                     </main>
                                 );
                             default:
                                 return (
-                                    <div>error</div>
+                                    <main id="main">
+                                        <Progerss name={'星辰'} />
+                                        <Introduce />
+                                        <Branch className="branch" />
+                                    </main>
                                 )
                         }
                     })()}
