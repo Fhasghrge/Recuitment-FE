@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Anchor } from 'antd';
 import { Drawer, List } from 'antd-mobile'
 import Logo from '../../images/logo.png';
@@ -21,6 +21,7 @@ import './index.scss';
 const { Link } = Anchor;
 
 const Main = () => {
+    const achors = ['#main', '#fe', '#be', '#design', '#devops', '#pm', '#ios', '#android']
     const [group, setGroup] = useState('#main');
     const [isOpen, setIsOpen] = useState(false)
     const sidebar = (
@@ -31,61 +32,64 @@ const Main = () => {
             }} key="main" >
                 <img src={Homeicon} alt="homoicon" />
                 <span>主页</span>
-                </List.Item>
+            </List.Item>
             <List.Item onClick={(e) => {
                 setIsOpen(false)
                 setGroup('#pm')
             }} key="pm">
                 <img src={Pmicon} alt="pmicon" />
                 <span>产品</span>
-                </List.Item>
+            </List.Item>
             <List.Item onClick={(e) => {
                 setIsOpen(false)
                 setGroup('#design')
             }} key="design">
                 <img src={Designicon} alt="designicon" />
                 <span>设计</span>
-                </List.Item>
+            </List.Item>
             <List.Item onClick={(e) => {
                 setIsOpen(false)
                 setGroup('#fe')
             }} key="fe">
                 <img src={Webicon} alt="webicon" />
                 <span>前端</span>
-                </List.Item>
+            </List.Item>
             <List.Item onClick={(e) => {
                 setIsOpen(false)
                 setGroup('#be')
             }} key="be">
                 <img src={Beicon} alt="beicon" />
                 <span>后台</span>
-                </List.Item>
+            </List.Item>
             <List.Item onClick={(e) => {
                 setIsOpen(false)
                 setGroup('#devops')
             }} key="devops" title="DevOps">
                 <img src={Devopsicon} alt="devopsicon" />
                 <span>Devops</span>
-                </List.Item>
+            </List.Item>
             <List.Item onClick={(e) => {
                 setIsOpen(false)
                 setGroup('#android')
             }} key="android">
                 <img src={Androidicon} alt="androidicon" />
                 <span>Android</span>
-                </List.Item>
+            </List.Item>
             <List.Item onClick={(e) => {
                 setIsOpen(false)
                 setGroup('#ios')
             }} key="ios">
                 <img src={Iosicon} alt="iosicon" />
                 <span>iOS</span>
-                </List.Item>
+            </List.Item>
         </List>
     );
     const onOpenChange = () => {
         setIsOpen(!isOpen)
     }
+    useEffect(() => {
+        console.log(group)
+    }, [group])
     return (
         <>
             <header className="logo-header">
@@ -94,16 +98,17 @@ const Main = () => {
                 <img src={Bg} alt="background" className="bg" />
             </header>
             <Drawer
-            // the mobile drawer component hide all click event, so make z-index = -1
-                className={isOpen? "" : "my-drawer"}
+                // the mobile drawer component hide all click event, so make z-index = -1
+                className={isOpen ? "" : "my-drawer"}
                 style={{ minHeight: document.documentElement.clientHeight }}
                 enableDragHandle
 
-                contentStyle={{ color: '#A6A6A6', 
-                                textAlign: 'center', 
-                                display: 'none', 
-                                backgroundColor: 'white',
-                            }}
+                contentStyle={{
+                    color: '#A6A6A6',
+                    textAlign: 'center',
+                    display: 'none',
+                    backgroundColor: 'white',
+                }}
                 sidebar={sidebar}
                 open={isOpen}
                 onOpenChange={onOpenChange}
@@ -115,7 +120,9 @@ const Main = () => {
                         affix={true}
                         bounds={10}
                         onChange={(key) => {
-                            setGroup(key);
+                            if(achors.includes(key)) {
+                                setGroup(key);
+                            }
                         }}
                         onClick={
                             // 防止路由模式和喵点冲突

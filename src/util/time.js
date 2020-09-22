@@ -80,9 +80,6 @@ function timeFn(d1) {//di作为一个变量传进来
   //计算相差秒数
   let leave3 = leave2 % (60 * 1000)      //计算分钟数后剩余的毫秒数
   let seconds = - Math.round(leave3 / 1000)
-  // console.log(" 相差 " + (dayDiff - 1) + "天 " + hours + "小时 " + minutes + " 分钟" + seconds + " 秒")
   return [dayDiff - 1, hours - 1 , minutes - 1, seconds]
 }
 
-// console.log(calProgress())
-console.log(lastTime())
