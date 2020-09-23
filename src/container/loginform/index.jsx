@@ -76,9 +76,6 @@ const ChangeSignIn = () => {
                     phonenum: tel,
                     qqnum: qqnum,
                 },
-                headers: {
-                    "X-Testing": true
-                }
             });
             if (res.data.code === 0) {
                 message.info('密码更新成功,请前往登录!');
