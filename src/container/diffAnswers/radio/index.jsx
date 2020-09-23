@@ -4,6 +4,20 @@ import axios from 'axios'
 import debounce from '../../../util/debounce'
 import './index.scss'
 // 单选题
+
+//洗牌算法
+function shuffle(array) { 
+    let arrayLength = array.length,   
+        randomIndex, //随机数   
+        tempItem; //临时存储元素  
+    for (let i = arrayLength - 1; i >= 0; i--) {    
+        randomIndex = Math.floor(Math.random() * (i + 1));    
+        tempItem = array[randomIndex];    
+        array[randomIndex] = array[i];    
+        array[i] = tempItem;  
+    }  
+    return array;
+}
 const MyRadio = ({ options, title, answer, ID, index }) => {
     const changeOptions = async (e) => {
         console.log(e.target.value);
@@ -32,7 +46,7 @@ const MyRadio = ({ options, title, answer, ID, index }) => {
                 <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
             </p>
             <Radio.Group onChange={(e) => debounce(changeOptions,500)(e)} defaultValue={answer}  size='small'>
-                {options.map((item) => {
+                {shuffle(options).map((item) => {
                     return <Radio.Button key={item} className='option' value={item}>{item}</Radio.Button>;
                 })}
             </Radio.Group>

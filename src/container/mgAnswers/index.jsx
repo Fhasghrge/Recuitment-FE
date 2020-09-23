@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { message } from 'antd';
-import { Table, Input, InputNumber, Popconfirm, Form, Tag } from 'antd';
+import { Table, InputNumber, Popconfirm, Form, Tag } from 'antd';
 import NewAnswer from '../newAnswer/index'
 import './index.scss';
+import TextArea from 'antd/lib/input/TextArea';
 
 const EditableCell = ({
     editing,
@@ -17,7 +18,7 @@ const EditableCell = ({
     children,
     ...restProps
 }) => {
-    const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+    const inputNode = inputType === 'number' ? <InputNumber /> : <TextArea rows={8} />;
     return (
         <td {...restProps}>
             {editing ? (
@@ -37,8 +38,8 @@ const EditableCell = ({
                     {inputNode}
                 </Form.Item>
             ) : (
-                children
-            )}
+                    children
+                )}
         </td>
     );
 };
@@ -121,9 +122,9 @@ const EditableTable = ({ group }) => {
                     options: record.options,
                 }
             });
-            if(res.data.code === 0 ){
+            if (res.data.code === 0) {
                 message.success('修改成功')
-            }else {
+            } else {
                 message.error('修改失败' + res.data.msg)
             }
         } catch (err) {
@@ -136,12 +137,14 @@ const EditableTable = ({ group }) => {
         {
             title: 'ID',
             dataIndex: 'ID',
-            width: '5%',
+            width: 50,
+            fixed: 'left'
         },
         {
             title: '类型',
             dataIndex: 'type',
-            width: '5%',
+            width: 50,
+            fixed: 'left',
             render: (type) => (
                 <>
                     {(() => {
@@ -166,36 +169,35 @@ const EditableTable = ({ group }) => {
         {
             title: '题目',
             dataIndex: 'title',
-            width: '70%',
+            // width: 700,
             editable: true,
         },
         // ! 这里失败了
-        // {
-        //     title: '选项',
-        //     dataIndex: 'options',
-        //     // key: 'options',
-        //     width: '5%',
-        //     render: (options) => <>{options}</>,
-        //     // editable: true,
-        //     // render: (options) => (
-        //     //     <>
-        //     //         {options.map((option) => {
-        //     //             // let color = option.answer === 1 ? 'green' : 'geekblue';
-        //     //             // return (
-        //     //             //     <Tag color={color} key={option.content}>
-        //     //             //         {option.content}
-        //     //             //     </Tag>
-        //     //             // );
-        //     //             return(
-        //     //                 <div>{option.content}</div>
-        //     //             )
-        //     //         })}
-        //     //     </>
-        //     // ),
-        // },
+        {
+            title: '选项',
+            dataIndex: 'options',
+            // key: 'options',
+            // width: '100',
+            // editable: true,
+            render: (options) => (
+                <>
+                    {
+                        options ?
+                            (
+                                options.map(opt => <div>
+                                    <Tag color={opt.answer === 0 ? 'blue' : 'red'}>{opt.content}</Tag>
+                                </div>
+                                )
+                            ) : '非选择题'
+                    }
+                </>
+            ),
+        },
         {
             title: '操作',
             dataIndex: 'operation',
+            width: 150,
+            fixed: 'right',
             render: (_, record) => {
                 const editable = isEditing(record);
                 return editable ? (
@@ -214,21 +216,21 @@ const EditableTable = ({ group }) => {
                         </Popconfirm>
                     </span>
                 ) : (
-                    <>
-                        <a
-                            disabled={editingKey !== ''}
-                            onClick={() => edit(record)}
-                        >
-                            编辑
+                        <>
+                            <a
+                                disabled={editingKey !== ''}
+                                onClick={() => edit(record)}
+                            >
+                                编辑
                         </a>
-                        <a
-                            onClick={() => deleteItem(record)}
-                            className="action"
-                        >
-                            删除
+                            <a
+                                onClick={() => deleteItem(record)}
+                                className="action"
+                            >
+                                删除
                         </a>
-                    </>
-                );
+                        </>
+                    );
             },
         },
     ];
@@ -269,7 +271,7 @@ const EditableTable = ({ group }) => {
 const MgAnswers = ({ group }) => {
     return (
         <div className="mgAnswer">
-            <div className="addMg"><NewAnswer group={group}/></div>
+            <div className="addMg"><NewAnswer group={group} /></div>
             <EditableTable group={group} />
         </div>
     );

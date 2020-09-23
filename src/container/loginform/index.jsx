@@ -64,6 +64,31 @@ const ChangeSignIn = () => {
     const [qqnum, setQqnum] = useState();
     const [passwd, setPasswd] = useState();
     const [repeat, setRepeat] = useState();
+    const updatePasswd = async () => {
+        try {
+            const res = await axios({
+                method: 'post',
+                url: '/join/api/user/portal/change',
+                data: {
+                    stunum: stdnum,
+                    newpassword: passwd,
+                    name: realName,
+                    phonenum: tel,
+                    qqnum: qqnum,
+                },
+                headers: {
+                    "X-Testing": true
+                }
+            });
+            if (res.data.code === 0) {
+                message.info('密码更新成功,请前往登录!');
+            } else {
+                message.info(res.data.msg);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
     const register = async () => {
         if (realName && stdnum && tel && qqnum && passwd && repeat) {
             if (passwd === repeat) {
@@ -86,6 +111,8 @@ const ChangeSignIn = () => {
                         });
                         if (res.data.code === 0) {
                             message.info('注册成功,请前往登录!');
+                        } else if (res.data.code === -80) {
+                            updatePasswd()
                         } else {
                             message.info(res.data.msg);
                         }
