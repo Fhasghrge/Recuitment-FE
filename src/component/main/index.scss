@@ -13,10 +13,6 @@
         transform: translate(60%, -50%) scale(1.4);
     }
 }
-.my-drawer {
-    position: fixed;
-    z-index: -1;
-}
 @media (min-width: 451px) {
     .drawer-logo {
         display: none;

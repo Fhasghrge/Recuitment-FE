@@ -8,8 +8,6 @@ const { TextArea } = Input;
 
 const MySimple = ({ title, ID, answer, index }) => {
     const onChange = async (e) => {
-        console.log(e)
-        console.log(e)
         try {
             const res = await axios({
                 method: 'post',
@@ -20,7 +18,6 @@ const MySimple = ({ title, ID, answer, index }) => {
                 },
             });
             if (res.data.code === 0) {
-                console.log('check:' + e);
                 message.success('答案提交成功');
             } else {
                 message.error('答案上传失败!');

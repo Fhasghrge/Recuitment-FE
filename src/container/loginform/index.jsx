@@ -5,7 +5,8 @@ import { message } from 'antd';
 import './index.scss';
 import { useHistory } from 'react-router';
 
-const ChangeLogin = (props) => {
+const ChangeLogin = () => {
+    // 受控表单
     const [username, setUsername] = useState();
     const [passwd, setPasswd] = useState();
     const history = useHistory();
@@ -37,6 +38,7 @@ const ChangeLogin = (props) => {
             className="login-form"
             onSubmit={(event) => {
                 loginSubmit();
+                // 防止表单提交是默认刷新页面
                 event.preventDefault();
             }}
         >
@@ -193,11 +195,12 @@ const LoginForm = ({ changeToMain }) => {
                     注册
                 </div>
             </div>
-            {isLogin ? (
-                <ChangeLogin changeToMain={changeToMain} />
-            ) : (
+            {
+                isLogin ?
+                    <ChangeLogin changeToMain={changeToMain} />
+                    :
                     <ChangeSignIn />
-                )}
+            }
         </div>
     );
 };

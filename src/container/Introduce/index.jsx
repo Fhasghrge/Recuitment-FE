@@ -34,6 +34,7 @@ const Main = () => {
                         SetLastTime(lastTime(res.data.data.closingtime));
                     }, 1000);
                     return () => {
+                        // 清除定时器
                         clearInterval(clear);
                     };
                 } else {

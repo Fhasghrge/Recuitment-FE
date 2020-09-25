@@ -1,4 +1,8 @@
 /**
+ ** 下次并不需要使用自己写的这个，antd有相应的计数器组件 
+ */
+
+/**
  * 
  * @param {array} startTime  year, month, data, hour, mintue, second
  * @param {array} endTime  year, month, data, hour, mintue, second

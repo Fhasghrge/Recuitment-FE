@@ -5,7 +5,40 @@ import EGLogo from '../../images/font.png';
 import LoginFrom from '../../container/loginform/index';
 import './Login.scss';
 
-const Login = (props) => {
+const Login = () => {
+
+    /**
+     * ! 这里不能产生效果的原因是： 此时页面已经渲染好了，且使用的空依赖
+     * ! 不能在进行
+     * ? waiting for issue answer
+     */
+    // useEffect(() => {
+    //     return () => {
+    //         const initViewport = function (height) {
+    //             let metaEl = document.querySelector('#viewportMeta');
+    //             let content =
+    //                 'height=' +
+    //                 height +
+    //                 ',width=device-width,initial-scale=1.0,user-scalable=no';
+    //             // metaEl.setAttribute('name', 'viewport');
+    //             metaEl.setAttribute('content', content);
+    //         };
+    //         const realHeight = window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight;
+    //         initViewport(realHeight);
+    //     }
+    // }, [])
+
+    /**
+     ** 通常在副作用中执行 网络请求、 手动修改dom、 记录日志的操作
+     ** 执行不更新状态的副作用以防止重复的修改无限递归
+     *
+     * ? vh所计算的依据很令人迷惑，可以使用相对稳定的window.innerHeight代替
+     * vh首先由safari提出，由后续浏览器跟进支持
+     * vh在safari上计算的依据不受软键盘占用的影响
+     * 但是在安卓手机上，软键盘影响了vh的计算，每当软键盘弹出就会重新计算
+     * 不同的浏览器的渲染引擎对于window.innerheight的计算也不相同，
+     * 这里的在火狐浏览器还是不适配，但是移动端主流浏览器已经适配
+     */
     useEffect(() => {
         const initViewport = function (height) {
             let metaEl = document.querySelector('#viewportMeta');
@@ -13,7 +46,7 @@ const Login = (props) => {
                 'height=' +
                 height +
                 ',width=device-width,initial-scale=1.0,user-scalable=no';
-            metaEl.setAttribute('name', 'viewport');
+            // metaEl.setAttribute('name', 'viewport');
             metaEl.setAttribute('content', content);
         };
         const realHeight = window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight;

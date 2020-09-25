@@ -5,6 +5,14 @@ import Default from '../../images/default_avatar .png'
 import { useHistory } from 'react-router';
 import './index.scss';
 
+// ? waiting for complete
+// function setCookie(cname, cvalue ='', exdays=-1) {
+//     var d = new Date();
+//     d.setTime(d.getTime() + (exdays*24*60*60*1000));
+//     var expires = "expires="+d.toUTCString();
+//     document.cookie = cname + "=" + cvalue + "; " + expires+"; path=/";//path=/是根路径
+// }
+
 const Progerss = () => {
     const [lock, setLock] = useState(false);
     const [name, setName] = useState();
@@ -46,12 +54,12 @@ const Progerss = () => {
         }
     };
     const dropSign = () => {
+        // !失效 如何清除cookie？
         document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         history.push('/');
     };
 
     const cancel = (e) => {
-        console.log(e);
         message.error('已经取消！');
     };
     return (

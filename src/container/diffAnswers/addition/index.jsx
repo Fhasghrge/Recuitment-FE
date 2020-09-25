@@ -10,13 +10,14 @@ const MyUpload = ({ title, ID, index }) => {
         try {
             let form = new FormData()
             form.append('ID', ID)
+            // upload file array， foreach item and append to file
             for (let i = 0; i < f.target.files.length; i++) {
                 let file = f.target.files[i]
                 form.append('file', file)
             }
             const res = await axios({
                 method: 'post',
-                headers: { 'Content-Type': 'undefined' },
+                headers: { 'Content-Type': 'multipart/form-data' },
                 url: '/join/api/user/file/upload',
                 data: form
             })
@@ -29,27 +30,6 @@ const MyUpload = ({ title, ID, index }) => {
             console.error(err)
         }
     }
-    // const props = {
-    //     name: 'file',
-    //     method: 'post',
-    //     action: '/join/api/user/file/upload',
-    //     headers: {
-    //         'Content-Type': 'multipart/form-data',
-    //     },
-    //     // data: {
-    //     //     ID: ID
-    //     // },
-    //     onChange(info) {
-    //         if (info.file.status !== 'uploading') {
-    //             console.log(info.file, info.fileList);
-    //         }
-    //         if (info.file.status === 'done') {
-    //             message.success(`${info.file.name} 上传成功`);
-    //         } else if (info.file.status === 'error') {
-    //             message.error(`${info.file.name} 上传失败`);
-    //         }
-    //     },
-    // };
     return (
         <div className='addition-answer'>
             <p>
@@ -63,11 +43,6 @@ const MyUpload = ({ title, ID, index }) => {
             <div className='tips'>
                 <span>Tips:</span>上传的文件会覆盖之前上传的文件
             </div>
-            {/* <Upload {...props}>
-                <Button>
-                    <UploadOutlined />上传附件
-                </Button>
-            </Upload> */}
         </div>
     );
 };

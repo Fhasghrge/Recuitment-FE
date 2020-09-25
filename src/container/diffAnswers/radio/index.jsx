@@ -5,7 +5,7 @@ import debounce from '../../../util/debounce'
 import './index.scss'
 // 单选题
 
-//洗牌算法
+//洗牌算法，每次重新渲染页面都会进行重新洗牌
 function shuffle(array) { 
     let arrayLength = array.length,   
         randomIndex, //随机数   
@@ -20,7 +20,6 @@ function shuffle(array) {
 }
 const MyRadio = ({ options, title, answer, ID, index }) => {
     const changeOptions = async (e) => {
-        console.log(e.target.value);
         try {
             const res = await axios({
                 method:'post',

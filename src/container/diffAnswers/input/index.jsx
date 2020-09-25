@@ -6,7 +6,6 @@ import './index.scss'
 
 const MyInput = ({ ID, title, answer, index }) => {
     const onChange = async (e) => {
-        console.log(e.currentTarget.value);
         try {
             const res = await axios({
                 method: 'post',
@@ -17,7 +16,6 @@ const MyInput = ({ ID, title, answer, index }) => {
                 }
             })
             if (res.data.code === 0) {
-                console.log("check:" + e);
                 message.success('答案提交成功')
             } else {
                 message.error('答案上传失败!')

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Anchor } from 'antd';
 import { Drawer, List } from 'antd-mobile'
 import Logo from '../../images/logo.png';
@@ -24,72 +24,50 @@ const Main = () => {
     const achors = ['#main', '#fe', '#be', '#design', '#devops', '#pm', '#ios', '#android']
     const [group, setGroup] = useState('#main');
     const [isOpen, setIsOpen] = useState(false)
+
+    const mobileChange = (target) => {
+        setIsOpen(false)
+        setGroup(target)
+    }
+    const onOpenChange = () => {
+        setIsOpen(!isOpen)
+    }
     const sidebar = (
         <List className='siderbar-style'>
-            <List.Item onClick={(e) => {
-                setIsOpen(false)
-                setGroup('#main')
-            }} key="main" >
+            <List.Item onClick={() => mobileChange('#main')} key="main" >
                 <img src={Homeicon} alt="homoicon" />
                 <span>主页</span>
             </List.Item>
-            <List.Item onClick={(e) => {
-                setIsOpen(false)
-                setGroup('#pm')
-            }} key="pm">
+            <List.Item onClick={() => mobileChange('#pm')} key="pm">
                 <img src={Pmicon} alt="pmicon" />
                 <span>产品</span>
             </List.Item>
-            <List.Item onClick={(e) => {
-                setIsOpen(false)
-                setGroup('#design')
-            }} key="design">
+            <List.Item onClick={() => mobileChange('#design')} key="design">
                 <img src={Designicon} alt="designicon" />
                 <span>设计</span>
             </List.Item>
-            <List.Item onClick={(e) => {
-                setIsOpen(false)
-                setGroup('#fe')
-            }} key="fe">
+            <List.Item onClick={() => mobileChange('#fe')} key="fe">
                 <img src={Webicon} alt="webicon" />
                 <span>前端</span>
             </List.Item>
-            <List.Item onClick={(e) => {
-                setIsOpen(false)
-                setGroup('#be')
-            }} key="be">
+            <List.Item onClick={() => mobileChange('#be')} key="be">
                 <img src={Beicon} alt="beicon" />
                 <span>后台</span>
             </List.Item>
-            <List.Item onClick={(e) => {
-                setIsOpen(false)
-                setGroup('#devops')
-            }} key="devops" title="DevOps">
+            <List.Item onClick={() => mobileChange('#devops')} key="devops" title="DevOps">
                 <img src={Devopsicon} alt="devopsicon" />
                 <span>Devops</span>
             </List.Item>
-            <List.Item onClick={(e) => {
-                setIsOpen(false)
-                setGroup('#android')
-            }} key="android">
+            <List.Item onClick={() => mobileChange('#android')} key="android">
                 <img src={Androidicon} alt="androidicon" />
                 <span>Android</span>
             </List.Item>
-            <List.Item onClick={(e) => {
-                setIsOpen(false)
-                setGroup('#ios')
-            }} key="ios">
+            <List.Item onClick={() => mobileChange('#ios')} key="ios">
                 <img src={Iosicon} alt="iosicon" />
                 <span>iOS</span>
             </List.Item>
         </List>
     );
-    const onOpenChange = () => {
-        setIsOpen(!isOpen)
-    }
-    useEffect(() => {
-        console.log(group)
-    }, [group])
     return (
         <>
             <header className="logo-header">
@@ -98,130 +76,132 @@ const Main = () => {
                 <img src={Bg} alt="background" className="bg" />
             </header>
             <Drawer
-                // the mobile drawer component hide all click event, so make z-index = -1
                 className={isOpen ? "" : "my-drawer"}
                 style={{ minHeight: document.documentElement.clientHeight }}
                 enableDragHandle
-
-                contentStyle={{
-                    color: '#A6A6A6',
-                    textAlign: 'center',
-                    display: 'none',
-                    backgroundColor: 'white',
-                }}
+                contentStyle={{}}
                 sidebar={sidebar}
                 open={isOpen}
+                // 不知道组件这一个div默认的width 10px是啥意思，手动去除
+                dragHandleStyle={{
+                    display: 'none'
+                }}
                 onOpenChange={onOpenChange}
             >
-            </Drawer>
-            <div className="main">
-                <main>
-                    <Anchor
-                        affix={true}
-                        bounds={10}
-                        onChange={(key) => {
-                            if(achors.includes(key)) {
-                                setGroup(key);
+                <div className="main">
+                    <main>
+                        {/* 这里使用Anchor组件的原因是：
+                            最初的设计搞是采用一个页面，所以用此组件进行导航
+                            后续产品修改，改成条件渲染，就需要zu
+                         */}
+                        <Anchor
+                            affix={true}
+                            bounds={10}
+                            onChange={(key) => {
+                                // 过滤由于上滑导航条导致的事件触发
+                                if (achors.includes(key)) {
+                                    setGroup(key);
+                                }
+                            }}
+                            onClick={
+                                // 防止路由模式和喵点冲突
+                                (e) => {
+                                    e.preventDefault()
+                                }
                             }
-                        }}
-                        onClick={
-                            // 防止路由模式和喵点冲突
-                            (e) => {
-                                e.preventDefault()
-                            }
-                        }
-                        className="navs"
-                    >
-                        <Link href="#main" title="主页"></Link>
-                        <Link href="#pm" title="产品"></Link>
-                        <Link href="#design" title="设计"></Link>
-                        <Link href="#fe" title="前端"></Link>
-                        <Link href="#be" title="后台"></Link>
-                        <Link href="#devops" title="DevOps"></Link>
-                        <Link href="#android" title="Andriod"></Link>
-                        <Link href="#ios" title="iOS"></Link>
-                    </Anchor>
-                    {(() => {
-                        switch (group) {
-                            case '#main':
-                                return (
-                                    <main id="main">
-                                        <Progerss name={'星辰'} />
-                                        <Introduce />
-                                        <Branch className="branch" />
-                                    </main>
-                                );
-                            case '#pm':
-                                return (
-                                    <main className="branch-answer" id="pm">
-                                        <div className="group-name">产品组</div>
-                                        <Questions group={1} />
-                                    </main>
-                                );
-                            case '#design':
-                                return (
-                                    <main className="branch-answer" id="design">
-                                        <div className="group-name">设计组</div>
-                                        <Questions group={2} />
-                                    </main>
-                                );
-                            case '#fe':
-                                return (
-                                    <main className="branch-answer" id="fe">
-                                        <div className="group-name">前端组</div>
-                                        <Questions group={0} />
-                                        <Questions group={5} />
-                                    </main>
-                                );
-                            case '#be':
-                                return (
-                                    <main className="branch-answer" id="be">
-                                        <div className="group-name">后台组</div>
-                                        <Questions group={0} />
-                                        <Questions group={6} />
-                                    </main>
-                                );
-                            case '#devops':
-                                return (
-                                    <main className="branch-answer" id="devops">
-                                        <div className="group-name">
-                                            DevOps组
+                            className="navs"
+                        >
+                            <Link href="#main" title="主页"></Link>
+                            <Link href="#pm" title="产品"></Link>
+                            <Link href="#design" title="设计"></Link>
+                            <Link href="#fe" title="前端"></Link>
+                            <Link href="#be" title="后台"></Link>
+                            <Link href="#devops" title="DevOps"></Link>
+                            <Link href="#android" title="Andriod"></Link>
+                            <Link href="#ios" title="iOS"></Link>
+                        </Anchor>
+                        {(() => {
+                            switch (group) {
+                                case '#main':
+                                    return (
+                                        <main id="main">
+                                            <Progerss name={'星辰'} />
+                                            <Introduce />
+                                            <Branch className="branch" />
+                                        </main>
+                                    );
+                                case '#pm':
+                                    return (
+                                        <main className="branch-answer" id="pm">
+                                            <div className="group-name">产品组</div>
+                                            <Questions group={1} />
+                                        </main>
+                                    );
+                                case '#design':
+                                    return (
+                                        <main className="branch-answer" id="design">
+                                            <div className="group-name">设计组</div>
+                                            <Questions group={2} />
+                                        </main>
+                                    );
+                                case '#fe':
+                                    return (
+                                        <main className="branch-answer" id="fe">
+                                            <div className="group-name">前端组</div>
+                                            <Questions group={0} />
+                                            <Questions group={5} />
+                                        </main>
+                                    );
+                                case '#be':
+                                    return (
+                                        <main className="branch-answer" id="be">
+                                            <div className="group-name">后台组</div>
+                                            <Questions group={0} />
+                                            <Questions group={6} />
+                                        </main>
+                                    );
+                                case '#devops':
+                                    return (
+                                        <main className="branch-answer" id="devops">
+                                            <div className="group-name">
+                                                DevOps组
                                         </div>
-                                        <Questions group={0} />
-                                        <Questions group={7} />
-                                    </main>
-                                );
-                            case '#android':
-                                return (
-                                    <main
-                                        className="branch-answer"
-                                        id="android"
-                                    >
-                                        <div className="group-name">安卓组</div>
-                                        <Questions group={0} />
-                                        <Questions group={3} />
-                                    </main>
-                                );
-                            case '#ios':
-                                return (
-                                    <main className="branch-answer" id="ios">
-                                        <div className="group-name">iOS组</div>
-                                        <Questions group={0} />
-                                        <Questions group={4} />
-                                    </main>
-                                );
-                            default:
-                                return (
-                                    <main id="main">
-                                        <Progerss name={'星辰'} />
-                                        <Introduce />
-                                        <Branch className="branch" />
-                                    </main>
-                                )
-                        }
-                    })()}
-                </main>
-            </div>
+                                            <Questions group={0} />
+                                            <Questions group={7} />
+                                        </main>
+                                    );
+                                case '#android':
+                                    return (
+                                        <main
+                                            className="branch-answer"
+                                            id="android"
+                                        >
+                                            <div className="group-name">安卓组</div>
+                                            <Questions group={0} />
+                                            <Questions group={3} />
+                                        </main>
+                                    );
+                                case '#ios':
+                                    return (
+                                        <main className="branch-answer" id="ios">
+                                            <div className="group-name">iOS组</div>
+                                            <Questions group={0} />
+                                            <Questions group={4} />
+                                        </main>
+                                    );
+                                default:
+                                    return (
+                                        <main id="main">
+                                            <Progerss name={'星辰'} />
+                                            <Introduce />
+                                            <Branch className="branch" />
+                                        </main>
+                                    )
+                            }
+                        })()}
+                    </main>
+                </div>
+            </Drawer>
         </>
     );
 };
