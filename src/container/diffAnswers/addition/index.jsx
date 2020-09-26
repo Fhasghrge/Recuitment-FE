@@ -5,7 +5,7 @@ import axios from 'axios'
 import './index.scss'
 
 
-const MyUpload = ({ title, ID, index }) => {
+const MyUpload = ({ title, ID, index, answer }) => {
     const upload = async (f) => {
         try {
             let form = new FormData()
@@ -36,12 +36,13 @@ const MyUpload = ({ title, ID, index }) => {
                 <Tag color='geekblue'>{index}</Tag>
                 <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
             </p>
+            <div className='hadAddfile'>已上传：<Tag>{answer? answer : '你还未'}</Tag></div>
             <input
                 type="file"
                 onChange={(e) => upload(e)}
             />
             <div className='tips'>
-                <span>Tips:</span>上传的文件会覆盖之前上传的文件
+                <span>Tips:</span>新上传的文件会覆盖“已上传“的文件
             </div>
         </div>
     );

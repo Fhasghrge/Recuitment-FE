@@ -8,29 +8,10 @@ import './Login.scss';
 const Login = () => {
 
     /**
-     * ! 这里不能产生效果的原因是： 此时页面已经渲染好了，且使用的空依赖
-     * ! 不能在进行
-     * ? waiting for issue answer
-     */
-    // useEffect(() => {
-    //     return () => {
-    //         const initViewport = function (height) {
-    //             let metaEl = document.querySelector('#viewportMeta');
-    //             let content =
-    //                 'height=' +
-    //                 height +
-    //                 ',width=device-width,initial-scale=1.0,user-scalable=no';
-    //             // metaEl.setAttribute('name', 'viewport');
-    //             metaEl.setAttribute('content', content);
-    //         };
-    //         const realHeight = window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight;
-    //         initViewport(realHeight);
-    //     }
-    // }, [])
-
-    /**
      ** 通常在副作用中执行 网络请求、 手动修改dom、 记录日志的操作
      ** 执行不更新状态的副作用以防止重复的修改无限递归
+     ** 源码中更具effectTag对节点删除，是进行useEffect的中返回函数的执行
+     ** layout阶段对useEffect本身的回调和销毁做清理
      *
      * ? vh所计算的依据很令人迷惑，可以使用相对稳定的window.innerHeight代替
      * vh首先由safari提出，由后续浏览器跟进支持
