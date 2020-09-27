@@ -36,7 +36,7 @@ const MyUpload = ({ title, ID, index, answer }) => {
                 <Tag color='geekblue'>{index}</Tag>
                 <span dangerouslySetInnerHTML={{__html:title.replace(/[\r\n]/g, '<br/>')}}></span>
             </p>
-            <div className='hadAddfile'>已上传：<Tag>{answer? answer : '你还未'}</Tag></div>
+            <div className='hadAddfile'>已上传：<Tag>{answer? answer : '无文件'}</Tag></div>
             <input
                 type="file"
                 onChange={(e) => upload(e)}
