@@ -32,7 +32,7 @@ ReactDOM.render(
       <Route path='/' exact component={Login}></Route>
       <Route path='/main' exact component={Main}></Route>
       <Route path='/adminlogin' exact component={AdminLogin}></Route>
-      <Route path='/admin' exact component={Admin}></Route>
+      <Route path='/admin'  component={Admin}></Route>
       <Route path='*' component={NoMatch}></Route>
     </Switch>
   </Router>,

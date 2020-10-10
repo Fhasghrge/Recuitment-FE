@@ -10,12 +10,13 @@ import axios from 'axios'
 let status = calProgress();
 let last = lastTime();
 
-const Main = () => {
+const Main = ({canAnswer}) => {
     const [progress, Setprogress] = useState(status);
     const [lastime, SetLastTime] = useState(last);
     const [startTime, setStartTime] = useState([])
     const [endTime, setEndTime] = useState([])
     useEffect(() => {
+        let status = '';
         const middle = async () => {
             try {
                 let res = await axios({
@@ -30,7 +31,9 @@ const Main = () => {
                          * * 为什么需要用hooks存放时间信息呢？
                          * 因为页面的动态刷新需要根据state
                          */
-                        Setprogress(calProgress(res.data.data.starttime));
+                        status = calProgress(res.data.data.starttime);
+                        if(status === 'ended') canAnswer(false) 
+                        Setprogress(status);
                         SetLastTime(lastTime(res.data.data.closingtime));
                     }, 1000);
                     return () => {
@@ -45,7 +48,7 @@ const Main = () => {
             }
         }
         middle()
-    }, []);
+    }, [canAnswer]);
     return (
         <div className="introduce">
             <div className="intr">
@@ -72,13 +75,20 @@ const Main = () => {
                 </div>
                 <div className="img">
                     <img src={clock} alt="colck" />
-                    <div className="clock-title">
-                        距离答题{progress === 'waiting' ? '开始' : '结束'}
-                        还有:
-                    </div>
-                    <div className="remain-time">
-                        {lastime[0]}天 {lastime[1]}:{lastime[2]}:{lastime[3]}
-                    </div>
+                    {
+                        progress === 'ended' ?
+                            <div className='remain-time webend'>答题已经结束！</div>
+                            :
+                            <>
+                                <div className="clock-title">
+                                    距离答题{progress === 'waiting' ? '开始' : '结束'}
+                                    还有:
+                                </div>
+                                <div className="remain-time">
+                                    {lastime[0]}天 {lastime[1]}:{lastime[2]}:{lastime[3]}
+                                </div>
+                            </>
+                    }
                 </div>
             </div>
         </div>

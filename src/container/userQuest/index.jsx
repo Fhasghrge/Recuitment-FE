@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import {useParams} from 'react-router-dom'
 
 import axios from 'axios';
 import { message, Table, Tag, Input } from 'antd';
-const UserQuest = ({ group, stunum }) => {
+import './index.scss'
+const UserQuest = ({ group }) => {
+    const {stunum, name} = useParams()
     const columns = [
         {
             title: 'ID',
@@ -103,6 +106,10 @@ const UserQuest = ({ group, stunum }) => {
     }, [group, stunum]);
     return (
         <div>
+            <p>
+                <span>姓名：{name} </span> 
+                <span>学号：{stunum} </span> 
+            </p>
             <Table
                 dataSource={dataSource}
                 columns={columns}

@@ -5,6 +5,7 @@ import { message } from 'antd';
 import { Table, Input, InputNumber, Form } from 'antd';
 import './index.scss';
 import UserQuest from '../userQuest';
+import {Switch, Route, Link, useRouteMatch} from 'react-router-dom'
 
 const EditableCell = ({
     editing,
@@ -38,7 +39,7 @@ const EditableCell = ({
                 </Form.Item>
             ) : (
                 children
-            )}
+                )}
         </td>
     );
 };
@@ -46,6 +47,7 @@ const EditableCell = ({
 const EditableTable = ({ group }) => {
     const [form] = Form.useForm();
     const [data, setData] = useState();
+    const {path, url} = useRouteMatch()
     useEffect(() => {
         const middle = async () => {
             try {
@@ -92,6 +94,8 @@ const EditableTable = ({ group }) => {
         {
             title: '分数',
             dataIndex: 'score',
+            defaultSortOrder: 'descend',
+            sorter: (a, b) => a.score - b.score,
             width: '10%',
         },
         {
@@ -110,14 +114,16 @@ const EditableTable = ({ group }) => {
             render: (_, record) => {
                 return (
                     <>
-                        <a
+                        {/* <a
                             onClick={() => {
+                                setName(record.name)
                                 setDetail(record.stunum)
                             }}
                             className="action"
                         >
                             查看试卷
-                        </a>
+                        </a> */}
+                        <Link to={`${url}/student/${record.name}/${record.stunum}`}>查看试卷</Link>
                     </>
                 );
             },
@@ -138,27 +144,29 @@ const EditableTable = ({ group }) => {
             }),
         };
     });
-    const [detail, setDetail] = useState(0);
     return (
         <div>
-            {detail ? (
-                <UserQuest group={group} stunum ={detail}/>
-            ) : (
-                <Form form={form} component={false}>
-                    <Table
-                        components={{
-                            body: {
-                                cell: EditableCell,
-                            },
-                        }}
-                        bordered
-                        dataSource={data}
-                        columns={mergedColumns}
-                        rowClassName="editable-row"
-                        pagination={false}
-                    />
-                </Form>
-            )}
+            <Switch>
+                <Route path={`${path}/student/:name/:stunum` }>
+                    <UserQuest group={group}/>
+                </Route>
+                <Route path="/">
+                    <Form form={form} component={false}>
+                        <Table
+                            components={{
+                                body: {
+                                    cell: EditableCell,
+                                },
+                            }}
+                            bordered
+                            dataSource={data}
+                            columns={mergedColumns}
+                            rowClassName="editable-row"
+                            pagination={false}
+                        />
+                    </Form> 
+                </Route>
+            </Switch>
         </div>
     );
 };

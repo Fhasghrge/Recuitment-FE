@@ -3,82 +3,30 @@
 }
 .manage-main {
     width: 100%;
-    header {
+    > header {
         padding: 0 20px;
         display: block;
         display: flex;
-        background-color: rgba(178, 225, 244, 0.2);
         justify-content: space-between;
         height: 6vh;
         > div {
-            // color: white;
             font-size: 1.2rem;
             line-height: 6vh;
         }
         .logout {
-            // border: 1px solid rgb(191, 187, 187);
             border-radius: 10px;
             padding: 0 10px;
             &:hover {
-                // background-color: rgba(0, 0, 0,.3);
                 color: rgba(0, 0, 0, 0.3);
             }
         }
     }
     main {
-        display: flex;
-        justify-content: space-around;
-        height: 94vh;
-        text-align: center;
-        > div {
-            width: 50%;
-            line-height: 90vh;
-            &:hover {
-                background-color: #ddd;
-            }
-        }
-        .manageview {
-            padding-top: 2vh;
-            width: 100%;
-            position: relative;
-            &:hover {
-                background-color: white;
-            }
-            button {
+        header {
+            display:  flex;
+            justify-content: space-around;
+            .switch {
                 line-height: 2rem;
-                position: absolute;
-                border: none;
-                line-height: 2rem;
-                font-size: 1.1rem;
-                background-color: transparent;
-            }
-            .back-btn {
-                left: 0;
-                color: rgb(80, 80, 186);
-                &:hover {
-                    color: rgb(130, 130, 231);
-                }
-                &::before {
-                    content: '<';
-                    color: rgb(134, 134, 213);
-                    font-size: 1.4rem;
-                    margin-right: 0.3rem;
-                }
-            }
-            .download-btn {
-                right: 5vw;
-                color: rgb(122, 166, 226);
-                border-radius: 0.5rem;
-                &::after {
-                    content: '↓';
-                    color: rgb(134, 134, 213);
-                    font-size: 1.4rem;
-                    margin-left: 0.3rem;
-                }
-                &:hover {
-                    border: 1px solid rgb(135, 134, 134);
-                    color: rgb(111, 111, 111);
-                }
             }
         }
     }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Anchor } from 'antd';
+import { Anchor, message } from 'antd';
 import { Drawer, List } from 'antd-mobile'
 import Logo from '../../images/logo.png';
 import Bg from '../../images/cloud.png';
@@ -15,22 +15,46 @@ import Progerss from '../../container/Progress/index';
 import Introduce from '../../container/Introduce/index';
 import Branch from '../../container/Branch/index';
 import Questions from '../../container/Questions/index';
-
+// import debounce from '../../util/debounce.js'
 import './index.scss';
 
 const { Link } = Anchor;
 
+const throlle = (fn, delay) => {
+    let flag = true
+    return function () {
+        if(!flag) return
+        flag = false;
+        setTimeout(() => {
+            fn.apply(this, arguments)
+            flag = true
+        }, delay)
+    }
+}
 const Main = () => {
+
     const achors = ['#main', '#fe', '#be', '#design', '#devops', '#pm', '#ios', '#android']
     const [group, setGroup] = useState('#main');
     const [isOpen, setIsOpen] = useState(false)
+    const [canAnswer, setCanAnswer] = useState(true)
 
     const mobileChange = (target) => {
         setIsOpen(false)
         setGroup(target)
-    }
+    }   
+
+    // 形成闭包，防止重复创建函数，导致没办法生成管理“节流”关键点
+    const temp = throlle(
+                () => { message.warning('答题时间未到/结束！') }, 
+                500
+                )
+
     const onOpenChange = () => {
-        setIsOpen(!isOpen)
+        if(canAnswer) {
+            setIsOpen(!isOpen)
+        }else {
+            temp()
+        }
     }
     const sidebar = (
         <List className='siderbar-style'>
@@ -100,7 +124,11 @@ const Main = () => {
                             onChange={(key) => {
                                 // 过滤由于上滑导航条导致的事件触发
                                 if (achors.includes(key)) {
-                                    setGroup(key);
+                                    if(canAnswer) {
+                                        setGroup(key);
+                                    }else {
+                                        message.warning('答题时间未到/已结束！')
+                                    }
                                 }
                             }}
                             onClick={
@@ -126,7 +154,7 @@ const Main = () => {
                                     return (
                                         <main id="main">
                                             <Progerss name={'星辰'} />
-                                            <Introduce />
+                                            <Introduce canAnswer={setCanAnswer} />
                                             <Branch className="branch" />
                                         </main>
                                     );

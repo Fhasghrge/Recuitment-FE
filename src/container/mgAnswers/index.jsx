@@ -60,7 +60,6 @@ const EditableTable = ({ group }) => {
                 });
                 if (res.data.code === 0) {
                     setData(res.data.data);
-                    console.log(res.data.data[0].options);
                 } else {
                     message.warning(res.data.msg);
                 }
@@ -79,7 +78,6 @@ const EditableTable = ({ group }) => {
         setEditingKey(record.ID);
     };
     const deleteItem = async (record) => {
-        console.log(record);
         try {
             const res = await axios({
                 method: 'post',
@@ -109,7 +107,6 @@ const EditableTable = ({ group }) => {
         });
     };
     const saveSubmit = async (record) => {
-        console.log(record);
         try {
             const res = await axios({
                 method: 'post',
