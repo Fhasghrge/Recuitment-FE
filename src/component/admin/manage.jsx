@@ -68,7 +68,7 @@ const Manage = (props) => {
             params: {
                 groups: which
             },
-            responseType: 'blob'
+            responseType: 'blob' // 以字节流的形式下载文件
         }).then((res) => {
             const content = res.data
             const blob = new Blob([content], { type: 'application.zip' })

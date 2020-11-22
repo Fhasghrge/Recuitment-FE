@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 
 import ChiLogo from '../../images/logo.png';
 import EGLogo from '../../images/font.png';
@@ -14,11 +14,14 @@ const Login = () => {
      ** layout阶段对useEffect本身的回调和销毁做清理
      *
      * ? vh所计算的依据很令人迷惑，可以使用相对稳定的window.innerHeight代替
+     * vh根据“布局视口”的高度计算的
      * vh首先由safari提出，由后续浏览器跟进支持
      * vh在safari上计算的依据不受软键盘占用的影响
      * 但是在安卓手机上，软键盘影响了vh的计算，每当软键盘弹出就会重新计算
      * 不同的浏览器的渲染引擎对于window.innerheight的计算也不相同，
      * 这里的在火狐浏览器还是不适配，但是移动端主流浏览器已经适配
+     * 
+     * 补充： 这里大概率收到布局视口影响,布局视口收到软键盘影响
      */
     useEffect(() => {
         const initViewport = function (height) {

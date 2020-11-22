@@ -124,7 +124,7 @@ const Main = () => {
                             onChange={(key) => {
                                 // 过滤由于上滑导航条导致的事件触发
                                 if (achors.includes(key)) {
-                                    if(canAnswer) {
+                                    if(!canAnswer) {
                                         setGroup(key);
                                     }else {
                                         message.warning('答题时间未到/已结束！')
