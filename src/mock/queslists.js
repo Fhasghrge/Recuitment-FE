@@ -1,6 +1,6 @@
 // 使用 Mock
 import Mock from 'mockjs'
-export default Mock.mock('/control/question/list', 'post', {
+export default Mock.mock('/join/api/control/question/list', 'post', {
     code: 0,
     msg: 'success',
     data: [
