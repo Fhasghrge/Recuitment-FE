@@ -5,8 +5,8 @@ import EGLogo from '../../images/font.png';
 import LoginFrom from '../../container/loginform/index';
 import './Login.scss';
 
-const Login = () => {
-
+const Login = (props) => {
+    console.log(props)
     /**
      ** 通常在副作用中执行 网络请求、 手动修改dom、 记录日志的操作
      ** 执行不更新状态的副作用以防止重复的修改无限递归
